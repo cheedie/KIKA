@@ -1,7 +1,6 @@
 import '../../styles/vendor/DashboardStyles.css';
-import React, {useState} from 'react'
+import React from 'react'
 import Sidebar from './Sidebar.js'
-import {vendor_nav_links} from '../../data/vendor/vendor_nav_links'
 import kika from "../../assets/vendor/images/kika.svg"
 import Chart from "../../assets/vendor/images/Chart.svg"
 

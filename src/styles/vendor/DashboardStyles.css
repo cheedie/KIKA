@@ -59,16 +59,26 @@ body p {
           justify-content: space-between;
 }
 
-div#dashboard .sidebar {
+div#dashboard #sidebar {
   border: 1px solid #c4c4c4;
   padding: 1em 0em;
-  min-height: 576px;
+  height: 100%;
   max-width: 293.48px;
   background: white;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-div#dashboard .sidebar a {
+div#dashboard .nav_items .link {
   font-style: normal;
   font-weight: 700;
   font-size: 17.6089px;
@@ -83,13 +93,58 @@ div#dashboard .sidebar a {
   transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-div#dashboard .sidebar a.active {
+div#dashboard .nav_items .link.active {
   background: #f15a24;
 }
 
-div#dashboard .sidebar a:hover {
+div#dashboard .nav_items .link:hover {
   background: #f15a24;
   color: white;
+}
+
+div#dashboard .bottomNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  justify-self: flex-end;
+  padding: 1em;
+}
+
+div#dashboard .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #2e3192;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: 2px solid #2e3192;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div#dashboard .icons img {
+  margin: auto;
+  width: 24px;
+  height: 24px;
+  color: #2e3192;
+}
+
+div#dashboard .icons:hover {
+  background: transparent;
+  -webkit-filter: grayscale(1) invert(1);
+          filter: grayscale(1) invert(1);
+  background: crimson;
+  border: 2px solid #2e3192;
 }
 
 div#dashboard .card {
