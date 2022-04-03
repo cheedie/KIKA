@@ -1,6 +1,6 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, useRoutes } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import LandingPage from "./components/landing/LandingPage";
 
 function AppRoutes() {
   const routes = useRoutes([{ path: "/", element: <LandingPage /> }]);
