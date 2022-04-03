@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "../../navbar-assets/kika-logo-txt.png";
-import { ReactComponent as Menu } from "../../navbar-assets/hamburger.svg";
-import { ReactComponent as Cart } from "../../navbar-assets/cart.svg";
-import { ReactComponent as Search } from "../../navbar-assets/search.svg";
+import logo from "../../assets/vendor/navbar-assets/kika-logo-txt.png";
+import { ReactComponent as Menu } from "../../assets/vendor/navbar-assets/hamburger.svg";
+import { ReactComponent as Cart } from "../../assets/vendor/navbar-assets/cart.svg";
+import { ReactComponent as Search } from "../../assets/vendor/navbar-assets/search.svg";
 const Navbar = () => {
   return (
     <section className="nav__main-container">

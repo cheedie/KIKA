@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./generalComponents/Navbar";
-import Footer from "./generalComponents/Footer";
+import Navbar from "../generalComponents/Navbar";
+import Footer from "../generalComponents/Footer";
 const LandingPage = () => {
   return (
     <>
