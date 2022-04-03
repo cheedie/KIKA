@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap");
+body {
+  position: relative;
+  font-family: "Montserrat";
+  font-style: normal;
+}
+
+body div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body p {
+  line-height: 100%;
+}
+
+#header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+  gap: 5em;
+  padding: 0 2em 0 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header img {
+  padding: 0.8em 3em 0.8em 2em;
+}
+
+#header form {
+  max-width: 898px;
+}
+
+#header form input {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #f15a24;
+  padding: 1.8em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.dashboard.main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+  gap: 5em;
+  padding: 0 4em 0 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+div#dashboard .sidebar {
+  border: 1px solid #c4c4c4;
+  padding: 1em 0em;
+  min-height: 576px;
+  max-width: 293.48px;
+  background: white;
+  position: relative;
+}
+
+div#dashboard .sidebar a {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17.6089px;
+  color: #2e3192;
+  line-height: 21px;
+  display: block;
+  padding: 0.8em 3em;
+  margin: 0;
+  text-decoration: none;
+  background: inherit;
+  -webkit-transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+div#dashboard .sidebar a.active {
+  background: #f15a24;
+}
+
+div#dashboard .sidebar a:hover {
+  background: #f15a24;
+  color: white;
+}
+
+div#dashboard .card {
+  width: 334px;
+  margin: 1em 0;
+  border: 0.733703px solid #c4c4c4;
+  border-radius: 0px;
+  padding: 1em;
+}
+
+div#dashboard .title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14.6741px;
+  line-height: 18px;
+  color: #2e3192;
+  padding: 0 0 1em;
+}
+
+div#dashboard p {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+div#dashboard .subtitle {
+  font-weight: 400;
+  font-size: 11.7392px;
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+}
+
+div#dashboard .fig {
+  font-weight: 500;
+  font-size: 17.6089px;
+  line-height: 21px;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+div#dashboard .reports {
+  max-width: 898px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 0.5em;
+  gap: 1em;
+}
+
+div#dashboard .reports .secondary.wrapper {
+  justify-self: flex-end;
+}
+
+div#dashboard .reports .secondary.wrapper img {
+  width: 100%;
+}
+
+div#dashboard .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div#dashboard .rows {
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+div#dashboard .col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div#dashboard .inner .col {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div#dashboard .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+/*# sourceMappingURL=DashboardStyles.css.map */
