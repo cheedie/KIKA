@@ -1,0 +1,56 @@
+.footer__topSection {
+  background-color: #2e3192;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 135px;
+  padding: 0 2rem;
+}
+
+.footer__logoSection img {
+  width: 134.27px;
+  height: 68.97px;
+}
+
+.footer__subscribe {
+  width: 30%;
+  color: #ffffff;
+}
+
+.footer__h3 {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.footer__p {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 5.8px;
+}
+
+.footer__form {
+  display: flex;
+  height: 43.29px;
+  width: 433.62px;
+  margin-top: 11.68px;
+}
+
+.footer__email{
+  flex: 0.6;
+  height: 100%;
+  padding: 0 1rem 0 0;
+}
+
+
+.footer__submit{
+  flex: 0.3;
+  background: #F15A24;
+  height: 100%;
+  border: none;
+  outline: none;
+}
