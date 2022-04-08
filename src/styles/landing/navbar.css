@@ -1,31 +1,77 @@
 .navbar{
-  border: 2px solid red;
+  /*border: 2px solid red;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-right: 1.5rem;
+  padding-left: 1rem;
+}
+
+.navbar__left{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 48%;
+  /*border: 2px solid green;*/
+
+}
+
+.navbar__right{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 48%;
+  /*border: 2px solid green;*/
 }
 
 .navbar__logo{
   width: 180px;
   height: 92.48px;
+  /*border: 2px solid red;*/
 }
 
 .navbar__menu{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  width: 66%;
   font-size: 1rem;
   font-weight: 400;
   line-height: 19.5px;
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  align-items: center;
-  width: 30%;
+  /*border: 2px solid red;*/
+
+}
+
+.navbar__menu ul li{
+  cursor: pointer;
+}
+
+
+
+form{
+  width: 55%;
+  /*border: 2px solid red;*/
 }
 
 .navbar__search{
   height: 48px;
-  width: 368px;
-  margin: 0 40px;
+  width: 100%;
   border: 1px solid #F15A24;
   padding: 1rem;
   color: #F15A24;
+}
+
+.navbar__signIn{
+  width: 40%;
+  /*border: 2px solid red;*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

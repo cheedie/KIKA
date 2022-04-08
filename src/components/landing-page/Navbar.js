@@ -5,45 +5,48 @@ import '../../styles/landing/navbar.css';
 
 const Navbar = () => {
   return (
-    <div className="navbar">
+    <section className="navbar">
       {/* logo */}
-      <div className="navbar__logo">
-        <img src={Logo} alt="" />
+      <div className="navbar__left">
+        <div className="navbar__logo">
+          <img src={Logo} alt="" />
+        </div>
+        {/* nav menu */}
+        <ul className="navbar__menu">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Market Place</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Sell on KIKA</a>
+          </li>
+        </ul>
       </div>
-      {/* nav menu */}
-      <ul className="navbar__menu">
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">Market Place</a>
-        </li>
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Sell on KIKA</a>
-        </li>
-      </ul>
-      {/* Search */}
-      <form>
-        <input
-          className="navbar__search"
-          type="text"
-          placeholder="Search"
-        />
-      </form>
-      {/* sign in */}
-      <div className="navbar__signIn">
-        <a href="#">Sign up</a>
-        <a href="#">Sign in</a>
+
+      <div className="navbar__right">
+        <form>
+          <input
+            className="navbar__search"
+            type="text"
+            placeholder="Search"
+          />
+        </form>
+        
+        <div className="navbar__signIn">
+          <a href="#">Sign up</a>
+          <a href="#">Sign in</a>
+          <div className="navbar__cart">
+            <img src={Cart} alt="" />
+            <p>cart</p>
+          </div>
+        </div>
       </div>
-      {/* cart */}
-      <div className="navbar__cart">
-        <img src={Cart} alt="" />
-        <p>cart</p>
-      </div>
-    </div>
+    </section>
   );
 };
 
