@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../generalComponents/Navbar";
-import Footer from "../generalComponents/Footer";
+import Navbar from "../landing-page/Navbar";
+import Footer from "../landing-page/Footer";
+
 import { useUserContext } from "../../context/user_context";
 
 const Signup = () => {
@@ -13,9 +14,12 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!name) {
+    }
     uploadUserDetails({
       name,
       username,
@@ -23,6 +27,10 @@ const Signup = () => {
       password,
     });
     navigate("/buyer/signin");
+  };
+
+  const showAlert = (show = false, type = "", msg = "") => {
+    setAlert({ show, type, msg });
   };
   return (
     <main>
@@ -97,6 +105,7 @@ const Signup = () => {
           <img src={signImage} alt="" />
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

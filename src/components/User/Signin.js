@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../generalComponents/Navbar";
-import Footer from "../generalComponents/Footer";
+import Navbar from "../landing-page/Navbar";
+import Footer from "../landing-page/Footer";
 
 const Signin = () => {
   return (
@@ -54,6 +54,7 @@ const Signin = () => {
           <img src={signImage} alt="" />
         </div>
       </section>
+      <Footer />
     </main>
   );
 };
