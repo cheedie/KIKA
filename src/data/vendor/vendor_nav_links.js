@@ -3,7 +3,7 @@ export const vendor_nav_links =[
     {title: "Products", link:"/products"},
     {title: "Orders", link:"/orders"},
     {title: "Report", link:"/report"},
-    {title: "Review", link:"/review"},
+    {title: "Reviews", link:"/review"},
     {title: "Withdraw", link:"/withdraw"},
     {title: "Settings", link:"/settings"},
 ] ;
