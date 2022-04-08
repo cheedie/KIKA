@@ -1,30 +1,73 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
 import Navbar from "../generalComponents/Navbar";
 import Footer from "../generalComponents/Footer";
+import { useUserContext } from "../../context/user_context";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const { uploadUserDetails } = useUserContext();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    uploadUserDetails({
+      name,
+      username,
+      email,
+      password,
+    });
+    navigate("/buyer/signin");
+  };
   return (
     <main>
       <Navbar />
       <section className="sign__main-container">
         <div className="sign__form-section">
           <h3 className="sign__txt">Sign Up</h3>
-          <form action="" className="sign__form-group">
+          <form action="" className="sign__form-group" onSubmit={handleSubmit}>
             <label htmlFor="full name" className="sign__form-label">
               Full Name
             </label>
-            <input type="text" className="sign__form-input" />
+            <input
+              type="text"
+              className="sign__form-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            <label htmlFor="username" className="sign__form-label">
+              Username
+            </label>
+            <input
+              type="text"
+              className="sign__form-input"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
             <label htmlFor="email address" className="sign__form-label">
               Email Address
             </label>
-            <input className="sign__form-input" type="email" />
+            <input
+              className="sign__form-input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <label htmlFor="password" className="sign__form-label">
               Password
             </label>
-            <input type="password" className="sign__form-input" />
+            <input
+              type="password"
+              className="sign__form-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <div className="sign__terms-container">
               <button className="sign__terms-btn"></button>
               <div>
