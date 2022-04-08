@@ -1,19 +1,10 @@
 import { NavLink } from "react-router-dom"
-// import { vendor_nav_links } from "../../data/vendor/vendor_nav_links";
 import avatar from "../../assets/vendor/icons/avatar.png";
 import logout from "../../assets/vendor/icons/logout.png";
 import external from "../../assets/vendor/icons/externa_link.png";
 
 export default function Sidebar() {
 
-  // Using UseState and link index to set active button
-  // const [active, setActive] = useState(0);
-  // const handleClick = (page,index) =>{
-  //   console.log(page)
-  //   setPage(page);
-  //   setActive(index)
-  //   console.log(active)
-  // }
 
   return (
     <>
@@ -26,8 +17,6 @@ export default function Sidebar() {
                 key={`${link.title}-${index}`}
                 className="link"
                 activeClassName="active"
-                // onClick={()=>handleClick(title,index)}
-            
                 >
                 {link.title}
               </NavLink>
