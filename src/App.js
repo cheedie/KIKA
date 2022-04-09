@@ -2,7 +2,7 @@
 
 import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
-import LandingPage from "./components/landing/LandingPage";
+import LandingPage from "./components/landing-page/Landing";
 //import Dashboard from "./components/vendor/Dashboard"
 import Vendor from "./components/vendor/Vendor"
 import Signup from "./components/User/Signup";
