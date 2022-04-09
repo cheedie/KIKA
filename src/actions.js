@@ -1,4 +1,6 @@
-export const USER_LOGIN = "USER_LOGIN";
+export const REQUEST_LOGIN = "REQUEST_LOGIN";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_DETAILS = "USER_DETAILS";
 export const REGISTER_USER = "REGISTER_USER";
