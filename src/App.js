@@ -1,12 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
-// import Dashboard from "./components/vendor/Dashboard";
-// import Orders from "./components/vendor/Orders";
-// import Products from "./components/vendor/Products";
-// import Report from "./components/vendor/Report";
-// import Reviews from "./components/vendor/Reviews";
-import Vendor from "./components/vendor/Vendor";
+import Vendor from "./components/vendor/Vendor"
 import Signup from "./components/User/Signup";
 import Signin from "./components/User/Signin";
 
@@ -15,12 +10,7 @@ function AppRoutes() {
     { path: "/", element: <Landing /> },
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
-    { path: "/vendor", element: <Vendor /> },
-    // { path: "/vendor/dashboard", element: <Dashboard /> },
-    // { path: "/vendor/orders", element: <Orders /> },
-    // { path: "/vendor/products", element: <Products /> },
-    // { path: "/vendor/report", element: <Report /> },
-    // { path: "/vendor/reviews", element: <Reviews /> },
+    { path: "/vendor/*", element: <Vendor /> },
   ]);
   return routes;
 }
@@ -34,3 +24,4 @@ function App() {
 }
 
 export default App;
+
