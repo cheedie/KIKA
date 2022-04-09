@@ -12,7 +12,6 @@ const Signup = () => {
   const { uploadUserDetails } = useUserContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
 
@@ -22,11 +21,10 @@ const Signup = () => {
     }
     uploadUserDetails({
       name,
-      username,
       email,
       password,
     });
-    navigate("/buyer/signin");
+    navigate("/user/signin");
   };
 
   const showAlert = (show = false, type = "", msg = "") => {
@@ -49,15 +47,6 @@ const Signup = () => {
               onChange={(e) => setName(e.target.value)}
             />
 
-            <label htmlFor="username" className="sign__form-label">
-              Username
-            </label>
-            <input
-              type="text"
-              className="sign__form-input"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
             <label htmlFor="email address" className="sign__form-label">
               Email Address
             </label>
@@ -86,7 +75,13 @@ const Signup = () => {
               </div>
             </div>
             <div className="sign__sign-btn-container">
-              <button type="submit" className="sign__up-btn">
+              <button
+                type="submit"
+                className="sign__up-btn"
+                disabled={
+                  name === "" && email === "" && password === "" ? true : false
+                }
+              >
                 SIGN UP
               </button>
             </div>
@@ -95,7 +90,7 @@ const Signup = () => {
               <span className="sign__account-txt">
                 Already have an account?{" "}
               </span>
-              <Link to="/buyer/signin" className="sign__link">
+              <Link to="/user/signin" className="sign__link">
                 Sign in
               </Link>
             </div>
