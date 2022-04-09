@@ -75,7 +75,13 @@ const Signup = () => {
               </div>
             </div>
             <div className="sign__sign-btn-container">
-              <button type="submit" className="sign__up-btn">
+              <button
+                type="submit"
+                className="sign__up-btn"
+                disabled={
+                  name === "" && email === "" && password === "" ? true : false
+                }
+              >
                 SIGN UP
               </button>
             </div>

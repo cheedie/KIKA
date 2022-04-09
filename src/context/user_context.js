@@ -8,7 +8,6 @@ import {
   LOGIN_ERROR,
   USER_LOGOUT,
   USER_DETAILS,
-  IS_AUTHENTICATED,
   REGISTER_USER,
 } from "../actions";
 
