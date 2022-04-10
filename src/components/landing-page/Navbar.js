@@ -1,7 +1,8 @@
-import React from 'react';
-import Logo from '../../assets/landing-page/logo.png';
-import Cart from '../../assets/landing-page/cart.png';
-import '../../styles/landing/navbar.css';
+import React from "react";
+import Logo from "../../assets/landing-page/logo.png";
+import Cart from "../../assets/landing-page/cart.png";
+import "../../styles/landing/navbar.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -14,7 +15,7 @@ const Navbar = () => {
         {/* nav menu */}
         <ul className="navbar__menu">
           <li>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
             <a href="#">Market Place</a>
@@ -23,23 +24,19 @@ const Navbar = () => {
             <a href="#">About</a>
           </li>
           <li>
-            <a href="#">Sell on KIKA</a>
+            <a href="/vendor">Sell on KIKA</a>
           </li>
         </ul>
       </div>
 
       <div className="navbar__right">
         <form>
-          <input
-            className="navbar__search"
-            type="text"
-            placeholder="Search"
-          />
+          <input className="navbar__search" type="text" placeholder="Search" />
         </form>
-        
+
         <div className="navbar__signIn">
-          <a href="#">Sign up</a>
-          <a href="#">Sign in</a>
+          <a href="/user/signup">Sign up</a>
+          <a href="/user/signin">Sign in</a>
           <div className="navbar__cart">
             <img src={Cart} alt="" />
             <p>cart</p>
