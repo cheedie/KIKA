@@ -46,9 +46,9 @@ const Conditions = ({
                 <div>
                     <h1>{titleHeading1}</h1>
                     <p>{bodyDesc}</p>
-                    <p>{bodyBullet}</p>
-                    <p>{bodyBullet1}</p>
-                    <p>{bodyBullet2}</p>
+                    <p id='bullet'>{bodyBullet}</p>
+                    <p id='bullet'>{bodyBullet1}</p>
+                    <p id='bullet'>{bodyBullet2}</p>
                 </div> 
                 <div>
                     <h1>{titleHeading2}</h1>
@@ -56,9 +56,9 @@ const Conditions = ({
                     <p>{secondBodyPoint1}</p>
                     <p>{secondBodyPoint2}</p>
                     <p>{secondBodyPoint3}</p>
-                    <p>{secondbodyBullet}</p>
-                    <p>{secondbodyBullet1}</p>
-                    <p>{secondbodyBullet2}</p>
+                    <p id='bullet'> {secondbodyBullet}</p>
+                    <p id='bullet'> {secondbodyBullet1}</p>
+                    <p id='bullet'> {secondbodyBullet2}</p>
                     <p>{secondBodyPoint4}</p>
                     <p>{secondBodyPoint5}</p>
                     <p>{secondBodyPoint6}</p>
@@ -66,29 +66,29 @@ const Conditions = ({
                 <div>
                     <h1>{titleHeading3}</h1>
                     <p>{thirdBodyPoint}</p>
-                    <p>{thirdbodyBullet}</p>
-                    <p>{thirdbodyBullet2}</p>
-                    <p>{thirdbodyBullet3}</p>
+                    <p id='bullet'>{thirdbodyBullet}</p>
+                    <p id='bullet'>{thirdbodyBullet2}</p>
+                    <p id='bullet'>{thirdbodyBullet3}</p>
                     <p>{thirdBodyPoint1}</p>
-                    <p>{thirdbodyBullet4}</p>
-                    <p>{thirdbodyBullet5}</p>
-                    <p>{thirdbodyBullet6}</p>
-                    <p>{thirdbodyBullet7}</p>
-                    <p>{thirdbodyBullet8}</p>
+                    <p id='bullet'>{thirdbodyBullet4}</p>
+                    <p id='bullet'>{thirdbodyBullet5}</p>
+                    <p id='bullet'>{thirdbodyBullet6}</p>
+                    <p id='bullet'>{thirdbodyBullet7}</p>
+                    <p id='bullet'>{thirdbodyBullet8}</p>
                 </div> 
                 <div>
                     <h1>{titleHeading4}</h1>
                     <p>{fourthBodyPoint}</p>
                     <p>{fourthBodyPoint1}</p>
-                    <p>{fourthbodyBullet}</p>
-                    <p>{fourthbodyBullet1}</p>
-                    <p>{fourthbodyBullet2}</p>
+                    <p id='bullet'>{fourthbodyBullet}</p>
+                    <p id='bullet'>{fourthbodyBullet1}</p>
+                    <p id='bullet'>{fourthbodyBullet2}</p>
                     <p>{fourthBodyPoint2}</p>
                 </div>
                 <div>
                     <h1>{titleHeading5}</h1>
                     <p>{bodyDesc1}</p>
-                </div>y
+                </div>
             </div>    
         </section>
         

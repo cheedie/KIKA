@@ -9,12 +9,12 @@ const initialState = {
   userLogout: false,
 };
 
-const UserContext = React.creatContext();
+const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return <UserContext.Provider>{}</UserContext.Provider>;
+  return <UserContext.Provider>{ children }</UserContext.Provider>;
 };
 
 export const useUserContext = () => {

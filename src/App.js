@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       {/* <AppRoutes /> */}
-      <LandingPage/>
+      <ConditionsPage/>
     </Router>
   );
 }
