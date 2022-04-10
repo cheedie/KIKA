@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from "../../landing-page/Navbar";
-import Footer from "../../landing-page/Footer";
-import Conditions from './Conditions'
-import { conditionObjOne } from './ConditionsData'
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
+import Conditions from '../../components/StaticPages/Condition/Conditions'
+import { conditionObjOne } from '../../components/StaticPages/Condition/ConditionsData'
 
 const termConditions = () => {
   return (
@@ -10,7 +10,7 @@ const termConditions = () => {
         <Navbar />
         <section>
             <div className='terms_header'>
-                <h2>Terms and Conditions</h2>    
+                <h2>TERMS AND CONDITIONS</h2>    
             </div>
             <div>
                 <Conditions {...conditionObjOne} />

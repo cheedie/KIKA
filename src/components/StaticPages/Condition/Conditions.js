@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../../styles/StaticPages/Conditions.css";
+import "../../../styles/StaticStyles/Conditions.css";
 
 const Conditions = ({
     titleHeading1,

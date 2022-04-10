@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { HiMail, HiPhone } from "react-icons/hi";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaTwitter, FaFacebookF } from "react-icons/fa";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
-import "../../styles/StaticPages/Contact.css";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
+import "../../styles/StaticStyles/Contact.css";
 
 
 const Contact = () => {
@@ -33,14 +33,9 @@ const Contact = () => {
             </form>
             <div className="contact-btn-container">
               <button type="submit" id='contact-btn' className="contact-btn">
-                <Link
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "mailto:kikathriftstore@gmail.com";
-                    e.preventDefault();
-                  }} >
+                <Link to='' >
                     SEND MESSAGE
-                  </Link>
+                </Link>
               </button>
             </div>
           </div>

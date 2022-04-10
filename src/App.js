@@ -6,9 +6,10 @@ import Vendor from "./components/vendor/Vendor";
 import Signup from "./components/User/Signup";
 import Signin from "./components/User/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
-import Contact from "./components/StaticPages/Contact"
-import ErrorPage from "./components/StaticPages/Error"
-import ConditionsPage from "./components/StaticPages/Condition/termConditions"
+import Contact from "./pages/StaticPages/Contact"
+import ErrorPage from "./pages/StaticPages/Error"
+import ConditionsPage from "./pages/StaticPages/termConditions"
+import Waitlist from "./pages/StaticPages/Waitlist";
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -18,8 +19,9 @@ function AppRoutes() {
     
     { path: "/user/account", element: <UserAccount /> },
      { path: "/buyer/contactus", element: <Contact /> },
-    { path: "/errorpage", element: <ErrorPage /> },
+    { path: "/*", element: <ErrorPage /> },
     { path: "/conditionspage", element: <ConditionsPage /> },
+    { path: "/waitlist", element: <Waitlist /> },
     { path: "/vendor/*", element: <Vendor /> },
   ]);
   return routes;

@@ -1,0 +1,15 @@
+.navbar_waitlist {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-WaitMenu {
+  display: flex;
+  justify-content: flex-end;
+}
+.nav_Waitlinks {
+  color: #2e3192;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
