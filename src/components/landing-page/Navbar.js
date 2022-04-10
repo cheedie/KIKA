@@ -35,8 +35,8 @@ const Navbar = () => {
         </form>
 
         <div className="navbar__signIn">
-          <a href="/buyer/signup">Sign up</a>
-          <a href="/buyer/signin">Sign in</a>
+          <a href="/user/signup">Sign up</a>
+          <a href="/user/signin">Sign in</a>
           <div className="navbar__cart">
             <img src={Cart} alt="" />
             <p>cart</p>

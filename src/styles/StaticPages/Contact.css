@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  color: #333333;
+}
+a {
+  text-decoration: none;
+}
+.contact_container > * {
+  padding: 2em 8em 2em 12em;
+}
+.contact_row {
+  display: flex;
+}
+
+.contact_input > * {
+  margin: 1em 0;
+}
+#contact_input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+.contact_section {
+  width: 40vw;
+}
+.contact_input label {
+  display: flex;
+  flex-direction: column;
+  font-size: 11.7px;
+  font-weight: bold;
+  color: #333333;
+}
+.contact_input input {
+  margin-top: 5px;
+  padding: 0.7em;
+  border: 1.8px solid #c4c4c4;
+  width: 130%;
+  background-color: transparent;
+}
+.contact_input input:focus,
+.contact_input textarea:focus {
+  outline-color: #f15a24;
+}
+.contact_input textarea {
+  height: 120px;
+  padding: 0.7em;
+  resize: none;
+  font-size: 14px;
+  border: 1.8px solid #c4c4c4;
+  background-color: transparent;
+  width: 130%;
+}
+
+.info_section {
+  width: 40vw;
+}
+#contact-btn a {
+  color: #ffff;
+}
+#contact-btn {
+  background: #f15a24;
+  cursor: pointer;
+  padding: 0.5rem 2.5rem;
+  margin: 1em 0;
+  font-size: 12px;
+  line-height: 1.6;
+  border: transparent;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+
+.mail_contact,
+.number_contact {
+  display: flex;
+  margin-top: 2.5em;
+}
+
+.hiIcon {
+  margin: 0.3em 0;
+  font-size: 3rem;
+}
+
+.info_mail a,
+.info_number a {
+  display: flex;
+  flex-direction: column;
+  color: #f15a24;
+  font-weight: 700;
+  margin: 0.9em 2.5em;
+}
+
+.contact_social {
+  margin: 4em;
+  text-align: center;
+  font-size: 1.4em;
+  color: #f15a24;
+}
+
+.contact_social > * {
+  margin: 0 1em;
+}
+
+@media (max-width: 1100px) {
+  .contact_container > * {
+    padding: 2em 5em 2em 8em;
+  }
+  .contact_social {
+    margin: 2.5em 1em;
+  }
+  .contact_social > * {
+    margin: 0 0.7em;
+  }
+}
+
+@media (max-width: 850px) {
+  .contact_container > * {
+    padding: 2em 2em 2em 4em;
+  }
+  .info-header {
+    font-size: 20px;
+  }
+  #contact-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 11px;
+  }
+
+  .mail_contact,
+  .number_contact {
+    margin-top: 2em;
+  }
+
+  .hiIcon {
+    font-size: 2.5rem;
+  }
+
+  .info_mail a,
+  .info_number a {
+    margin: 0.7em 1.5em;
+  }
+
+  .contact_social {
+    margin: 3em 1em;
+  }
+  .contact_social > * {
+    margin: 0 0.5em;
+  }
+}
+
+@media (max-width: 620px) {
+  .info_mail a,
+  .info_number a {
+    margin: 0.7em 1em;
+  }
+  .hiIcon {
+    font-size: 1.8rem;
+  }
+  #contact-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 11px;
+  }
+}
+@media (max-width: 550px) {
+  .contact_container > * {
+    padding: 2em 2em 1em 2em;
+  }
+  .contact_row {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact_section,
+  .info_section {
+    width: 90vw;
+  }
+  .info_section {
+    margin-top: 2em;
+  }
+  .hiIcon {
+    font-size: 2.8rem;
+  }
+
+  .info_mail a,
+  .info_number a {
+    margin: 0.9em 2em;
+    font-size: 16px;
+    color: #333333;
+  }
+  .contact_input input,
+  .contact_input textarea {
+    width: 150%;
+  }
+  .contact_social {
+    color: #333333;
+  }
+}
