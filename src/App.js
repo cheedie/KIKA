@@ -11,11 +11,10 @@ function AppRoutes() {
     { path: "/", element: <Landing /> },
     { path: "/user/signup", element: <Signup /> },
     { path: "/user/signin", element: <Signin /> },
-    { path: "/vendor", element: <Vendor /> },
+    
     { path: "/user/account", element: <UserAccount /> },
 
-    { path: "/buyer/signup", element: <Signup /> },
-    { path: "/buyer/signin", element: <Signin /> },
+   
     { path: "/vendor/*", element: <Vendor /> },
   ]);
   return routes;
