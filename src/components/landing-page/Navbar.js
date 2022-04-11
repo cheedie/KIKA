@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/landing-page/logo.png';
 import Cart from '../../assets/landing-page/cart.png';
-import '../../styles/landing/navbar.css';
+import '../../styles/landing/navbar.scss';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const [showLinks, setShowLinks] = useState(false);
+
   return (
     <section className="navbar">
       {/* logo */}
@@ -14,7 +17,7 @@ const Navbar = () => {
         {/* nav menu */}
         <ul className="navbar__menu">
           <li>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
             <a href="#">Market Place</a>
@@ -23,7 +26,7 @@ const Navbar = () => {
             <a href="#">About</a>
           </li>
           <li>
-            <a href="#">Sell on KIKA</a>
+            <a href="/vendor">Sell on KIKA</a>
           </li>
         </ul>
       </div>
@@ -36,13 +39,20 @@ const Navbar = () => {
             placeholder="Search"
           />
         </form>
-        
+
         <div className="navbar__signIn">
-          <a href="#">Sign up</a>
-          <a href="#">Sign in</a>
+          <a href="/buyer/signup">Sign up</a>
+          <a href="/buyer/signin">Sign in</a>
           <div className="navbar__cart">
             <img src={Cart} alt="" />
             <p>cart</p>
+          </div>
+
+          {/* hamburger */}
+          <div className="nav__toggle">
+            <div className="line line1"></div>
+            <div className="line line2"></div>
+            <div className="line line3"></div>
           </div>
         </div>
       </div>
