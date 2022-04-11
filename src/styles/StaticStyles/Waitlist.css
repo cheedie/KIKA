@@ -1,15 +1,84 @@
+/* ======================================NavBar css================================================== */
 .navbar_waitlist {
   display: flex;
-  justify-content: space-between;
+  padding: 0 1.5em 0 3em;
+  /* justify-content: space-between; */
 }
-.nav-WaitMenu {
+.navbar_Waitcontainer {
   display: flex;
   justify-content: flex-end;
+  z-index: 1;
+  width: 100%;
 }
 .nav_Waitlinks {
   color: #2e3192;
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
+  font-size: 17px;
+  font-weight: 700;
+}
+.nav-WaitMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  text-align: center;
+}
+
+/* =========================================Hero section css=========================================== */
+.hero_WaitContainer {
+  margin: 0em 0em 0em 4.5em;
+  padding: 0;
+  /* max-height: 80vh;*/
+}
+.hero_WaitRow {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+.hero_WaitWriteup {
+  max-width: 40%;
+  margin-top: 5em;
+}
+.headline_wait {
+  font-size: 38px;
+  color: #2e3192;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.span_wait {
+  color: #f15a24;
+}
+.hero_WaitDesc {
+  font-weight: 500;
+  line-height: 26px;
+  max-width: 470px;
+  margin-top: 0.4em;
+}
+.hero_WaitImg {
+  max-width: 60%;
+}
+.hero_WaitImg img {
+  border: 0;
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  max-height: 100vh;
+}
+
+#waitlist-btn a {
+  color: #ffff;
+}
+#waitlist-btn {
+  background: #2e3192;
+  cursor: pointer;
+  padding: 0.5rem 2.5rem;
+  margin: 1em 0;
+  font-size: 12px;
+  line-height: 1.6;
+  border: transparent;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
 }

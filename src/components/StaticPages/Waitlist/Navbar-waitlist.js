@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import '../../../styles/StaticStyles/Waitlist.css'
-import LogoImage from "../../../assets/StaticPages/Kika_logo.svg";
+import LogoImage from "../../../assets/landing-page/logo.png";
 
 const NavbarWaitlist = () => {
   return (
