@@ -1,4 +1,3 @@
-
 import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
@@ -16,10 +15,9 @@ function AppRoutes() {
     { path: "/", element: <Landing /> },
     { path: "/user/signup", element: <Signup /> },
     { path: "/user/signin", element: <Signin /> },
-    
     { path: "/user/account", element: <UserAccount /> },
-     { path: "/buyer/contactus", element: <Contact /> },
-    { path: "/*", element: <ErrorPage /> },
+    { path: "/buyer/contactus", element: <Contact /> },
+    { path: "*", element: <ErrorPage /> },
     { path: "/conditionspage", element: <ConditionsPage /> },
     { path: "/waitlist", element: <Waitlist /> },
     { path: "/vendor/*", element: <Vendor /> },
@@ -36,4 +34,3 @@ function App() {
 }
 
 export default App;
-
