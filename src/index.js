@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./context/user_context";
+import {AppProvider} from './context/landing_context'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
