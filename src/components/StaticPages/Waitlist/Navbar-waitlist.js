@@ -10,7 +10,7 @@ const NavbarWaitlist = () => {
             <Link to='/' className="waitlist-logo">
                 <img src={LogoImage} alt="KIKA" />
             </Link>
-            <div className="navbar_Waitcontainer">
+            {/* <div className="navbar_Waitcontainer">
                 <ul className='nav-WaitMenu'>
                     <li className="nav-Waititem">
                         <Link to='' className="nav_Waitlinks">
@@ -23,7 +23,7 @@ const NavbarWaitlist = () => {
                         </Link>
                     </li>
                 </ul>    
-            </div>
+            </div*/}
         </div>
     </>
   )
