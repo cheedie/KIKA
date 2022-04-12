@@ -2,29 +2,14 @@ import React, { useState } from 'react';
 import Logo from '../../assets/landing-page/logo.png';
 import Search from '../../assets/landing-page/search.png';
 import Cart from '../../assets/landing-page/cart.png';
-import {Transition} from 'react-transition-group';
+import { CSSTransition} from 'react-transition-group';
+import {
+  defaultStyle,
+  transitionStyles,
+  searchDefaultStyle,
+  searchTransitionStyles,
+} from './transitions';
 import '../../styles/landing/css/navbar.css';
-
-const duration = 500;
-
-const defaultStyle = {
-  transition: `right ${duration}ms ease-in-out`,
-  padding: 20,
-  display: 'inline-block',
-  backgroundColor: '#fff',
-  position:'absolute',
-  top: "75px",
-  right:"-100%",
-  zIndex:100,
-  width:"100%"
-};
-
-const transitionStyles = {
-  entering: { right: "-100%" },
-  entered: { right: 0 },
-  exiting: { right: 0 },
-  exited: { right: "-100%" },
-};
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -58,6 +43,7 @@ const Navbar = () => {
             className="nav__searchIcon"
             src={Search}
             alt="Search Icon"
+            onClick={() => setShowSearch(!showSearch)}
           />
         </span>
       </form>
@@ -77,14 +63,16 @@ const Navbar = () => {
           <div className="line line2"></div>
           <div className="line line3"></div>
         </div>
+
         {/* sidebar */}
-        <Transition in={showLinks} timeout={500}>
+        <CSSTransition in={showLinks} timeout={300}>
           {(state) => (
             <ul
               style={{
                 ...defaultStyle,
                 ...transitionStyles[state],
               }}
+              className="nav__sideBar"
             >
               <li>
                 <a href="#">Home</a>
@@ -99,23 +87,31 @@ const Navbar = () => {
                 <a href="#">Sell on KIKA</a>
               </li>
               <li>
-                <a href="#">Sign in</a>
+                <a href="#">Sign up</a>
               </li>
               <li>
-                <a href="#">Sign up</a>
+                <a href="#">Sign in</a>
               </li>
             </ul>
           )}
-        </Transition>
+        </CSSTransition>
+        {/*mobile search */}
+        <CSSTransition in={showSearch} timeout={300}>
+          {(state) => (
+            <section
+              style={{
+                ...searchDefaultStyle,
+                ...searchTransitionStyles[state],
+              }}
+              classNames="nav__searchContainer"
+            >
+              <input placeholder="Search for anything" type="text" />
+            </section>
+          )}
+        </CSSTransition>
       </div>
     </section>
   );
 };
 
 export default Navbar;
-
-//className={`${
-//              showLinks
-//                ? 'nav__sideBar show__sideBar'
-//                : 'nav__sideBar'
-//                  }`}
