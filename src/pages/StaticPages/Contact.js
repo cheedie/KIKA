@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { HiMail, HiPhone } from "react-icons/hi";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaTwitter, FaFacebookF } from "react-icons/fa";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
-import "../../styles/StaticPages/Contact.css";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
+import "../../styles/StaticStyles/Contact.css";
 
 
 const Contact = () => {
@@ -33,14 +33,9 @@ const Contact = () => {
             </form>
             <div className="contact-btn-container">
               <button type="submit" id='contact-btn' className="contact-btn">
-                <Link
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "mailto:kikathriftstore@gmail.com";
-                    e.preventDefault();
-                  }} >
+                <Link to='' >
                     SEND MESSAGE
-                  </Link>
+                </Link>
               </button>
             </div>
           </div>
@@ -51,24 +46,16 @@ const Contact = () => {
                   <HiMail className='hiIcon' />
               </div>
               <div className='info_mail'>
-                <Link
+                <LinkMailto
                   className='support'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "mailto:support@kika.com";
-                    e.preventDefault();
-                  }} >
-                    support@kika.com
-                </Link>
-                <Link
+                  label="support@kika.com"
+                  mailto="mailto:support@kika.com" 
+                />
+                <LinkMailto
                   className='support'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "mailto:contact@kika.com";
-                    e.preventDefault();
-                  }} >
-                    contact@kika.com
-                  </Link>
+                  label="contact@kika.com"
+                  mailto="mailto:contact@kika.com" 
+                />
               </div>
             </div>
             <div className='number_contact'>
@@ -76,39 +63,33 @@ const Contact = () => {
                   <HiPhone className='hiIcon' />
               </div>
               <div className='info_number'>
-                <Link
-                  className='number'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "tel:+234-908-875-6543";
-                    e.preventDefault();
-                  }} >
-                    +234-908-875-6543
-                </Link>
-                <Link
-                  className='number'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "tel:+234-807-874-8974";
-                    e.preventDefault();
-                  }} >
-                    +234-807-874-8974
-                </Link>
-                <Link
-                  className='number'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "tel:+234-807-874-8974";
-                    e.preventDefault();
-                  }} >
-                    +234-807-874-8974
-                </Link>
+                  <LinkTel
+                    className='number'
+                    number="+234-908-875-6543"
+                    tel="tel:+234-908-875-6543" 
+                  />
+                  <LinkTel
+                    className='number'
+                    number="+234-807-874-8974"
+                    tel="tel:+234-807-874-8974" 
+                  />
+                  <LinkTel
+                    className='number'
+                    number="+234-807-874-8974"
+                    tel="tel:+234-807-874-8974" 
+                  />
               </div>
             </div>
-            <div className='contact_social'>
-                <FaTwitter className='social_icon' />
+            <div className='contact_social' id='contact_social'>
+              <a href="https://www.instagram.com/kikathriftstore" target="_blank" >
                 <AiFillInstagram className='social_icon' />
+              </a>
+              <a href="https://www.twitter.com/KikaThrift" target="_blank" >
+                <FaTwitter className='social_icon' />
+              </a>
+              <a href="#" target="_blank" > 
                 <FaFacebookF className='social_icon' />
+              </a>
             </div>
           </div>
         </div>
@@ -119,3 +100,33 @@ const Contact = () => {
 }
 
 export default Contact
+
+
+
+const LinkMailto = ({ mailto, label }) => {
+  return (
+    <Link 
+      to='#'
+      onClick={(e) => {
+        window.location.href = mailto;
+        e.preventDefault();
+      }} >
+        {label}
+    </Link>
+
+  )
+}
+
+const LinkTel = ({ tel, number }) => {
+  return (
+    <Link 
+      to='#'
+      onClick={(e) => {
+        window.location.href = tel;
+        e.preventDefault();
+      }} >
+        {number}
+    </Link>
+
+  )
+}
