@@ -32,7 +32,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 635px;
+  width: 50%;
   color: white;
 }
 
@@ -51,8 +51,6 @@
 }
 
 .swiper__subheading {
-  width: 296px;
-  height: 29px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;

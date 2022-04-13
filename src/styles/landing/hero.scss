@@ -17,9 +17,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 635px;
+  width: 50%;
   color: white;
-  //z-index: 1;
 }
 
 .swiper__heading {
@@ -38,9 +37,6 @@
 }
 
 .swiper__subheading {
-  width: 296px;
-  height: 29px;
-
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;

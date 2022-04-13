@@ -7,6 +7,7 @@ import '../../styles/landing/css/navbar.css';
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [status, setStatus] = useState('close');
 
   return (
     <section className="navbar">
@@ -50,15 +51,22 @@ const Navbar = () => {
 
         <div
           className="nav__sidebarToggle"
-          onClick={() => setShowLinks(!showLinks)}
+          onClick={() => {
+            setShowLinks(!showLinks);
+            setStatus(status === 'open' ? 'close' : 'open');
+          }}
         >
-          <div className="line line1"></div>
-          <div className="line line2"></div>
-          <div className="line line3"></div>
+          <div className={`${status} line line1`}></div>
+          <div className={`${status} line line2`}></div>
+          <div className={`${status} line line3`}></div>
         </div>
       </div>
 
       <ul
+        onClick={() => {
+          setShowLinks(!showLinks);
+          setStatus('close')
+        }}
         className={`${
           showLinks
             ? 'mobile__sideBar show__sideBar'

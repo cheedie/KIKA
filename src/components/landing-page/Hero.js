@@ -18,7 +18,6 @@ const Hero = () => {
       spaceBetween={0}
       slidesPerView={1}
       navigation
-      pagination
       autoplay={{
         delay: 5000,
       }}
@@ -68,8 +67,6 @@ const Hero = () => {
           </div>
         </section>
       </SwiperSlide>
-
-      {/* swiper slide 2 */}
     </Swiper>
   );
 };
