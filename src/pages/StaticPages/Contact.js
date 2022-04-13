@@ -46,15 +46,11 @@ const Contact = () => {
                   <HiMail className='hiIcon' />
               </div>
               <div className='info_mail'>
-                <Link
+                <LinkMailto
                   className='support'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "mailto:support@kika.com";
-                    e.preventDefault();
-                  }} >
-                    support@kika.com
-                </Link>
+                  label="support@kika.com"
+                  mailto="mailto:support@kika.com" 
+                />
                 <Link
                   className='support'
                   to=''
@@ -71,15 +67,11 @@ const Contact = () => {
                   <HiPhone className='hiIcon' />
               </div>
               <div className='info_number'>
-                <Link
-                  className='number'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "tel:+234-908-875-6543";
-                    e.preventDefault();
-                  }} >
-                    +234-908-875-6543
-                </Link>
+                  <LinkTel
+                    className='number'
+                    number="+234-908-875-6543"
+                    tel="tel:+234-908-875-6543" 
+                  />
                 <Link
                   className='number'
                   to=''
@@ -114,3 +106,33 @@ const Contact = () => {
 }
 
 export default Contact
+
+
+
+const LinkMailto = ({ mailto, label }) => {
+  return (
+    <Link 
+      to='#'
+      onClick={(e) => {
+        window.location.href = mailto;
+        e.preventDefault();
+      }} >
+        {label}
+    </Link>
+
+  )
+}
+
+const LinkTel = ({ tel, number }) => {
+  return (
+    <Link 
+      to='#'
+      onClick={(e) => {
+        window.location.href = tel;
+        e.preventDefault();
+      }} >
+        {number}
+    </Link>
+
+  )
+}
