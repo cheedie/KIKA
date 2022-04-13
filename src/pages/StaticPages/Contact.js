@@ -51,15 +51,11 @@ const Contact = () => {
                   label="support@kika.com"
                   mailto="mailto:support@kika.com" 
                 />
-                <Link
+                <LinkMailto
                   className='support'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "mailto:contact@kika.com";
-                    e.preventDefault();
-                  }} >
-                    contact@kika.com
-                  </Link>
+                  label="contact@kika.com"
+                  mailto="mailto:contact@kika.com" 
+                />
               </div>
             </div>
             <div className='number_contact'>
@@ -72,30 +68,28 @@ const Contact = () => {
                     number="+234-908-875-6543"
                     tel="tel:+234-908-875-6543" 
                   />
-                <Link
-                  className='number'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "tel:+234-807-874-8974";
-                    e.preventDefault();
-                  }} >
-                    +234-807-874-8974
-                </Link>
-                <Link
-                  className='number'
-                  to=''
-                  onClick={(e) => {
-                    window.location.href = "tel:+234-807-874-8974";
-                    e.preventDefault();
-                  }} >
-                    +234-807-874-8974
-                </Link>
+                  <LinkTel
+                    className='number'
+                    number="+234-807-874-8974"
+                    tel="tel:+234-807-874-8974" 
+                  />
+                  <LinkTel
+                    className='number'
+                    number="+234-807-874-8974"
+                    tel="tel:+234-807-874-8974" 
+                  />
               </div>
             </div>
-            <div className='contact_social'>
-                <FaTwitter className='social_icon' />
+            <div className='contact_social' id='contact_social'>
+              <a href="https://www.instagram.com/kikathriftstore" target="_blank" >
                 <AiFillInstagram className='social_icon' />
+              </a>
+              <a href="https://www.twitter.com/KikaThrift" target="_blank" >
+                <FaTwitter className='social_icon' />
+              </a>
+              <a href="#" target="_blank" > 
                 <FaFacebookF className='social_icon' />
+              </a>
             </div>
           </div>
         </div>
