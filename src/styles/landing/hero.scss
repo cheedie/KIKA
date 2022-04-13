@@ -3,14 +3,14 @@
   justify-content: center;
   align-items: center;
   //z-index: 1;
-  height: calc(100vh - 80px);
+  height: 87vh;
 }
 
 .swiper__slide::after{
   background-color: #000;
   height: 100%;
   width: 100%;
-  //z-index: 2;
+  z-index: 100;
 }
 .swiper__slideContent {
   display: flex;
@@ -21,14 +21,6 @@
   color: white;
   //z-index: 1;
 }
-
-/*.swiper__slideContent::before{
-  background-color: #000 !important;
-  height: 100% !important;
-  width: 100% !important;
-  z-index: 2 !important;
-}*/
-
 
 .swiper__heading {
   width: 443px;
