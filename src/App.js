@@ -5,21 +5,17 @@ import Vendor from "./components/vendor/Vendor";
 import Signup from "./components/User/Signup";
 import Signin from "./components/User/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
-import Contact from "./pages/StaticPages/Contact"
-import ErrorPage from "./pages/StaticPages/Error"
-import ConditionsPage from "./pages/StaticPages/termConditions"
-import Waitlist from "./pages/StaticPages/Waitlist";
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/", element: <Landing /> },
     { path: "/user/signup", element: <Signup /> },
     { path: "/user/signin", element: <Signin /> },
+    { path: "/vendor", element: <Vendor /> },
     { path: "/user/account", element: <UserAccount /> },
-    { path: "/buyer/contactus", element: <Contact /> },
-    { path: "*", element: <ErrorPage /> },
-    { path: "/conditionspage", element: <ConditionsPage /> },
-    { path: "/waitlist", element: <Waitlist /> },
+
+    { path: "/buyer/signup", element: <Signup /> },
+    { path: "/buyer/signin", element: <Signin /> },
     { path: "/vendor/*", element: <Vendor /> },
   ]);
   return routes;

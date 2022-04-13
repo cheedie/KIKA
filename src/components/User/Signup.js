@@ -4,7 +4,7 @@ import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
 import Navbar from "../landing-page/Navbar";
 import Footer from "../landing-page/Footer";
-import Alert from "../User/Alert";
+
 import { useUserContext } from "../../context/user_context";
 
 const Signup = () => {
@@ -37,7 +37,6 @@ const Signup = () => {
         <div className="sign__form-section">
           <h3 className="sign__txt">Sign Up</h3>
           <form action="" className="sign__form-group" onSubmit={handleSubmit}>
-            {alert.show && <Alert {...alert} removeAlert={showAlert} />}
             <label htmlFor="full name" className="sign__form-label">
               Full Name
             </label>

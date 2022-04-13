@@ -31,7 +31,6 @@ const UserContext = React.createContext();
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-
   const uploadUserDetails = async (data) => {
     dispatch({ type: REGISTER_USER });
     try {
@@ -65,7 +64,6 @@ export const UserProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
-
 };
 
 export const useUserContext = () => {
