@@ -1,0 +1,24 @@
+.conditions_container,
+.terms_header {
+  margin: 3em;
+}
+#bullet {
+  margin: 0.1em 0 0 3em;
+  padding: 0.2em;
+}
+.conditions_row h1 {
+  color: #2e3192;
+  margin-top: 1em;
+}
+
+.conditions_row p {
+  line-height: 1.6;
+  margin-left: 1.2em;
+}
+
+@media (max-width: 600px) {
+  .conditions_container,
+  .terms_header {
+    margin: 1.5em;
+  }
+}
