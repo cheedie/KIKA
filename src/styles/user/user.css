@@ -208,7 +208,32 @@ ACCOUNTS
   padding-bottom: 0.5rem;
   cursor: pointer;
 }
+.user__order-image {
+  max-width: 30%;
+}
+.user__order-image img {
+  max-width: 100%;
+}
+.user__order-title {
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+}
 
+.user__order-span {
+  border: 2px solid black;
+  color: black;
+  padding: 10px;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.user__order-unit p {
+  padding-top: 0;
+}
+.user__order-tracking {
+  font-weight: 800;
+}
 @media screen and (min-width: 780px) {
   .sign__main-container {
     width: 100vw;

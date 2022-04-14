@@ -3,7 +3,7 @@ import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
 import shorts from "../../assets/user/shorts.png";
-// import shirt from "../../assets/user/shirt.png";
+import shirt from "../../assets/user/shirt.png";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState("pending");
@@ -27,23 +27,49 @@ const MyOrders = () => {
                 PENDING
               </button>
               {orders === "pending" && (
-                <div className="user__account-details">
-                  <p className="user__account-title">Account Details</p>
-                  <div className="user__details-container">
-                    <img src={shorts} alt="" />
-                    <div>
-                      <p>BLACK SHORTS</p>
-                      <span>
-                        <p>Unit: 1</p>
-                        <p>NGN 3,500</p>
-                      </span>
-                      <span>ORDER IN PROGRESS</span>
+                <div>
+                  <div className="user__account-details">
+                    <div className="user__details-container">
+                      <div className="user__order-image">
+                        <img src={shorts} alt="" />
+                      </div>
+                      <div>
+                        <p className="user__order-title">BLACK SHORTS</p>
+                        <span className="user__order-unit">
+                          <p>Unit: 1</p>
+                          <p>NGN 3,500</p>
+                        </span>
+                        <span className="user__order-span">
+                          ORDER IN PROGRESS
+                        </span>
 
-                      <p>Friday, April 20, 2022</p>
+                        <p>Friday, April 20, 2022</p>
+                      </div>
+                      <button className="user__edit-btn">
+                        SEE ORDER HISTORY
+                      </button>
                     </div>
-                    <button className="user__edit-btn">
-                      SEE ORDER HISTORY
-                    </button>
+                  </div>
+                  <div className="user__account-details">
+                    <p className="user__account-title">Account Details</p>
+                    <div className="user__details-container">
+                      <img src={shirt} alt="" />
+                      <div>
+                        <p className="user__order-title">BLACK SHORTS</p>
+                        <span>
+                          <p>Unit: 1</p>
+                          <p>NGN 3,500</p>
+                        </span>
+                        <span className="user__order-span">
+                          ORDER IN PROGRESS
+                        </span>
+
+                        <p>Friday, April 20, 2022</p>
+                      </div>
+                      <button className="user__edit-btn">
+                        SEE ORDER HISTORY
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
