@@ -18,7 +18,7 @@ import ChangePassword from "./pages/user/ChangePassword";
 
 function AppRoutes() {
   const routes = useRoutes([
-    { path: "/", element: <Landing /> },
+    { path: "/landing", element: <Landing /> },
     { path: "/user/signup", element: <Signup /> },
     { path: "/user/signin", element: <Signin /> },
     { path: "/vendor", element: <Vendor /> },
@@ -36,7 +36,7 @@ function AppRoutes() {
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
     { path: "/*", element: <Errorpage /> },
-    { path: "/waitlist", element: <Waitlist /> },
+    { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
   ]);
   return routes;
