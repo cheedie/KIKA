@@ -8,6 +8,10 @@ SIGN UP
   width: 90vw;
   margin: 1rem auto 0 auto;
 }
+.sign__form-group {
+  width: 100%;
+  margin-bottom: 1rem;
+}
 
 .sign__txt {
   color: #333333;
@@ -18,7 +22,7 @@ SIGN UP
 }
 .sign__form-label {
   display: block;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   color: #000000;
   font-weight: 400;
   font-size: 4vw;
@@ -27,7 +31,7 @@ SIGN UP
   width: 100%;
   border: 2px solid #c4c4c4;
   padding: 1.2rem 0;
-  margin-bottom: 30px;
+  margin-bottom: 2.5rem;
 }
 .sign__terms-container {
   display: flex;
@@ -49,7 +53,7 @@ SIGN UP
 
 .sign__terms-link {
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .sign__sign-btn-container {
@@ -66,11 +70,23 @@ SIGN UP
   font-size: 3vw;
   border: transparent;
   font-weight: 400;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 .sign__accept-txt {
   font-size: 18px;
   color: #000000;
-  font-weight: 300;
+  font-weight: 400;
+}
+.alert {
+  font-size: 12px;
+  font-weight: 500;
+}
+.alert-danger {
+  color: red;
+}
+.alert-success {
+  color: green;
 }
 
 .sign__account-txt {
@@ -167,6 +183,31 @@ ACCOUNTS
   font-weight: 600;
   font-size: 18px;
 }
+.user__order-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 20rem 2rem 5rem;
+}
+.user__order-btn-active {
+  color: #f15a24;
+  background: none;
+  border: transparent;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f15a24;
+}
+.user__order-btn {
+  background: none;
+  border: transparent;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  color: black;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+}
 
 @media screen and (min-width: 780px) {
   .sign__main-container {
@@ -178,7 +219,7 @@ ACCOUNTS
     min-height: calc(100vh - 6.5rem);
   }
   .sign__form-section {
-    margin: 0 8rem 0 9rem;
+    margin: 0 7rem 0 7rem;
   }
   .sign__img-container {
     display: block;
@@ -186,11 +227,12 @@ ACCOUNTS
   .sign__img-container {
     display: flex;
     justify-content: flex-end;
+    max-width: 100%;
   }
   .sign__img-container img {
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100vh;
   }
   .sign__txt {
     margin: 2.5rem 0;
@@ -217,5 +259,15 @@ ACCOUNTS
   }
   .user__account-title {
     font-size: 20px;
+  }
+  .sign__up-btn {
+    width: 100%;
+  }
+  .sign__accept-txt {
+    font-size: 20px;
+  }
+  .sign__terms-link {
+    font-size: 20px;
+    letter-spacing: 1px;
   }
 }
