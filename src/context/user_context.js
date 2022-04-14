@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer } from "react";
 import reducer from "../reducers/user_reducer";
 import { url } from "../utils/constant";
 import axios from "axios";
@@ -6,8 +6,8 @@ import {
   REQUEST_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
-  USER_LOGOUT,
-  USER_DETAILS,
+  // USER_LOGOUT,
+  // USER_DETAILS,
   REGISTER_USER,
 } from "../actions";
 

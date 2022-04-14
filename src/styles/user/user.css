@@ -91,6 +91,82 @@ SIGN UP
   display: flex;
   justify-content: space-between;
 }
+/* 
+===============
+ACCOUNTS
+===============
+ */
+.user__account-container {
+  display: grid;
+  min-height: calc(100vh - 6rem);
+  margin-top: 2rem;
+}
+
+.user__sidebar-container {
+  border-top: 1.5px solid #c4c4c4;
+  border-right: 1.5px solid #c4c4c4;
+}
+
+.user__sidebar-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+}
+.user__sidebar-link,
+.user__sidebar-active-link {
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0.85rem 2rem 0.85rem 3rem;
+  width: 100%;
+}
+
+.user__sidebar-link {
+  color: #2e3192;
+}
+
+.user__sidebar-active-link {
+  background: #f15a24;
+  color: #fff;
+}
+.user__account {
+  padding: 0 5rem;
+}
+.user__account-title {
+  font-weight: 700;
+  color: #333333;
+  font-size: 12px;
+}
+.user__account-details {
+  border: 1.5px solid #c4c4c4;
+  padding: 30px 50px 30px 50px;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+.user__details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user__user-details {
+  margin-top: 1rem;
+}
+.user__user-details p {
+  padding-top: 0;
+  color: #000000;
+}
+
+.user__edit-btn {
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+  color: #f15a24;
+  font-weight: 600;
+  font-size: 18px;
+}
 
 @media screen and (min-width: 780px) {
   .sign__main-container {
@@ -99,7 +175,7 @@ SIGN UP
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100vh - 6.5rem);
   }
   .sign__form-section {
     margin: 0 8rem 0 9rem;
@@ -128,5 +204,18 @@ SIGN UP
 
   .sign__up-btn {
     font-size: 1.2vw;
+  }
+
+  .user__account-container {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .user__sidebar-link,
+  .user__sidebar-active-link {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .user__account-title {
+    font-size: 20px;
   }
 }

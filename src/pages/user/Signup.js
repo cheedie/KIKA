@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
 
 import { useUserContext } from "../../context/user_context";
 
@@ -13,7 +13,7 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
+  // const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,9 +27,9 @@ const Signup = () => {
     navigate("/user/signin");
   };
 
-  const showAlert = (show = false, type = "", msg = "") => {
-    setAlert({ show, type, msg });
-  };
+  // const showAlert = (show = false, type = "", msg = "") => {
+  //   setAlert({ show, type, msg });
+  // };
   return (
     <main>
       <Navbar />
