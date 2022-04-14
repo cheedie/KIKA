@@ -1,10 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
+import {
+  // SwiperCore,
   Navigation,
   Pagination,
   Autoplay,
-  EffectFade,
+  // EffectFade,
 } from "swiper";
 import "swiper/css/bundle";
 import "../../styles/landing/hero.css";
