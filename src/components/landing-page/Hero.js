@@ -16,12 +16,12 @@ const Hero = () => {
     <Swiper
       modules={[Navigation, Pagination, Autoplay, EffectFade]}
       spaceBetween={0}
-      slidesPerView={1}
       navigation
       autoplay={{
-        delay: 5000,
+        delay: 7000,
       }}
-      fadeEffect={true}
+      loop={true}
+      speed={1200}
     >
       {/* swiper slide 1 */}
       <SwiperSlide className="swiper__slide swiper__slide-1">
@@ -29,7 +29,7 @@ const Hero = () => {
           <h1 className="swiper__heading">
             Welcome to <span className="slide__title">KIKA</span>
           </h1>
-          <p className="swiper__subHeading">
+          <p className="swiper__subheading">
             Home of all thrift wears
           </p>
           <p className="swiper__details">
@@ -48,10 +48,10 @@ const Hero = () => {
 
       <SwiperSlide className="swiper__slide swiper__slide-2">
         <section className="swiper__slideContent">
-          <h1 className="swiper__heading">
-            Sell on<span className="slide__title">KIKA</span>
+          <h1 className="swiper__heading2">
+            Sell on KIKA
           </h1>
-          <p className="swiper__subHeading">
+          <p className="swiper__subheading">
             Make money on KIKA by selling thrift
           </p>
           <p className="swiper__details">
@@ -72,3 +72,7 @@ const Hero = () => {
 };
 
 export default Hero;
+
+//slidesPerView={1}
+//effect="fade"
+//fadeEffect={{ crossFade: true }}
