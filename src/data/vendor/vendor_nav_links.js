@@ -6,4 +6,5 @@ export const vendor_nav_links =[
     {title: "Reviews", link:"/review"},
     {title: "Withdraw", link:"/withdraw"},
     {title: "Settings", link:"/settings"},
-] ;
+];
+
