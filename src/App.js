@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
 import Vendor from "./components/vendor/Vendor";
+import Vendorregister from "./components/vendor/Vendorregister";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
@@ -22,7 +23,6 @@ function AppRoutes() {
     { path: "/landing", element: <Landing /> },
     { path: "/user/signup", element: <Signup /> },
     { path: "/user/signin", element: <Signin /> },
-    { path: "/vendor", element: <Vendor /> },
     { path: "/user/account", element: <UserAccount /> },
     { path: "/user/account/trackorder", element: <TrackOrder /> },
     { path: "/user/account/myorders", element: <MyOrders /> },
@@ -33,6 +33,7 @@ function AppRoutes() {
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
     { path: "/vendor/*", element: <Vendor /> },
+    { path: "/vendor/signup", element: <Vendorregister /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
