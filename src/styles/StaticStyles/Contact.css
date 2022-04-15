@@ -93,11 +93,13 @@ a {
   margin: 0.9em 2.5em;
 }
 
+#contact_social a {
+  color: #f15a24;
+}
 .contact_social {
   margin: 4em;
-  text-align: center;
   font-size: 1.4em;
-  color: #f15a24;
+  text-align: center;
 }
 
 .contact_social > * {

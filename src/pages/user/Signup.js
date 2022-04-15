@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
 
 import { useUserContext } from "../../context/user_context";
+import Alert from "../../components/User/Alert";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -13,22 +14,29 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
+  const [terms, setTerms] = useState(false);
+  const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name) {
+    if (name === "" && email === "" && password === "") {
+      setAlert(true, "danger", "please enter value");
+    } else if (!terms) {
+      setAlert(true, "danger", "Kindly accept terms to proceed");
+    } else {
+      setAlert(true, "success", "Sign up successful");
+      uploadUserDetails({
+        name,
+        email,
+        password,
+      });
+      navigate("/user/signin");
     }
-    uploadUserDetails({
-      name,
-      email,
-      password,
-    });
-    navigate("/user/signin");
   };
 
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
+    console.log("gvhjkl,");
   };
   return (
     <main>
@@ -65,15 +73,21 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="sign__terms-container">
-              <button className="sign__terms-btn"></button>
+            <label className="sign__terms-container">
+              <input
+                onChange={() => setTerms(!terms)}
+                className="sign__terms-btn"
+                type="checkbox"
+                checked={terms}
+              />
               <div>
                 <span className="sign__accept-txt">I accept the KIKA </span>
-                <Link to="/" className="sign__terms-link">
+                <Link to="/termscondition" className="sign__terms-link">
                   TERMS & CONDITIONS
                 </Link>
               </div>
-            </div>
+            </label>
+            {alert.show && <Alert {...alert} removeAlert={showAlert} />}
             <div className="sign__sign-btn-container">
               <button
                 type="submit"

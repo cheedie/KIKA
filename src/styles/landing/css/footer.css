@@ -1,0 +1,93 @@
+.footer__topSection {
+  background-color: #2e3192;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 135px;
+  padding: 2rem;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.footer__logoSection img {
+  width: 134.27px;
+  height: 68.97px;
+  margin-left: -1rem;
+}
+
+.footer__subscribe {
+  width: 30%;
+  color: #ffffff;
+}
+
+.footer__subscribe h3 {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.footer__subscribe p {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.footer__subscribe form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 43.29px;
+  width: 100%;
+  margin-top: 11.68px;
+}
+
+.footer__email {
+  height: 100%;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  width: 70%;
+}
+
+.footer__submit {
+  background: #f15a24;
+  height: 100%;
+  border: none;
+  outline: none;
+  width: 30%;
+}
+
+/** bottom section */
+.footer__bottomSection .footer__top {
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.footer__bottomSection .footer__top li {
+  font-size: 11.74px;
+  line-height: 14.31px;
+  margin-top: 12.41px;
+}
+
+.footer__bottomSection .footer__bottom p {
+  width: 100%;
+  text-align: center;
+}

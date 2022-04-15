@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+/* ======================================NavBar css================================================== */
+.navbar_waitlist {
+  display: flex;
+  padding: 0 1.5em 0 3em;
+  /* justify-content: space-between; */
+}
+.navbar_Waitcontainer {
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1;
+  width: 100%;
+}
+.nav_Waitlinks {
+  color: #2e3192;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  font-size: 17px;
+  font-weight: 700;
+}
+.nav-WaitMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  text-align: center;
+}
+
+/* =========================================Hero section css=========================================== */
+.hero_WaitContainer {
+  margin: 0em 0em 0em 4.5em;
+  padding: 0;
+  /* max-height: 80vh;*/
+}
+.hero_WaitRow {
+  display: flex;
+  justify-content: space-between;
+}
+.hero_WaitWriteup {
+  max-width: 40%;
+  margin-top: 5em;
+}
+.headline_wait {
+  font-size: 38px;
+  color: #2e3192;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.span_wait {
+  color: #f15a24;
+}
+.hero_WaitDesc {
+  font-weight: 500;
+  line-height: 26px;
+  max-width: 470px;
+  margin-top: 0.4em;
+}
+.hero_WaitImg {
+  max-width: 60%;
+}
+.hero_WaitImg img,
+.form_WaitImg img {
+  border: 0;
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  max-height: 100vh;
+}
+
+#waitlist-btn,
+#waitlist-btn a {
+  color: #ffff;
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+.waitlist-btn {
+  background: #2e3192;
+  cursor: pointer;
+  padding: 0.8rem 2.5rem;
+  margin: 1em 0;
+  border: transparent;
+}
+
+/* ============================Form section CSS======================================== */
+#form_WaitRow {
+  margin-top: 4rem;
+}
+
+.form_headline {
+  font-size: 42px;
+  color: #2e3192;
+  line-height: 1.4;
+  font-weight: 700;
+  text-align: right;
+  max-width: 450px;
+}
+
+.form_Wait {
+  margin: 4em 3.5em 0 2em;
+}
+.waitlist_input > * {
+  margin: 1em 0;
+}
+#waitlist_input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5em;
+  padding: 1em 0 0 5em;
+  width: 100%;
+}
+.waitlist_input input {
+  margin-top: 5px;
+  padding: 1em 2em;
+  border: 1.8px solid #c4c4c4;
+  background-color: transparent;
+  font-family: "Montserrat", sans-serif;
+}
+
+.waitlist_input input:focus {
+  outline-color: #f15a24;
+}
+
+.align_right {
+  text-align: right;
+}
+
+.waitlist_footer p {
+  text-align: center;
+  margin: 7em 0 2em 0;
+  color: #c4c4c4;
+}
+
+.form_WaitImg {
+  align-self: center;
+  max-width: 50%;
+}
+
+@media screen and (max-width: 1100px) {
+  #form_WaitRow {
+    margin-top: 5rem;
+  }
+  .form_Wait {
+    margin: 1em 3.5em 0 2em;
+  }
+  .form_headline {
+    font-size: 38px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .hero_WaitWriteup {
+    max-width: 48%;
+    margin-top: 2em;
+  }
+  .hero_WaitImg {
+    max-width: 50%;
+    align-self: center;
+  }
+  .headline_wait {
+    font-size: 36px;
+  }
+  .hero_WaitDesc {
+    line-height: 22px;
+    max-width: 450px;
+    margin-top: 0.2em;
+  }
+  .form_headline {
+    font-size: 36px;
+  }
+  #waitlist_input {
+    margin-top: 1em;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .navbar_waitlist {
+    padding: 0 1em 0 1em;
+  }
+  .hero_WaitRow {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero_WaitContainer {
+    margin: 0em 1.5em 0em 2.5em;
+    padding: 0;
+  }
+  .hero_WaitWriteup {
+    max-width: 90vw;
+    margin-top: 1em;
+  }
+  .hero_WaitImg {
+    max-width: 90vw;
+    margin-top: 2em;
+  }
+  .hero_WaitDesc {
+    max-width: 90vw;
+  }
+  .headline_wait {
+    font-size: 42px;
+  }
+  #form_WaitRow {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 2em;
+  }
+  .form_Wait {
+    margin: 1em 0em 0 0em;
+  }
+  .form_headline {
+    font-size: 40px;
+    text-align: left;
+    max-width: 90vw;
+    margin: 0 1em 0 0;
+  }
+  #waitlist_input {
+    margin-top: 1.5em;
+    padding: 1em 0 0 0em;
+    width: 100%;
+  }
+  .align_right {
+    text-align: left;
+  }
+
+  .waitlist_footer p {
+    margin: 4em 0 2em 0;
+  }
+
+  .form_WaitImg {
+    align-self: center;
+    margin-top: 2em;
+    max-width: 90vw;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .headline_wait,
+  .form_headline {
+    font-size: 28px;
+  }
+}

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
 
 import { useUserContext } from "../../context/user_context";
 
@@ -72,7 +72,7 @@ const Signin = () => {
               <button
                 type="submit"
                 className="sign__up-btn"
-                disabled={email === "" && password === "" ? true: false}
+                disabled={email === "" && password === "" ? true : false}
               >
                 SIGN IN
               </button>
