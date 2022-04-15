@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
-import shorts from "../../assets/user/shorts.png";
-// import shirt from "../../assets/user/shirt.png";
+import PendingOrders from "../../components/User/PendingOrders";
+import ReceivedOrder from "../../components/User/ReceivedOrder";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState("pending");
@@ -15,54 +15,31 @@ const MyOrders = () => {
         <section className="user__account">
           <p className="user__account-title">MY Orders</p>
           <div className="user__order-container">
-            <div>
-              <button
-                onClick={() => setOrders("pending")}
-                className={
-                  orders === "pending"
-                    ? "user__order-btn-active"
-                    : "user__order-btn"
-                }
-              >
-                PENDING
-              </button>
-              {orders === "pending" && (
-                <div className="user__account-details">
-                  <p className="user__account-title">Account Details</p>
-                  <div className="user__details-container">
-                    <img src={shorts} alt="" />
-                    <div>
-                      <p>BLACK SHORTS</p>
-                      <span>
-                        <p>Unit: 1</p>
-                        <p>NGN 3,500</p>
-                      </span>
-                      <span>ORDER IN PROGRESS</span>
+            <button
+              onClick={() => setOrders("pending")}
+              className={
+                orders === "pending"
+                  ? "user__order-btn-active"
+                  : "user__order-btn"
+              }
+            >
+              PENDING
+            </button>
 
-                      <p>Friday, April 20, 2022</p>
-                    </div>
-                    <button className="user__edit-btn">
-                      SEE ORDER HISTORY
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div>
-              <button
-                onClick={() => setOrders("received")}
-                className={
-                  orders === "received"
-                    ? "user__order-btn-active"
-                    : "user__order-btn"
-                }
-              >
-                RECEIVED
-              </button>
-              {orders === "received" && <div></div>}
-            </div>
+            <button
+              onClick={() => setOrders("received")}
+              className={
+                orders === "received"
+                  ? "user__order-btn-active"
+                  : "user__order-btn"
+              }
+            >
+              RECEIVED
+            </button>
           </div>
+          {orders === "pending" && <PendingOrders />}
+
+          {orders === "received" && <ReceivedOrder />}
         </section>
       </section>
       <Footer />

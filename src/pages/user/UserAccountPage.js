@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
 import Sidebar from "../../components/User/Sidebar";
+import { useUserContext } from "../../context/user_context";
 
 const UserAccount = () => {
+  const { getUser, userDetails } = useUserContext();
+
+  useEffect(() => {
+    getUser();
+  }, []);
+  console.log(userDetails);
   return (
     <main>
       <Navbar />
@@ -15,8 +22,8 @@ const UserAccount = () => {
             <p className="user__account-title">Account Details</p>
             <div className="user__details-container">
               <div className="user__user-details">
-                <p>Jerry Uke</p>
-                <p>jerryuke@gmail.com</p>
+                <p>{userDetails.name}</p>
+                <p>{userDetails.email}</p>
                 <p>+234-908-876-5432</p>
               </div>
               <button className="user__edit-btn">EDIT</button>
