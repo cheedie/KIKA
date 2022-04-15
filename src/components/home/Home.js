@@ -31,7 +31,7 @@ const HomePage = () => {
 
       {/* man and woman section */}
       <section className="man__and__woman">
-        <div className='images__container'>
+        <div className="images__container">
           <div className="man">
             <div className="btn__container">
               <button>SHOP WOMEN</button>
@@ -45,12 +45,29 @@ const HomePage = () => {
         </div>
 
         <div className="home__products">
-          <Product/>
-          <Product/>
-          <Product/>
+          <Product />
+          <Product />
+          <Product />
         </div>
       </section>
       {/* End man and woman */}
+
+      {/* start new arrivals */}
+      <section className="new__arrivals">
+        <h2>NEW ARRIVALS</h2>
+
+        <div className="products__container">
+          <Product className="product" />
+          <Product className="product" />
+          <Product className="product" />
+          <Product className="product" />
+          <Product className="product" />
+          <Product className="product" />
+          <Product className="product" />
+          <Product className="product" />
+        </div>
+      </section>
+      {/* start new arrivals */}
       <Footer />
     </section>
   );

@@ -2,13 +2,116 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: 400px;
+  background: url("../../assets/home/dress.png");
+  background-size: cover;
+}
+
+.product .product__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 400px;
-  width: 350px;
-  border: 2px solid red;
+  height: 90px;
+  width: 100%;
+  gap: 2rem;
+  background-color: rgba(250, 250, 250, 0.7);
+  padding: 2rem 1rem;
+}
+
+.product .product__info .product__title {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 21px;
+  color: #333333;
+}
+
+.product .product__info .product__description {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 14px;
+  color: #333333;
+}
+
+.product .product__info .product__colors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 60%;
+}
+
+.product .product__info .product__colors div {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.product .product__info .product__colors div:nth-child(1) {
+  background: #333333;
+}
+
+.product .product__info .product__colors div:nth-child(2) {
+  background: #2e3192;
+}
+
+.product .product__info .product__colors div:nth-child(3) {
+  background: #f15a24;
+}
+
+.product .product__info .product__colors .info__right {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.product .product__info .product__colors .info__left {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
