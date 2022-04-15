@@ -1,6 +1,6 @@
 import shirt from "../../assets/vendor/images/shirt.png"
 import styled from "styled-components";
-
+import image_vector from "../../assets/vendor/images/image_vector.png"
 export default function Products() {
   return (
     <div id="wrapper" className="products">
@@ -134,7 +134,11 @@ function Upload () {
             <UploadContainer>
                 <form>
                     <h1>Add New Product</h1>
-                    
+                    <div>
+                        <input type='file'/>
+                        <img src='' alt='vec'/>
+                    </div>
+                   
                 </form>
             </UploadContainer>
         </UploadWrapper>
