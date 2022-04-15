@@ -4,12 +4,14 @@
   justify-content: space-between;
   align-items: center;
   height: 135px;
-  padding: 0 1rem 0 0;
+  padding: 2rem;
+  box-sizing: content-box;
 }
 
 .footer__logoSection img {
   width: 134.27px;
   height: 68.97px;
+  margin-left: -1rem;
 }
 
 .footer__subscribe {

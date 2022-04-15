@@ -4,7 +4,7 @@ import TwitterLogo from '../../assets/landing-page/twitter-logo.png';
 import InstagramLogo from '../../assets/landing-page/instagram-logo.png';
 import EmailLogo from '../../assets/landing-page/email-logo.png';
 import FacebookLogo from '../../assets/landing-page/facebook-logo.png';
-import '../../styles/landing/footer.css';
+import '../../styles/landing/footer.scss';
 
 const Footer = () => {
   return (

@@ -1,3 +1,4 @@
+
 import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
@@ -38,6 +39,7 @@ function AppRoutes() {
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
+
   ]);
   return routes;
 }
