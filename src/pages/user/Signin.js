@@ -2,58 +2,43 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
-import Alert from "../User/Alert";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
+
 import { useUserContext } from "../../context/user_context";
 
-const Signup = () => {
+const Signin = () => {
+  const { loginUser } = useUserContext();
   const navigate = useNavigate();
-  const { uploadUserDetails } = useUserContext();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name) {
+    try {
+      let response = await loginUser({ email, password });
+      console.log(response);
+      if (!response.data) return;
+      navigate("/user/account");
+    } catch (error) {
+      console.log(error);
     }
-    uploadUserDetails({
-      name,
-      email,
-      password,
-    });
-    navigate("/user/signin");
-  };
-
-  const showAlert = (show = false, type = "", msg = "") => {
-    setAlert({ show, type, msg });
   };
   return (
     <main>
       <Navbar />
       <section className="sign__main-container">
         <div className="sign__form-section">
-          <h3 className="sign__txt">Sign Up</h3>
+          <h3 className="sign__txt">Sign In</h3>
           <form action="" className="sign__form-group" onSubmit={handleSubmit}>
-            {alert.show && <Alert {...alert} removeAlert={showAlert} />}
-            <label htmlFor="full name" className="sign__form-label">
-              Full Name
-            </label>
-            <input
-              type="text"
-              className="sign__form-input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-
             <label htmlFor="email address" className="sign__form-label">
               Email Address
             </label>
             <input
               className="sign__form-input"
               type="email"
+              id="email"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -63,36 +48,40 @@ const Signup = () => {
             <input
               type="password"
               className="sign__form-input"
+              id="password"
+              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="sign__terms-container">
-              <button className="sign__terms-btn"></button>
+            <div className="sign__forgot-container">
               <div>
-                <span className="sign__accept-txt">I accept the KIKA </span>
-                <Link to="/" className="sign__terms-link">
-                  TERMS & CONDITIONS
-                </Link>
+                <button className="sign__terms-btn"></button>
+
+                <span
+                  className="sign__accept-txt"
+                  style={{ paddingLeft: "0.65rem" }}
+                >
+                  Remember Me
+                </span>
               </div>
+              <Link to="/" className="sign__terms-link">
+                Forgot Password
+              </Link>
             </div>
             <div className="sign__sign-btn-container">
               <button
                 type="submit"
                 className="sign__up-btn"
-                disabled={
-                  name === "" && email === "" && password === "" ? true : false
-                }
+                disabled={email === "" && password === "" ? true : false}
               >
-                SIGN UP
+                SIGN IN
               </button>
             </div>
 
             <div style={{ textAlign: "center" }}>
-              <span className="sign__account-txt">
-                Already have an account?{" "}
-              </span>
-              <Link to="/user/signin" className="sign__link">
-                Sign in
+              <span className="sign__account-txt">Don't have an account? </span>
+              <Link to="/user/signup" className="sign__link">
+                Sign Up
               </Link>
             </div>
           </form>
@@ -106,4 +95,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;

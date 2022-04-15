@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
@@ -8,6 +9,7 @@ import SwiperCore, {
 } from 'swiper';
 import 'swiper/css/bundle';
 import '../../styles/landing/hero.scss';
+
 
 //SwiperCore.use([Navigation, Pagination, EffectFade]);
 

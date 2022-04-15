@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import Logo from '../../assets/landing-page/logo.png';
 import Search from '../../assets/landing-page/search.png';
 import Cart from '../../assets/landing-page/cart.png';
 import '../../styles/landing/css/navbar.css';
 import { Link } from 'react-router-dom';
+
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -57,6 +59,23 @@ const Navbar = () => {
           <div className={`${status} line line2`}></div>
           <div className={`${status} line line3`}></div>
         </div>
+
+        {/* nav menu */}
+        <ul className="navbar__menu">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/">Market Place</a>
+          </li>
+          <li>
+            <a href="/">About</a>
+          </li>
+          <li>
+            <a href="/vendor">Sell on KIKA</a>
+          </li>
+        </ul>
+
       </div>
 
       <ul
