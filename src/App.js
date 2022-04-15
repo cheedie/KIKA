@@ -8,10 +8,12 @@ import UserAccount from './pages/user/UserAccountPage';
 import Contact from './components/StaticPages/Contact';
 import ErrorPage from './components/StaticPages/Error';
 import ConditionsPage from './components/StaticPages/Condition/termConditions';
+import Home from './components/home/Home';
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: '/', element: <Landing /> },
+    { path: '/home', element: <Home /> },
     { path: '/user/signup', element: <Signup /> },
     { path: '/user/signin', element: <Signin /> },
     { path: '/user/account', element: <UserAccount /> },

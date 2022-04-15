@@ -16,7 +16,6 @@ const Hero = () => {
     <Swiper
       modules={[Navigation, Pagination, Autoplay, EffectFade]}
       spaceBetween={0}
-      navigation
       autoplay={{
         delay: 7000,
       }}
@@ -48,7 +47,7 @@ const Hero = () => {
 
       <SwiperSlide className="swiper__slide swiper__slide-2">
         <section className="swiper__slideContent">
-          <h1 className="swiper__heading2">
+          <h1 className="swiper__heading">
             Sell on KIKA
           </h1>
           <p className="swiper__subheading">

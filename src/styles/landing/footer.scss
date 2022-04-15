@@ -4,17 +4,22 @@
   justify-content: space-between;
   align-items: center;
   height: 135px;
-  padding: 2rem;
+  padding: 2rem 2rem;
   box-sizing: content-box;
+
+  .footer__logoSection img {
+    width: 134.27px;
+    height: 68.97px;
+    margin-left: -1rem;
+  }
 }
 
-.footer__logoSection img {
-  width: 134.27px;
-  height: 68.97px;
-  margin-left: -1rem;
-}
 
 .footer__subscribe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
   width: 30%;
   color: #ffffff;
 }
@@ -59,7 +64,7 @@
 
 /** bottom section */
 .footer__bottomSection .footer__top {
-  padding: 2rem;
+  padding: 4rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

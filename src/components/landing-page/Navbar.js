@@ -3,6 +3,7 @@ import Logo from '../../assets/landing-page/logo.png';
 import Search from '../../assets/landing-page/search.png';
 import Cart from '../../assets/landing-page/cart.png';
 import '../../styles/landing/css/navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -11,20 +12,16 @@ const Navbar = () => {
 
   return (
     <section className="navbar">
-      <img className="logo" src={Logo} alt="kika logo" />
+      <Link to="/">
+        <img className="logo" src={Logo} alt="kika logo" />
+      </Link>
       <ul className="nav__linksContainer">
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">Market Place</a>
-        </li>
-        <li>
-          <a href="#">About Us</a>
-        </li>
-        <li>
-          <a href="#">Sell on KIKA</a>
-        </li>
+        <Link to="/home">
+          <li>Home</li>
+        </Link>
+        <li>Market Place</li>
+        <li>About Us</li>
+        <li>Sell on KIKA</li>
       </ul>
       <form className="nav__searchForm">
         <input
@@ -65,7 +62,7 @@ const Navbar = () => {
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
-          setStatus('close')
+          setStatus('close');
         }}
         className={`${
           showLinks
