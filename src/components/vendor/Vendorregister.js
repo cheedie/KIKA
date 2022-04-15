@@ -24,6 +24,9 @@ function VendorSignup() {
             city:'',
             state:'',
             terms:'',
+            id_num:'',
+            id:'',
+            otp:''
             
         },
 
@@ -34,13 +37,25 @@ function VendorSignup() {
           email:  Yup.string().email().required('Required'),
           password: Yup.string().min(8, 'Password should be longer than 8 characters').required('Required'),
           terms: Yup.boolean().required('Required'),
-          biz: Yup.string().required('Required')
+          biz: Yup.string().required('Required'),
+          // id: Yup.mixed().test('fileSize', "File Size is too large", value => value && value.size <= 5000)
+          // .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
+          //   if(value){
+          //     return value && (
+          //         value[0].type === "image/jpeg" ||
+          //         value[0].type === "image/bmp" ||
+          //         value[0].type === "image/png" ||
+          //         value[0].type === 'application/pdf' ||
+          //         value[0].type === "application/msword"
+          //     );}
+          // }),
         }),
 
         onSubmit:({name, email, password})=>{
           if(page === 1){
             setPage(2);
-            alert(`Render page 2`)
+            alert(`Render page 2`);
+            console.log('Page:: ', page)
           }
           else{
             alert(`Name: ${name}, password: ${password}, email: ${email}`)
@@ -63,7 +78,7 @@ function VendorSignup() {
   return (
     <div>
         <Navbar />
-        <Heading>Sell on Kika</Heading>
+        <Heading> {page === 1 ? 'Sell on Kika' : 'Vendor Verification'}</Heading>
         <StyledForm onSubmit={handleSubmit} input={StyledInput} wrapper={Wrapper}>
             {page === 1 ?
             <>
@@ -142,7 +157,7 @@ function VendorSignup() {
                     )
                 })}
               <StyledButton type={"submit"} label="continue" align-self="end"
-                onClick={()=> setPage(2)}             
+                // onClick={()=> setPage(2)}             
               />
             </Wrapper>
             </>
@@ -170,6 +185,7 @@ function VendorSignup() {
                   name='id'
                   placeholder='Identification'
                   autoComplete="off"
+                  type="file"
                   value={values.id}
                   onChange={handleChange}
                 />
