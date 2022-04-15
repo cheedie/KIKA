@@ -6,8 +6,12 @@ const Alert = ({ type, msg, removeAlert }) => {
       removeAlert();
     }, 3000);
     return () => clearTimeout(timeout);
-  }, [removeAlert]);
-  return <p className={`alert alert-${type}`}>{msg}</p>;
+  }, []);
+  return (
+    <div className="alert-container">
+      <p className={`alert alert-${type}`}>{msg}</p>
+    </div>
+  );
 };
 
 export default Alert;

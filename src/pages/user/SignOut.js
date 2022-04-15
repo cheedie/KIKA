@@ -9,7 +9,6 @@ const SignOut = () => {
       <Navbar />
       <section className="user__account-container">
         <Sidebar deft={6} />
-        <div>sign out</div>
       </section>
       <Footer />
     </main>
