@@ -1,4 +1,4 @@
-import '../../styles/vendor/DashboardStyles.css';
+import '../../styles/vendor/vendor.css';
 import React from 'react'
 import {Routes, Route} from "react-router-dom"
 import Sidebar from './Sidebar.js'

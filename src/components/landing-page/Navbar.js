@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../assets/landing-page/logo.png";
 import Cart from "../../assets/landing-page/cart.png";
 import "../../styles/landing/navbar.css";
-import { Link } from "react-router-dom";
+import { Link , NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -24,7 +24,7 @@ const Navbar = () => {
             <a href="#">About</a>
           </li>
           <li>
-            <a href="/vendor">Sell on KIKA</a>
+            <a href="/vendor/signup">Sell on KIKA</a>
           </li>
         </ul>
       </div>

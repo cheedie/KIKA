@@ -9,18 +9,21 @@ import UserAccount from "./pages/user/UserAccountPage";
 import Contact from "./components/StaticPages/Contact"
 import ErrorPage from "./components/StaticPages/Error"
 import ConditionsPage from "./components/StaticPages/Condition/termConditions"
+import Vendorregister from "./components/vendor/Vendorregister";
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/", element: <Landing /> },
     { path: "/user/signup", element: <Signup /> },
     { path: "/user/signin", element: <Signin /> },
-    
     { path: "/user/account", element: <UserAccount /> },
-     { path: "/buyer/contactus", element: <Contact /> },
+    { path: "/buyer/contactus", element: <Contact /> },
     { path: "/errorpage", element: <ErrorPage /> },
     { path: "/conditionspage", element: <ConditionsPage /> },
+    
     { path: "/vendor/*", element: <Vendor /> },
+    { path: "/vendor/signup", element: <Vendorregister /> },
+    { path: "/vendor/signin", element: <Vendor /> },
   ]);
   return routes;
 }
