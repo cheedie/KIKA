@@ -69,6 +69,7 @@ export const StyledForm = styled.form`
   position: relative;
   gap:4em;
   width:100%;
+  padding:1em 2em;
   
   @media (max-width:720px){
   grid-template-columns:1fr 1fr;

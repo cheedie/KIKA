@@ -11,6 +11,7 @@ import * as Yup from 'yup'
 function VendorSignup() {
 
   const [isVisible, setVisible ] = useState(false);
+  const [page, setPage ] = useState(1);
 
     const {handleSubmit,handleChange, values, touched, errors} = useFormik({
         initialValues:{
@@ -37,8 +38,14 @@ function VendorSignup() {
         }),
 
         onSubmit:({name, email, password})=>{
+          if(page === 1){
+            setPage(2);
+            alert(`Render page 2`)
+          }
+          else{
             alert(`Name: ${name}, password: ${password}, email: ${email}`)
-        }
+          }
+          }
     })
     
     const form_data = [
@@ -58,6 +65,8 @@ function VendorSignup() {
         <Navbar />
         <Heading>Sell on Kika</Heading>
         <StyledForm onSubmit={handleSubmit} input={StyledInput} wrapper={Wrapper}>
+            {page === 1 ?
+            <>
             {/* First column */}
             <Wrapper  grid gap="2">
                 {form_data.slice(0,4).map((data,index)=>{
@@ -76,12 +85,14 @@ function VendorSignup() {
                       />
                       {
                         short === "password" ? 
-                        <>
-                          <StyledInput
-                            type='checkbox'
-                            onChange={()=>isVisible ? setVisible(false): setVisible(true)}
-                          /> Show password
-                        </> : null
+                        
+                        <Wrapper flex>
+                            <StyledInput
+                              type='checkbox'
+                              onChange={()=>isVisible ? setVisible(false): setVisible(true)}
+                            /> 
+                            <StyledLabel>Show password</StyledLabel>
+                        </Wrapper> : null
                       }
                         {touched[short] && errors[short]?(
                           <Message>{errors[short]}</Message>
@@ -128,18 +139,62 @@ function VendorSignup() {
                       </Wrapper>
                     )
                 })}
-              <StyledButton type="submit" label="continue" align-self="end"/>
+              <StyledButton type={"submit"} label="continue" align-self="end"
+                onClick={()=> setPage(2)}             
+              />
+            </Wrapper>
+            </>
+            :
+            <Wrapper  grid gap="2">
+              
+              <Wrapper grid gap="0.5">
+                <StyledLabel htmlFor='id_num' normal> National Identification Number </StyledLabel>
+                <StyledInput
+                  id='id_num'
+                  name='id_num'
+                  placeholder='National Identification Number'
+                  autoComplete="off"
+                  value={values.id_num}
+                  onChange={handleChange}
+                />
+                {touched.id_num && errors.id_num?(
+                  <Message>{errors.id_num}</Message>
+                ) : null}
+              </Wrapper>
+              <Wrapper grid gap="0.5">
+                <StyledLabel htmlFor='id' normal>Identification</StyledLabel>
+                <StyledInput
+                  id='id'
+                  name='id'
+                  placeholder='Identification'
+                  autoComplete="off"
+                  value={values.id}
+                  onChange={handleChange}
+                />
+                {touched.id && errors.id?(
+                  <Message>{errors.id}</Message>
+                ) : null}
+              </Wrapper>
+              <Wrapper grid gap="0.5">
+                <StyledLabel htmlFor='otp' normal> Input code sent to your email address </StyledLabel>
+                <StyledInput
+                  id='otp'
+                  name='otp'
+                  placeholder='Input code'
+                  autoComplete="off"
+                  value=''
+                  onChange={handleChange}
+                />
+                {touched.otp && errors.otp?(
+                  <Message>{errors.otp}</Message>
+                ) : null}
+              </Wrapper>
+                    
+              <StyledButton type="submit" label="continue"/>
             </Wrapper>
 
-            
-             
+            }
 
-              
-            
-
-           
-          
-           
            </StyledForm>
        
     </div>
@@ -180,34 +235,6 @@ const Heading = styled.h1`
     }
 `;
 
-// const Button = styled.button`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 0.7em 2em;
-//   background: #2e3192;
-//   border: 2px solid #2e3192;
-//   font-style: normal;
-//   font-weight: 700;
-//   font-size: 17.61px;
-//   text-transform: uppercase;
-//   color: #ffffff;
-//   box-sizing:border-box;
-//   max-width: 280px;
-//   align-self:flex-end;
-//   cursor: pointer;
 
-
-
-//   :hover {
-//     color: #2e3192;
-//     border-color: #2e3192;
-//     background: transparent;
-//   }
-//   @media (max-width:720px){
-//     //   padding:0.7em 0.8em;
-//     //   font-size:100%;
-//   }
-// `;
 
 
