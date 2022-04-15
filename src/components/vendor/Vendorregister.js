@@ -83,20 +83,22 @@ function VendorSignup() {
                         type={input_type ? input_type : "text"}
                         onChange={handleChange}
                       />
-                      {
-                        short === "password" ? 
-                        
-                        <Wrapper flex>
-                            <StyledInput
-                              type='checkbox'
-                              onChange={()=>isVisible ? setVisible(false): setVisible(true)}
-                            /> 
-                            <StyledLabel>Show password</StyledLabel>
-                        </Wrapper> : null
-                      }
-                        {touched[short] && errors[short]?(
+                      {touched[short] && errors[short]?(
                           <Message>{errors[short]}</Message>
                         ) : null}
+                      {
+                        short === "password" && values.password? 
+                        <Wrapper flex>
+                          <StyledInput
+                            id="show_password"
+                            type='checkbox'
+                            checkbox
+                            onChange={()=>isVisible ? setVisible(false): setVisible(true)}
+                          /> 
+                          <StyledLabel normal htmlFor={"show_password"}>Show password</StyledLabel>
+                        </Wrapper> : null
+                      }
+                        
                     </Wrapper>
                   )
                 })}

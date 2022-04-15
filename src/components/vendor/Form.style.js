@@ -1,11 +1,23 @@
 import styled from "styled-components";
+import {Colors}  from '../../styles/vendor/themes/colors'
+
+// const {wineRed,darkRed,lightPink,lightGreen,lighterGreen,darkGreen} = Colors;
+
+// const ContentWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background: #eee;
+//   background: ${darkRed};
+//   height: 100vh;
+// `;
 
 export const StyledLabel = styled.label`
   cursor: pointer;
   font-weight: 500;
   text-transform:${(props)=>props.normal ? "" :"capitalize" };
   letter-spacing: -0.008em;
-  pointer-events:none;
+  /* pointer-events:none; */
   //margin:1em 0;
   transition:0.2s ease all; 
 
