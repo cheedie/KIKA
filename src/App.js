@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
 import Vendor from "./components/vendor/Vendor";
-import Vendorregister from "./components/vendor/Vendorregister";
+import Vendorregister from "./components/vendor/VendorSignup";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
@@ -17,6 +17,7 @@ import TrackOrder from "./pages/user/TrackOrders";
 import Notifications from "./pages/user/Notification";
 import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
+import VendorSignup from "./components/vendor/VendorSignup";
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -33,7 +34,7 @@ function AppRoutes() {
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
     { path: "/vendor/*", element: <Vendor /> },
-    { path: "/vendor/signup", element: <Vendorregister /> },
+    { path: "/vendor/signup", element: <VendorSignup /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },

@@ -1,253 +1,223 @@
 import React, { useState } from 'react'
-// import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import signImage from "../../assets/user/sign-in.png";
 import Navbar from '../landing-page/Navbar'
-// import { StyledButton } from './Button.styled';
+import { StyledButton } from './Button.styled';
 import {StyledForm , StyledLabel, StyledInput } from './Form.style';
-
+import {useFormik} from 'formik';
+import * as Yup from 'yup'
+import Footer from '../landing-page/Footer';
 
 
 function VendorSignup() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    // const [biz, setBiz] = useState("");
-    // const [city, setCity] = useState("");
-    // const [state, setState] = useState("");
 
-    // const form_data = [
-    //   {input:"Full Name", short:"name",type:"text", onChange:(e) => setName(e.target.value)},
-    //   {input:"Email Address", short:"email",type:"email", onChange:(e) => setName(e.target.value)},
-    //   {input:"Password", short:"password",type:"password", onChange:(e) => setPassword(e.target.value)},
-    //   {input:"Confirm Password", type:"password"},
-    //   {input:"Business Name",  short:"biz",type:"text", onChange:(e) => setBiz(e.target.value)},
-    //   {input:"Residential Address", short:"address", type:"text", onChange:(e) => setAddress(e.target.value)},
-    //   {input:"City/Town",  short:"city", type:"text", onChange:(e) => setCity(e.target.value)},
-    //   {input:"State",  short:"state",type:"text", onChange:(e) => setState(e.target.value)},
-    // ]
+  const [isVisible, setVisible ] = useState(false);
+  const [page, setPage ] = useState(1);
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-    }
+    const {handleSubmit,handleChange, values, touched, errors} = useFormik({
+        initialValues:{
+            name:'',
+            email:'',
+            phone:'',
+            password:'',
+            biz:'',
+            address:'',
+            city:'',
+            state:'',
+            terms:'',
+            id_num:'',
+            id:'',
+            otp:''
+            
+        },
+
+        validationSchema: Yup.object({
+          name: Yup.string().max(30, 'Full should not not be longer than 30 character')
+          .min(10, 'Fullname should be longer than 10 characters').required('Required'),
+          phone: Yup.number().min(11, 'Phone Number should not be less than 11 characters').required('Required').positive().integer(),
+          email:  Yup.string().email().required('Required'),
+          password: Yup.string().min(8, 'Password should be longer than 8 characters').required('Required'),
+          terms: Yup.boolean().required('Required'),
+          biz: Yup.string().required('Required'),
+          id: Yup.mixed().test('fileSize', "File Size is too large", value => value.size <= 5000)
+          .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
+            return value && (
+                  value[0].type === "image/jpeg" ||
+                  value[0].type === "image/bmp" ||
+                  value[0].type === "image/png" ||
+                  value[0].type === "application/msword"
+              );
+          }),
+        }),
+
+        onSubmit:({name, email, password})=>{
+          if(page === 1){
+            setPage(2);
+            alert(`Render page 2`);
+            console.log('Page:: ', page)
+          }
+          if(page === 2){
+            alert(`Name: ${name}, password: ${password}, email: ${email}`)
+          }
+          // else{
+            
+          //}
+          }
+    })
+    
+    const form_data = [
+      {input_name:"Full Name", short:"name",},
+      {input_name:"Email Address", short:"email", input_type: "email"},
+      {input_name:"Phone Number", short:"phone"},
+      {input_name:"Password", short:"password", input_type: isVisible ? "text" : "password"},
+      {input_name:"Business Name",  short:"biz",},
+      {input_name:"Residential Address", short:"address"},
+      {input_name:"City/Town",  short:"city"},
+      {input_name:"State",  short:"state"},
+    ]
+
+  
   return (
     <div>
         <Navbar />
-        <Heading>Sell on Kika</Heading>
+        <Heading> {page === 1 ? 'Sell on Kika' : 'Vendor Verification'}</Heading>
         <StyledForm onSubmit={handleSubmit} input={StyledInput} wrapper={Wrapper}>
-            {/* {form_data.map((data,index)=>{
-              const {name,short,type} = data
-              return(
-                <Wrapper key={`${short}-${index}`}>
-                  <StyledInput
-                    id={short}
-                    name={name}
-                    placeholder={name}
-                    autoComplete="off"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  <StyledLabel htmlFor="name"> FullName </StyledLabel>
-              </Wrapper>
-              )
-            })} */}
+            {page === 1 ?
+            <>
+            {/* First column */}
+            <Wrapper  grid gap="2">
+                {form_data.slice(0,4).map((data,index)=>{
+                  const {input_name,short, input_type} = data
+                  return(
+                    <Wrapper key={`${short}-${index}`} grid gap="0.5">
+                      <StyledLabel htmlFor={short}> {input_name} </StyledLabel>
+                      <StyledInput
+                        id={short}
+                        name={short}
+                        placeholder={input_name}
+                        autoComplete="off"
+                        value={values[short]}
+                        type={input_type ? input_type : "text"}
+                        onChange={handleChange}
+                      />
+                      {touched[short] && errors[short]?(
+                          <Message>{errors[short]}</Message>
+                        ) : null}
+                      {
+                        short === "password" && values.password? 
+                        <Wrapper flex>
+                          <StyledInput
+                            id="show_password"
+                            type='checkbox'
+                            checkbox
+                            onChange={()=>isVisible ? setVisible(false): setVisible(true)}
+                          /> 
+                          <StyledLabel normal htmlFor={"show_password"}>Show password</StyledLabel>
+                        </Wrapper> : null
+                      }
+                        
+                    </Wrapper>
+                  )
+                })}
 
-            {/* <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="name"> Full Name </StyledLabel>
-                <StyledInput
-                  id="name"
-                  name="name"
-                  placeholder="Full Name"
-                  autoComplete="off"
-                  value={values.name}
-                  onChange={handleChange}
-                />
-                {touched.name && errors.name ?(
-                  <Message>{errors.name}</Message>
-                ) : null}
-              </Wrapper>
-              <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="email"> Email Address </StyledLabel>
-                <StyledInput
-                  id="email"
-                  name="email"
-                  placeholder="Email Address"
-                  autoComplete="off"
-                  value={values.email}
-                  onChange={handleChange}
-                  normal
-                 />
-                 {touched.email && errors.email ?(
-                  <Message>{errors.email}</Message>
-                ) : null}
-              </Wrapper>
-              <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="password"> Phone Number </StyledLabel>
-                <StyledInput
-                  id="phone"
-                  name="phone"
-                  placeholder="Phone Number"
-                  autoComplete="off"
-                  value={values.phone}
-                  onChange={handleChange}
-                  />
-                  {touched.phone && errors.phone ?(
-                    <Message>{errors.phone}</Message>
-                  ) : null}
-              </Wrapper>
-              <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="name"> Password </StyledLabel>
-                <StyledInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                  value={values.password}
-                  onChange={handleChange}
-                  />
-                  {touched.password && errors.password ?(
-                    <Message>{errors.password}</Message>
-                  ) : null}
-                
-              </Wrapper>
               <Wrapper flex>
-               <StyledInput
-                  id="terms"
-                  name="terms"
-                  placeholder="terms and condition"
-                  type="checkbox"
-                  value={values.terms}
-                  onChange={handleChange}
-                  checkbox
-                 />
-                 <StyledLabel normal htmlFor="name"> I accept the KIKA <Link to="/">E-CONTACT POLICIES</Link> </StyledLabel>
-                 {touched.terms && errors.terms  ?(
-                    <Message>{errors.phone}</Message>
-                  ) : null}
-              </Wrapper> */}
-
-               {/* <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="biz"> Business Name </StyledLabel>
                 <StyledInput
-                  id="biz"
-                  name="biz"
-                  placeholder="Business Name"
-                  autoComplete="off"
-                  value={values.biz}
-                  onChange={handleChange}
-                />
-                {touched.biz && errors.biz ?(
-                  <Message>{errors.biz}</Message>
-                ) : null}
-              </Wrapper>
-              <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="email"> Email Address </StyledLabel>
-                <StyledInput
-                  id="email"
-                  name="email"
-                  placeholder="Email Address"
-                  autoComplete="off"
-                  value={values.email}
-                  onChange={handleChange}
-                  normal
-                 />
-                 {touched.email && errors.email ?(
-                  <Message>{errors.email}</Message>
-                ) : null}
-              </Wrapper>
-              <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="password"> Phone Number </StyledLabel>
-                <StyledInput
-                  id="phone"
-                  name="phone"
-                  placeholder="Phone Number"
-                  autoComplete="off"
-                  value={values.phone}
-                  onChange={handleChange}
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
+                    value={values.terms}
+                    onChange={handleChange}
+                    checkbox
                   />
-                  {touched.phone && errors.phone ?(
-                    <Message>{errors.phone}</Message>
-                  ) : null}
-              </Wrapper>
-              <Wrapper grid gap="0.5">
-                <StyledLabel htmlFor="name"> Password </StyledLabel>
-                <StyledInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                  value={values.password}
-                  onChange={handleChange}
-                  />
-                  {touched.password && errors.password ?(
-                    <Message>{errors.password}</Message>
-                  ) : null}
-                
-              </Wrapper> */}
-            <Wrapper>
-              <Wrapper>
-                <StyledLabel htmlFor="name"> Full Name </StyledLabel>
-                <StyledInput
-                  id="name"
-                  name="name"
-                  placeholder="Full Name"
-                  autoComplete="off"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Wrapper>
-              <Wrapper>
-                <StyledLabel htmlFor="email"> Email Address </StyledLabel>
-                <StyledInput
-                  id="email"
-                  name="name"
-                  placeholder="Email Address"
-                  autoComplete="off"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Wrapper>
-              <Wrapper>
-                <StyledLabel htmlFor="password"> Password </StyledLabel>
-                <StyledInput
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Wrapper>
-              <Wrapper>
-                <StyledLabel htmlFor="name"> Confirm password </StyledLabel>
-                <StyledInput
-                  id="confirm"
-                  name="confirm"
-                  placeholder="Confirm password"
-                  autoComplete="off"
-                  value={password}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Wrapper>
-              <Wrapper>
-                <StyledLabel htmlFor="name"> Full Name </StyledLabel>
-                <StyledInput
-                  id="name"
-                  name="name"
-                  placeholder="Full Name"
-                  autoComplete="off"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Wrapper>
+                  <StyledLabel normal htmlFor="name"> I accept the KIKA <Link to="/">E-CONTACT POLICIES</Link> </StyledLabel>
+                  {touched.terms && errors.terms  ?(
+                      <Message>{errors.terms}</Message>
+                    ) : null}
+                </Wrapper>
+              
             </Wrapper>
 
-            <Button type="submit">Join the waitlist</Button>
-          
-           
-           </StyledForm>
-       
+            {/* Second column */}
+            <Wrapper  grid gap="2">
+              {form_data.slice(4,8).map((data,index)=>{
+                const {input_name,short} = data
+                    return(
+                      <Wrapper key={`${short}-${index}`} grid gap="0.5">
+                        <StyledLabel htmlFor={short}> {input_name} </StyledLabel>
+                        <StyledInput
+                          id={short}
+                          name={short}
+                          placeholder={input_name}
+                          autoComplete="off"
+                          value={values[short]}
+                          onChange={handleChange}
+                        />
+                        {touched[short] && errors[short]?(
+                          <Message>{errors[short]}</Message>
+                        ) : null}
+                      </Wrapper>
+                    )
+                })}
+              <StyledButton type={"submit"} label="continue" align-self="end"
+                onClick={()=> console.log(page)}             
+              />
+            </Wrapper>
+            </>
+            :
+            <Wrapper  grid gap="2">
+              
+              <Wrapper grid gap="0.5">
+                <StyledLabel htmlFor='id_num' normal> National Identification Number </StyledLabel>
+                <StyledInput
+                  id='id_num'
+                  name='id_num'
+                  placeholder='National Identification Number'
+                  autoComplete="off"
+                  value={values.id_num}
+                  onChange={handleChange}
+                />
+                {touched.id_num && errors.id_num?(
+                  <Message>{errors.id_num}</Message>
+                ) : null}
+              </Wrapper>
+              <Wrapper grid gap="0.5">
+                <StyledLabel htmlFor='id' normal>Identification</StyledLabel>
+                <StyledInput
+                  id='id'
+                  name='id'
+                  placeholder='Identification'
+                  autoComplete="off"
+                  type="file"
+                  value={values.id}
+                  onChange={handleChange}
+                />
+                {touched.id && errors.id?(
+                  <Message>{errors.id}</Message>
+                ) : null}
+              </Wrapper>
+              <Wrapper grid gap="0.5">
+                <StyledLabel htmlFor='otp' normal> Input code sent to your email address </StyledLabel>
+                <StyledInput
+                  id='otp'
+                  name='otp'
+                  placeholder='Input code'
+                  autoComplete="off"
+                  value=''
+                  onChange={handleChange}
+                />
+                {touched.otp && errors.otp?(
+                  <Message>{errors.otp}</Message>
+                ) : null}
+              </Wrapper>
+                    
+              <StyledButton type="submit" label="continue"/>
+            </Wrapper>
+
+            }
+
+        </StyledForm>
+        <Footer/>
     </div>
   )
 }
@@ -258,7 +228,18 @@ const Wrapper = styled.div`
   position: relative;
   margin:0;
   order:${props=>props.order};
-`;
+  display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
+  gap:${props=>props.gap?`${props.gap}em`:''};
+  align-items:${props=>props.flex ? 'center' : ''};
+`
+
+const Message = styled.p`
+ font-size:11px;
+ font-style:italic;
+ font-weight:500;
+ color:#f15a24;
+ margin:-1em 0;
+`
 
 const Heading = styled.h1`
   font-style: normal;
@@ -275,67 +256,6 @@ const Heading = styled.h1`
     }
 `;
 
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.7em 2em;
-  background: #2e3192;
-  border: 2px solid #2e3192;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 17.61px;
-  text-transform: uppercase;
-  color: #ffffff;
-  box-sizing:border-box;
-  max-width: 280px;
-  align-self:flex-end;
-  cursor: pointer;
 
 
 
-  :hover {
-    color: #2e3192;
-    border-color: #2e3192;
-    background: transparent;
-  }
-  @media (max-width:720px){
-    //   padding:0.7em 0.8em;
-    //   font-size:100%;
-  }
-`;
-
-
-
-// const Wrapper = styled.div`
-//   position: relative;
-//   margin:0;
-// `;
-// const Form = styled.form`
-//   display: grid;
-//   justify-self: flex-end;
-//   position: relative;
-//   gap:2em;
-//   @media (max-width:720px){
-//    width:100%;
-//    gap:3em;
-//    margin:3em 0;
-// }
-//   ${Button}{
-//       justify-self:flex-end;
-//       margin-top:0.5em;
-//   }
-
-//   ${Wrapper} {
-//     :focus-within {
-//       label {
-//         top: -8px;
-//       }
-//     }
-
-//     input:not(:placeholder-shown):not(:focus) ~ label {
-//       top: -8px;
-//       font-size: 13px;
-//     }
-//   }
-// `;

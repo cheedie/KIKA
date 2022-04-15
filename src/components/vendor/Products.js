@@ -1,4 +1,5 @@
 import shirt from "../../assets/vendor/images/shirt.png"
+import styled from "styled-components";
 
 export default function Products() {
   return (
@@ -64,6 +65,7 @@ export default function Products() {
 
         </div>
         </div>
+        <Upload />
 
     
     </div>
@@ -125,3 +127,37 @@ function ProductTile() {
 
   
 }
+
+function Upload () {
+    return(
+        <UploadWrapper>
+            <UploadContainer>
+                <form>
+                    <h1>Add New Product</h1>
+                    
+                </form>
+            </UploadContainer>
+        </UploadWrapper>
+
+    )    
+}
+const UploadWrapper = styled.section`
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+min-width: 906px;
+min-height: 787px;
+background: rgba(0, 0, 0, 0.4);
+display:flex;
+justify-content:center;
+align-items:center
+`
+const UploadContainer = styled.div`
+top:0;
+left:0;
+min-width: 906px;
+min-height: 787px;
+background:#FFFFFF;
+`
