@@ -10,18 +10,31 @@
       -ms-flex-align: center;
           align-items: center;
   height: 135px;
-  padding: 2rem;
+  padding: 2rem 2rem;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
 }
 
-.footer__logoSection img {
+.footer__topSection .footer__logoSection img {
   width: 134.27px;
   height: 68.97px;
   margin-left: -1rem;
 }
 
 .footer__subscribe {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
   width: 30%;
   color: #ffffff;
 }
@@ -69,7 +82,7 @@
 
 /** bottom section */
 .footer__bottomSection .footer__top {
-  padding: 2rem;
+  padding: 4rem 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

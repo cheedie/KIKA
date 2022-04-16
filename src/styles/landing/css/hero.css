@@ -13,9 +13,15 @@
   z-index: 0;
 }
 
+@media (max-width: 480px) {
+  .swiper__slide {
+    height: 85vh;
+  }
+}
+
 .swiper__slide::before {
   content: '';
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(33, 33, 33, 0.3);
   height: 500%;
   width: 500%;
   position: absolute;
@@ -32,16 +38,22 @@
   margin-top: -4rem;
 }
 
+@media (max-width: 480px) {
+  .swiper__slide .swiper__slideContent {
+    width: 80%;
+  }
+}
+
 .swiper__slide .swiper__slideContent .swiper__heading {
   font-weight: 400;
   font-size: 60px;
   text-align: center;
 }
 
-.swiper__slide .swiper__slideContent .swiper__heading2 {
-  font-weight: 400;
-  font-size: 50px;
-  text-align: center;
+@media (max-width: 480px) {
+  .swiper__slide .swiper__slideContent .swiper__heading {
+    font-size: 36px;
+  }
 }
 
 .swiper__slide .swiper__slideContent .swiper__subheading {
@@ -100,6 +112,15 @@
   margin-top: 36.31px;
 }
 
+@media (max-width: 480px) {
+  .swiper__buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .swiper__buttons button {
   width: 260px;
   height: 48px;
@@ -127,4 +148,11 @@
 
 .swiper__buttonWomen {
   margin-right: 60px;
+}
+
+@media (max-width: 480px) {
+  .swiper__buttonWomen {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
 }

@@ -1,9 +1,13 @@
-
 import "./App.css";
-import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  useRoutes,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
 import Vendor from "./components/vendor/Vendor";
-import Vendorregister from "./components/vendor/VendorSignup";
+import VendorSignup from "./components/vendor/VendorSignup";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
@@ -17,19 +21,34 @@ import TrackOrder from "./pages/user/TrackOrders";
 import Notifications from "./pages/user/Notification";
 import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
-import VendorSignup from "./components/vendor/VendorSignup";
+import Authorize from "./components/User/Authorize";
+import Authenticate from "./components/User/Authenticate";
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
-    { path: "/user/signup", element: <Signup /> },
-    { path: "/user/signin", element: <Signin /> },
-    { path: "/user/account", element: <UserAccount /> },
-    { path: "/user/account/trackorder", element: <TrackOrder /> },
-    { path: "/user/account/myorders", element: <MyOrders /> },
-    { path: "/user/account/signout", element: <SignOut /> },
-    { path: "/user/account/notifications", element: <Notifications /> },
-    { path: "/user/account/changepassword", element: <ChangePassword /> },
+
+    { path: "/vendor", element: <Vendor /> },
+
+    {
+      element: <Authorize />,
+      children: [
+        { path: "/user/account", element: <UserAccount /> },
+        { path: "/user/account/trackorder", element: <TrackOrder /> },
+        { path: "/user/account/myorders", element: <MyOrders /> },
+        { path: "/user/account/signout", element: <SignOut /> },
+        { path: "/user/account/notifications", element: <Notifications /> },
+        { path: "/user/account/changepassword", element: <ChangePassword /> },
+      ],
+    },
+
+    {
+      element: <Authenticate />,
+      children: [
+        { path: "/user/signup", element: <Signup /> },
+        { path: "/user/signin", element: <Signin /> },
+      ],
+    },
 
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
@@ -41,7 +60,6 @@ function AppRoutes() {
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
-
   ]);
   return routes;
 }

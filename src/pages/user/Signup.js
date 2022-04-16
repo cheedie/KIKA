@@ -19,12 +19,16 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(name, email, password);
     if (name === "" && email === "" && password === "") {
-      setAlert(true, "danger", "please enter value");
+      setAlert({ show: true, type: "danger", msg: "please enter value" });
     } else if (!terms) {
-      setAlert(true, "danger", "Kindly accept terms to proceed");
+      setAlert({
+        show: true,
+        type: "danger",
+        msg: "Kindly accept terms to proceed",
+      });
     } else {
-      setAlert(true, "success", "Sign up successful");
       uploadUserDetails({
         name,
         email,
@@ -36,7 +40,6 @@ const Signup = () => {
 
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
-    console.log("gvhjkl,");
   };
   return (
     <main>
@@ -89,13 +92,7 @@ const Signup = () => {
             </label>
             {alert.show && <Alert {...alert} removeAlert={showAlert} />}
             <div className="sign__sign-btn-container">
-              <button
-                type="submit"
-                className="sign__up-btn"
-                disabled={
-                  name === "" && email === "" && password === "" ? true : false
-                }
-              >
+              <button type="submit" className="sign__up-btn">
                 SIGN UP
               </button>
             </div>
