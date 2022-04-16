@@ -16,7 +16,6 @@ function VendorSignup() {
 
   const [isVisible, setVisible ] = useState(false);
   const [page, setPage ] = useState(1);
-  const SUPPORTED_FORMATS=["image/jpeg" , "image/bmp", "image/png","application/msword"]
   const FILE_SIZE = 160 * 1024;
            
     const {handleSubmit,handleChange, handleBlur, values, touched, errors} = useFormik({
