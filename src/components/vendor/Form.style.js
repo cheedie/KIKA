@@ -11,6 +11,14 @@ import {Colors}  from '../../styles/vendor/themes/colors'
 //   background: ${darkRed};
 //   height: 100vh;
 // `;
+export const Wrapper = styled.div`
+  position: relative;
+  margin:0;
+  order:${props=>props.order};
+  display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
+  gap:${props=>props.gap?`${props.gap}em`:''};
+  align-items:${props=>props.flex ? 'center' : ''};
+`
 
 export const StyledLabel = styled.label`
   cursor: pointer;
