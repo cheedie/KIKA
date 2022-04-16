@@ -4,7 +4,7 @@ import styled from "styled-components";
 import signImage from "../../assets/user/sign-in.png";
 import Navbar from '../landing-page/Navbar'
 import { StyledButton } from './Button.styled';
-import {StyledForm , StyledLabel, StyledInput, Wrapper } from './Form.style';
+import {StyledForm , StyledLabel, StyledInput, Wrapper, Message } from './Form.style';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
 import Footer from '../landing-page/Footer';
@@ -236,13 +236,6 @@ export default VendorSignup
 
 
 
-const Message = styled.p`
- font-size:11px;
- font-style:italic;
- font-weight:500;
- color:#f15a24;
- margin:-1em 0;
-`
 
 const Heading = styled.h1`
   font-style: normal;

@@ -12,6 +12,14 @@ import styled from "styled-components";
 //   height: 100vh;
 // `;
 
+const Message = styled.p`
+ font-size:11px;
+ font-style:italic;
+ font-weight:500;
+ color:#f15a24;
+ margin:-1em 0;
+`
+
 export const Wrapper = styled.div`
   position: relative;
   margin:0;
@@ -25,6 +33,11 @@ export const Wrapper = styled.div`
 
   //for flex
   flex-direction:${props=> props.col ? 'column' : ''};
+
+   @media (max-width:720px){
+    grid-template-columns:1fr;
+ 
+   }
 `
 
 export const StyledLabel = styled.label`
@@ -104,7 +117,7 @@ export const StyledForm = styled.form`
   }
   
   @media (max-width:720px){
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:${props => props.products?'1fr':`1fr 1fr`};
    width:100%;
    gap:3em;
    margin:3em 0;
