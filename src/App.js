@@ -27,9 +27,6 @@ import Authenticate from "./components/User/Authenticate";
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
-
-    { path: "/vendor", element: <Vendor /> },
-
     {
       element: <Authorize />,
       children: [

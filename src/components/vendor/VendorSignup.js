@@ -17,9 +17,9 @@ function VendorSignup() {
   const [isVisible, setVisible ] = useState(false);
   const [page, setPage ] = useState(1);
   const SUPPORTED_FORMATS=["image/jpeg" , "image/bmp", "image/png","application/msword"]
-  const FILE_SIZE = 1000000;
+  const FILE_SIZE = 160 * 1024;
            
-    const {handleSubmit,handleChange, values, touched, errors} = useFormik({
+    const {handleSubmit,handleChange, handleBlur, values, touched, errors} = useFormik({
         initialValues:{
             name:'',
             email:'',
@@ -31,7 +31,7 @@ function VendorSignup() {
             state:'',
             terms:'',
             id_num:'',
-            id:'',
+            id:undefined,
             otp:''
             
         },
@@ -89,7 +89,7 @@ function VendorSignup() {
     <div>
         <Navbar />
         <Heading> {page === 1 ? 'Sell on Kika' : 'Vendor Verification'}</Heading>
-        <StyledForm onSubmit={handleSubmit} input={StyledInput} wrapper={Wrapper}>
+        <StyledForm onSubmit={handleSubmit} onBlur={handleBlur}>
             {page === 1 ?
             <>
             {/* First column */}
@@ -167,6 +167,7 @@ function VendorSignup() {
                     )
                 })}
               <StyledButton type={"submit"} label="continue" align-self="end"
+                 onChange={handleChange}
                 onClick={()=> console.log(page)}             
               />
             </Wrapper>
