@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Colors}  from '../../styles/vendor/themes/colors'
+//import {Colors}  from '../../styles/vendor/themes/colors'
 
 // const {wineRed,darkRed,lightPink,lightGreen,lighterGreen,darkGreen} = Colors;
 
@@ -17,8 +17,14 @@ export const Wrapper = styled.div`
   margin:0;
   order:${props=>props.order};
   display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
-  gap:${props=>props.gap?`${props.gap}em`:''};
-  align-items:${props=>props.flex ? 'center' : ''};
+    //for grid
+    gap: ${props=>props.gap ? `${props.gap}em`:''};
+    grid-template-columns: ${props=>props.GTC ? props.GTC : '' };
+  align-items:${props=> props.Align ? props.Align : props.flex ? 'center' :''};
+  justify-content:${props=> props.Justify ? props.Justify : ''};
+
+  //for flex
+  flex-direction:${props=> props.col ? 'column' : ''};
 `
 
 export const StyledLabel = styled.label`
@@ -86,12 +92,16 @@ export const StyledForm = styled.form`
   justify-self: center;
   justify-content:space-around;
   align-items:center;
-  grid-template-columns:1fr 1fr;
-  grid-template-columns: repeat(2, minmax(280px,380px));
+  grid-template-columns:${props => props.products?'1fr':`repeat(2, minmax(280px,380px))`};
+ // grid-template-columns: repeat(2, minmax(280px,380px));
   position: relative;
   gap:4em;
   width:100%;
   padding:1em 2em;
+
+  &.add_products{
+    grid-template-columns:1fr
+  }
   
   @media (max-width:720px){
   grid-template-columns:1fr 1fr;
