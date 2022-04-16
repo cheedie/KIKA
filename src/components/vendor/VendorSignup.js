@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import signImage from "../../assets/user/sign-in.png";
 import Navbar from '../landing-page/Navbar'
@@ -8,13 +8,17 @@ import {StyledForm , StyledLabel, StyledInput, Wrapper } from './Form.style';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
 import Footer from '../landing-page/Footer';
-
+import { useUserContext } from "../../context/user_context";
 
 function VendorSignup() {
+  const navigate = useNavigate();
+  const { uploadUserDetails } = useUserContext();
 
   const [isVisible, setVisible ] = useState(false);
   const [page, setPage ] = useState(1);
-
+  const SUPPORTED_FORMATS=["image/jpeg" , "image/bmp", "image/png","application/msword"]
+  const FILE_SIZE = 1000000;
+           
     const {handleSubmit,handleChange, values, touched, errors} = useFormik({
         initialValues:{
             name:'',
@@ -40,25 +44,28 @@ function VendorSignup() {
           password: Yup.string().min(8, 'Password should be longer than 8 characters').required('Required'),
           terms: Yup.boolean().required('Required'),
           biz: Yup.string().required('Required'),
-          id: Yup.mixed().test('fileSize', "File Size is too large", value => value.size <= 5000)
-          .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
-            return value && (
+          id: Yup.mixed()
+          .test("FILE_SIZE", "Uploaded file is too big.",value => !value || (value && value.size <= FILE_SIZE))
+          // .test("FILE_FORMAT", "Uploaded file has unsupported format.", 
+          // value => !value || (value && SUPPORTED_FORMATS.includes(value.type)))
+          .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc", (value) => {
+            return !value || (value && (
                   value[0].type === "image/jpeg" ||
                   value[0].type === "image/bmp" ||
                   value[0].type === "image/png" ||
                   value[0].type === "application/msword"
-              );
+              ))
           }),
         }),
 
-        onSubmit:({name, email, password})=>{
+        onSubmit:({name, email, password, id})=>{
           if(page === 1){
             setPage(2);
-            alert(`Render page 2`);
+           // alert(`Render page 2`);
             console.log('Page:: ', page)
           }
           if(page === 2){
-            alert(`Name: ${name}, password: ${password}, email: ${email}`)
+            alert(`Name: ${name}, password: ${password}, email: ${email}, img_size : ${id}`)
           }
           // else{
             
@@ -211,7 +218,9 @@ function VendorSignup() {
                 ) : null}
               </Wrapper>
                     
-              <StyledButton type="submit" label="continue"/>
+              <StyledButton type="button" label="continue"
+                onClick={()=> console.log('hello')}
+                />
             </Wrapper>
 
             }
