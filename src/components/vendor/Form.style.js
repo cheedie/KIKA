@@ -11,6 +11,7 @@ import {Colors}  from '../../styles/vendor/themes/colors'
 //   background: ${darkRed};
 //   height: 100vh;
 // `;
+
 export const Wrapper = styled.div`
   position: relative;
   margin:0;
@@ -31,6 +32,7 @@ export const StyledLabel = styled.label`
 
   &.floating{
     position:absolute;
+    top:1em;
     left:5px;
     padding:0 0.5em;
     background:#fff;
@@ -45,7 +47,7 @@ export const StyledInput = styled.input`
     font-family:'montserrat';
     font-size:14px;
     font-weight:500;
-    padding:${props=>props.floating ? "1.2em" : "1.2em 1em"};
+    padding:${props=>props.floating ? "1.2em" : "1.2em 1em"} !important;
     margin-right:${(props)=>props.checkbox ? "1em" :"" };
     display:block;
     width:${(props)=>props.checkbox ? "" :"100%" };
@@ -109,9 +111,9 @@ export const StyledForm = styled.form`
       }
     }
 
-    input:not(:placeholder-shown):not(:focus) ~ ${StyledLabel}.floating {
+    /* input:not(:placeholder-shown):not(:focus) ~ ${StyledLabel}.floating {
       top: -8px;
       font-size: 13px;
-    }
+    } */
   }
 `;

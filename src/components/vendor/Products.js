@@ -2,32 +2,32 @@ import shirt from "../../assets/vendor/images/shirt.png"
 import styled from "styled-components";
 import image from "../../assets/vendor/images/image_vector.png"
 import { StyledButton } from './Button.styled';
-import {StyledForm , StyledLabel, StyledInput, Wrapper } from './Form.style';
+import {StyledForm , StyledLabel, StyledInput ,Wrapper} from './Form.style';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
 
 export default function Products() {
   return (
-    <Wrapper id="wrapper" className="products">
+    <div id="wrapper" className="products">
         <nav>
-            <Wrapper>
+            <div>
             <a href="/" className="subtitle active">All (2)</a>
             <a href="/" className="subtitle">Online (0)</a>
             <a href="/" className="subtitle">Pending Review (0)</a>
             <a href="/" className="subtitle">Draft (0)</a>
-            </Wrapper>
+            </div>
             <button className="button">Add Product</button>
         </nav>
-        <Wrapper className="body">
-            <Wrapper className="filters">
-            <Wrapper className='dropdown'>
+        <div className="body">
+            <div className="filters">
+            <div className='dropdown'>
 
                     <select name="size">
                         <option value="">XX</option>
                         <option value="XL">XL</option>
                     </select>
                     <label htmlFor='Filter' className="button">Filter</label>
-                    </Wrapper>
+                    </div>
                 <form>
                     <input 
                         name="search" 
@@ -42,20 +42,20 @@ export default function Products() {
                     />
                 </form>
 
-                <Wrapper className='dropdown'>
+                <div className='dropdown'>
                     {/* <label htmlFor='Filter'>Filter</label> */}
                     <select name="size" placeholder='select'>
                         <option value=""> Select Category</option>
                         <option value="A">A-grade</option>
                         <option value="B">B-grade</option>
                     </select>
-                    </Wrapper>
+                    </div>
 
-            </Wrapper>
+            </div>
 
             
-        <Wrapper className="product_list">
-            <Wrapper className="product_titles">
+        <div className="product_list">
+            <div className="product_titles">
                 <p className="product_image_title">Image</p>
                 <p>Name</p>
                 <p>Status</p>
@@ -63,17 +63,17 @@ export default function Products() {
                 <p>Price</p>
                 <p>Views</p>
                 <p>Date</p>
-            </Wrapper>
-            <Wrapper className="products">
+            </div>
+            <div className="products">
                 <ProductTile/>
-            </Wrapper>
+            </div>
 
-        </Wrapper>
-        </Wrapper>
+        </div>
+        </div>
         <Upload />
 
     
-    </Wrapper>
+    </div>
   )
 }
 
@@ -114,17 +114,17 @@ function ProductTile() {
       {tile.map((item,index)=>{
           return(
             
-            <Wrapper className="product_tile" key={`product-${index}`}>
-                <Wrapper className="product_img">
+            <div className="product_tile" key={`product-${index}`}>
+                <div className="product_img">
                     <img src={item.image} alt={item.title}/>
-                </Wrapper>
+                </div>
                 <p className="product_title">{item.title}</p>
                 <p className="product_status">{item.status}</p>
                 <p className="product_stock">{item.stock}</p>
                 <p className="product_price">{item.price}</p>
                 <p className="product_views">{item.views}</p>
                 <p className="product_date">{item.date}<br/>Last Modified</p>
-            </Wrapper>
+            </div>
           )
       })}
       </>
@@ -138,20 +138,26 @@ function Upload () {
         <UploadWrapper>
             <UploadContainer>
                 <StyledForm>
-                    <Heading>Add New Product</Heading>
+                    <Wrapper>
+                        <Heading> + Add New Product</Heading>
+                    </Wrapper>
+                    
                     <Wrapper>
                         <UploadInput type='file'/>
-                        <Wrapper>
-                            <Input type='text' placeholder='A new product' />
+                        <Wrapper grid gap='2'>
                             <Wrapper>
-                                <Wrapper>
-                                    <label>Price</label>
-                                    <Input type='text' placeholder='A new product' />
-                                </Wrapper>
-                                <Wrapper>
-                                    <label>Discounted Price</label>
-                                    <Input type='text' placeholder='A new product' />
-                                </Wrapper>
+                                <StyledLabel className="floating">A new product</StyledLabel>
+                                <StyledInput type='text' placeholder='A new product' floating/>
+                            </Wrapper>
+                            <Wrapper flex>
+                            <Wrapper>
+                                <StyledLabel className="floating">Price</StyledLabel>
+                                <StyledInput type='text' placeholder='A new product' floating/>
+                            </Wrapper>
+                            <Wrapper>
+                                <StyledLabel className="floating">Discounted Price</StyledLabel>
+                                <StyledInput type='text' placeholder='A new product' floating/>
+                            </Wrapper>
 
                             </Wrapper>
                         </Wrapper>
@@ -159,12 +165,15 @@ function Upload () {
                     </Wrapper>
 
                     <Wrapper>
-                        <Input type='text' placeholder='A new product' />
-                        <Input type='text' placeholder='A new product' />
-                        <Input type='text' placeholder='A new product' />
+                        <Wrapper>
+                            <StyledLabel className="floating">Select category</StyledLabel>
+                            <StyledInput type='text' placeholder='A new product' floating/>
+                        </Wrapper>
+                        
+                       
                     </Wrapper>
 
-                        <StyledButton type='submit' >Add Product</StyledButton>
+                        <StyledButton type='submit' label ='Add Product'/>
                    
                 </StyledForm>
             </UploadContainer>
@@ -172,6 +181,16 @@ function Upload () {
 
     )    
 }
+
+const Container = styled.div`
+  position: relative;
+  margin:0;
+  order:${props=>props.order};
+  display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
+  gap:${props=>props.gap?`${props.gap}em`:''};
+  align-items:${props=>props.flex ? 'center' : ''};
+`
+
 const UploadWrapper = styled.section`
 position:fixed;
 top:0;
@@ -185,7 +204,7 @@ display:flex;
 justify-content:center;
 align-items:center
 `
-const UploadContainer = styled.Wrapper`
+const UploadContainer = styled.div`
 top:0;
 left:0;
 min-width: 906px;
