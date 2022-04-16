@@ -22,9 +22,11 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
+import Home from "./components/home/Home";
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
+    { path: "/home", element: <Home /> },
 
     { path: "/vendor", element: <Vendor /> },
 
