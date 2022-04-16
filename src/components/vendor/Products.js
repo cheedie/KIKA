@@ -1,12 +1,17 @@
+
 import shirt from "../../assets/vendor/images/shirt.png"
 import styled from "styled-components";
 import image from "../../assets/vendor/images/image_vector.png"
 import { StyledButton } from './Button.styled';
 import {StyledForm , StyledLabel, StyledInput ,Wrapper} from './Form.style';
-import {useFormik} from 'formik';
-import * as Yup from 'yup'
+import { AiOutlineCloseCircle as Close} from 'react-icons/ai'
+import { useState } from "react";
+// import {useFormik} from 'formik';
+// import * as Yup from 'yup'
 
 export default function Products() {
+    const [isUploading, setUpload] = useState(false)
+
   return (
     <div id="wrapper" className="products">
         <nav>
@@ -16,7 +21,7 @@ export default function Products() {
             <a href="/" className="subtitle">Pending Review (0)</a>
             <a href="/" className="subtitle">Draft (0)</a>
             </div>
-            <button className="button">Add Product</button>
+            <button className="button" onClick={()=>setUpload(true)}>Add Product</button>
         </nav>
         <div className="body">
             <div className="filters">
@@ -70,7 +75,7 @@ export default function Products() {
 
         </div>
         </div>
-        <Upload />
+        {isUploading ? <Upload setUpload={setUpload}/>:null}
 
     
     </div>
@@ -133,29 +138,34 @@ function ProductTile() {
   
 }
 
-function Upload () {
+function Upload ({setUpload}) {
     return(
         <UploadWrapper>
             <UploadContainer>
-                <StyledForm>
-                    <Wrapper>
-                        <Heading> + Add New Product</Heading>
+                <StyledForm products>
+                    <Wrapper flex>
+                        <Heading> + Add New Product </Heading>
+                        <ExitButton onClick={()=>setUpload(false)}><Close/></ExitButton>
                     </Wrapper>
                     
-                    <Wrapper>
+                    <Wrapper grid 
+                        Justify='space-between'
+                        Align='flex-start'
+                        GTC='1fr 2fr'
+                    >
                         <UploadInput type='file'/>
                         <Wrapper grid gap='2'>
                             <Wrapper>
                                 <StyledLabel className="floating">A new product</StyledLabel>
                                 <StyledInput type='text' placeholder='A new product' floating/>
                             </Wrapper>
-                            <Wrapper flex>
+                            <Wrapper flex Justify='space-between'>
                             <Wrapper>
-                                <StyledLabel className="floating">Price</StyledLabel>
+                                <StyledLabel >Price</StyledLabel>
                                 <StyledInput type='text' placeholder='A new product' floating/>
                             </Wrapper>
                             <Wrapper>
-                                <StyledLabel className="floating">Discounted Price</StyledLabel>
+                                <StyledLabel >Discounted Price</StyledLabel>
                                 <StyledInput type='text' placeholder='A new product' floating/>
                             </Wrapper>
 
@@ -182,14 +192,7 @@ function Upload () {
     )    
 }
 
-const Container = styled.div`
-  position: relative;
-  margin:0;
-  order:${props=>props.order};
-  display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
-  gap:${props=>props.gap?`${props.gap}em`:''};
-  align-items:${props=>props.flex ? 'center' : ''};
-`
+
 
 const UploadWrapper = styled.section`
 position:fixed;
@@ -205,8 +208,6 @@ justify-content:center;
 align-items:center
 `
 const UploadContainer = styled.div`
-top:0;
-left:0;
 min-width: 906px;
 min-height: 787px;
 background:#FFFFFF;
@@ -223,10 +224,7 @@ padding:1em !important;
 border:2px dotted #C4C4C4  !important;
 cursor:crosshair;
 `
-const Input = styled.input`
-padding:1em !important;
-cursor:crosshair;
-`
+
 
 const Heading = styled.h1`
   font-style: normal;
@@ -234,7 +232,7 @@ const Heading = styled.h1`
   font-size: 100%;
   line-height: 78px;
   width:100%;
-  text-align:center;
+  text-align:left;
 
     @media (max-width:720px){
         font-size:36px;
@@ -242,3 +240,16 @@ const Heading = styled.h1`
         
     }
 `;
+
+const ExitButton = styled.button`
+border: none;
+background: none;
+display:flex;
+font-size: 2em;
+
+&:hover{
+    color:#F15A24;
+    cursor:pointer;
+    transform:scale(1.2);
+}
+`
