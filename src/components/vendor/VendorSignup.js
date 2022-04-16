@@ -45,8 +45,6 @@ function VendorSignup() {
           biz: Yup.string().required('Required'),
           id: Yup.mixed()
           .test("FILE_SIZE", "Uploaded file is too big.",value => !value || (value && value.size <= FILE_SIZE))
-          // .test("FILE_FORMAT", "Uploaded file has unsupported format.", 
-          // value => !value || (value && SUPPORTED_FORMATS.includes(value.type)))
           .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc", (value) => {
             return !value || (value && (
                   value[0].type === "image/jpeg" ||

@@ -80,15 +80,24 @@ export default function UploadForm({setUpload}) {
                             <Wrapper>
                                 <StyledLabel className="floating">A new product</StyledLabel>
                                 <StyledInput type='text' name='name' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.name && errors.name  ?(
+                                <Message>{errors.name}</Message>
+                                ) : null}
                             </Wrapper>
                             <Wrapper grid gap="1" GTC="1fr 1fr">
                             <Wrapper>
                                 <StyledLabel >Price</StyledLabel>
                                 <StyledInput type='text' name='price' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.price && errors.price  ?(
+                                <Message>{errors.price}</Message>
+                                ) : null}
                             </Wrapper>
                             <Wrapper>
                                 <StyledLabel >Discounted Price</StyledLabel>
                                 <StyledInput type='text' name='discount' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.discount && errors.discount  ?(
+                                <Message>{errors.discount}</Message>
+                                ) : null}
                             </Wrapper>
 
                             </Wrapper>
