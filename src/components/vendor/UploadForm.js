@@ -69,6 +69,7 @@ export default function UploadForm({setUpload}) {
                         Align='flex-start'
                         GTC='1fr 2fr'
                     >
+                        <Wrapper>
                         <UploadInput type='file' 
                             img={imagePreview} 
                             name='image' 
@@ -76,6 +77,7 @@ export default function UploadForm({setUpload}) {
                             {touched.image && errors.image  ?(
                             <Message>{errors.image}</Message>
                             ) : null}
+                            </Wrapper>
                         <Wrapper grid gap='2'>
                             <InputWrapper>
                                 <StyledLabel className="floating">A new product</StyledLabel>
@@ -158,6 +160,7 @@ position:absolute;
 top:0;
 left:0;
 width:100%;
+height:100vh;
 background: rgba(0, 0, 0, 0.4);
 display:flex;
 justify-content:center;
