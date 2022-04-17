@@ -12,7 +12,7 @@ import styled from "styled-components";
 //   height: 100vh;
 // `;
 
-const Message = styled.p`
+export const Message = styled.p`
  font-size:11px;
  font-style:italic;
  font-weight:500;
@@ -39,6 +39,31 @@ export const Wrapper = styled.div`
  
    }
 `
+
+export const InputWrapper = styled.div`
+  position: relative;
+  margin:0;
+  order:${props=>props.order};
+  display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
+    //for grid
+    gap: ${props=>props.gap ? `${props.gap}em`:''};
+    grid-template-columns: ${props=>props.GTC ? props.GTC : '' };
+  align-items:${props=> props.Align ? props.Align : props.flex ? 'center' :''};
+  justify-content:${props=> props.Justify ? props.Justify : ''};
+
+  //for flex
+  flex-direction:${props=> props.col ? 'column' : ''};
+
+   @media (max-width:720px){
+    grid-template-columns:1fr;
+ 
+   }
+`
+// export const InputWrapper = styled.div`
+//   position: relative;
+//   margin:0;
+//   order:${props=>props.order};
+// `;
 
 export const StyledLabel = styled.label`
   cursor: pointer;
@@ -82,23 +107,30 @@ export const StyledInput = styled.input`
             background:white;
         }
     
-        &:not(::placeholder-shown) ~ ${StyledLabel}.floating {
+        /* &:not(::placeholder-shown) ~ .floating {
             top:-8px;
             font-size:13px;
-        }
+        } */
     }
     &::placeholder{
         opacity:0;
         }
-    &:not(:placeholder-shown){
-        background:#ffffff;
+    /* &:not(:placeholder-shown){
+        background:green;
+    } */
+    &:not(:placeholder-shown) ~ label {
+            top:-8px;
+            font-size:13px;
+            color:crimson;
+      }
+    &:not(:placeholder-shown):not(:focus) ~ label.floating {
+      top: -8px !important;
+      font-size: 13px;
+      background:crimson;
+      color:crimson;
     }
+
 `
-export const InputWrapper = styled.div`
-  position: relative;
-  margin:0;
-  order:${props=>props.order};
-`;
 
 export const StyledForm = styled.form`
   display: grid;
@@ -108,7 +140,7 @@ export const StyledForm = styled.form`
   grid-template-columns:${props => props.products?'1fr':`repeat(2, minmax(280px,380px))`};
  // grid-template-columns: repeat(2, minmax(280px,380px));
   position: relative;
-  gap:4em;
+  gap:${props => props.gap?`${props.gap}em`:'4em'};
   width:100%;
   padding:1em 2em;
 
@@ -117,11 +149,11 @@ export const StyledForm = styled.form`
   }
   
   @media (max-width:720px){
-  grid-template-columns:${props => props.products?'1fr':`1fr 1fr`};
-   width:100%;
-   gap:3em;
-   margin:3em 0;
-}
+    grid-template-columns:${props => props.products?'1fr':`1fr 1fr`};
+    width:100%;
+    gap:3em;
+    margin:3em 0;
+  }
   .submit{
       justify-self:flex-end;
       margin-top:0.5em;
@@ -134,9 +166,10 @@ export const StyledForm = styled.form`
       }
     }
 
-    /* input:not(:placeholder-shown):not(:focus) ~ ${StyledLabel}.floating {
-      top: -8px;
+    :not(:placeholder-shown):not(:focus) ~ label.floating {
+      top: -8px !important;
       font-size: 13px;
-    } */
+    } 
   }
+  
 `;
