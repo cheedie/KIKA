@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import image_bg from "../../assets/vendor/images/image_vector.png"
 import { StyledButton } from './Button.styled';
-import {StyledForm , StyledLabel, StyledInput ,Wrapper, Message} from './Form.style';
+import {StyledForm , StyledLabel, StyledInput, InputWrapper, Wrapper, Message} from './Form.style';
 import { AiOutlineCloseCircle as Close} from 'react-icons/ai'
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
@@ -58,7 +58,7 @@ export default function UploadForm({setUpload}) {
     return(
         <UploadWrapper>
             <UploadContainer>
-                <StyledForm products onSubmit={handleSubmit}>
+                <StyledForm products gap='2' onSubmit={handleSubmit}>
                     <Wrapper flex>
                         <Heading> + Add New Product </Heading>
                         <ExitButton onClick={()=>setUpload(false)}><Close/></ExitButton>
@@ -77,39 +77,68 @@ export default function UploadForm({setUpload}) {
                             <Message>{errors.image}</Message>
                             ) : null}
                         <Wrapper grid gap='2'>
-                            <Wrapper>
+                            <InputWrapper>
                                 <StyledLabel className="floating">A new product</StyledLabel>
                                 <StyledInput type='text' name='name' onChange={handleChange} placeholder='A new product' floating/>
                                 {touched.name && errors.name  ?(
                                 <Message>{errors.name}</Message>
                                 ) : null}
-                            </Wrapper>
+                            </InputWrapper>
                             <Wrapper grid gap="1" GTC="1fr 1fr">
-                            <Wrapper>
+                            <InputWrapper>
                                 <StyledLabel >Price</StyledLabel>
                                 <StyledInput type='text' name='price' onChange={handleChange} placeholder='A new product' floating/>
                                 {touched.price && errors.price  ?(
                                 <Message>{errors.price}</Message>
                                 ) : null}
-                            </Wrapper>
-                            <Wrapper>
+                            </InputWrapper>
+                            <InputWrapper>
                                 <StyledLabel >Discounted Price</StyledLabel>
                                 <StyledInput type='text' name='discount' onChange={handleChange} placeholder='A new product' floating/>
                                 {touched.discount && errors.discount  ?(
                                 <Message>{errors.discount}</Message>
                                 ) : null}
-                            </Wrapper>
+                            </InputWrapper>
 
                             </Wrapper>
                         </Wrapper>
 
                     </Wrapper>
 
-                    <Wrapper>
-                        <Wrapper>
-                            <StyledLabel className="floating">Select category</StyledLabel>
-                            <StyledInput type='text' placeholder='A new product' floating/>
-                        </Wrapper>
+                    <Wrapper grid gap="2">
+                        <InputWrapper>
+                            <StyledLabel className="floating" >Category</StyledLabel>
+                            <StyledInput type='text' 
+                            name='category' 
+                            placeholder='A new product'
+                            onChange={handleChange}
+                             floating/>
+                            {touched.category && errors.category  ?(
+                                <Message>{errors.category}</Message>
+                                ) : null}
+                        </InputWrapper>
+                        <InputWrapper>
+                            <StyledLabel className="floating" >Product tags</StyledLabel>
+                            <StyledInput type='text' 
+                            name='tags'
+                            onChange={handleChange} 
+                            placeholder='Product tags' 
+                            floating/>
+                            {touched.tags && errors.tags  ?(
+                                <Message>{errors.tags}</Message>
+                                ) : null}
+                        </InputWrapper>
+                        <InputWrapper>
+                            <StyledLabel className="floating" >Details of product</StyledLabel>
+                            <StyledInput type='text' 
+                            name='description' 
+                            placeholder='Description' 
+                            onChange={handleChange}
+                            floating/>
+                            {touched.description && errors.description  ?(
+                                <Message>{errors.description}</Message>
+                                ) : null}
+                        </InputWrapper>
                         
                        
                     </Wrapper>
@@ -129,9 +158,6 @@ position:absolute;
 top:0;
 left:0;
 width:100%;
-height:100%;
-/* min-width: 906px;
-min-height: 787px; */
 background: rgba(0, 0, 0, 0.4);
 display:flex;
 justify-content:center;
@@ -141,7 +167,7 @@ const UploadContainer = styled.div`
 max-width: 906px;
 height: 100%;
 background:#FFFFFF;
-padding: 3em 1.5em;
+padding: 0em 1.5em;
 `
 
 const UploadInput = styled.input`
@@ -161,7 +187,7 @@ cursor:crosshair;
 const Heading = styled.h1`
   font-style: normal;
   font-weight: 600;
-  font-size: 100%;
+  font-size: 2em;
   line-height: 78px;
   width:100%;
   text-align:left;
