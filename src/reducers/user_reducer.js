@@ -4,6 +4,8 @@ import {
   REQUEST_LOGIN,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
+  CHANGE_PASSWORD,
+  USER_LOGOUT,
 } from "../actions";
 
 const user_reducer = (state, action) => {
@@ -16,7 +18,6 @@ const user_reducer = (state, action) => {
   if (action.type === LOGIN_SUCCESS) {
     return {
       ...state,
-      user: action.payload.user,
       token: action.payload.token,
       loading: false,
     };
@@ -25,7 +26,15 @@ const user_reducer = (state, action) => {
   if (action.type === LOGIN_ERROR) {
     return { ...state, loading: false };
   }
-
+  if (action.type === CHANGE_PASSWORD) {
+    return { ...state, newPassword: action.payload };
+  }
+  if (action.type === USER_LOGOUT) {
+    return { ...state, userLogout: true };
+  }
+  if (action.type === USER_DETAILS) {
+    return { ...state, userDetails: action.payload };
+  }
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 

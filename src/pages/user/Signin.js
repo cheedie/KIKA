@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
+import Alert from "../../components/User/Alert";
 
 import { useUserContext } from "../../context/user_context";
 
@@ -12,17 +13,29 @@ const Signin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let response = await loginUser({ email, password });
       console.log(response);
-      if (!response.data) return;
-      navigate("/user/account");
+      if (!response || response.status !== 200) {
+        setAlert({
+          show: true,
+          type: "danger",
+          msg: "Incorrect email or password",
+        });
+      } else {
+        navigate("/user/account");
+      }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const showAlert = (show = false, type = "", msg = "") => {
+    setAlert({ show, type, msg });
   };
   return (
     <main>
@@ -68,11 +81,13 @@ const Signin = () => {
                 Forgot Password
               </Link>
             </div>
+            {alert.show && <Alert {...alert} removeAlert={showAlert} />}
+
             <div className="sign__sign-btn-container">
               <button
                 type="submit"
                 className="sign__up-btn"
-                disabled={email === "" && password === "" ? true: false}
+                disabled={email === "" && password === "" ? true : false}
               >
                 SIGN IN
               </button>
