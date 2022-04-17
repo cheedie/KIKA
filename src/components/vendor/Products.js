@@ -10,6 +10,7 @@ export default function Products() {
 
 
   return (
+      <>
     <div id="wrapper" className="products">
         <nav>
             <div>
@@ -72,10 +73,11 @@ export default function Products() {
 
         </div>
         </div>
-        {isUploading ? <UploadForm setUpload={setUpload}/>:null}
-
-    
+        
+       
     </div>
+    {isUploading ? <UploadForm setUpload={setUpload}/>:null}
+    </>
   )
 }
 

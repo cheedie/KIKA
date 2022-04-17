@@ -56,8 +56,20 @@ export const InputWrapper = styled.div`
 
    @media (max-width:720px){
     grid-template-columns:1fr;
- 
    }
+
+   &:focus-within {
+      label.floating {
+        top: -8px;
+    }
+  }
+
+  &:not(:placeholder-shown):not(:focus) ~ label{
+      top: -8px !important;
+      font-size: 13px;
+      background:crimson;
+      color:crimson;
+    } 
 `
 // export const InputWrapper = styled.div`
 //   position: relative;
@@ -164,9 +176,9 @@ export const StyledForm = styled.form`
       label.floating {
         top: -8px;
       }
-    }
+    } */
 
-    :not(:placeholder-shown):not(:focus) ~ label.floating {
+    /* :not(:placeholder-shown):not(:focus) ~ label.floating {
       top: -8px !important;
       font-size: 13px;
     } 
