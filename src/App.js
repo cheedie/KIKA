@@ -14,7 +14,7 @@ import OurPolicy from "./pages/StaticPages/OurPolicy"
 
 function AppRoutes() {
   const routes = useRoutes([
-    { path: "/", element: <Landing /> },
+    { path: "/", element: <Waitlist /> },
     { path: "/user/signup", element: <Signup /> },
     { path: "/user/signin", element: <Signin /> },
     { path: "/vendor", element: <Vendor /> },

@@ -6,7 +6,7 @@ import ThriftImage from "../../../assets/StaticPages/thrift_image.svg";
 
 
 const FormWaitlist = () => {
-    const [state, handleSubmit] = useForm("xoqrkwae");
+    const [state, handleSubmit] = useForm("mbjwzyqk");
     if (state.succeeded) {
         return <p>Thanks for joining our waitlist!</p>;
     }

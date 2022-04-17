@@ -1,4 +1,5 @@
 import React from 'react'
+import { useForm, ValidationError } from '@formspree/react';
 import { Link } from "react-router-dom";
 import { HiMail, HiPhone } from "react-icons/hi";
 import { AiFillInstagram } from "react-icons/ai";
@@ -9,7 +10,10 @@ import "../../styles/StaticStyles/Contact.css";
 
 
 const Contact = () => {
-
+  const [state, handleSubmit] = useForm("xpzbyrkw");
+  if (state.succeeded) {
+      return <p>Thanks for contacting Kika!!!</p>;
+  }
   return (
     <>
       <Navbar />
@@ -17,27 +21,57 @@ const Contact = () => {
         <div className='contact_row'>
           <div className='contact_section'>
             <h2 className='info-header'>Contact Us</h2>
-            <form id="contact_input" className="contact_input">
-              <label> Full Name 
-                <input type="text" />
+            <form onSubmit={handleSubmit} id="contact_input" className="contact_input">
+              <label htmlFor="name"> Full Name 
+                <input id="name"
+                    type="text"
+                    name="name"  
+                />
               </label>
-              <label> Phone Number 
-                <input type="phone number" />
+              <ValidationError 
+                  prefix="Name" 
+                  field="name"
+                  errors={state.errors}
+              />
+              <label htmlFor="number"> Phone Number 
+                <input id="phoneNumber"
+                    type="phone number" 
+                    name="phoneNumber"
+                />
               </label>
-              <label> Email Address
-                <input type="email" />
+              <ValidationError 
+                  prefix="Phone number" 
+                  field="phoneNumber"
+                  errors={state.errors}
+              />
+              <label htmlFor="email"> Email Address
+                <input id="email"
+                    type="email" 
+                    name="email"  
+                />
               </label>
+              <ValidationError 
+                  prefix="Email" 
+                  field="email"
+                  errors={state.errors}
+              />
               <label> Write a message <br/>
-                <textarea />
+                <textarea 
+                  id="message"
+                  name="message"
+                />
               </label>
-            </form>
-            <div className="contact-btn-container">
-              <button type="submit" id='contact-btn' className="contact-btn">
-                <Link to='' >
+              <ValidationError 
+                prefix="Message" 
+                field="message"
+                errors={state.errors}
+              />
+              <div className="contact-btn-container">
+                <button type="submit" disabled={state.submitting} id='contact-btn' className="contact-btn">
                     SEND MESSAGE
-                </Link>
-              </button>
-            </div>
+                </button>
+              </div>
+            </form>
           </div>
           <div className="info_section">
             <h2 className='info-header'>Contact Information</h2>

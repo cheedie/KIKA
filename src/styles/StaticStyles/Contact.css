@@ -38,7 +38,7 @@ a {
   margin-top: 5px;
   padding: 0.7em;
   border: 1.8px solid #c4c4c4;
-  width: 130%;
+  width: 100%;
   background-color: transparent;
 }
 .contact_input input:focus,
@@ -52,7 +52,7 @@ a {
   font-size: 14px;
   border: 1.8px solid #c4c4c4;
   background-color: transparent;
-  width: 130%;
+  width: 100%;
 }
 
 .info_section {
@@ -192,7 +192,7 @@ a {
   }
   .contact_input input,
   .contact_input textarea {
-    width: 150%;
+    width: 100%;
   }
   .contact_social {
     color: #333333;
