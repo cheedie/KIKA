@@ -78,21 +78,21 @@ export const StyledInput = styled.input`
     outline:none;
     border-bottom:1px solid grey;
    
-        &:not(::placeholder-shown){
+        /* &:not(::placeholder-shown){
             background:white;
         }
     
         &:not(::placeholder-shown) ~ ${StyledLabel}.floating {
             top:-8px;
             font-size:13px;
-        }
+        } */
     }
     &::placeholder{
         opacity:0;
         }
-    &:not(:placeholder-shown){
+    /* &:not(:placeholder-shown){
         background:#ffffff;
-    }
+    } */
 `
 export const InputWrapper = styled.div`
   position: relative;
@@ -127,16 +127,16 @@ export const StyledForm = styled.form`
       margin-top:0.5em;
   }
 
-  ${InputWrapper} {
+  /* ${InputWrapper} {
     :focus-within {
       label.floating {
         top: -8px;
       }
-    }
+    } */
 
     /* input:not(:placeholder-shown):not(:focus) ~ ${StyledLabel}.floating {
       top: -8px;
       font-size: 13px;
     } */
-  }
+  //}
 `;
