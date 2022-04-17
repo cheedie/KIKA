@@ -103,9 +103,9 @@ export const StyledInput = styled.input`
     outline:none;
     border-bottom:1px solid grey;
    
-        &:not(::placeholder-shown){
+        /* &:not(::placeholder-shown){
             background:white;
-        }
+        } */
     
         /* &:not(::placeholder-shown) ~ .floating {
             top:-8px;
@@ -118,7 +118,7 @@ export const StyledInput = styled.input`
     /* &:not(:placeholder-shown){
         background:green;
     } */
-    &:not(:placeholder-shown) ~ label {
+    /* &:not(:placeholder-shown) ~ label {
             top:-8px;
             font-size:13px;
             color:crimson;
@@ -128,7 +128,7 @@ export const StyledInput = styled.input`
       font-size: 13px;
       background:crimson;
       color:crimson;
-    }
+    } */
 
 `
 
@@ -159,7 +159,7 @@ export const StyledForm = styled.form`
       margin-top:0.5em;
   }
 
-  ${InputWrapper} {
+  /* ${InputWrapper} {
     :focus-within {
       label.floating {
         top: -8px;
@@ -171,5 +171,5 @@ export const StyledForm = styled.form`
       font-size: 13px;
     } 
   }
-  
+   */
 `;
