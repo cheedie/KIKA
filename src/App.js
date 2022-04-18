@@ -24,14 +24,8 @@ import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
 function AppRoutes() {
   const routes = useRoutes([
-<<<<<<< HEAD
-    { path: "/", element: <Waitlist /> },
-    { path: "/user/signup", element: <Signup /> },
-    { path: "/user/signin", element: <Signin /> },
-=======
     { path: "/landing", element: <Landing /> },
 
->>>>>>> 7fd0dd71a7f811239cc92447086ec2152e49348e
     { path: "/vendor", element: <Vendor /> },
 
     {

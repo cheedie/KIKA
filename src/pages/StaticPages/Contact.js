@@ -115,13 +115,13 @@ const Contact = () => {
               </div>
             </div>
             <div className='contact_social' id='contact_social'>
-              <a href="https://www.instagram.com/kikathriftstore" target="_blank" >
+              <a href="https://www.instagram.com/kikathriftstore" >
                 <AiFillInstagram className='social_icon' />
               </a>
-              <a href="https://www.twitter.com/KikaThrift" target="_blank" >
+              <a href="https://www.twitter.com/KikaThrift" >
                 <FaTwitter className='social_icon' />
               </a>
-              <a href="#" target="_blank" > 
+              <a href="facebook.com" > 
                 <FaFacebookF className='social_icon' />
               </a>
             </div>
