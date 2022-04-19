@@ -22,6 +22,8 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
+import Mycart from "./pages/Cart/MyCart";
+
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
@@ -57,6 +59,7 @@ function AppRoutes() {
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
+    { path: "/mycart", element: <Mycart /> },
   ]);
   return routes;
 }
