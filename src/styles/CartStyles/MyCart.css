@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+
+.cart_wrapper {
+  margin: 2em;
+}
+
+.cart_details {
+  margin: 1em 1em 1em 2em;
+}
+.cart_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 2em 0;
+}
+
+.card_section {
+  box-shadow: 0 0 20px rgba(231, 234, 236, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2em 0 0 0;
+}
+.card_row {
+  display: flex;
+}
+
+.cartTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cloth_Details {
+  display: flex;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.removeItems {
+  display: flex;
+  align-items: center;
+}
+
+.increaseItems {
+  display: flex;
+  align-items: center;
+}
+
+.summary_Details {
+  display: flex;
+}
+.subtotal_Details {
+  display: flex;
+}
+
+.card_icon {
+  color: #f15a24;
+}
