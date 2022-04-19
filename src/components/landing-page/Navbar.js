@@ -1,11 +1,9 @@
-
 import React, { useState } from 'react';
 import Logo from '../../assets/landing-page/logo.png';
 import Search from '../../assets/landing-page/search.png';
 import Cart from '../../assets/landing-page/cart.png';
 import '../../styles/landing/css/navbar.css';
 import { Link } from 'react-router-dom';
-
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -41,8 +39,12 @@ const Navbar = () => {
         </span>
       </form>
       <div className="nav__signIn">
-        <button>Sign in</button>
-        <button>Sign up</button>
+        <Link to="/user/signup">
+          <div>Sign up</div>
+        </Link>
+        <Link to="/user/signin">
+          <div>Sign in</div>
+        </Link>
         <div className="cart">
           <img src={Cart} alt="shopping cart" />
           <span>Cart</span>
@@ -75,7 +77,6 @@ const Navbar = () => {
             <a href="/vendor">Sell on KIKA</a>
           </li>
         </ul>
-
       </div>
 
       <ul
