@@ -13,7 +13,7 @@ const product_reducer = (state, action) => {
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
     const new_arrivals = action.payload.filter(
-      (product) => product.category === "new_arrival"
+      (product) => product.newArrival === true
     );
     return {
       ...state,
