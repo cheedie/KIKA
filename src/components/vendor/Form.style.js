@@ -23,21 +23,29 @@ export const Message = styled.p`
 export const Wrapper = styled.div`
   position: relative;
   margin:0;
+ // height:100%;
+  padding:${props=>props.container ? '1em 2em' : ''};
   order:${props=>props.order};
   display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
     //for grid
     gap: ${props=>props.gap ? `${props.gap}em`:''};
     grid-template-columns: ${props=>props.GTC ? props.GTC : '' };
+
   align-items:${props=> props.Align ? props.Align : props.flex ? 'center' :''};
   justify-content:${props=> props.Justify ? props.Justify : ''};
 
   //for flex
   flex-direction:${props=> props.col ? 'column' : ''};
 
+  &.input_container{
+    justify-self:center;
+  }
+
    @media (max-width:720px){
     grid-template-columns:1fr;
  
    }
+
 `
 
 export const InputWrapper = styled.div`
@@ -58,18 +66,13 @@ export const InputWrapper = styled.div`
     grid-template-columns:1fr;
    }
 
-   &:focus-within {
+   /* &:focus-within {
       label.floating {
         top: -8px;
     }
-  }
+  } */
 
-  &:not(:placeholder-shown):not(:focus) ~ label{
-      top: -8px !important;
-      font-size: 13px;
-      background:crimson;
-      color:crimson;
-    } 
+
 `
 // export const InputWrapper = styled.div`
 //   position: relative;
@@ -94,9 +97,9 @@ export const StyledLabel = styled.label`
     background:#fff;
     margin:0;
 
-      &:focus{
+    /* &:focus{
       top:-8px;
-    }   
+    }    */
   }
 `
 export const StyledInput = styled.input`
@@ -127,9 +130,13 @@ export const StyledInput = styled.input`
     &::placeholder{
         opacity:0;
         }
-    /* &:not(:placeholder-shown){
-        background:green;
-    } */
+    &:not(:placeholder-shown){
+       // background:green;
+    }
+    &:not(:placeholder-shown) ~ .floating {
+      top: -8px !important;
+      font-size: 13px;
+    } 
     /* &:not(:placeholder-shown) ~ label {
             top:-8px;
             font-size:13px;
@@ -149,12 +156,12 @@ export const StyledForm = styled.form`
   justify-self: center;
   justify-content:space-around;
   align-items:center;
-  grid-template-columns:${props => props.products?'1fr':`repeat(2, minmax(280px,380px))`};
+  grid-template-columns:${props => props.products?'1fr': props.page === 2 ? "repeat(2, minmax(280px,1fr))" :"repeat(2, minmax(280px,400px))"};
  // grid-template-columns: repeat(2, minmax(280px,380px));
   position: relative;
   gap:${props => props.gap?`${props.gap}em`:'4em'};
   width:100%;
-  padding:1em 2em;
+  //padding:1em 0 0;
 
   &.add_products{
     grid-template-columns:1fr
@@ -171,6 +178,9 @@ export const StyledForm = styled.form`
       margin-top:0.5em;
   }
 
+  &#signup input, &#signup .input_container {
+    max-width:400px;
+  }
   /* ${InputWrapper} {
     :focus-within {
       label.floating {
@@ -184,4 +194,8 @@ export const StyledForm = styled.form`
     } 
   }
    */
+
+
+  
+  
 `;

@@ -46,8 +46,7 @@ export default function UploadForm({setUpload}) {
                   value[0].type === "image/png" ||
                   value[0].type === "application/msword"
               ))
-          })
-          .required('Please upload product Image'),
+          }),
         }),
 
         onSubmit:({name, email, password, id})=>{
