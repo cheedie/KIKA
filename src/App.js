@@ -6,6 +6,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
+import Home from "./components/home/Home";
 import Vendor from "./components/vendor/Vendor";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
@@ -22,13 +23,14 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
-import Home from "./components/home/Home";
-import Mycart from "./pages/Cart/MyCart";
+import ProductDetails from "./components/product-description/ProductDetails";
+import MyCart from "./pages/Cart/MyCart";
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
     { path: "/home", element: <Home /> },
+    { path: "/details", element: <ProductDetails /> },
 
     { path: "/vendor", element: <Vendor /> },
 
@@ -39,8 +41,14 @@ function AppRoutes() {
         { path: "/user/account/trackorder", element: <TrackOrder /> },
         { path: "/user/account/myorders", element: <MyOrders /> },
         { path: "/user/account/signout", element: <SignOut /> },
-        { path: "/user/account/notifications", element: <Notifications /> },
-        { path: "/user/account/changepassword", element: <ChangePassword /> },
+        {
+          path: "/user/account/notifications",
+          element: <Notifications />,
+        },
+        {
+          path: "/user/account/changepassword",
+          element: <ChangePassword />,
+        },
       ],
     },
 
@@ -61,7 +69,12 @@ function AppRoutes() {
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
-    { path: "/mycart", element: <Mycart /> },
+    { path: "/buyer/contact", element: <Contact /> },
+    { path: "/termscondition", element: <Conditionpage /> },
+    { path: "/*", element: <Errorpage /> },
+    { path: "/", element: <Waitlist /> },
+    { path: "/ourpolicy", element: <OurPolicy /> },
+    { path: "/mycart", element: <MyCart /> },
   ]);
   return routes;
 }
