@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import {
   BrowserRouter as Router,
   useRoutes,
@@ -6,6 +6,8 @@ import {
   Routes,
 } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
+
+
 import Vendor from "./components/vendor/Vendor";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
@@ -22,33 +24,38 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
+
 import Home from "./components/home/Home";
 import Mycart from "./pages/Cart/MyCart";
 import MarketPlace from './components/marketPlace/MarketPlace';
 import ProductDetails from './components/product-description/ProductDetails';
 
+
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
     { path: "/home", element: <Home /> },
-    { path: "/product/:id", element: <ProductDetails /> },
+
+    { path: "/products/:id", element: <ProductDetails /> },
     { path: "/marketplace", element: <MarketPlace /> },
 
-    { path: '/vendor', element: <Vendor /> },
+    
+
+    { path: "/vendor", element: <Vendor /> },
 
     {
       element: <Authorize />,
       children: [
-        { path: '/user/account', element: <UserAccount /> },
-        { path: '/user/account/trackorder', element: <TrackOrder /> },
-        { path: '/user/account/myorders', element: <MyOrders /> },
-        { path: '/user/account/signout', element: <SignOut /> },
+        { path: "/user/account", element: <UserAccount /> },
+        { path: "/user/account/trackorder", element: <TrackOrder /> },
+        { path: "/user/account/myorders", element: <MyOrders /> },
+        { path: "/user/account/signout", element: <SignOut /> },
         {
-          path: '/user/account/notifications',
+          path: "/user/account/notifications",
           element: <Notifications />,
         },
         {
-          path: '/user/account/changepassword',
+          path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
       ],
@@ -57,21 +64,29 @@ function AppRoutes() {
     {
       element: <Authenticate />,
       children: [
-        { path: '/user/signup', element: <Signup /> },
-        { path: '/user/signin', element: <Signin /> },
+        { path: "/user/signup", element: <Signup /> },
+        { path: "/user/signin", element: <Signin /> },
       ],
     },
 
-    { path: '/buyer/signup', element: <Signup /> },
-    { path: '/buyer/signin', element: <Signin /> },
-    { path: '/vendor/*', element: <Vendor /> },
+    { path: "/buyer/signup", element: <Signup /> },
+    { path: "/buyer/signin", element: <Signin /> },
+    { path: "/vendor/*", element: <Vendor /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
-    { path: "/mycart", element: <Mycart /> },
+
+    
+    { path: "/buyer/contact", element: <Contact /> },
+    { path: "/termscondition", element: <Conditionpage /> },
+    { path: "/*", element: <Errorpage /> },
+    { path: "/", element: <Waitlist /> },
+    { path: "/ourpolicy", element: <OurPolicy /> },
+    { path: "/mycart", element: <MyCart /> },
+
   ]);
   return routes;
 }
