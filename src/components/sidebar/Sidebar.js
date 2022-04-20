@@ -14,7 +14,6 @@ const Sidebar = () => {
       <SidebarOption title="Vendor"/>
       <SidebarOption title="Price"/>
       <button>Sort</button>
-
     </section>
   );
 };
