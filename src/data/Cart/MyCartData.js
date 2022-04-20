@@ -1,0 +1,16 @@
+export const cartObjOne = {
+    cartTitle: "Puff Sleeve Dress",
+    priceTitle: "N3,500",
+    size: 'Size:',
+    clothSize:'8 [M]',
+    grade: 'Grade:',
+    clothGrade: 'A',
+    color: 'Color:',
+    clothColor:'Black',
+    type: 'Type:',
+    clothType: 'Short',
+    vendor: 'Vendor:',
+    clothVendor: 'Thrifted Labels',
+    price: 'Price:',
+    clothPrice: 'N3,500',
+}

@@ -63,11 +63,20 @@ function AppRoutes() {
     { path: '/buyer/signin', element: <Signin /> },
     { path: '/vendor/*', element: <Vendor /> },
 
+<<<<<<< HEAD
     { path: '/buyer/contact', element: <Contact /> },
     { path: '/termscondition', element: <Conditionpage /> },
     { path: '/*', element: <Errorpage /> },
     { path: '/', element: <Waitlist /> },
     { path: '/ourpolicy', element: <OurPolicy /> },
+=======
+    { path: "/buyer/contact", element: <Contact /> },
+    { path: "/termscondition", element: <Conditionpage /> },
+    { path: "/*", element: <Errorpage /> },
+    { path: "/", element: <Waitlist /> },
+    { path: "/ourpolicy", element: <OurPolicy /> },
+    { path: "/mycart", element: <Mycart /> },
+>>>>>>> develop
   ]);
   return routes;
 }

@@ -12,14 +12,14 @@ const product_reducer = (state, action) => {
     return { ...state, products_loading: true };
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
-    //   const featured_products = action.payload.filter(
-    //     (product) => product.featured === true
-    //   );
+    const new_arrivals = action.payload.filter(
+      (product) => product.newArrival === true
+    );
     return {
       ...state,
       products_loading: false,
       products: action.payload,
-      // featured_products,
+      new_arrivals,
     };
   }
   if (action.type === GET_PRODUCTS_ERROR) {
