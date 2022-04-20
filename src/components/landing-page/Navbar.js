@@ -12,9 +12,12 @@ const Navbar = () => {
 
   return (
     <section className="navbar">
+      {/* start logo */}
       <Link to="/">
         <img className="logo" src={Logo} alt="kika logo" />
       </Link>
+
+      {/* start navlinks */}
       <ul className="nav__linksContainer">
         <Link to="/home">
           <li>Home</li>
@@ -25,6 +28,9 @@ const Navbar = () => {
           <li>About Us</li>
           <li>Sell on KIKA</li>
       </ul>
+      {/*end navlinks */}
+
+      {/* start search form */}
       <form className="nav__searchForm">
         <input
           className="nav__searchBar show-modal"
@@ -40,12 +46,15 @@ const Navbar = () => {
           />
         </span>
       </form>
+      {/* end search form */}
+
+      {/* start sign in cart and toggle */}
       <div className="nav__signIn">
         <Link to="/user/signup">
-          <div>Sign up</div>
+          <button>Sign up</button>
         </Link>
         <Link to="/user/signin">
-          <div>Sign in</div>
+          <button>Sign in</button>
         </Link>
         <Link to="/mycart">
           <div className="cart">
@@ -65,22 +74,8 @@ const Navbar = () => {
           <div className={`${status} line line2`}></div>
           <div className={`${status} line line3`}></div>
         </div>
-
-          {/*<ul className="navbar__menu">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/">Market Place</a>
-          </li>
-          <li>
-            <a href="/">About</a>
-          </li>
-          <li>
-            <a href="/vendor">Sell on KIKA</a>
-          </li>
-        </ul>*/}
       </div>
+      {/* end signIn cart and toggle */}
 
       {/* ========= start mobile sidebar =========== */}
       <ul
@@ -117,6 +112,7 @@ const Navbar = () => {
           </a>
         </li>
       </ul>
+      {/* end mobile sidebar */}
 
       <div
         className={`${
