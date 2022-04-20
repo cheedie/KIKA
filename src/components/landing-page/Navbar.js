@@ -19,9 +19,11 @@ const Navbar = () => {
         <Link to="/home">
           <li>Home</li>
         </Link>
-        <li>Market Place</li>
-        <li>About Us</li>
-        <li>Sell on KIKA</li>
+        <Link to="/marketplace">
+          <li>Market Place</li>
+        </Link>
+          <li>About Us</li>
+          <li>Sell on KIKA</li>
       </ul>
       <form className="nav__searchForm">
         <input
@@ -45,10 +47,12 @@ const Navbar = () => {
         <Link to="/user/signin">
           <div>Sign in</div>
         </Link>
-        <div className="cart">
-          <img src={Cart} alt="shopping cart" />
-          <span>Cart</span>
-        </div>
+        <Link to="/mycart">
+          <div className="cart">
+            <img src={Cart} alt="shopping cart" />
+            <span>Cart</span>
+          </div>
+        </Link>
 
         <div
           className="nav__sidebarToggle"
@@ -62,8 +66,7 @@ const Navbar = () => {
           <div className={`${status} line line3`}></div>
         </div>
 
-        {/* nav menu */}
-        <ul className="navbar__menu">
+          {/*<ul className="navbar__menu">
           <li>
             <a href="/">Home</a>
           </li>
@@ -76,9 +79,10 @@ const Navbar = () => {
           <li>
             <a href="/vendor">Sell on KIKA</a>
           </li>
-        </ul>
+        </ul>*/}
       </div>
 
+      {/* ========= start mobile sidebar =========== */}
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
