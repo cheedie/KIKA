@@ -74,7 +74,7 @@ const HomePage = () => {
         <div className="products__container">
           {new_arrivals.map((product) => {
             return (
-              <Product key={product.id} {...product} className="product" />
+              <Product key={product._id} {...product} className="product" />
             );
           })}
         </div>
