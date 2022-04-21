@@ -21,7 +21,7 @@ const Product = ({ image, name, price, _id, size }) => {
             </div>
           </div>
           <div className="info__right">
-            <p>{price}</p>
+            <p>NGN {price}</p>
 
             <AddtoCart />
           </div>
