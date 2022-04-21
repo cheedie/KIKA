@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import Logo from '../../assets/landing-page/logo.png';
-import Search from '../../assets/landing-page/search.png';
-import Cart from '../../assets/landing-page/cart.png';
-import '../../styles/landing/css/navbar.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import Logo from "../../assets/landing-page/logo.png";
+import Search from "../../assets/landing-page/search.png";
+import Cart from "../../assets/landing-page/cart.png";
+import "../../styles/landing/navbar.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [status, setStatus] = useState('close');
+  const [status, setStatus] = useState("close");
 
   return (
     <section className="navbar">
@@ -25,8 +25,8 @@ const Navbar = () => {
         <Link to="/marketplace">
           <li>Market Place</li>
         </Link>
-          <li>About Us</li>
-          <li>Sell on KIKA</li>
+        <li>About Us</li>
+        <li>Sell on KIKA</li>
       </ul>
       {/*end navlinks */}
 
@@ -67,7 +67,7 @@ const Navbar = () => {
           className="nav__sidebarToggle"
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus(status === 'open' ? 'close' : 'open');
+            setStatus(status === "open" ? "close" : "open");
           }}
         >
           <div className={`${status} line line1`}></div>
@@ -81,12 +81,10 @@ const Navbar = () => {
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
-          setStatus('close');
+          setStatus("close");
         }}
         className={`${
-          showLinks
-            ? 'mobile__sideBar show__sideBar'
-            : 'mobile__sideBar'
+          showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
         }`}
       >
         <li>
@@ -116,9 +114,7 @@ const Navbar = () => {
 
       <div
         className={`${
-          showSearch
-            ? 'mobile__search show__mobileSearch'
-            : 'mobile__search'
+          showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
         }`}
       >
         <input

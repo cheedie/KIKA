@@ -181,6 +181,12 @@
           align-items: center;
 }
 
+@media (max-width: 480px) {
+  .navbar .nav__signIn .cart {
+    margin-left: -2.4rem;
+  }
+}
+
 .navbar .nav__signIn .cart span {
   font-size: 14px;
   margin-left: 0.3rem;
@@ -267,7 +273,7 @@
 
 .mobile__sideBar {
   position: absolute;
-  top: 10vh;
+  top: 75px;
   left: -120%;
   width: 100vw;
   display: -webkit-box;

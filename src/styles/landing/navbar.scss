@@ -108,11 +108,11 @@
 
     @media (max-width: 821px) {
       width: 32%;
-      //border: 1px solid red;
     }
 
     @media (max-width: 480px) {
       width: 31%;
+      //border: 2px solid red;
     }
 
     button {
@@ -132,6 +132,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media (max-width: 480px){
+        margin-left: -2.4rem;
+      }
 
       span {
         font-size: 14px;
@@ -207,7 +211,7 @@
 
 .mobile__sideBar {
   position: absolute;
-  top: 10vh;
+  top: 75px;
   left: -120%;
   width: 100vw;
   display: flex;
