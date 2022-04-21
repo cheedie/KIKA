@@ -12,6 +12,7 @@ const HomePage = () => {
     products_error: error,
     products_loading: loading,
     new_arrivals,
+    products,
   } = useProductContext();
 
   if (error) {
@@ -60,9 +61,13 @@ const HomePage = () => {
         </div>
 
         <div className="home__products">
-          <Product />
-          <Product />
-          <Product />
+          {products
+            .filter((_, index) => index < 3)
+            .map((product) => {
+              return (
+                <Product key={product._id} {...product} className="product" />
+              );
+            })}
         </div>
       </section>
       {/* End man and woman */}
