@@ -1,5 +1,5 @@
 import React from "react";
-import cartImg from "../../assets/cart/Rectangle_5.svg";
+
 import { FaTrash, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import "../../styles/CartStyles/MyCart.css";
 

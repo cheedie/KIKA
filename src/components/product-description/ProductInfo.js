@@ -18,6 +18,7 @@ const ProductInfo = () => {
     single_product_error: error,
     single_product: product,
     fetchSingleProduct,
+    products,
   } = useProductContext();
 
   useEffect(() => {
@@ -45,8 +46,8 @@ const ProductInfo = () => {
   return (
     <section className="productInfo__container">
       <div className="content">
-        <img src={image} alt="" />
-        <img src={image} alt="" />
+        <img src={image} alt={name} />
+        <img src={image} alt={name} />
         <section className="product__data">
           <h3>{name}</h3>
           <p>
@@ -82,10 +83,13 @@ const ProductInfo = () => {
       </div>
 
       <div className="more__products">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products
+          .filter((_, index) => index < 4)
+          .map((product) => {
+            return (
+              <Product key={product._id} {...product} className="product" />
+            );
+          })}
       </div>
     </section>
   );

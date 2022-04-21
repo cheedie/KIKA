@@ -23,7 +23,6 @@ const initialState = {
   cart: getLocalStorage(),
   total_items: 0,
   total_amount: 0,
-  //   shipping_fee: 50000,
 };
 
 export const CartProvider = ({ children }) => {
