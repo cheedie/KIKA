@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/landing-page/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import CartCard from "../../components/Cart/CartCard";
-import { cartObjOne } from "../../data/Cart/MyCartData";
 import "../../styles/CartStyles/MyCart.css";
 import { useCartContext } from "../../context/cart_context";
 
