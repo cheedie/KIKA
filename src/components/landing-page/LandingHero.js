@@ -24,7 +24,7 @@ const Hero = () => {
     >
       {/* swiper slide 1 */}
       <SwiperSlide>
-        <section className="slide slide-1">
+        <section className="hero slide-1">
           <div className="home__info">
             <h1>
               Welcome to <span>KIKA</span>
@@ -45,7 +45,7 @@ const Hero = () => {
       </SwiperSlide>
 
       <SwiperSlide>
-        <section className="slide slide-2">
+        <section className="hero slide-2">
           <div className="home__info">
             <h1>
               Sell on <span>KIKA</span>

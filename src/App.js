@@ -5,7 +5,7 @@ import {
   Route,  
   Routes,
 } from "react-router-dom";
-import Landing from "./components/landing-page/Landing";
+import Landing from "./pages/Landing";
 
 import Vendor from "./components/vendor/Vendor";
 import Signup from "./pages/user/Signup";
@@ -24,15 +24,16 @@ import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
 
-import Home from "./components/home/Home";
+import Home from "./pages/home/Home";
 import MyCart from "./pages/Cart/MyCart";
-import MarketPlace from "./components/marketPlace/MarketPlace";
-import ProductDetails from "./components/product-description/ProductDetails";
+import MarketPlace from "./pages/marketPlace/MarketPlace";
+import ProductDetails from "./pages/productDescription/ProductDetails";
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
     { path: "/home", element: <Home /> },
+    { path: "/marketplace", element: <MarketPlace /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
     { path: "/products", element: <MarketPlace /> },

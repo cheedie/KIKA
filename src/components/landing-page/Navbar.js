@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import Logo from "../../assets/landing-page/logo.png";
-import Search from "../../assets/landing-page/search.png";
-import Cart from "../../assets/landing-page/cart.png";
-import "../../styles/landing/navbar.scss";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import Logo from '../../assets/landing-page/logo.png';
+import Search from '../../assets/landing-page/search.png';
+import Cart from '../../assets/landing-page/cart.png';
+import Profile from '../../assets/landing-page/profile.png';
+import '../../styles/landing/navbar.scss';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [status, setStatus] = useState("close");
+  const [status, setStatus] = useState('close');
 
   return (
     <section className="navbar">
@@ -49,13 +50,10 @@ const Navbar = () => {
       {/* end search form */}
 
       {/* start sign in cart and toggle */}
-      <div className="nav__signIn">
-        <Link to="/user/signup">
-          <button>Sign up</button>
-        </Link>
-        <Link to="/user/signin">
-          <button>Sign in</button>
-        </Link>
+      <div className="nav__profile">
+        <div className="profile">
+          <img src={Profile} alt="shopping cart" />
+        </div>
         <Link to="/mycart">
           <div className="cart">
             <img src={Cart} alt="shopping cart" />
@@ -67,7 +65,7 @@ const Navbar = () => {
           className="nav__sidebarToggle"
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus(status === "open" ? "close" : "open");
+            setStatus(status === 'open' ? 'close' : 'open');
           }}
         >
           <div className={`${status} line line1`}></div>
@@ -81,24 +79,26 @@ const Navbar = () => {
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
-          setStatus("close");
+          setStatus('close');
         }}
         className={`${
-          showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
+          showLinks
+            ? 'mobile__sideBar show__sideBar'
+            : 'mobile__sideBar'
         }`}
       >
-        <li>
-          <a href="/home">Home</a>
-        </li>
-        <li>
-          <a href="#">Market Place</a>
-        </li>
-        <li>
-          <a href="#">About Us</a>
-        </li>
-        <li>
-          <a href="#">Sell on KIKA</a>
-        </li>
+        <Link to="/home">
+          <li>Home</li>
+        </Link>
+        <Link to="/marketplace">
+          <li>Market Place</li>
+        </Link>
+        <Link to="/aboutus">
+          <li>About Us</li>
+        </Link>
+        <Link to="/vendor">
+          <li>Sell on KIKA</li>
+        </Link>
         <li>
           <a className="btn" href="#">
             Sign up
@@ -114,7 +114,9 @@ const Navbar = () => {
 
       <div
         className={`${
-          showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
+          showSearch
+            ? 'mobile__search show__mobileSearch'
+            : 'mobile__search'
         }`}
       >
         <input
