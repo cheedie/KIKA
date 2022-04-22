@@ -1,9 +1,9 @@
 import React from 'react'
-import cartImg from "../../assets/cart/Rectangle_5.svg";
 import { FaTrash, FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
 import "../../styles/CartStyles/MyCart.css";
 
 const CartCard = ({
+    cartImg,
     cartTitle,
     priceTitle,
     size,
@@ -24,11 +24,11 @@ const CartCard = ({
         <section className='card_section'>
             <div className='card_row'>
                 <div className='cartImg'>
-                    <img src={cartImg} alt="cart_image" />
+                    <img src={cartImg} alt="cart_image" className='cart_image' />
                 </div>
                 <div className="cart_details">
                     <div className='cartTitle'>
-                        <h2>{cartTitle}</h2>
+                        <h1>{cartTitle}</h1>
                         <p>{priceTitle}</p>
                     </div>
                     <div className='card_details'>
@@ -62,7 +62,7 @@ const CartCard = ({
             <div className='cardFooter'>
                 <div className='removeItems'>
                     <FaTrash className='card_icon' />
-                    <p>Remove</p>
+                    <p className='card_icon'>Remove</p>
                 </div>
                 <div className='increaseItems'>
                     <FaMinusCircle className='card_icon' />

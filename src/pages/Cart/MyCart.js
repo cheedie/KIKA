@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/landing-page/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import CartCard from '../../components/Cart/CartCard';
-import { cartObjOne } from '../../data/Cart/MyCartData';
+import { cartObjOne, cartObjTwo } from '../../data/Cart/MyCartData';
 import "../../styles/CartStyles/MyCart.css";
 
 const MyCart = () => {
@@ -20,11 +20,16 @@ const MyCart = () => {
                   <CartCard {...cartObjOne} />
                 </div>
                 <div>
+                  <CartCard {...cartObjTwo} />
+                </div>
+                <div>
                   <CartCard {...cartObjOne} />
+                </div>
+                <div>
+                  <CartCard {...cartObjTwo} />
                 </div>
               </div>
               <div className='cartSummary'>
-                <div>
                   <h2>Cart Summary</h2>
                   <div className='summary_Details' >
                     <p>Blue Top</p>
@@ -35,15 +40,14 @@ const MyCart = () => {
                     <p>N3,500</p>
                   </div>
                   <div className='subtotal_Details' >
-                    <p>SubTotal</p>
+                    <p>SubTotal:</p>
                     <p>N7,500</p>
                   </div>
-                  <div>
-                    <button type="submit" id="waitlist-btn" className="waitlist-btn">
+                  <div className="cart-btn-container">
+                    <button type="submit" id='contact-btn' className="contact-btn">
                       <Link to="" >Checkout</Link>
                     </button>
                   </div>
-                </div>
               </div>
             </div>
           </section>

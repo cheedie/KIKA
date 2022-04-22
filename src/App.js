@@ -23,6 +23,7 @@ import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
 import Mycart from "./pages/Cart/MyCart";
+import EmptyCart from "./pages/Cart/EmptyCart"
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -60,6 +61,8 @@ function AppRoutes() {
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/mycart", element: <Mycart /> },
+    { path: "/emptycart", element: <EmptyCart /> },
+    
   ]);
   return routes;
 }

@@ -7,9 +7,11 @@ import FormWaitlist from '../../components/StaticPages/Waitlist/Form-waitlist';
 const Waitlist = () => {
   return (
     <>
+      <div id='waitlist_wrapper'>
         <NavbarWaitlist />
         <HeroWaitlist />
         <FormWaitlist />
+      </div>
     </>
   )
 }
