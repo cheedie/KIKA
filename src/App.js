@@ -6,6 +6,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Landing from "./components/landing-page/Landing";
+
 import Vendor from "./components/vendor/Vendor";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
@@ -25,9 +26,17 @@ import Authenticate from "./components/User/Authenticate";
 import Mycart from "./pages/Cart/MyCart";
 import EmptyCart from "./pages/Cart/EmptyCart"
 
+import Home from "./components/home/Home";
+import MarketPlace from "./components/marketPlace/MarketPlace";
+import ProductDetails from "./components/product-description/ProductDetails";
+
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
+    { path: "/home", element: <Home /> },
+
+    { path: "/products/:id", element: <ProductDetails /> },
+    { path: "/products", element: <MarketPlace /> },
 
     { path: "/vendor", element: <Vendor /> },
 
@@ -38,8 +47,14 @@ function AppRoutes() {
         { path: "/user/account/trackorder", element: <TrackOrder /> },
         { path: "/user/account/myorders", element: <MyOrders /> },
         { path: "/user/account/signout", element: <SignOut /> },
-        { path: "/user/account/notifications", element: <Notifications /> },
-        { path: "/user/account/changepassword", element: <ChangePassword /> },
+        {
+          path: "/user/account/notifications",
+          element: <Notifications />,
+        },
+        {
+          path: "/user/account/changepassword",
+          element: <ChangePassword />,
+        },
       ],
     },
 

@@ -1,16 +1,14 @@
-
-import React, { useState } from 'react';
-import Logo from '../../assets/landing-page/logo.png';
-import Search from '../../assets/landing-page/search.png';
-import Cart from '../../assets/landing-page/cart.png';
-import '../../styles/landing/css/navbar.css';
-import { Link } from 'react-router-dom';
-
+import React, { useState } from "react";
+import Logo from "../../assets/landing-page/logo.png";
+import Search from "../../assets/landing-page/search.png";
+import Cart from "../../assets/landing-page/cart.png";
+import "../../styles/landing/css/navbar.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [status, setStatus] = useState('close');
+  const [status, setStatus] = useState("close");
 
   return (
     <section className="navbar">
@@ -21,7 +19,9 @@ const Navbar = () => {
         <Link to="/home">
           <li>Home</li>
         </Link>
-        <li>Market Place</li>
+        <Link to="/marketplace">
+          <li>Market Place</li>
+        </Link>
         <li>About Us</li>
         <li>Sell on KIKA</li>
       </ul>
@@ -41,18 +41,24 @@ const Navbar = () => {
         </span>
       </form>
       <div className="nav__signIn">
-        <button>Sign in</button>
-        <button>Sign up</button>
-        <div className="cart">
-          <img src={Cart} alt="shopping cart" />
-          <span>Cart</span>
-        </div>
+        <Link to="/user/signup">
+          <div>Sign up</div>
+        </Link>
+        <Link to="/user/signin">
+          <div>Sign in</div>
+        </Link>
+        <Link to="/mycart">
+          <div className="cart">
+            <img src={Cart} alt="shopping cart" />
+            <span>Cart</span>
+          </div>
+        </Link>
 
         <div
           className="nav__sidebarToggle"
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus(status === 'open' ? 'close' : 'open');
+            setStatus(status === "open" ? "close" : "open");
           }}
         >
           <div className={`${status} line line1`}></div>
@@ -60,8 +66,7 @@ const Navbar = () => {
           <div className={`${status} line line3`}></div>
         </div>
 
-        {/* nav menu */}
-        <ul className="navbar__menu">
+        {/*<ul className="navbar__menu">
           <li>
             <a href="/">Home</a>
           </li>
@@ -74,23 +79,21 @@ const Navbar = () => {
           <li>
             <a href="/vendor">Sell on KIKA</a>
           </li>
-        </ul>
-
+        </ul>*/}
       </div>
 
+      {/* ========= start mobile sidebar =========== */}
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
-          setStatus('close');
+          setStatus("close");
         }}
         className={`${
-          showLinks
-            ? 'mobile__sideBar show__sideBar'
-            : 'mobile__sideBar'
+          showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
         }`}
       >
         <li>
-          <a href="/">Home</a>
+          <a href="/home">Home</a>
         </li>
         <li>
           <a href="#">Market Place</a>
@@ -115,9 +118,7 @@ const Navbar = () => {
 
       <div
         className={`${
-          showSearch
-            ? 'mobile__search show__mobileSearch'
-            : 'mobile__search'
+          showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
         }`}
       >
         <input

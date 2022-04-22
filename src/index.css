@@ -51,6 +51,32 @@ ul {
   background: transparent;
 }
 
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loading {
+  width: 6rem;
+  height: 6rem;
+  border: 5px solid grey;
+  border-radius: 50%;
+  border-top-color: #f15a24;
+  animation: spinner 0.6s linear infinite;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 5rem 0;
+}
+.section-center {
+  width: 90vw;
+  margin: 0 auto;
+}
+.text-center {
+  text-align: center;
+}
+
 @media screen and (min-width: 780px) {
   .nav__mobile-btns {
     display: none;

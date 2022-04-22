@@ -1,10 +1,26 @@
-import React from 'react';
-import Navbar from '../landing-page/Navbar';
-import Footer from '../landing-page/Footer';
-import '../../styles/Home/home.scss';
-import Product from '../Product/Product';
+import React from "react";
+import Navbar from "../landing-page/Navbar";
+import Footer from "../landing-page/Footer";
+import "../../styles/Home/home.scss";
+import Product from "../Product/Product";
+import { useProductContext } from "../../context/product_context";
+import Loading from "../User/Loading";
+import Error from "../User/Error";
 
 const HomePage = () => {
+  const {
+    products_error: error,
+    products_loading: loading,
+    new_arrivals,
+    products,
+  } = useProductContext();
+
+  if (error) {
+    return <Error />;
+  }
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section className="home">
       <Navbar />
@@ -16,9 +32,9 @@ const HomePage = () => {
           </h1>
           <p className="sub__heading">Home of all thrift wears</p>
           <p className="details">
-            At KIKA we understand the importance of thrift wears and
-            its availability to you and the need to get them at your
-            comfort with just your smart device.
+            At KIKA we understand the importance of thrift wears and its
+            availability to you and the need to get them at your comfort with
+            just your smart device.
           </p>
         </div>
 
@@ -45,9 +61,13 @@ const HomePage = () => {
         </div>
 
         <div className="home__products">
-          <Product />
-          <Product />
-          <Product />
+          {products
+            .filter((_, index) => index < 3)
+            .map((product) => {
+              return (
+                <Product key={product._id} {...product} className="product" />
+              );
+            })}
         </div>
       </section>
       {/* End man and woman */}
@@ -57,14 +77,11 @@ const HomePage = () => {
         <h2>NEW ARRIVALS</h2>
 
         <div className="products__container">
-          <Product className="product" />
-          <Product className="product" />
-          <Product className="product" />
-          <Product className="product" />
-          <Product className="product" />
-          <Product className="product" />
-          <Product className="product" />
-          <Product className="product" />
+          {new_arrivals.map((product) => {
+            return (
+              <Product key={product._id} {...product} className="product" />
+            );
+          })}
         </div>
       </section>
       {/* start new arrivals */}

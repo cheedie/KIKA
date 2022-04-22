@@ -34,7 +34,7 @@
           justify-content: space-between;
   -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: start;
+          align-items: flex-start;
   width: 30%;
   color: #ffffff;
 }

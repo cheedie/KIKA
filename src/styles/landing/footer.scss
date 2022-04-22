@@ -14,12 +14,11 @@
   }
 }
 
-
 .footer__subscribe {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   width: 30%;
   color: #ffffff;
 }

@@ -74,6 +74,4 @@ const Hero = () => {
 
 export default Hero;
 
-//slidesPerView={1}
-//effect="fade"
-//fadeEffect={{ crossFade: true }}
+
