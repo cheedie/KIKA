@@ -13,8 +13,6 @@
       -ms-flex-align: start;
           align-items: flex-start;
   height: 400px;
-  background: url("../../assets/home/dress.png");
-  background-size: cover;
 }
 
 .product .product__info {
@@ -35,7 +33,7 @@
 }
 
 .product .product__info .product__title {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 700;
   font-size: 1rem;
   line-height: 21px;
@@ -43,7 +41,7 @@
 }
 
 .product .product__info .product__description {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 11px;

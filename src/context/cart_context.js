@@ -23,15 +23,14 @@ const initialState = {
   cart: getLocalStorage(),
   total_items: 0,
   total_amount: 0,
-  //   shipping_fee: 50000,
 };
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // add to cart
-  const addToCart = (id, amount, product) => {
-    dispatch({ type: ADD_TO_CART, payload: { id, amount, product } });
+  const addToCart = (product) => {
+    dispatch({ type: ADD_TO_CART, payload: { product } });
   };
 
   // remove item
