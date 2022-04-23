@@ -1,12 +1,12 @@
 import React from "react";
-import Footer from "../landing-page/Footer";
-import Navbar from "../landing-page/Navbar";
-import Product from "../Product/Product";
-import Sidebar from "../sidebar/Sidebar";
+import Footer from "../../components/landing-page/Footer";
+import Navbar from "../../components/landing-page/Navbar";
+import Product from "../../components/Product/Product";
+import Sidebar from "../../components/sidebar/Sidebar";
 import "../../styles/MarketPlace/marketPlace.scss";
 import { useProductContext } from "../../context/product_context";
-import Loading from "../User/Loading";
-import Error from "../User/Error";
+import Loading from "../../components/User/Loading";
+import Error from "../../components/User/Error";
 
 const MarketPlace = () => {
   const {
