@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import Logo from '../../assets/landing-page/logo.png';
 import Search from '../../assets/landing-page/search.png';
 import Cart from '../../assets/landing-page/cart.png';
-import '../../styles/landing/css/navbar.css';
+import Profile from '../../assets/landing-page/profile.png';
+import '../../styles/landing/navbar.scss';
 import { Link } from 'react-router-dom';
-
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -14,17 +13,25 @@ const Navbar = () => {
 
   return (
     <section className="navbar">
+      {/* start logo */}
       <Link to="/">
         <img className="logo" src={Logo} alt="kika logo" />
       </Link>
+
+      {/* start navlinks */}
       <ul className="nav__linksContainer">
         <Link to="/home">
           <li>Home</li>
         </Link>
-        <li>Market Place</li>
+        <Link to="/marketplace">
+          <li>Market Place</li>
+        </Link>
         <li>About Us</li>
         <li>Sell on KIKA</li>
       </ul>
+      {/*end navlinks */}
+
+      {/* start search form */}
       <form className="nav__searchForm">
         <input
           className="nav__searchBar show-modal"
@@ -40,13 +47,19 @@ const Navbar = () => {
           />
         </span>
       </form>
-      <div className="nav__signIn">
-        <button>Sign in</button>
-        <button>Sign up</button>
-        <div className="cart">
-          <img src={Cart} alt="shopping cart" />
-          <span>Cart</span>
+      {/* end search form */}
+
+      {/* start sign in cart and toggle */}
+      <div className="nav__profile">
+        <div className="profile">
+          <img src={Profile} alt="shopping cart" />
         </div>
+        <Link to="/mycart">
+          <div className="cart">
+            <img src={Cart} alt="shopping cart" />
+            <span>Cart</span>
+          </div>
+        </Link>
 
         <div
           className="nav__sidebarToggle"
@@ -59,6 +72,7 @@ const Navbar = () => {
           <div className={`${status} line line2`}></div>
           <div className={`${status} line line3`}></div>
         </div>
+<<<<<<< HEAD
 
         {/* nav menu */}
         <ul className="navbar__menu">
@@ -76,8 +90,12 @@ const Navbar = () => {
           </li>
         </ul>
 
+=======
+>>>>>>> a61f2208f2c7ccdbb2ceec1d27890941643f860a
       </div>
+      {/* end signIn cart and toggle */}
 
+      {/* ========= start mobile sidebar =========== */}
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
@@ -89,18 +107,18 @@ const Navbar = () => {
             : 'mobile__sideBar'
         }`}
       >
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="#">Market Place</a>
-        </li>
-        <li>
-          <a href="#">About Us</a>
-        </li>
-        <li>
-          <a href="#">Sell on KIKA</a>
-        </li>
+        <Link to="/home">
+          <li>Home</li>
+        </Link>
+        <Link to="/marketplace">
+          <li>Market Place</li>
+        </Link>
+        <Link to="/aboutus">
+          <li>About Us</li>
+        </Link>
+        <Link to="/vendor">
+          <li>Sell on KIKA</li>
+        </Link>
         <li>
           <a className="btn" href="#">
             Sign up
@@ -112,6 +130,7 @@ const Navbar = () => {
           </a>
         </li>
       </ul>
+      {/* end mobile sidebar */}
 
       <div
         className={`${

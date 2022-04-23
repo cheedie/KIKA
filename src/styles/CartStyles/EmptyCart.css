@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.emptyCart_container {
+  margin: 2em;
+}
+
+.cart_empty img {
+  border: 0;
+  max-width: 100%;
+  vertical-align: middle;
+  margin: 2em;
+}
+
+.cart_empty,
+h3 {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+/* =================================Cart Cards CSS===================================== */
+
+.cart_cards {
+  display: flex;
+}

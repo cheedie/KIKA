@@ -4,15 +4,22 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 1.3rem;
   padding: 0 2rem;
   -webkit-box-shadow: 0px 0px 2px 2px rgba(190, 190, 190, 0.3);
           box-shadow: 0px 0px 2px 2px rgba(190, 190, 190, 0.3);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: #fff;
 }
 
 @media (min-width: 480px) and (max-width: 821px) {
@@ -54,13 +61,18 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 30%;
+  width: 27%;
+  margin-right: 1.3rem;
 }
 
 @media (max-width: 900px) {
   .navbar .nav__linksContainer {
     display: none;
   }
+}
+
+.navbar .nav__linksContainer li {
+  font-size: 0.95rem;
 }
 
 .navbar .nav__searchForm {
@@ -75,6 +87,9 @@
       -ms-flex-align: center;
           align-items: center;
   height: 48px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 @media (max-width: 821px) {
@@ -95,7 +110,7 @@
   height: 100%;
   padding: 1rem 0.5rem;
   font-size: 14px;
-  border: 1px solid red;
+  border: 1.5px solid #F15A24;
 }
 
 .navbar .nav__searchForm .nav__searchBar:focus {
@@ -129,8 +144,8 @@
   }
 }
 
-.navbar .nav__signIn {
-  width: 20%;
+.navbar .nav__profile {
+  width: 8.5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -140,36 +155,43 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-left: 0.8rem;
 }
 
 @media (max-width: 821px) {
-  .navbar .nav__signIn {
+  .navbar .nav__profile {
     width: 32%;
   }
 }
 
 @media (max-width: 480px) {
-  .navbar .nav__signIn {
+  .navbar .nav__profile {
     width: 31%;
   }
 }
 
-.navbar .nav__signIn button {
-  padding: 0.5rem 0;
+.navbar .nav__profile .profile {
+  border: 2px solid #2E3192;
+  width: 30px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  border: none;
-  background: transparent;
-  color: #2e3192;
 }
 
-@media (max-width: 480px) {
-  .navbar .nav__signIn button {
-    display: none;
-  }
+.navbar .nav__profile .profile img {
+  cursor: pointer;
 }
 
-.navbar .nav__signIn .cart {
+.navbar .nav__profile .cart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -181,23 +203,30 @@
           align-items: center;
 }
 
-.navbar .nav__signIn .cart span {
+@media (max-width: 480px) {
+  .navbar .nav__profile .cart {
+    margin-left: -2.4rem;
+  }
+}
+
+.navbar .nav__profile .cart span {
   font-size: 14px;
   margin-left: 0.3rem;
+  font-weight: 500;
 }
 
 @media (max-width: 480px) {
-  .navbar .nav__signIn .cart span {
+  .navbar .nav__profile .cart span {
     display: none;
   }
 }
 
-.navbar .nav__signIn .nav__sidebarToggle {
+.navbar .nav__profile .nav__sidebarToggle {
   display: none;
 }
 
 @media (max-width: 821px) {
-  .navbar .nav__signIn .nav__sidebarToggle {
+  .navbar .nav__profile .nav__sidebarToggle {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -217,7 +246,7 @@
     transition: all 0.5s ease-in-out;
     cursor: pointer;
   }
-  .navbar .nav__signIn .nav__sidebarToggle .line {
+  .navbar .nav__profile .nav__sidebarToggle .line {
     height: 4px;
     width: 65%;
     border-radius: 3px;
@@ -225,10 +254,10 @@
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
   }
-  .navbar .nav__signIn .nav__sidebarToggle .line1 {
+  .navbar .nav__profile .nav__sidebarToggle .line1 {
     margin-bottom: 5px;
   }
-  .navbar .nav__signIn .nav__sidebarToggle .line3 {
+  .navbar .nav__profile .nav__sidebarToggle .line3 {
     margin-top: 5px;
   }
 }
@@ -267,7 +296,7 @@
 
 .mobile__sideBar {
   position: absolute;
-  top: 10vh;
+  top: 75px;
   left: -120%;
   width: 100vw;
   display: -webkit-box;

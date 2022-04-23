@@ -11,6 +11,15 @@
   margin-top: 1em;
 }
 
+.terms_header h1 {
+  color: #2e3192;
+  margin-top: 0.5em;
+  font-size: 18px;
+}
+.list_link a {
+  text-decoration: none;
+  color: #2e3192;
+}
 .conditions_row p {
   line-height: 1.6;
   margin-left: 1.2em;
@@ -20,5 +29,8 @@
   .conditions_container,
   .terms_header {
     margin: 1.5em;
+  }
+  .list_link a {
+    font-size: 13px;
   }
 }
