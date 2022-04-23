@@ -1,3 +1,4 @@
+
 import React from "react";
 
 import { FaTrash, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
@@ -41,6 +42,7 @@ const CartCard = ({ image, name, price, id, size }) => {
                 <p>{price}</p>
                 <p>{clothPrice}</p>
               </div> */}
+
             </div>
           </div>
         </div>

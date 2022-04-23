@@ -24,10 +24,15 @@ import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
 
+
+import EmptyCart from "./pages/Cart/EmptyCart"
+
+
 import Home from "./pages/home/Home";
 import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
+
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -76,12 +81,17 @@ function AppRoutes() {
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
 
+    { path: "/emptycart", element: <EmptyCart /> },
+    
+
+
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/mycart", element: <MyCart /> },
+
   ]);
   return routes;
 }
