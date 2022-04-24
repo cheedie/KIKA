@@ -4,7 +4,7 @@ import { useCartContext } from "../../context/cart_context";
 import Navbar from "../../components/landing-page/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import CartContent from "../../components/Cart/CartContent";
-// import CartCard from "../../components/Cart/CartCard";
+import CartCard from "../../components/Cart/CartCard";
 import "../../styles/CartStyles/MyCart.css";
 import EmptyCart from "./EmptyCart";
 const MyCart = () => {
