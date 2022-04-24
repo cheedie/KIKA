@@ -15,11 +15,18 @@ const product_reducer = (state, action) => {
     const new_arrivals = action.payload.filter(
       (product) => product.newArrival === true
     );
+
+    const women = action.payload.filter(
+      (product) => product.category === "Female"
+    );
+    const men = action.payload.filter((product) => product.category === "Male");
     return {
       ...state,
       products_loading: false,
       products: action.payload,
       new_arrivals,
+      women,
+      men,
     };
   }
   if (action.type === GET_PRODUCTS_ERROR) {

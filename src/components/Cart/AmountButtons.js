@@ -1,13 +1,17 @@
 import React from "react";
-import { FaTrash, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import "../../styles/CartStyles/MyCart.css";
 
-const AmountButtons = () => {
+const AmountButtons = ({ increase, decrease, amount }) => {
   return (
     <div className="increaseItems">
-      <FaMinusCircle className="card_icon" />
-      <p> 1 </p>
-      <FaPlusCircle className="card_icon" />
+      <button onClick={decrease}>
+        <FaMinusCircle className="card_icon" />
+      </button>
+      <p>{amount}</p>
+      <button>
+        <FaPlusCircle className="card_icon" onClick={increase} />
+      </button>
     </div>
   );
 };

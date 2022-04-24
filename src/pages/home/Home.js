@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../../components/landing-page/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import "../../styles/Home/home.scss";
@@ -39,8 +40,8 @@ const HomePage = () => {
         </div>
 
         <div className="buttons__grp">
-          <button>SHOP WOMEN</button>
-          <button>SHOP MEN</button>
+          <Link to="/products/women">SHOP WOMEN</Link>
+          <Link to="/products/men">SHOP MEN</Link>
         </div>
       </section>
       {/* End hero

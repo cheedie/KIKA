@@ -41,7 +41,16 @@ const ProductInfo = () => {
     return <Error />;
   }
 
-  const { name, price, size, image, grade, color, vendor } = product;
+  const {
+    name,
+    price,
+    size,
+    image,
+    grade,
+    color,
+    vendor,
+    countInStock,
+  } = product;
 
   return (
     <section className="productInfo__container">
@@ -73,8 +82,7 @@ const ProductInfo = () => {
             <MdOutlineStarBorder />
             <MdOutlineStarBorder />
           </div>
-
-          <AddToCart />
+          {countInStock > 0 && <AddToCart product={product} />}
         </section>
       </div>
       <div className="share__this__product">
