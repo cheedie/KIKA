@@ -2,7 +2,7 @@ import "./App.css";
 import {
   BrowserRouter as Router,
   useRoutes,
-  Route,  
+  Route,
   Routes,
 } from "react-router-dom";
 import Landing from "./pages/Landing";
@@ -23,25 +23,22 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
-
-
-import EmptyCart from "./pages/Cart/EmptyCart"
-
-
+import Women from "./pages/marketPlace/Women";
+import Men from "./pages/marketPlace/Men";
 import Home from "./pages/home/Home";
 import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 
-
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
     { path: "/home", element: <Home /> },
-    { path: "/marketplace", element: <MarketPlace /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
     { path: "/products", element: <MarketPlace /> },
+    { path: "/products/women", element: <Women /> },
+    { path: "/products/men", element: <Men /> },
 
     { path: "/vendor", element: <Vendor /> },
 
@@ -81,17 +78,12 @@ function AppRoutes() {
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
 
-    { path: "/emptycart", element: <EmptyCart /> },
-    
-
-
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/mycart", element: <MyCart /> },
-
   ]);
   return routes;
 }
