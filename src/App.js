@@ -30,6 +30,10 @@ import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 
+import Delivery from "./pages/Cart/Delivery";
+
+
+
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
@@ -84,6 +88,11 @@ function AppRoutes() {
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/mycart", element: <MyCart /> },
+
+    
+    { path: "/delivery", element: <Delivery /> },
+
+
   ]);
   return routes;
 }
