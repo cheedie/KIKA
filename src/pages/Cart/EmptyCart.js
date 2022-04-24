@@ -16,7 +16,16 @@ const EmptyCart = () => {
                 <div className='cart_empty'>
                     <img src={EmptyCartImg} alt="Empty_cart_image" />
                 </div>
-                <h3 className='error_title'>It seems you have nothing in your cart!!!</h3>
+                <h2 className='error_title'>Your cart is empty</h2>
+                <p>Browse through our various categories and discover 
+                    the best thrifted wears you can get</p>
+                <div className='empty-btn-container'>
+                    <button className='empty-btn'>
+                        <Link to="">
+                            Start Shopping
+                        </Link>
+                    </button>
+                </div>
             </div>
             <div>
                 <h1 className='empty_header'>Recently viewed</h1>

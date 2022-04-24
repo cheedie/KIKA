@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../landing-page/Navbar";
-import Footer from "../landing-page/Footer";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
 import "../../styles/Home/home.scss";
-import Product from "../Product/Product";
+import Product from "../../components/Product/Product";
 import { useProductContext } from "../../context/product_context";
-import Loading from "../User/Loading";
-import Error from "../User/Error";
+import Loading from "../../components/User/Loading";
+import Error from "../../components/User/Error";
 
 const HomePage = () => {
   const {
@@ -43,7 +43,7 @@ const HomePage = () => {
           <button>SHOP MEN</button>
         </div>
       </section>
-      {/* End hero */}
+      {/* End hero
 
       {/* man and woman section */}
       <section className="man__and__woman">

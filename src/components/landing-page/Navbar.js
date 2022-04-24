@@ -1,20 +1,24 @@
-import React, { useState } from "react";
-import Logo from "../../assets/landing-page/logo.png";
-import Search from "../../assets/landing-page/search.png";
-import Cart from "../../assets/landing-page/cart.png";
-import "../../styles/landing/css/navbar.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import Logo from '../../assets/landing-page/logo.png';
+import Search from '../../assets/landing-page/search.png';
+import Cart from '../../assets/landing-page/cart.png';
+import Profile from '../../assets/landing-page/profile.png';
+import '../../styles/landing/navbar.scss';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [status, setStatus] = useState("close");
+  const [status, setStatus] = useState('close');
 
   return (
     <section className="navbar">
+      {/* start logo */}
       <Link to="/">
         <img className="logo" src={Logo} alt="kika logo" />
       </Link>
+
+      {/* start navlinks */}
       <ul className="nav__linksContainer">
         <Link to="/home">
           <li>Home</li>
@@ -25,6 +29,9 @@ const Navbar = () => {
         <li>About Us</li>
         <li>Sell on KIKA</li>
       </ul>
+      {/*end navlinks */}
+
+      {/* start search form */}
       <form className="nav__searchForm">
         <input
           className="nav__searchBar show-modal"
@@ -40,13 +47,13 @@ const Navbar = () => {
           />
         </span>
       </form>
-      <div className="nav__signIn">
-        <Link to="/user/signup">
-          <div>Sign up</div>
-        </Link>
-        <Link to="/user/signin">
-          <div>Sign in</div>
-        </Link>
+      {/* end search form */}
+
+      {/* start sign in cart and toggle */}
+      <div className="nav__profile">
+        <div className="profile">
+          <img src={Profile} alt="shopping cart" />
+        </div>
         <Link to="/mycart">
           <div className="cart">
             <img src={Cart} alt="shopping cart" />
@@ -58,52 +65,40 @@ const Navbar = () => {
           className="nav__sidebarToggle"
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus(status === "open" ? "close" : "open");
+            setStatus(status === 'open' ? 'close' : 'open');
           }}
         >
           <div className={`${status} line line1`}></div>
           <div className={`${status} line line2`}></div>
           <div className={`${status} line line3`}></div>
         </div>
-
-        {/*<ul className="navbar__menu">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/">Market Place</a>
-          </li>
-          <li>
-            <a href="/">About</a>
-          </li>
-          <li>
-            <a href="/vendor">Sell on KIKA</a>
-          </li>
-        </ul>*/}
       </div>
+      {/* end signIn cart and toggle */}
 
       {/* ========= start mobile sidebar =========== */}
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
-          setStatus("close");
+          setStatus('close');
         }}
         className={`${
-          showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
+          showLinks
+            ? 'mobile__sideBar show__sideBar'
+            : 'mobile__sideBar'
         }`}
       >
-        <li>
-          <a href="/home">Home</a>
-        </li>
-        <li>
-          <a href="#">Market Place</a>
-        </li>
-        <li>
-          <a href="#">About Us</a>
-        </li>
-        <li>
-          <a href="#">Sell on KIKA</a>
-        </li>
+        <Link to="/home">
+          <li>Home</li>
+        </Link>
+        <Link to="/marketplace">
+          <li>Market Place</li>
+        </Link>
+        <Link to="/aboutus">
+          <li>About Us</li>
+        </Link>
+        <Link to="/vendor">
+          <li>Sell on KIKA</li>
+        </Link>
         <li>
           <a className="btn" href="#">
             Sign up
@@ -115,10 +110,13 @@ const Navbar = () => {
           </a>
         </li>
       </ul>
+      {/* end mobile sidebar */}
 
       <div
         className={`${
-          showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
+          showSearch
+            ? 'mobile__search show__mobileSearch'
+            : 'mobile__search'
         }`}
       >
         <input

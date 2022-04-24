@@ -2,13 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/landing-page/Navbar";
 import Footer from "../../components/landing-page/Footer";
+
+import { cartObjOne, cartObjTwo } from '../../data/Cart/MyCartData';
+
 import CartCard from "../../components/Cart/CartCard";
+
 import "../../styles/CartStyles/MyCart.css";
 import { useCartContext } from "../../context/cart_context";
 
 const MyCart = () => {
   const { cart } = useCartContext();
   return (
+
+             
     <>
       <Navbar />
       <section className="cart_wrapper">

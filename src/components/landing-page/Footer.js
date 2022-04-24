@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <div className="footer">
       {/* top section */}
-      <div className="footer__topSection">
+      <section className="footer__topSection">
         <div className="footer__logoSection">
           <img src={FooterLogo} alt="footer logo" />
         </div>
@@ -31,10 +31,10 @@ const Footer = () => {
             </button>
           </form>
         </div>
-      </div>
+      </section>
 
       {/* bottom section */}
-      <div className="footer__bottomSection">
+      <section className="footer__bottomSection">
         <div className="footer__top">
           <div className="footer__sectionOne">
             <h3>HELP AND INFORMATION</h3>
@@ -70,7 +70,7 @@ const Footer = () => {
         <div className="footer__bottom">
           <p>&copy; 2022 KIKA</p>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
