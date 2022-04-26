@@ -31,7 +31,7 @@ function VendorSignup() {
             state:'',
             terms:'',
             id_num:'',
-            image:null,
+            image:'',
             otp:''
             
         },
@@ -76,10 +76,8 @@ function VendorSignup() {
             let test = form.every(v => values[v] && (!errors[v] || errors[v] === undefined));
             if(!test){ 
               console.log('failed test 1')
-              // console.log(errors)
             }
             else{
-              //  console.log('Passed test 1')
               setPage(2)
             }
           } 
@@ -89,11 +87,10 @@ function VendorSignup() {
          
             if(!test){
               console.log('empty fields...')
-              // setIsSubmitting(false)
              }else{
-               console.log(values.image)
-               uploadVendorDetails({...values});
-               navigate("/user/signin")
+               console.log('Values......', {...values})
+               uploadVendorDetails({values});
+              // navigate("/user/signin")
              }
           }
          
@@ -122,7 +119,9 @@ function VendorSignup() {
           onBlur={handleBlur} 
           onSubmit={handleSubmit} 
           id='signup' 
-          gap={page === 2 ? '1' : "4"}>
+          gap={page === 2 ? '1' : "4"}
+          enctype="multipart/form-data"
+          >
 
             {page === 1 ?
             <>
@@ -137,7 +136,7 @@ function VendorSignup() {
                         id={short}
                         name={short}
                         placeholder={input_name}
-                        autoComplete="off"
+                        //autoComplete="off"
                         value={values[short]}
                         type={input_type ? input_type : "text"}
                         onChange={handleChange}
@@ -190,7 +189,7 @@ function VendorSignup() {
                           id={short}
                           name={short}
                           placeholder={input_name}
-                          autoComplete="off"
+                          //autoComplete="off"
                           value={values[short]}
                           onChange={handleChange}
                          
@@ -204,26 +203,7 @@ function VendorSignup() {
               <StyledButton type="submit" id='continue' name='continue'
               label="continue" align-self="end"
               onClick={()=>{
-               // e.preventDefault()
-               
-                // touched['continue'] = false
-               console.log('TOUCHED',touched)
                console.log('Values',values)
-               console.log('Errors',errors)
-
-                // e.preventDefault()
-                // const form = ['name','email','phone','password', 'business_name','terms']              
-                // let test = form.every(v => values[v] && (!errors[v] || errors[v] === undefined));
-                // if(!test){ form.forEach(v=> touched[v] = true) }
-                    
-                // return validateForm()
-                // .then(() => {
-                //   console.log('errors', errors)
-                //   if(test){
-                    
-                //     setPage(2)
-                //   }
-                // })
               }}      
               >Continue</StyledButton>
             </Wrapper>
@@ -239,7 +219,7 @@ function VendorSignup() {
                     id='id_num'
                     name='id_num'
                     placeholder='National Identification Number'
-                    autoComplete="off"
+                   // autoComplete="off"
                     value={values.id_num}
                     onChange={handleChange}
                   />
@@ -253,16 +233,18 @@ function VendorSignup() {
                     id='image'
                     name='image'
                     placeholder='Identification'
-                    autoComplete="off"
+                    //autoComplete="off"
                     type="file"
                     accept="image/*"
                     onChange={(event) => {
-                      console.log('current target',event.currentTarget.files[0])
+                      console.log('current target',event.currentTarget)
                       
-                      setFieldValue("image", event.target.files[0])
+                      setFieldValue("image", event.currentTarget.files[0])
                       .then(()=>{
-                        console.log(event,event.target.files)
-                        console.log('current target',event.currentTarget.files[0])
+                        console.log('event', event)
+                        console.log('event Target', event.target.files)
+                        console.log('current target',event.currentTarget)
+                        console.log('IMAGE VALUE ',values.image)
                       
                       })
                       
@@ -279,7 +261,7 @@ function VendorSignup() {
                     id='otp'
                     name='otp'
                     placeholder='Input code'
-                    autoComplete="off"
+                   // autoComplete="off"
                     value={values.otp}
                     onChange={handleChange}
                   />

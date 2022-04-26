@@ -34,13 +34,16 @@ export const VendorProvider = ({ children }) => {
   const uploadVendorDetails = async (data) => {
     dispatch({ type: REGISTER_VENDOR });
     try {
-      console.log("Data", data)
-      const response = await axios.post(`${url}/auth/register/vendor`, data,
-      // {
-      //   headers:{
-      //     "Content-Type":"multipart/form-data",
-      //   }
-     // }
+      console.log('data from submit::: ',data)
+      const formData = new FormData();
+      formData.append('image', data.image)
+      console.log("formData", formData)
+      const response = await axios.post(`${url}/auth/register/vendor`, formData,
+      {
+        headers: {
+          "Content-type": "application/json"
+        }
+     }
       ).then(()=>{console.log(response, "yayy")})
     } catch (error) {
       console.log(error);
