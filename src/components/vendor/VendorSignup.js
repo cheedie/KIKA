@@ -84,12 +84,12 @@ function VendorSignup() {
           if(page === 2){
             const form = ['id_num','image']              
             let test = form.every((v,i)=> values[v] && (!errors[v] || errors[v] === undefined));
-         
+            
             if(!test){
               console.log('empty fields...')
              }else{
                console.log('Values......', {...values})
-               uploadVendorDetails({values});
+               uploadVendorDetails(values);
               // navigate("/user/signin")
              }
           }

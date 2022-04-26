@@ -35,9 +35,14 @@ export const VendorProvider = ({ children }) => {
     dispatch({ type: REGISTER_VENDOR });
     try {
       console.log('data from submit::: ',data)
-      const formData = new FormData();
-      formData.append('image', data.image)
-      console.log("formData", formData)
+      let formData = new FormData();
+
+      for (let value in data) {
+        formData.append(value, data[value]);
+      }
+      for (let property of formData.entries()) {
+        console.log(property[0], property[1]);
+      }
       const response = await axios.post(`${url}/auth/register/vendor`, formData,
       {
         headers: {
