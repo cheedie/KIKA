@@ -1,4 +1,5 @@
 .hero {
+  position: relative;
   height: 88vh;
   display: flex;
   flex-direction: column;
@@ -6,18 +7,17 @@
   align-items: center;
   background: url(../../assets/home/hero_background.png) no-repeat;
   background-size: cover;
-  position: relative;
-  z-index: 1;
+  z-index: -5;
 
   &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
     content: '';
     background-color: rgba(33, 33, 33, 0.4);
     height: 100%;
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    z-index: -4;
   }
 
   .home__info {
@@ -78,12 +78,12 @@
   }
 }
 
-.slide-1{
-  background: url("../../assets/landing-page//slide-1.png") no-repeat;
+.slide-1 {
+  background: url('../../assets/landing-page//slide-1.png') no-repeat;
   background-size: cover;
 }
 
-.slide-2{
-  background: url("../../assets/landing-page//slide-2.png") no-repeat;
+.slide-2 {
+  background: url('../../assets/landing-page//slide-2.png') no-repeat;
   background-size: cover;
 }

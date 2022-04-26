@@ -10,6 +10,12 @@ const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [status, setStatus] = useState('close');
+  const [profileMenu, setProfileMenu] = useState({
+    opacity: '0',
+  });
+  const [marketPlaceMenu, setMarketPlaceMenu] = useState({
+    opacity: '0',
+  });
 
   return (
     <section className="navbar">
@@ -23,13 +29,62 @@ const Navbar = () => {
         <Link to="/home">
           <li>Home</li>
         </Link>
-        <Link to="/marketplace">
+        <Link
+          to="/marketplace"
+          onMouseEnter={() => setMarketPlaceMenu({ opacity: '1' })}
+        >
           <li>Market Place</li>
         </Link>
         <li>About Us</li>
         <li>Sell on KIKA</li>
       </ul>
       {/*end navlinks */}
+
+      {/* start drop downs */}
+      <div className="dropdowns">
+        <div
+          className="marketPlace__dropDown"
+          style={marketPlaceMenu}
+        >
+          <div onClick={() => setMarketPlaceMenu({ opacity: '0' })}>
+            <p>Shop Men</p>
+          </div>
+          <div onClick={() => setMarketPlaceMenu({ opacity: '0' })}>
+            <p>Shop Women</p>
+          </div>
+        </div>
+
+        <div className="profile__dropDown" style={profileMenu}>
+          <div
+            onClick={() =>
+              setProfileMenu({
+                opacity: '0',
+              })
+            }
+          >
+            <p>Sign in</p>
+          </div>
+          <div
+            onClick={() =>
+              setProfileMenu({
+                opacity: '0',
+              })
+            }
+          >
+            <p>Sign up</p>
+          </div>
+          <div
+            onClick={() =>
+              setProfileMenu({
+                opacity: '0',
+              })
+            }
+          >
+            <p>Account</p>
+          </div>
+        </div>
+      </div>
+      {/* end drop downs */}
 
       {/* start search form */}
       <form className="nav__searchForm">
@@ -38,7 +93,7 @@ const Navbar = () => {
           type="text"
           placeholder="Search"
         />
-        <span>
+        <span className="span">
           <img
             className="nav__searchIcon"
             src={Search}
@@ -52,7 +107,15 @@ const Navbar = () => {
       {/* start sign in cart and toggle */}
       <div className="nav__profile">
         <div className="profile">
-          <img src={Profile} alt="shopping cart" />
+          <img
+            src={Profile}
+            alt="shopping cart"
+            onMouseEnter={() => {
+              setProfileMenu({
+                opacity: '1',
+              });
+            }}
+          />
         </div>
         <Link to="/mycart">
           <div className="cart">
@@ -100,14 +163,10 @@ const Navbar = () => {
           <li>Sell on KIKA</li>
         </Link>
         <li>
-          <a className="btn" href="#">
-            Sign up
-          </a>
+          <button className="btn">Sign up</button>
         </li>
         <li>
-          <a className="btn" href="#">
-            Sign in
-          </a>
+          <button className="btn">Sign in</button>
         </li>
       </ul>
       {/* end mobile sidebar */}
