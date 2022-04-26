@@ -31,6 +31,7 @@ import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
 import FlutterCheckout from "./components/User/FlutterCheckout";
+import PaymentOptions from "./pages/Cart/PaymentOptions";
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -88,7 +89,10 @@ function AppRoutes() {
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/mycart", element: <MyCart /> },
-    { path: "/payment", element: <FlutterCheckout /> },
+    // { path: "/payment", element: <FlutterCheckout /> },
+
+    { path: "/delivery", element: <Delivery /> },
+    { path: "/payment", element: <PaymentOptions /> },
   ]);
   return routes;
 }

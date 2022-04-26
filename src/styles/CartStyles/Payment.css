@@ -1,0 +1,173 @@
+#payment_options {
+  margin: 2em 0em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.address_details_container {
+  border: 1px solid #c4c4c4;
+  padding: 1.5em;
+}
+
+.address_details_container h1 {
+  font-size: 18px;
+}
+.address_details {
+  margin: 1em 0;
+}
+.address_details p {
+  max-width: 80%;
+  padding: 0;
+  margin: 0.4em 0 0.1em 1.2em;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.step_delivery {
+  font-weight: 700;
+}
+.details_button {
+  text-align: right;
+}
+.change_button {
+  background-color: transparent;
+  border: none;
+  color: #f15a21;
+  font-weight: 700;
+}
+.debit_cards {
+  margin: 1em 0 0 1.2em;
+  color: #f15a21;
+  font-weight: 700;
+}
+.debit_cards label {
+  margin: 0 0.5em;
+  color: #f15a21;
+  font-weight: 700;
+}
+
+.debit_cards_img {
+  margin: 0.5em 0 0 1.2em;
+}
+#pay_account {
+  margin: 1.5em 1em 0.5em 1.1em;
+  font-weight: 600;
+}
+#pay_details {
+  margin: 0.1em 0 0 1.2em;
+  line-height: 1.2;
+  font-size: 13px;
+}
+.upload_receipt {
+  margin: 1em 1.1em;
+}
+.upload_receipt p {
+  margin: 0.5em 0;
+  font-size: 12px;
+}
+.upload_receipt input {
+  padding: 1em;
+  width: 100%;
+}
+
+.address_details_container .delivery_btn_container button {
+  margin: 0 0 0 1.2em;
+}
+
+.modify_cart_container {
+  border: 1px solid #c4c4c4;
+  padding: 1.5em;
+}
+.modify_cart_container h1 {
+  font-size: 18px;
+}
+.modify_card {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2em;
+}
+.modify_cart_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5em;
+}
+.footer_icons {
+  display: flex;
+  align-items: center;
+}
+.modify_details {
+  margin-left: 2em;
+}
+
+.modify_price {
+  margin-left: 4em;
+}
+
+.modify_cart_summary {
+  margin-top: 2em;
+}
+.modify_cart_subtotal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modify_cart_total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modify_cart_total p {
+  font-size: 18px;
+}
+
+.modify_cart_total p:nth-of-type(2) {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+#payment-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.livechat_container {
+  border: 1px solid #c4c4c4;
+  padding: 1.5em;
+  margin-top: 2rem;
+}
+
+.livechat_container p {
+  margin: 1em 0;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 898px) {
+  #payment_options {
+    margin: 2em 4em;
+    display: flex;
+    flex-direction: column;
+  }
+  .modify_cart_wrapper {
+    margin-top: 3em;
+  }
+  .modify_details {
+    margin-left: 0em;
+  }
+
+  .modify_price {
+    margin-left: 0em;
+  }
+}
+
+@media only screen and (max-width: 536px) {
+  #payment_options {
+    margin: 2em 2em;
+  }
+
+  .modify_card_img {
+    max-width: 30vw;
+  }
+  .modify_details {
+    max-width: 60vw;
+  }
+}
