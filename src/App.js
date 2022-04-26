@@ -31,7 +31,7 @@ import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 
 import Delivery from "./pages/Cart/Delivery";
-
+import PaymentOptions from "./pages/Cart/PaymentOptions";
 
 
 function AppRoutes() {
@@ -89,8 +89,9 @@ function AppRoutes() {
     { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/mycart", element: <MyCart /> },
 
-    
+
     { path: "/delivery", element: <Delivery /> },
+    { path: "/payment", element: <PaymentOptions /> },
 
 
   ]);
