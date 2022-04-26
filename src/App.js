@@ -29,10 +29,9 @@ import Home from "./pages/home/Home";
 import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
-
 import Delivery from "./pages/Cart/Delivery";
+import FlutterCheckout from "./components/User/FlutterCheckout";
 import PaymentOptions from "./pages/Cart/PaymentOptions";
-
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -53,6 +52,8 @@ function AppRoutes() {
         { path: "/user/account/trackorder", element: <TrackOrder /> },
         { path: "/user/account/myorders", element: <MyOrders /> },
         { path: "/user/account/signout", element: <SignOut /> },
+        { path: "/delivery", element: <Delivery /> },
+
         {
           path: "/user/account/notifications",
           element: <Notifications />,
@@ -88,12 +89,10 @@ function AppRoutes() {
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/mycart", element: <MyCart /> },
-
+    // { path: "/payment", element: <FlutterCheckout /> },
 
     { path: "/delivery", element: <Delivery /> },
     { path: "/payment", element: <PaymentOptions /> },
-
-
   ]);
   return routes;
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "../reducers/user_reducer";
 import { url } from "../utils/constant";
 import { baseUrl } from "../utils/baseUrl";
@@ -9,8 +9,13 @@ import {
   LOGIN_ERROR,
   USER_LOGOUT,
   USER_DETAILS,
+  USER_DETAILS_BEGIN,
+  USER_DETAILS_ERROR,
   REGISTER_USER,
   CHANGE_PASSWORD,
+  REGISTER_DELIVERY_DETAILS,
+  GET_STATE,
+  GET_CITIES,
 } from "../actions";
 
 let token = localStorage.getItem("currentUser")
@@ -24,6 +29,11 @@ const initialState = {
   newPassword: "",
   userLogout: false,
   userDetails: {},
+  stateDetails: [],
+  cityDetails: [],
+  delivery_details: null,
+  user_details_error: false,
+  user_details_loading: false,
 };
 
 const UserContext = React.createContext();
@@ -35,7 +45,6 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER });
     try {
       const response = await axios.post(`${url}/auth/register`, data);
-      console.log(response, "yayy");
     } catch (error) {
       console.log(error);
     }
@@ -63,14 +72,14 @@ export const UserProvider = ({ children }) => {
   };
 
   const getUser = async () => {
+    dispatch({ type: USER_DETAILS_BEGIN });
+
     try {
       const response = await baseUrl.get("/auth/profile");
       const userDetails = response.data?.data;
       dispatch({ type: USER_DETAILS, payload: userDetails });
-
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      dispatch({ type: USER_DETAILS_ERROR });
     }
   };
 
@@ -97,6 +106,40 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const deliveryDetails = async (data) => {
+    try {
+      const response = await baseUrl.post("/delivery/createdelivery", data);
+      console.log(response);
+      dispatch({ type: REGISTER_DELIVERY_DETAILS });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getState = async () => {
+    try {
+      const response = await axios.get("https://locus.fkkas.com/api/states");
+      const stateDetails = response.data?.data;
+      dispatch({ type: GET_STATE, payload: stateDetails });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCity = async (state) => {
+    try {
+      const response = await axios.get(
+        `https://locus.fkkas.com/api/regions/${state}`
+      );
+
+      const cityDetails = response.data?.data;
+
+      dispatch({ type: GET_CITIES, payload: cityDetails });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -106,6 +149,9 @@ export const UserProvider = ({ children }) => {
         getUser,
         changePassword,
         signOut,
+        getState,
+        getCity,
+        deliveryDetails,
       }}
     >
       {children}
