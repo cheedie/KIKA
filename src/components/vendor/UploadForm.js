@@ -28,7 +28,13 @@ export default function UploadForm({setUpload}) {
             name:'',
             price:'',
             discount:'',
-            image:undefined 
+            category:null,
+            newArrival:null,
+            grade:null,
+            size:null,
+            countInStock:'1',
+            Description:'',
+            image:null 
         },
 
         validationSchema: Yup.object({
@@ -85,6 +91,16 @@ export default function UploadForm({setUpload}) {
                                 <Message>{errors.name}</Message>
                                 ) : null}
                             </InputWrapper>
+                            {/*------ Description -------*/}
+                            <InputWrapper>
+                                <StyledLabel className="floating">Description</StyledLabel>
+                                <StyledInput type='text' name='name' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.name && errors.name  ?(
+                                <Message>{errors.name}</Message>
+                                ) : null}
+                            </InputWrapper>
+
+                            {/*------ Price and Discount -------*/}
                             <Wrapper grid gap="1" GTC="1fr 1fr">
                             <InputWrapper>
                                 <StyledLabel >Price</StyledLabel>
@@ -102,11 +118,30 @@ export default function UploadForm({setUpload}) {
                             </InputWrapper>
 
                             </Wrapper>
+
+                            {/*------Color & Brand-------*/}
+                            <Wrapper grid gap="1" GTC="1fr 1fr">
+                            <InputWrapper>
+                                <StyledLabel >Color</StyledLabel>
+                                <StyledInput type='text' name='price' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.price && errors.price  ?(
+                                <Message>{errors.price}</Message>
+                                ) : null}
+                            </InputWrapper>
+                            <InputWrapper>
+                                <StyledLabel >Brand</StyledLabel>
+                                <StyledInput type='text' name='discount' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.discount && errors.discount  ?(
+                                <Message>{errors.discount}</Message>
+                                ) : null}
+                            </InputWrapper>
+
+                            </Wrapper>
                         </Wrapper>
 
                     </Wrapper>
 
-                    <Wrapper grid gap="2">
+                    <Wrapper grid GTC="1fr 1fr 1fr" gap="2">
                         <InputWrapper>
                             <StyledLabel className="floating" >Category</StyledLabel>
                             <StyledInput type='text' 
@@ -144,7 +179,7 @@ export default function UploadForm({setUpload}) {
                        
                     </Wrapper>
 
-                        <StyledButton type='submit' label ='Add Product'/>
+                        <StyledButton type='submit' label ='Add Product'>Upload</StyledButton>
                    
                 </StyledForm>
             </UploadContainer>

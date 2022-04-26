@@ -8,43 +8,54 @@ import {StyledForm , StyledLabel, StyledInput, Wrapper, Message } from './Form.s
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
 import Footer from '../landing-page/Footer';
-import { useUserContext } from "../../context/user_context";
+import { useVendorContext } from "../../context/vendor_context";
+import { MdArrowBack as Back} from 'react-icons/md'
 
 function VendorSignup() {
   const navigate = useNavigate();
-  const { uploadUserDetails } = useUserContext();
+  const { uploadVendorDetails } = useVendorContext();
 
   const [isVisible, setVisible ] = useState(false);
   const [page, setPage ] = useState(1);
   const FILE_SIZE = 5 * 1024 * 1024;
            
-    const {setFieldValue, handleSubmit,handleChange, handleBlur, values, touched, errors} = useFormik({
+    const {setFieldValue, handleSubmit, handleChange, handleBlur, values, touched, errors} = useFormik({
         initialValues:{
             name:'',
             email:'',
             phone:'',
             password:'',
-            biz:'',
+            business_name:'',
             address:'',
             city:'',
             state:'',
             terms:'',
             id_num:'',
-            id_card:null,
+            image:null,
             otp:''
             
         },
 
-        validationSchema: Yup.object({
-          name: Yup.string().max(30, 'Full should not not be longer than 30 character')
-          .min(10, 'Fullname should be longer than 10 characters').required('Required'),
-          phone: Yup.number().min(11, 'Phone Number should not be less than 11 characters').required('Required').positive().integer(),
-          email:  Yup.string().email().required('Required'),
-          password: Yup.string().min(8, 'Password should be longer than 8 characters').required('Required'),
-          terms: Yup.boolean().required('Required'),
-          biz: Yup.string().required('Required'),
-          id_num: Yup.number().min(11, 'ID Number should not be less than 11 characters').required('Required').positive().integer(),
-          id_card: Yup.mixed()
+        validationSchema: page === 1 ? Yup.object({
+          name: Yup.string().min(5, 'Fullname is too short').max(30, 'Fullname is too long').required('Required'),
+          phone: Yup.string().required('Required')
+          .matches(/^[0-9]+$/, "Phone number must be only digits")
+          .min(11, 'Must be up to 11 digits')
+          .max(13, 'Cannot exceed 11 digits'),
+          email:  Yup.string().required('Required').email('Invalid email'),
+          password: Yup.string().required('Required').min(8,'Password should be longer than 8 characters'),
+          business_name: Yup.string().required('Required').min(5, 'Business name is too short').max(30, 'Business name is too long'),
+          address:  Yup.string().required('Required'),
+          city:  Yup.string().required('Required'),
+          state:  Yup.string().required('Required'),
+          terms: Yup.boolean("Please accept policies").required('Required'),
+          
+          
+        }) : Yup.object({
+          id_num:  Yup.string().required('Required')
+          .matches(/^[0-9]+$/, "ID Number must be only digits")
+          .min(15,'ID Number should be 15 digits'),
+          image: Yup.mixed().required('Required')
           .test("FILE_SIZE", "Uploaded file is too big.",value => !value || (value && value.size <= FILE_SIZE))
           .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc", (value) => {
             return !value || (value && (
@@ -54,22 +65,49 @@ function VendorSignup() {
                   value.type === "application/msword"
               ))
           }),
+          otp:  Yup.string().required('Required'),
         }),
+        validateOnChange: true, 
+        validateOnBlur: true, 
 
         onSubmit:values=>{
-          console.log(values)
-          alert(JSON.stringify(values, null, 2));
-          uploadUserDetails(values)
-          navigate("/vendor");
+           if(page === 1){
+            const form = ['name','email','phone','password', 'business_name','terms']              
+            let test = form.every(v => values[v] && (!errors[v] || errors[v] === undefined));
+            if(!test){ 
+              console.log('failed test 1')
+              // console.log(errors)
+            }
+            else{
+              //  console.log('Passed test 1')
+              setPage(2)
+            }
+          } 
+          if(page === 2){
+            const form = ['id_num','image']              
+            let test = form.every((v,i)=> values[v] && (!errors[v] || errors[v] === undefined));
+         
+            if(!test){
+              console.log('empty fields...')
+              // setIsSubmitting(false)
+             }else{
+               console.log(values.image)
+               uploadVendorDetails({...values});
+               navigate("/user/signin")
+             }
           }
+         
+          
+          }
+         
     })
     
     const form_data = [
       {input_name:"Full Name", short:"name",},
-      {input_name:"Email Address", short:"email", input_type: "email"},
+      {input_name:"Email Address", short:"email", input_type: 'email'},
       {input_name:"Phone Number", short:"phone"},
       {input_name:"Password", short:"password", input_type: isVisible ? "text" : "password"},
-      {input_name:"Business Name",  short:"biz",},
+      {input_name:"Business Name",  short:"business_name",},
       {input_name:"Residential Address", short:"address"},
       {input_name:"City/Town",  short:"city"},
       {input_name:"State",  short:"state"},
@@ -80,7 +118,12 @@ function VendorSignup() {
     <div>
         <Navbar />
         <Heading> {page === 1 ? 'Sell on Kika' : 'Vendor Verification'}</Heading>
-        <StyledForm onSubmit={handleSubmit} page = {page} onBlur={handleBlur} id='signup' gap={page === 2 ? '1' : "4"}>
+        <StyledForm 
+          onBlur={handleBlur} 
+          onSubmit={handleSubmit} 
+          id='signup' 
+          gap={page === 2 ? '1' : "4"}>
+
             {page === 1 ?
             <>
             {/* First column */}
@@ -132,7 +175,7 @@ function VendorSignup() {
                   {touched.terms && errors.terms  ?(
                       <Message>{errors.terms}</Message>
                     ) : null}
-                </Wrapper>
+              </Wrapper>
               
             </Wrapper>
 
@@ -150,6 +193,7 @@ function VendorSignup() {
                           autoComplete="off"
                           value={values[short]}
                           onChange={handleChange}
+                         
                         />
                         {touched[short] && errors[short]?(
                           <Message>{errors[short]}</Message>
@@ -157,19 +201,36 @@ function VendorSignup() {
                       </Wrapper>
                     )
                 })}
-              <StyledButton type="submit" 
-              id="submit" name='submit'
+              <StyledButton type="submit" id='continue' name='continue'
               label="continue" align-self="end"
-              onClick={()=>errors.name || errors.email 
-                || errors.phone || errors.address || errors.terms ? null: setPage(2)}
+              onClick={()=>{
+               // e.preventDefault()
                
-              
-                page={page}           
+                // touched['continue'] = false
+               console.log('TOUCHED',touched)
+               console.log('Values',values)
+               console.log('Errors',errors)
+
+                // e.preventDefault()
+                // const form = ['name','email','phone','password', 'business_name','terms']              
+                // let test = form.every(v => values[v] && (!errors[v] || errors[v] === undefined));
+                // if(!test){ form.forEach(v=> touched[v] = true) }
+                    
+                // return validateForm()
+                // .then(() => {
+                //   console.log('errors', errors)
+                //   if(test){
+                    
+                //     setPage(2)
+                //   }
+                // })
+              }}      
               >Continue</StyledButton>
             </Wrapper>
             </>
             :
             <>
+            <ExitButton id='back' name='back' onClick={()=>setPage(1)}><Back/> <span> Go back</span></ExitButton>
               <Wrapper className = "input_container" container  grid gap="2">
                 
                 <Wrapper grid gap="0.5">
@@ -189,21 +250,27 @@ function VendorSignup() {
                 <Wrapper grid gap="0.5">
                   <StyledLabel htmlFor='id' normal>Identification</StyledLabel>
                   <StyledInput
-                    id='id_card'
-                    name='id_card'
+                    id='image'
+                    name='image'
                     placeholder='Identification'
                     autoComplete="off"
                     type="file"
                     accept="image/*"
                     onChange={(event) => {
-                      setFieldValue("id_card", event.target.files[0])
-                      .then(console.log(event,event.target.files))
+                      console.log('current target',event.currentTarget.files[0])
+                      
+                      setFieldValue("image", event.target.files[0])
+                      .then(()=>{
+                        console.log(event,event.target.files)
+                        console.log('current target',event.currentTarget.files[0])
+                      
+                      })
                       
                     }}
                     
                   />
-                  {touched.id_card && errors.id_card ?(
-                    <Message>{errors.id_card}</Message>
+                  {touched.image && errors.image ?(
+                    <Message>{errors.image}</Message>
                   ) : null}
                 </Wrapper>
                 <Wrapper grid gap="0.5">
@@ -264,6 +331,25 @@ width:100%;
 height:400px;
 background:url(${signImage}) no-repeat;
 background-size:cover;
+`
+const ExitButton = styled.button`
+border: none;
+background: none;
+display:flex;
+align-items:center;
+font-size: 2em;
+position: absolute;
+    top: -0.8em;
+    left: 1em;
+    span{
+      font-size:14px;
+    }
+
+&:hover{
+    color:#F15A24;
+    cursor:pointer;
+    transform:scale(1.2);
+}
 `
 
 

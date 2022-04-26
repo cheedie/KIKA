@@ -2,8 +2,6 @@ import "./App.css";
 import {
   BrowserRouter as Router,
   useRoutes,
-  Route,  
-  Routes,
 } from "react-router-dom";
 import Landing from "./pages/Landing";
 
@@ -24,16 +22,7 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
-
-<<<<<<< HEAD
-function AppRoutes() {
-  const routes = useRoutes([
-    { path: "/landing", element: <Landing /> },
-=======
-
-import EmptyCart from "./pages/Cart/EmptyCart"
-
-
+import EmptyCart from "./pages/Cart/EmptyCart";
 import Home from "./pages/home/Home";
 import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
@@ -51,7 +40,6 @@ function AppRoutes() {
 
     { path: "/vendor", element: <Vendor /> },
 
->>>>>>> a61f2208f2c7ccdbb2ceec1d27890941643f860a
     {
       element: <Authorize />,
       children: [
@@ -73,6 +61,7 @@ function AppRoutes() {
     {
       element: <Authenticate />,
       children: [
+        { path: "/vendor/signup", element: <VendorSignup /> },
         { path: "/user/signup", element: <Signup /> },
         { path: "/user/signin", element: <Signin /> },
       ],
@@ -81,7 +70,6 @@ function AppRoutes() {
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
     { path: "/vendor/*", element: <Vendor /> },
-    { path: "/vendor/signup", element: <VendorSignup /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },

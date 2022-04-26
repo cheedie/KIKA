@@ -72,26 +72,6 @@ const Navbar = () => {
           <div className={`${status} line line2`}></div>
           <div className={`${status} line line3`}></div>
         </div>
-<<<<<<< HEAD
-
-        {/* nav menu */}
-        <ul className="navbar__menu">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/">Market Place</a>
-          </li>
-          <li>
-            <a href="/">About</a>
-          </li>
-          <li>
-            <a href="/vendor/signup">Sell on KIKA</a>
-          </li>
-        </ul>
-
-=======
->>>>>>> a61f2208f2c7ccdbb2ceec1d27890941643f860a
       </div>
       {/* end signIn cart and toggle */}
 

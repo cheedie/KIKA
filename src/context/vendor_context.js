@@ -13,8 +13,8 @@ import {
   CHANGE_VENDOR_PASSWORD,
 } from "../actions";
 
-let token = localStorage.getItem("currentUser")
-  ? JSON.parse(localStorage.getItem("currentUser")).token
+let token = localStorage.getItem("currentVendor")
+  ? JSON.parse(localStorage.getItem("currentVendor")).token
   : "";
 
 const initialState = {
@@ -26,22 +26,28 @@ const initialState = {
   userDetails: {},
 };
 
-const UserContext = React.createContext();
+const VendorContext = React.createContext();
 
-export const UserProvider = ({ children }) => {
+export const VendorProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const uploadUserDetails = async (data) => {
+  const uploadVendorDetails = async (data) => {
     dispatch({ type: REGISTER_VENDOR });
     try {
-      const response = await axios.post(`${url}/auth/register/vendor`, data);
-      console.log(response, "yayy");
+      console.log("Data", data)
+      const response = await axios.post(`${url}/auth/register/vendor`, data,
+      // {
+      //   headers:{
+      //     "Content-Type":"multipart/form-data",
+      //   }
+     // }
+      ).then(()=>{console.log(response, "yayy")})
     } catch (error) {
       console.log(error);
     }
   };
 
-  const loginUser = async (details) => {
+  const loginVendor = async (details) => {
     dispatch({ type: REQUEST_VENDOR_LOGIN });
 
     try {
@@ -50,7 +56,7 @@ export const UserProvider = ({ children }) => {
       if (response.status === 200) {
         dispatch({ type: LOGIN_VENDOR_SUCCESS, payload: response });
 
-        localStorage.setItem("currentUser", JSON.stringify(response.data));
+        localStorage.setItem("currentVendor", JSON.stringify(response.data));
         return response;
       }
 
@@ -62,7 +68,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const getUser = async () => {
+  const getVendor = async () => {
     try {
       const response = await baseUrl.get("/auth/profile");
       const userDetails = response.data?.data;
@@ -89,7 +95,7 @@ export const UserProvider = ({ children }) => {
     try {
       const response = await baseUrl.get("/auth/logout");
       console.log(response);
-      localStorage.removeItem("currentUser");
+      localStorage.removeItem("currentVendor");
       return true;
     } catch (error) {
       console.log(error);
@@ -98,21 +104,21 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider
+    <VendorContext.Provider
       value={{
         ...state,
-        uploadUserDetails,
-        loginUser,
-        getUser,
+        uploadVendorDetails,
+        loginVendor,
+        getVendor,
         changePassword,
         signOut,
       }}
     >
       {children}
-    </UserContext.Provider>
+    </VendorContext.Provider>
   );
 };
 
-export const useUserContext = () => {
-  return useContext(UserContext);
+export const useVendorContext = () => {
+  return useContext(VendorContext);
 };
