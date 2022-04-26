@@ -83,7 +83,7 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
             </div>
             <div>
               <button type="submit" id="waitlist-btn" className="waitlist-btn">
-                <Link to="">Checkout</Link>
+                <Link to="/delivery">Checkout</Link>
               </button>
             </div>
           </div>

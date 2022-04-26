@@ -3,14 +3,28 @@ import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
 import Sidebar from "../../components/User/Sidebar";
 import { useUserContext } from "../../context/user_context";
+import Loading from "../../components/User/Loading";
+import Error from "../../components/User/Error";
 
 const UserAccount = () => {
-  const { getUser, userDetails } = useUserContext();
+  const {
+    getUser,
+    userDetails,
+    user_details_loading: loading,
+    user_details_error: error,
+  } = useUserContext();
 
   useEffect(() => {
     getUser();
   }, []);
-  console.log(userDetails);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
   return (
     <main>
       <Navbar />
