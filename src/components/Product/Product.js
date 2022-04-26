@@ -9,23 +9,22 @@ const Product = ({ image, name, price, _id, size }) => {
   return (
     <section className="product">
       <Link to={`/products/${_id}`}>
-        <div className="product__imgContainer">
-          <img className="productImage" src={image} alt="" />
-        </div>
-        <div className="product__description">
-          <div className="productDescrition__left">
-            <h3 className="product__name">{name}</h3>
-            <p className="product__size">Size: {size} </p>
-            <div className="product__colors">
-              <div></div>
-              <div></div>
-              <div></div>
+        <div className="product__container">
+          <img className="productImage" src={image} alt={name} />
+          <div className="product__description">
+            <div className="product__left">
+              <h3 className="product__name">{name}</h3>
+              <p className="product__size">Size: {size} </p>
+              <div className="product__color">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </div>
-          </div>
-
-          <div className="productDescrition__right">
-            <p>NGN {price}</p>
-            <AddtoCart />
+              <div className="product__right">
+              <p>NGN {price}</p>
+              <AddtoCart />
+            </div>
           </div>
         </div>
       </Link>
