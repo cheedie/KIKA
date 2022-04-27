@@ -26,7 +26,11 @@ const Signin = () => {
           type: "danger",
           msg: "Incorrect email or password",
         });
-      } else {
+      } else if(response.role === 'user'){
+        navigate("/user/account");
+      }else if(response.role === 'vendor'){
+        navigate("/vendor");
+      }else{
         navigate("/user/account");
       }
     } catch (error) {

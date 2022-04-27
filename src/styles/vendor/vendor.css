@@ -104,8 +104,6 @@ body p {
 }
 
 #vendor .nav_items .link:hover {
-  background: #f15a24;
-  color: white;
   cursor: pointer;
 }
 
@@ -384,6 +382,7 @@ body p {
   display: -ms-grid;
   display: grid;
   gap: 3em;
+  min-width: 906px;
 }
 
 #vendor #wrapper.products .filters,
@@ -837,4 +836,4 @@ body p {
 #wrapper.reviews .review_titles p {
   font-weight: 600;
 }
-/*# sourceMappingURL=DashboardStyles.css.map */
+/*# sourceMappingURL=vendor.css.map */
