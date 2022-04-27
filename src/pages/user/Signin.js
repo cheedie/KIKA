@@ -28,8 +28,10 @@ const Signin = () => {
         });
       } else if(response.role === 'user'){
         navigate("/user/account");
-      }else{
+      }else if(response.role === 'vendor'){
         navigate("/vendor");
+      }else{
+        navigate("/user/account");
       }
     } catch (error) {
       console.log(error);
