@@ -9,10 +9,11 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup'
 import Footer from '../landing-page/Footer';
 import { useVendorContext } from "../../context/vendor_context";
-import { MdArrowBack as Back} from 'react-icons/md'
+import { MdArrowBack as Back} from 'react-icons/md';
+import verify from '../../utils/verify';
 
 function VendorSignup() {
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
   const { uploadVendorDetails } = useVendorContext();
 
   const [isVisible, setVisible ] = useState(false);
@@ -66,7 +67,8 @@ function VendorSignup() {
               ))
           }),
           otp:  Yup.string().required('Required'),
-        }),
+        })
+        ,
         validateOnChange: true, 
         validateOnBlur: true, 
 
@@ -80,6 +82,7 @@ function VendorSignup() {
             else{
               setPage(2)
             }
+            
           } 
           if(page === 2){
             const form = ['id_num','image']              
@@ -98,6 +101,15 @@ function VendorSignup() {
           }
          
     })
+
+    const handleVerify= (value) => handleChange()
+    .then(()=>{
+            if(!errors[value] || errors[value] === undefined){
+            const response = verify({value: values[value]})
+            if(response.key && response.message){
+              errors[response.key] = response.message
+            }
+          }})
     
     const form_data = [
       {input_name:"Full Name", short:"name",},
@@ -139,7 +151,7 @@ function VendorSignup() {
                         //autoComplete="off"
                         value={values[short]}
                         type={input_type ? input_type : "text"}
-                        onChange={handleChange}
+                        onChange={()=>["email","phone","business_name"].includes(short) ? handleVerify(short) : handleChange}
                       />
                       {touched[short] && errors[short]?(
                           <Message>{errors[short]}</Message>
@@ -191,7 +203,7 @@ function VendorSignup() {
                           placeholder={input_name}
                           //autoComplete="off"
                           value={values[short]}
-                          onChange={handleChange}
+                          onChange={()=>["email","phone","business_name"].includes(short) ? handleVerify(short) : handleChange}
                          
                         />
                         {touched[short] && errors[short]?(
