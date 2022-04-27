@@ -22,7 +22,7 @@ const Product = ({ image, name, price, _id, size }) => {
               </div>
             </div>
               <div className="product__right">
-              <p>NGN {price}</p>
+              <p className='product__price'>NGN {price}</p>
               <AddtoCart />
             </div>
           </div>

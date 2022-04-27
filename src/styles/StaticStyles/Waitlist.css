@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+#waitlist_wrapper {
+  position: relative;
+  /* z-index: -1; */
+}
 /* ======================================NavBar css================================================== */
 .navbar_waitlist {
   display: flex;
@@ -8,7 +13,7 @@
 .navbar_Waitcontainer {
   display: flex;
   justify-content: flex-end;
-  z-index: 1;
+  z-index: -1;
   width: 100%;
 }
 .nav_Waitlinks {
@@ -106,6 +111,7 @@
   margin: 1em 0;
 }
 #waitlist_input {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 1.5em;

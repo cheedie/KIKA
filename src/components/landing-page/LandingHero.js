@@ -1,13 +1,14 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
   Navigation,
   Pagination,
   Autoplay,
   EffectFade,
-} from 'swiper';
-import 'swiper/css/bundle';
-import '../../styles/Hero/hero.scss';
+} from "swiper";
+import "swiper/css/bundle";
+import "../../styles/Hero/hero.scss";
 
 //SwiperCore.use([Navigation, Pagination, EffectFade]);
 
@@ -31,15 +32,15 @@ const Hero = () => {
             </h1>
             <p className="sub__heading">Home of all thrift wears</p>
             <p className="details">
-              At KIKA we understand the importance of thrift wears and
-              its availability to you and the need to get them at your
-              comfort with just your smart device.
+              At KIKA we understand the importance of thrift wears and its
+              availability to you and the need to get them at your comfort with
+              just your smart device.
             </p>
           </div>
 
           <div className="buttons__grp">
-            <button>SHOP WOMEN</button>
-            <button>SHOP MEN</button>
+            <Link to="/products/women">SHOP WOMEN</Link>
+            <Link to="/products/men">SHOP MEN</Link>
           </div>
         </section>
       </SwiperSlide>
@@ -52,9 +53,9 @@ const Hero = () => {
             </h1>
             <p className="sub__heading">Home of all thrift wears</p>
             <p className="details">
-              At KIKA we understand the importance of thrift wears and
-              its availability to you and the need to get them at your
-              comfort with just your smart device.
+              At KIKA we understand the importance of thrift wears and its
+              availability to you and the need to get them at your comfort with
+              just your smart device.
             </p>
           </div>
 

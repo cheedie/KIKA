@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import Logo from '../../assets/landing-page/logo.png';
-import Search from '../../assets/landing-page/search.png';
-import Cart from '../../assets/landing-page/cart.png';
-import Profile from '../../assets/landing-page/profile.png';
-import '../../styles/landing/navbar.scss';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import Logo from "../../assets/landing-page/logo.png";
+import Search from "../../assets/landing-page/search.png";
+import Cart from "../../assets/landing-page/cart.png";
+import Profile from "../../assets/landing-page/profile.png";
+import "../../styles/landing/navbar.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -128,7 +128,7 @@ const Navbar = () => {
           className="nav__sidebarToggle"
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus(status === 'open' ? 'close' : 'open');
+            setStatus(status === "open" ? "close" : "open");
           }}
         >
           <div className={`${status} line line1`}></div>
@@ -142,12 +142,10 @@ const Navbar = () => {
       <ul
         onClick={() => {
           setShowLinks(!showLinks);
-          setStatus('close');
+          setStatus("close");
         }}
         className={`${
-          showLinks
-            ? 'mobile__sideBar show__sideBar'
-            : 'mobile__sideBar'
+          showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
         }`}
       >
         <Link to="/home">
@@ -173,9 +171,7 @@ const Navbar = () => {
 
       <div
         className={`${
-          showSearch
-            ? 'mobile__search show__mobileSearch'
-            : 'mobile__search'
+          showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
         }`}
       >
         <input

@@ -19,6 +19,8 @@ const initialState = {
   products_loading: false,
   products: [],
   new_arrivals: [],
+  women: [],
+  men: [],
   single_product_loading: false,
   single_product_error: false,
   single_product: {},

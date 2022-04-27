@@ -1,43 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 * {
   box-sizing: border-box;
 }
 
 .cart_wrapper {
-  margin: 2em;
+  margin: 4em;
 }
 
-.cart_details {
-  margin: 1em 1em 1em 2em;
+.card {
+  margin: 0 0 0 2em;
+  max-width: 60vw;
 }
 .cart_container {
   display: flex;
   justify-content: space-between;
-  margin: 2em 0;
+  margin: 0 0 2em 0;
 }
 
 .card_section {
-  box-shadow: 0 0 20px rgba(231, 234, 236, 0.5);
-  border-radius: 8px;
+  /* box-shadow: 0 0 20px rgba(157, 160, 161, 0.5); */
+  border-radius: 2px;
+  border: 1px solid #c4c4c4;
   overflow: hidden;
   margin: 2em 0 0 0;
 }
-.card_row {
-  display: flex;
+.card_section .card_row {
+  margin: 2em 1em 0em 1em;
 }
 
+.card_section .cardFooter {
+  margin: 0em 2em 2em 3em;
+}
+.card_row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cartImg img {
+  border: 0;
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  max-height: 100vh;
+}
+.cart_details {
+  margin: 0;
+  padding: 0;
+}
 .cartTitle {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-
+.cartTitle h1 {
+  font-size: 20px;
+}
+.cartTitle p {
+  text-align: right;
+  padding: 0;
+  margin: 0 0 0 8em;
+  font-size: 20px;
+}
+.card_details {
+  margin-top: 0.5em;
+}
 .cloth_Details {
   display: flex;
+}
+.cloth_Details p {
+  padding: 0.2em 0;
+  margin: 0 0.5em 0 0;
+  line-height: 1.2;
 }
 
 .cardFooter {
   display: flex;
   justify-content: space-between;
   align-content: center;
+}
+.cardFooter p {
+  font-weight: 700;
 }
 .removeItems {
   display: flex;
@@ -49,13 +92,159 @@
   align-items: center;
 }
 
+.removeItems > * {
+  margin-right: 0.5em;
+}
+.increaseItems > * {
+  margin-left: 0.5em;
+}
+
 .summary_Details {
   display: flex;
+  justify-content: space-between;
+}
+
+.summary_Details p:nth-of-type(2) {
+  margin: 0 0em 0 7em;
 }
 .subtotal_Details {
   display: flex;
+  justify-content: space-between;
+  margin-top: 4em;
 }
 
 .card_icon {
   color: #f15a24;
+}
+#contact-btn a {
+  color: #fff;
+  margin: 1.5em 3em;
+  font-size: 16px;
+}
+.cartSummary {
+  max-width: 30vw;
+  margin: 2em 4em 0 0em;
+  /* padding: 0 5em 0 5em; */
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+.cartSummary h2 {
+  margin-bottom: 1.2em;
+}
+.cartSummary p {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 1200px) {
+  .cart_wrapper {
+    margin: 3em;
+  }
+  .card {
+    margin: 0 0 0 1em;
+  }
+  .cartTitle p {
+    margin: 0 0 0 4em;
+  }
+  .cartSummary {
+    margin: 2em 0.5em 0 0em;
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .cart_wrapper {
+    margin: 2em;
+  }
+  .card {
+    margin: 0;
+  }
+  .cartTitle {
+    align-items: flex-start;
+  }
+  .cartTitle h1 {
+    font-size: 18px;
+  }
+  .cartTitle p {
+    margin: 0 0 0 2em;
+    font-size: 17px;
+  }
+  .cloth_Details p {
+    font-size: 15px;
+  }
+  .cartSummary {
+    margin: 2em 0.5em 0 0em;
+  }
+  .card_section .card_row {
+    margin: 1.5em 0.7em 0em 0.2em;
+  }
+
+  .card_section .cardFooter {
+    margin: 0em 1em 1.5em 1.5em;
+  }
+  .summary_Details p:nth-of-type(2) {
+    margin: 0 0em 0 2em;
+  }
+}
+
+@media screen and (max-width: 698px) {
+  .cart_wrapper {
+    margin: 2em;
+  }
+
+  .card {
+    margin: 0;
+    max-width: 90vw;
+  }
+  .cart_container {
+    display: flex;
+    flex-direction: column;
+  }
+  .cartTitle p {
+    margin: 0;
+    font-size: 16px;
+  }
+  .cartTitle h1 {
+    margin: 0 4em 0 0;
+    font-size: 17px;
+    color: #2e3192;
+  }
+  .cloth_Details p {
+    font-size: 14px;
+  }
+  .cartSummary {
+    margin: 4em 0em 0 0em;
+    max-width: 90vw;
+  }
+  .summary_Details p:nth-of-type(2) {
+    margin: 0 0em 0 1em;
+  }
+}
+
+@media screen and (max-width: 498px) {
+  .cart_wrapper {
+    margin: 1em;
+  }
+  .card {
+    margin: 0 0 0 0.2em;
+  }
+  .cartImg {
+    max-width: 30vw;
+  }
+  .card_details {
+    max-width: 70vw;
+  }
+  .cartTitle h1 {
+    margin: 0 2em 0 0;
+    font-size: 14px;
+  }
+  .cartTitle p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .cloth_Details p {
+    font-size: 12px;
+    padding: 0.1em 0;
+    margin: 0 0.2em 0 0;
+  }
 }
