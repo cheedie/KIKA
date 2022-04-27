@@ -1,19 +1,16 @@
 @import './variables';
 
 .navbar {
-  width: 100%;
-  height: 12vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 12vh;
   gap: 1.3rem;
   padding: 0 2rem;
   box-shadow: 0px 0px 2px 2px rgba(190, 190, 190, 0.3);
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 100;
   background: #fff;
+  z-index: 10;
 
   @media (min-width: 480px) and (max-width: 821px) {
     height: 10vh;
@@ -34,6 +31,7 @@
     }
     @media (max-width: 480px) {
       height: 68.97px;
+      margin: 0;
     }
   }
 
@@ -48,9 +46,41 @@
       display: none;
     }
 
-    li{
+    @media (max-width: 480px){
+      margin: 0;
+    }
+
+    li {
       font-size: 0.95rem;
     }
+  }
+
+  .marketPlace__dropDown,
+  .profile__dropDown {
+    position: absolute;
+    top: 12vh;
+    background: #fff;
+    z-index: 5;
+    transition: 0.5s ease;
+
+    div {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border: 1px solid blue;
+      width: 200px;
+      cursor: pointer;
+    }
+  }
+
+  .marketPlace__dropDown {
+    left: 220px;
+  }
+
+  .profile__dropDown {
+    right: 100px;
   }
 
   .nav__searchForm {
@@ -60,25 +90,30 @@
     align-items: center;
     height: 48px;
     flex: 1;
+    border: 1.5px solid #f15a24;
 
     @media (max-width: 821px) {
       width: 40%;
     }
 
     @media (max-width: 480px) {
-      width: auto;
+      //width: auto;
       margin-right: -3rem;
+      width: 5%;
     }
+
     //********* search bar **********
     .nav__searchBar {
       width: 100%;
       height: 100%;
-      padding: 1rem 0.5rem;
       font-size: 14px;
-      border: 1.5px solid #F15A24;
+      border: none;
+      outline: none;
+      padding: 1rem;
+      //z-index: 0;
 
       &:focus {
-        border: 1px solid red;
+        border: none;
         outline: none;
       }
 
@@ -92,114 +127,116 @@
       }
     }
 
-    // todo search Icon for tablet view
-    //.nav__searchIcon{
-    //  display: none;{
-    //    @media (min-width: 480px)and(max-width: 821px){
-    //      display: inline-block;
-    //    }
-    //  }
-    //}
+    .span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10%;
+      cursor: pointer;
 
-    span {
-      display: none;
-
-      @media (max-width: 480px) {
-        display: flex;
+      @media (max-width: 480px){
         width: 100%;
       }
     }
   }
-  //********* sign in and cart container **********
+}
+//********* sign in and cart container **********
 
-  .nav__profile {
-    width: 8.5%;
+.nav__profile {
+  width: 8.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 0.8rem;
+  //border: 2px solid green;
+
+  @media (max-width: 821px) {
+    width: 32%;
+  }
+
+  @media (max-width: 480px) {
+    width: 41%;
+    border: 2px solid red;
+  }
+
+  .profile {
+    border: 2px solid #2e3192;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+
+    //&:hover{
+    //  transform: scale(1.2);
+    //  transition: 0.5s ease-in-out;
+    //}
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .cart {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 0.8rem;
-    //border: 2px solid green;
-
-    @media (max-width: 821px) {
-      width: 32%;
-    }
 
     @media (max-width: 480px) {
-      width: 31%;
-      //border: 2px solid red;
+      margin-left: -2.4rem;
     }
 
-    .profile {
-      border: 2px solid #2E3192;
-;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      cursor: pointer;
-
-      img {
-        //margin-top: 0.4rem;
-        cursor: pointer;
-      }
-    }
-
-    .cart {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    span {
+      font-size: 14px;
+      margin-left: 0.3rem;
+      font-weight: 500;
 
       @media (max-width: 480px) {
-        margin-left: -2.4rem;
-      }
-
-      span {
-        font-size: 14px;
-        margin-left: 0.3rem;
-        font-weight: 500;
-
-        @media (max-width: 480px) {
-          display: none;
-        }
+        display: none;
       }
     }
+  }
 
-    //********* hamburger **********
+  //********* hamburger **********
 
-    .nav__sidebarToggle {
-      display: none;
+  .nav__sidebarToggle {
+    display: none;
 
-      @media (max-width: 821px) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 50px;
+    @media (max-width: 821px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      transition: all 0.5s ease-in-out;
+      cursor: pointer;
+
+      .line {
+        height: 4px;
+        width: 65%;
+        border-radius: 3px;
+        background-color: $secondaryColor;
         transition: all 0.5s ease-in-out;
-        cursor: pointer;
+      }
 
-        .line {
-          height: 4px;
-          width: 65%;
-          border-radius: 3px;
-          background-color: $secondaryColor;
-          transition: all 0.5s ease-in-out;
-        }
+      .line1 {
+        margin-bottom: 5px;
+      }
 
-        .line1 {
-          margin-bottom: 5px;
-        }
-
-        .line3 {
-          margin-top: 5px;
-        }
+      .line3 {
+        margin-top: 5px;
       }
     }
   }
 }
+
+//.profile:hover {
+//  transform: scale(1.2);
+//  transition: 0.5s ease-in-out;
+//}
 
 //********** burger animation ***********
 .open:nth-child(1) {
@@ -237,7 +274,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  z-index: 100;
+  //z-index: 10;
   background: #fff;
   transition: all 500ms ease;
 
@@ -278,14 +315,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 50;
+  z-index: -50;
   opacity: 0;
   transition: opacity 800ms ease;
+  display: none;
+
+  @media (max-width: 480px) {
+    display: block;
+  }
 
   input {
     width: 90%;
-    padding: 1rem;
-    border: 1px solid red;
+    height: 100%;
+    padding: 1rem 1rem 1rem 1.5rem;
   }
 
   img {
@@ -296,3 +338,5 @@
 .show__mobileSearch {
   opacity: 1;
 }
+
+
