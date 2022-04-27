@@ -12,6 +12,20 @@ const FormWaitlist = () => {
   if (state.succeeded) {
     return <div>{openModal && <Modal closeModal={setOpenModal} />}</div>;
   }
+
+  // const closeModal = () => {
+	// 	if (!openModal) {
+	// 		document.body.style.overflow = 'hidden';
+	// 	} else {
+	// 		document.body.style.overflow = 'visible';
+	// 	}
+	// 	setOpenModal(!openModal);
+	// };
+
+  // const [state, handleSubmit] = useForm("mbjwzyqk");
+  // if (state.succeeded) {
+  //   return <Modal openModal={openModal} closeModal={closeModal} />;
+  // }
   return (
     <>
       <section className="hero_WaitContainer">

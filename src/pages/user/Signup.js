@@ -19,7 +19,6 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email, password);
     if (name === "" && email === "" && password === "") {
       setAlert({ show: true, type: "danger", msg: "please enter value" });
     } else if (!terms) {
