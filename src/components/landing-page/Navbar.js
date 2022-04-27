@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [status, setStatus] = useState('close');
+  const [status, setStatus] = useState("close");
   const [profileMenu, setProfileMenu] = useState({
-    opacity: '0',
+    opacity: "0",
   });
   const [marketPlaceMenu, setMarketPlaceMenu] = useState({
-    opacity: '0',
+    opacity: "0",
   });
 
   return (
@@ -30,26 +30,27 @@ const Navbar = () => {
           <li>Home</li>
         </Link>
         <Link
-          to="/marketplace"
-          onMouseEnter={() => setMarketPlaceMenu({ opacity: '1' })}
+          to="/products"
+          onMouseEnter={() => setMarketPlaceMenu({ opacity: "1" })}
         >
-          <li>Market Place</li>
+          <li>MarketPlace</li>
         </Link>
-        <li>About Us</li>
-        <li>Sell on KIKA</li>
+        <Link to="/">
+          <li>About Us</li>
+        </Link>
+        <Link to="/vendor">
+          <li>Sell on KIKA</li>
+        </Link>
       </ul>
       {/*end navlinks */}
 
       {/* start drop downs */}
       <div className="dropdowns">
-        <div
-          className="marketPlace__dropDown"
-          style={marketPlaceMenu}
-        >
-          <div onClick={() => setMarketPlaceMenu({ opacity: '0' })}>
+        <div className="marketPlace__dropDown" style={marketPlaceMenu}>
+          <div onClick={() => setMarketPlaceMenu({ opacity: "0" })}>
             <p>Shop Men</p>
           </div>
-          <div onClick={() => setMarketPlaceMenu({ opacity: '0' })}>
+          <div onClick={() => setMarketPlaceMenu({ opacity: "0" })}>
             <p>Shop Women</p>
           </div>
         </div>
@@ -58,29 +59,29 @@ const Navbar = () => {
           <div
             onClick={() =>
               setProfileMenu({
-                opacity: '0',
+                opacity: "0",
               })
             }
           >
-            <p>Sign in</p>
+            <Link to="/user/signin">Sign in</Link>
           </div>
           <div
             onClick={() =>
               setProfileMenu({
-                opacity: '0',
+                opacity: "0",
               })
             }
           >
-            <p>Sign up</p>
+            <Link to="/user/signup">Sign up</Link>
           </div>
           <div
             onClick={() =>
               setProfileMenu({
-                opacity: '0',
+                opacity: "0",
               })
             }
           >
-            <p>Account</p>
+            <Link to="/user/account">Account</Link>
           </div>
         </div>
       </div>
@@ -112,7 +113,7 @@ const Navbar = () => {
             alt="shopping cart"
             onMouseEnter={() => {
               setProfileMenu({
-                opacity: '1',
+                opacity: "1",
               });
             }}
           />
@@ -151,7 +152,7 @@ const Navbar = () => {
         <Link to="/home">
           <li>Home</li>
         </Link>
-        <Link to="/marketplace">
+        <Link to="/products">
           <li>Market Place</li>
         </Link>
         <Link to="/aboutus">
@@ -160,12 +161,12 @@ const Navbar = () => {
         <Link to="/vendor">
           <li>Sell on KIKA</li>
         </Link>
-        <li>
+        <Link to="/user/signup">
           <button className="btn">Sign up</button>
-        </li>
-        <li>
+        </Link>
+        <Link to="/user/signin">
           <button className="btn">Sign in</button>
-        </li>
+        </Link>
       </ul>
       {/* end mobile sidebar */}
 
