@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useCartContext } from "../../context/cart_context";
-import AmountButtons from "../../components/Cart/AmountButtons";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/cart_context';
+import AmountButtons from '../../components/Cart/AmountButtons';
+import '../../styles/product/addToCart.scss';
 
 const AddtoCart = ({ product }) => {
   const { addToCart } = useCartContext();
@@ -27,10 +28,10 @@ const AddtoCart = ({ product }) => {
   };
 
   return (
-    <div>
-      <AmountButtons amount={amount} increase={increase} decrease={decrease} />
+    <div className="addToCart__button">
+      {/*<AmountButtons amount={amount} increase={increase} decrease={decrease} />*/}
       <Link to="/mycart" onClick={() => addToCart(amount, product)}>
-        ADD TO CART
+        <div>Add To Cart</div>
       </Link>
     </div>
   );

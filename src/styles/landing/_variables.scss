@@ -1,1 +1,9 @@
 $secondaryColor: #2E3192;
+$border-1:2px solid red;
+$border-2:2px solid green;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

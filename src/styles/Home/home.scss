@@ -1,3 +1,5 @@
+@import '../landing/variables';
+
 .home__hero {
   height: 88vh;
   display: flex;
@@ -10,7 +12,7 @@
   z-index: 1;
 
   &::before {
-    content: "";
+    content: '';
     background-color: rgba(33, 33, 33, 0.4);
     height: 100%;
     width: 100%;
@@ -22,6 +24,7 @@
 
   .home__info {
     width: 50vw;
+    max-width: 635px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,22 +60,24 @@
 
   .buttons__grp {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     gap: 1rem;
     width: 34%;
 
     button {
       background: #f15a24;
-      width: 50%;
+      width: 260px;
+      //max-width: 50%;
       height: 48px;
       border: none;
       outline: none;
       color: #fff;
-      font-family: "Montserrat", sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       font-size: 14px;
+      padding: 0.5rem 2rem;
       cursor: pointer;
     }
   }
@@ -82,22 +87,21 @@
 .man__and__woman {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 5rem 5rem;
-  gap: 5rem;
+  padding: 5rem 3rem 0rem 3rem;
 
   .images__container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 5rem;
+    gap: 3rem;
   }
 
   .man,
   .woman {
-    width: 50%;
+    width: 45%;
     height: 600px;
     display: flex;
     flex-direction: column;
@@ -121,7 +125,8 @@
     align-items: center;
     width: 100%;
     height: 100px;
-    background-color: rgba(250, 250, 250, 0.5);
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.5);
 
     button {
       background: #f15a24;
@@ -130,20 +135,23 @@
       border: none;
       outline: none;
       color: #fff;
-      font-family: "Montserrat", sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       font-size: 14px;
       cursor: pointer;
+      text-transform: capitalize;
     }
   }
 }
 
 .home__products {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 4rem;
+  //flex-basis: 20%;
   align-items: center;
-  gap: 3rem;
   width: 100%;
+  margin-top: 4rem;
 }
 
 .new__arrivals {
@@ -151,14 +159,22 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 0.5rem;
+  padding: 2rem 0 7rem 0;
+
+  h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 41.09px;
+    line-height: 50px;
+  }
 
   .products__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 0 5rem 5rem 5rem;
+    //padding: 0 5rem 5rem 5rem;
     gap: 2rem;
   }
 
@@ -166,3 +182,5 @@
     flex-basis: 20%;
   }
 }
+
+

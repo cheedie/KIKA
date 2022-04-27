@@ -21,7 +21,7 @@
   margin-left: -1rem;
 }
 
-.footer__subscribe {
+.footer__topSection .footer__subscribe {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,7 +39,7 @@
   color: #ffffff;
 }
 
-.footer__subscribe h3 {
+.footer__topSection .footer__subscribe h3 {
   font-size: 15px;
   font-weight: 400;
   line-height: 18px;
@@ -47,7 +47,7 @@
   text-align: left;
 }
 
-.footer__subscribe p {
+.footer__topSection .footer__subscribe p {
   font-size: 12px;
   font-weight: 400;
   line-height: 14px;
@@ -55,7 +55,7 @@
   text-align: left;
 }
 
-.footer__subscribe form {
+.footer__topSection .footer__subscribe form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,7 +64,7 @@
   margin-top: 11.68px;
 }
 
-.footer__email {
+.footer__topSection .footer__email {
   height: 100%;
   padding: 1rem;
   border: none;
@@ -72,7 +72,7 @@
   width: 70%;
 }
 
-.footer__submit {
+.footer__topSection .footer__submit {
   background: #f15a24;
   height: 100%;
   border: none;
