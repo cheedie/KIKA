@@ -2,6 +2,7 @@ import { url } from "./constant";
 import axios from "axios";
 
 const verify = (data) => {
+    console.log("Data", data)
     const key = Object.keys(data)[0]
     const response = axios.post(`${url}/auth/`, data,
             {
@@ -12,8 +13,13 @@ const verify = (data) => {
         if(response){
             return response
         }else{
-            response.message = `Cannot confirm ${key === 'business_name'? "Business Name": key}`;
-            response.key = key;
+            response.data = {
+                message : `Cannot confirm ${key === 'business_name'? "Business Name": key}`,
+                key
+            }
+            
+             
+            
             return response;
         }
         

@@ -17,10 +17,11 @@ function VendorSignup() {
   const { uploadVendorDetails } = useVendorContext();
 
   const [isVisible, setVisible ] = useState(false);
+  const [showError, setError ] = useState(false);
   const [page, setPage ] = useState(1);
   const FILE_SIZE = 5 * 1024 * 1024;
            
-    const {setFieldValue, handleSubmit, handleChange, handleBlur, values, touched, errors} = useFormik({
+    const {setFieldValue, validateField, handleSubmit, handleChange, handleBlur, values, touched, errors} = useFormik({
         initialValues:{
             name:'',
             email:'',
@@ -73,6 +74,16 @@ function VendorSignup() {
         validateOnBlur: true, 
 
         onSubmit:values=>{
+          // const verify= (value) => {
+          //   if(!errors[value] || errors[value] === undefined){
+          //           const response = verify({value: values[value]})
+          //           if(response.key && response.message){
+          //             errors[response.key] = response.message
+          //           }
+          //       }
+          //   }
+
+          
            if(page === 1){
             const form = ['name','email','phone','password', 'business_name','terms']              
             let test = form.every(v => values[v] && (!errors[v] || errors[v] === undefined));
@@ -80,7 +91,10 @@ function VendorSignup() {
               console.log('failed test 1')
             }
             else{
-              setPage(2)
+              if(showError){
+              }else{
+                setPage(2)
+              }
             }
             
           } 
@@ -93,24 +107,31 @@ function VendorSignup() {
              }else{
                console.log('Values......', {...values})
                uploadVendorDetails(values);
-              // navigate("/user/signin")
+              //navigate("/user/signin")
              }
           }
-         
-          
           }
          
     })
 
-    const handleVerify= (value) => handleChange()
-    .then(()=>{
-            if(!errors[value] || errors[value] === undefined){
-            const response = verify({value: values[value]})
-            if(response.key && response.message){
-              errors[response.key] = response.message
-            }
-          }})
-    
+    const handleVerify = (e, value) => {
+      handleBlur(value)
+      console.log("values", value)
+      if(!errors[value] || errors[value] === undefined){
+        let data = {}
+        data[value] = values[value];
+        verify(data).then((response)=>{
+        console.log("response", response)
+        if(response.data.key && response.data.message){
+            errors[response.data.key] = response.data.message
+            setError(true)
+        }else{
+            setError(false)
+          }
+        })
+      }
+    }
+      
     const form_data = [
       {input_name:"Full Name", short:"name",},
       {input_name:"Email Address", short:"email", input_type: 'email'},
@@ -151,7 +172,8 @@ function VendorSignup() {
                         //autoComplete="off"
                         value={values[short]}
                         type={input_type ? input_type : "text"}
-                        onChange={()=>["email","phone","business_name"].includes(short) ? handleVerify(short) : handleChange}
+                        onBlur={(e)=>["email","phone","business_name"].includes(short) ? handleVerify(e, short) : handleBlur(e)}
+                        onChange={handleChange}
                       />
                       {touched[short] && errors[short]?(
                           <Message>{errors[short]}</Message>
@@ -203,7 +225,8 @@ function VendorSignup() {
                           placeholder={input_name}
                           //autoComplete="off"
                           value={values[short]}
-                          onChange={()=>["email","phone","business_name"].includes(short) ? handleVerify(short) : handleChange}
+                          onBlur={(e)=>["email","phone","business_name"].includes(short) ? handleVerify(e, short) : handleBlur(e)}
+                          onChange={handleChange}
                          
                         />
                         {touched[short] && errors[short]?(
