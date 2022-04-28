@@ -38,7 +38,7 @@ const Navbar = () => {
         <Link to="/">
           <li>About Us</li>
         </Link>
-        <Link to="/vendor">
+        <Link to="/vendor/signup">
           <li>Sell on KIKA</li>
         </Link>
       </ul>
