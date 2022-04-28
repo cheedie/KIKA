@@ -18,6 +18,19 @@ const Navbar = () => {
     zIndex: '-100',
   });
 
+  const showDropDown = () => {
+    setMarketPlaceMenu({
+      opacity: '1',
+      zIndex: '2',
+    });
+  };
+  const hideDropDown = () => {
+    setMarketPlaceMenu({
+      opacity: '0',
+      zIndex: '-100',
+    });
+  };
+
   return (
     <section className="navbar">
       {/* start logo */}
@@ -32,17 +45,7 @@ const Navbar = () => {
             <Link to="/home">Home</Link>
           </li>
 
-          <li
-            onMouseEnter={() =>
-              setMarketPlaceMenu({
-                opacity: '1',
-                zIndex: '2',
-              })
-            }
-            onMouseLeave={() =>
-              setMarketPlaceMenu({ opacity: '0', zIndex: '-100' })
-            }
-          >
+          <li onMouseEnter={showDropDown} onMouseLeave={hideDropDown}>
             <Link to="/products">Market Place</Link>
           </li>
 
@@ -55,27 +58,19 @@ const Navbar = () => {
         <div
           className="marketPlace__dropDown"
           style={marketPlaceMenu}
-          onMouseEnter={() =>
-            setMarketPlaceMenu({ opacity: '1', zIndex: '2' })
-          }
-          onMouseLeave={() =>
-            setMarketPlaceMenu({ opacity: '0', zIndex: '-100' })
-          }
+          onMouseEnter={showDropDown}
+          onMouseLeave={hideDropDown}
         >
-          <div
-            onClick={() =>
-              setMarketPlaceMenu({ opacity: '0', zIndex: '-100' })
-            }
-          >
-            <p>Shop Men</p>
-          </div>
-          <div
-            onClick={() =>
-              setMarketPlaceMenu({ opacity: '0', zIndex: '-100' })
-            }
-          >
-            <p>Shop Women</p>
-          </div>
+          <Link to="/products/men">
+            <div onClick={hideDropDown}>
+              <p>Shop Men</p>
+            </div>
+          </Link>
+          <Link to="/products/women">
+            <div onClick={hideDropDown}>
+              <p>Shop Women</p>
+            </div>
+          </Link>
         </div>
 
         <div
@@ -84,6 +79,7 @@ const Navbar = () => {
           onMouseEnter={() => {
             setProfileMenu({
               opacity: '1',
+              zIndex: '2',
             });
           }}
           onMouseLeave={() => {
@@ -93,33 +89,42 @@ const Navbar = () => {
             });
           }}
         >
-          <div
-            onClick={() =>
-              setProfileMenu({
-                opacity: '0',
-              })
-            }
-          >
-            <p>Sign in</p>
-          </div>
-          <div
-            onClick={() =>
-              setProfileMenu({
-                opacity: '0',
-              })
-            }
-          >
-            <p>Sign up</p>
-          </div>
-          <div
-            onClick={() =>
-              setProfileMenu({
-                opacity: '0',
-              })
-            }
-          >
-            <p>Account</p>
-          </div>
+          <Link to="/buyer/signin">
+            <div
+              onClick={() =>
+                setProfileMenu({
+                  opacity: '0',
+                })
+              }
+            >
+              <p>Sign in</p>
+            </div>
+          </Link>
+          <Link to="/buyer/signup">
+            <div
+              onClick={() =>
+                setProfileMenu({
+                  opacity: '0',
+                  zIndex: '-100',
+                })
+              }
+            >
+              <p>Sign up</p>
+            </div>
+          </Link>
+
+          <Link to="/user/account">
+            <div
+              onClick={() =>
+                setProfileMenu({
+                  opacity: '0',
+                  zIndex: '-100',
+                })
+              }
+            >
+              <p>Account</p>
+            </div>
+          </Link>
         </div>
         {/* end drop downs */}
 
