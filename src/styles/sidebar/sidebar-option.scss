@@ -1,9 +1,48 @@
-.sidebarOption{
-  //border: 2px solid green;
+.sidebarOptions{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0 0 1px 1px rgb(85, 75, 75, 0.5);
   padding: 0.5rem 1rem;
+  gap: 12.9px;
+
+  .option__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    width: 215px;
+    border: 1px solid #C4C4C4;
+    padding: 0 1rem;
+
+    label{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 40%;
+      height: 100%;
+      //border: 1px solid lightblue;
+    }
+    select{
+      width: 60%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      font-family: "Monserrat", sans-serif;
+      //border: 1px solid lightblue;
+
+      option{
+        border: none;
+        outline: none;
+        height: 100%;
+
+        &:focus{
+          border: none;
+          outline: none;
+        }
+      }
+    }
+  }
 }
