@@ -6,8 +6,11 @@ import { AiOutlineCloseCircle as Close} from 'react-icons/ai'
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
 import { useState } from 'react';
+import { useVendorContext } from "../../context/vendor_context";
 
 export default function UploadForm({setUpload}) {
+    
+  const { uploadVendorDetails } = useVendorContext();
 
     const FILE_SIZE = 160 * 1024;
    const [imagePreview, setImagePreview] = useState({
@@ -55,7 +58,14 @@ export default function UploadForm({setUpload}) {
           }),
         }),
 
-        onSubmit:({name, email, password, id})=>{
+        onSubmit:values=>{
+        if(!test){
+              console.log('empty fields...')
+             }else{
+               console.log('Values......', {...values})
+               uploadVendorDetails(values);
+               setUpload(false)
+             }
 
           }
     })
