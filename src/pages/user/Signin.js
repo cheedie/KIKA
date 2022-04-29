@@ -18,8 +18,11 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await loginUser({ email, password });
-      console.log(response);
+      let response = await loginUser({ email, password })
+      .then((res)=>{
+        console.log("sigin res",res)
+        return res
+      });
       if (!response || response.status !== 200) {
         setAlert({
           show: true,
