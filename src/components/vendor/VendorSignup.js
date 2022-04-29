@@ -13,7 +13,7 @@ import { MdArrowBack as Back} from 'react-icons/md';
 import verify from '../../utils/verify';
 
 function VendorSignup() {
- // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { uploadVendorDetails } = useVendorContext();
 
   const [isVisible, setVisible ] = useState(false);
@@ -21,7 +21,7 @@ function VendorSignup() {
   const [page, setPage ] = useState(1);
   const FILE_SIZE = 5 * 1024 * 1024;
            
-    const {setFieldValue, validateField, handleSubmit, handleChange, handleBlur, values, touched, errors} = useFormik({
+    const {setFieldValue, setFieldTouched,setFieldError, handleSubmit, handleChange, handleBlur, values, touched, errors} = useFormik({
         initialValues:{
             name:'',
             email:'',
@@ -66,35 +66,42 @@ function VendorSignup() {
                   value.type === "image/png" ||
                   value.type === "application/msword"
               ))
-          }),
+          }).test(values['email']),
           otp:  Yup.string().required('Required'),
         })
         ,
         validateOnChange: true, 
         validateOnBlur: true, 
+        handleVerify:(e, value) => {
+          if(!errors[value] || errors[value] === undefined){
+            let data = {}
+            data[value] = values[value];
+            verify(data).then((response)=>{
+              if(!response){
+                 response.data = {
+                  message : `Cannot confirm ${value === 'business_name'? "Business Name": value}`,
+                  key: value
+                }
+              }
+              console.log("response", response)
+              const message = response.data.message
+              console.log("message::::", message)
+              setFieldError(value, message)
+              errors[value] = message
+            })
+            .then(()=>handleBlur(e))
+          }},
 
         onSubmit:values=>{
-          // const verify= (value) => {
-          //   if(!errors[value] || errors[value] === undefined){
-          //           const response = verify({value: values[value]})
-          //           if(response.key && response.message){
-          //             errors[response.key] = response.message
-          //           }
-          //       }
-          //   }
-
-          
            if(page === 1){
+             console.log("submit errors", errors)
             const form = ['name','email','phone','password', 'business_name','terms']              
             let test = form.every(v => values[v] && (!errors[v] || errors[v] === undefined));
             if(!test){ 
               console.log('failed test 1')
             }
             else{
-              if(showError){
-              }else{
-                setPage(2)
-              }
+              setPage(2)
             }
             
           } 
@@ -107,7 +114,7 @@ function VendorSignup() {
              }else{
                console.log('Values......', {...values})
                uploadVendorDetails(values);
-              //navigate("/user/signin")
+               navigate("/vendor/signin");
              }
           }
           }
@@ -115,19 +122,27 @@ function VendorSignup() {
     })
 
     const handleVerify = (e, value) => {
-      handleBlur(value)
+      
       console.log("values", value)
       if(!errors[value] || errors[value] === undefined){
         let data = {}
         data[value] = values[value];
         verify(data).then((response)=>{
         console.log("response", response)
-        if(response.data.key && response.data.message){
-            errors[response.data.key] = response.data.message
-            setError(true)
-        }else{
-            setError(false)
-          }
+        //if(response.data.key && response.data.message){
+          const message = response.data.message
+          console.log("message::::", message)
+          setFieldTouched(value, true, true)
+          .then((response)=>{
+            errors[value] = message
+            setFieldError(value, message)
+            console.log("setfieldtuch::::", response)})
+          .then(()=>{
+            console.log("Errrorrrrss",errors)
+            return handleBlur(value)
+            
+          })
+          //}
         })
       }
     }
@@ -149,7 +164,7 @@ function VendorSignup() {
         <Navbar />
         <Heading> {page === 1 ? 'Sell on Kika' : 'Vendor Verification'}</Heading>
         <StyledForm 
-          onBlur={handleBlur} 
+          onBlur={(e)=>["email","phone","business_name"].includes(e.target.id) ? handleVerify(e, e.target.id) : handleBlur(e)}
           onSubmit={handleSubmit} 
           id='signup' 
           gap={page === 2 ? '1' : "4"}
@@ -172,7 +187,6 @@ function VendorSignup() {
                         //autoComplete="off"
                         value={values[short]}
                         type={input_type ? input_type : "text"}
-                        onBlur={(e)=>["email","phone","business_name"].includes(short) ? handleVerify(e, short) : handleBlur(e)}
                         onChange={handleChange}
                       />
                       {touched[short] && errors[short]?(
@@ -225,7 +239,6 @@ function VendorSignup() {
                           placeholder={input_name}
                           //autoComplete="off"
                           value={values[short]}
-                          onBlur={(e)=>["email","phone","business_name"].includes(short) ? handleVerify(e, short) : handleBlur(e)}
                           onChange={handleChange}
                          
                         />
@@ -238,7 +251,8 @@ function VendorSignup() {
               <StyledButton type="submit" id='continue' name='continue'
               label="continue" align-self="end"
               onClick={()=>{
-               console.log('Values',values)
+              
+               console.log('Onclick errors',errors)
               }}      
               >Continue</StyledButton>
             </Wrapper>
