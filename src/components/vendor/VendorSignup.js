@@ -15,6 +15,7 @@ import verify from '../../utils/verify';
 function veri(obj, value){
   const {path} = obj
   const data = {}
+  console.log("this", obj)
   console.log("Path1", path)
   data[path] = value
   return verify(data).then((response) => 
@@ -55,7 +56,7 @@ Yup.addMethod(Yup.string, 'network', function(msg){
   return this.test({
     name: 'network',
     message: value => message(value) ? message(value) : msg,
-    test: value => veri(this.test(), value)
+    test: value => veri(this, value)
    });
 })
 
