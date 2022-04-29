@@ -12,6 +12,21 @@ import { useVendorContext } from "../../context/vendor_context";
 import { MdArrowBack as Back} from 'react-icons/md';
 import verify from '../../utils/verify';
 
+Yup.addMethod(Yup.string, 'checkConnect', function (errorMessage) {
+  return this.test(`connection`, errorMessage, function (value) {
+    const { path, createError } = this;
+    console.log("Path:::", path)
+    const data = {}
+    data[path] = value
+    const response = verify(data)
+    console.log("New Response:::", response)
+    return (
+      response ||
+      createError({ path, message: errorMessage })
+    );
+  });
+});
+
 function VendorSignup() {
   const navigate = useNavigate();
   const { uploadVendorDetails } = useVendorContext();
@@ -44,7 +59,8 @@ function VendorSignup() {
           .matches(/^[0-9]+$/, "Phone number must be only digits")
           .min(11, 'Must be up to 11 digits')
           .max(13, 'Cannot exceed 11 digits'),
-          email:  Yup.string().required('Required').email('Invalid email'),
+          email:  Yup.string().required('Required').email('Invalid email')
+          .checkConnect("Could not confirm availability"),
           password: Yup.string().required('Required').min(8,'Password should be longer than 8 characters'),
           business_name: Yup.string().required('Required').min(5, 'Business name is too short').max(30, 'Business name is too long'),
           address:  Yup.string().required('Required'),
@@ -164,7 +180,7 @@ function VendorSignup() {
         <Navbar />
         <Heading> {page === 1 ? 'Sell on Kika' : 'Vendor Verification'}</Heading>
         <StyledForm 
-          onBlur={(e)=>["email","phone","business_name"].includes(e.target.id) ? handleVerify(e, e.target.id) : handleBlur(e)}
+          onBlur={handleBlur}
           onSubmit={handleSubmit} 
           id='signup' 
           gap={page === 2 ? '1' : "4"}
