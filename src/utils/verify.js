@@ -22,7 +22,7 @@ const verify = (data) => {
                 "Content-type": "application/json"
                 }
             }).then((response)=>{
-                console.log("RESPONSE::: ",response)
+                //console.log("RESPONSE::: ",response)
                 return response})
         
 }

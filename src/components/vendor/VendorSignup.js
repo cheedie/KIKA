@@ -13,10 +13,8 @@ import { MdArrowBack as Back} from 'react-icons/md';
 import verify from '../../utils/verify';
 
 function veri(obj, value){
-  const {path} = obj
+  const {path, createError} = obj
   const data = {}
-  console.log("this", obj)
-  console.log("Path1", path)
   data[path] = value
   return verify(data).then((response) => 
     { 
@@ -30,35 +28,53 @@ function veri(obj, value){
     })
 }
 
-function message(value){
-  const {path} = this
+function mess(obj, message, value){
+  const {path} = obj
   const data = {}
-  console.log("Path1", path)
+  console.log("this is test message obj", obj)
   data[path] = value
   return verify(data).then((response) => 
     { 
       if(response.status === 200 && response.data.message){
         return response.data.message
       }else{
-        return false
+        return message
       }
     })
 }
 
-Yup.addMethod(Yup.string, 'availability', function(msg){
-  return this.test('availability', 
-  msg, 
-  function(value){
-    return veri(this, value)
+// Yup.addMethod(Yup.string, 'availability',function(msg){
+//   const {message} = msg
+//   console.log("this is message", message)
+//   return this.test('availability', message, function(value){
+//     console.log("this is value", value)
+//     return veri(this, value)
+//   })
+// })
+Yup.addMethod(Yup.string, 'availability',function(msg){
+  return this.test('availability', msg, function(value){
+    const {path, createError} = this
+    const data = {}
+    data[path] = value
+    return (verify(data)
+    .then((response) => (response.status === 200 && response.data.key) ? true :
+       (response.status === 200 && response.data.success) ? true : false )) ||
+       createError({path,  message: mess(this, value, msg)}))
   })
 })
-Yup.addMethod(Yup.string, 'network', function(msg){
-  return this.test({
-    name: 'network',
-    message: value => message(value) ? message(value) : msg,
-    test: value => veri(this, value)
-   });
-})
+// Yup.addMethod(Yup.string, 'network', function(msg){
+//   return this.test({
+//     name: 'network',
+//     test: function(value){ 
+//       return !(veri(this, value)) ?
+//       this.createError({
+//         message: ""
+//       })
+//       : true
+    
+//     }
+//    });
+// })
 
 function VendorSignup() {
   const navigate = useNavigate();
@@ -91,8 +107,8 @@ function VendorSignup() {
           .min(11, 'Must be up to 11 digits')
           .max(13, 'Cannot exceed 11 digits'),
           email:  Yup.string().required('Required').email('Invalid email')
-          .network("Could not confirm availability"),
-          //.availability("Could not confirm availability"),
+          //.network("Could not confirm availability"),
+          .availability("Could not confirm availability"),
           password: Yup.string().required('Required').min(8,'Password should be longer than 8 characters'),
           business_name: Yup.string().required('Required').min(5, 'Business name is too short').max(30, 'Business name is too long'),
           address:  Yup.string().required('Required'),
