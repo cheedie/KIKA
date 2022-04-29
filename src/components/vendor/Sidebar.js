@@ -15,8 +15,10 @@ export default function Sidebar() {
           return (
               <NavLink to={link.link} 
                 key={`${link.title}-${index}`}
-                className="link"
-                activeClassName="active"
+                // className="link"
+                // activeClassName="active"
+               // isActive={(match, location) => {if (!match) {return false;}
+                className={({ isActive }) => isActive ? 'active link' : 'link'  }          
                 >
                 {link.title}
               </NavLink>

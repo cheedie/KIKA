@@ -1,16 +1,26 @@
 import shirt from "../../assets/vendor/images/shirt.png"
+import UploadForm from "./UploadForm";
+import { useState } from "react";
+import {Link} from 'react-router-dom'
+// import {useFormik} from 'formik';
+// import * as Yup from 'yup'
+//import { url } from "../../utils/constant";
 
 export default function Products() {
+    const [isUploading, setUpload] = useState(false)
+
+
   return (
+      <>
     <div id="wrapper" className="products">
         <nav>
             <div>
-            <a href="/" className="subtitle active">All (2)</a>
-            <a href="/" className="subtitle">Online (0)</a>
-            <a href="/" className="subtitle">Pending Review (0)</a>
-            <a href="/" className="subtitle">Draft (0)</a>
+            <Link to="/" className="subtitle active">All (2)</Link>
+            <Link to="/" className="subtitle">Online (0)</Link>
+            <Link to="/" className="subtitle">Pending Review (0)</Link>
+            <Link to="/" className="subtitle">Draft (0)</Link>
             </div>
-            <button className="button">Add Product</button>
+            <button className="button" onClick={()=>setUpload(true)}>Add Product</button>
         </nav>
         <div className="body">
             <div className="filters">
@@ -64,9 +74,11 @@ export default function Products() {
 
         </div>
         </div>
-
-    
+        
+       
     </div>
+    {isUploading ? <UploadForm setUpload={setUpload}/>:null}
+    </>
   )
 }
 
@@ -125,3 +137,8 @@ function ProductTile() {
 
   
 }
+
+
+
+
+

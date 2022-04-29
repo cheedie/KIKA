@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [status, setStatus] = useState('close');
+  const [status, setStatus] = useState("close");
   const [profileMenu, setProfileMenu] = useState({
-    opacity: '0',
+    opacity: "0",
   });
   const [marketPlaceMenu, setMarketPlaceMenu] = useState({
     opacity: '0',
@@ -125,6 +125,7 @@ const Navbar = () => {
               <p>Account</p>
             </div>
           </Link>
+
         </div>
         {/* end drop downs */}
 
@@ -152,7 +153,7 @@ const Navbar = () => {
             className="profile__imgContainer"
             onMouseEnter={() => {
               setProfileMenu({
-                opacity: '1',
+                opacity: "1",
               });
             }}
             onMouseLeave={() => {

@@ -8,6 +8,7 @@ import {
 import Landing from "./pages/Landing";
 
 import Vendor from "./components/vendor/Vendor";
+import VendorSignup from "./components/vendor/VendorSignup";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
@@ -62,12 +63,16 @@ function AppRoutes() {
           path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
+        
+        { path: "/vendor/*", element: <Vendor /> },
       ],
     },
 
     {
       element: <Authenticate />,
       children: [
+        
+        { path: "/vendor/signup", element: <VendorSignup /> },
         { path: "/user/signup", element: <Signup /> },
         { path: "/user/signin", element: <Signin /> },
       ],
@@ -75,7 +80,6 @@ function AppRoutes() {
 
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
-    { path: "/vendor/*", element: <Vendor /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },

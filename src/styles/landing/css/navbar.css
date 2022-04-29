@@ -363,6 +363,8 @@
   background: #fff;
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
+  display:none; /*Hey Martin this side bar was affecting my form fields*/
+
 }
 
 @media (min-width: 480px) and (max-width: 821px) {
