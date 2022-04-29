@@ -18,12 +18,16 @@ Yup.addMethod(Yup.string, 'checkConnect', function (errorMessage) {
     console.log("Path:::", path)
     const data = {}
     data[path] = value
-    const response = verify(data)
-    console.log("New Response:::", response)
-    return (
-      response ||
-      createError({ path, message: errorMessage })
-    );
+    verify(data).then((response) => 
+    { console.log("New Response:::", response)
+      return response || createError({ path, message: errorMessage })
+    }
+      )
+    
+    // return (
+    //   response ||
+    //   createError({ path, message: errorMessage })
+    // );
   });
 });
 
