@@ -46,7 +46,7 @@ function AppRoutes() {
     { path: "/products/women", element: <Women /> },
     { path: "/products/men", element: <Men /> },
 
-    { path: "/vendor", element: <Vendor /> },
+    // { path: "/vendor", element: <Vendor /> },
 
     {
       element: <Authorize />,
@@ -66,7 +66,7 @@ function AppRoutes() {
           element: <ChangePassword />,
         },
         
-        { path: "/vendor/*", element: <Vendor /> },
+        // { path: "/vendor", element: <Vendor /> },
       ],
     },
 
@@ -80,12 +80,13 @@ function AppRoutes() {
     {
       element: <AuthorizeVendor />,
       children: [
+    { path: "/vendor/signin", element: <Signin /> },
+
         { path: "/vendor/*", element: <Vendor /> },
       ],
     },
 
     { path: "/vendor/signup", element: <VendorSignup /> },
-    { path: "/vendor/signin", element: <Signin /> },
 
     // {
     //   element: <AuthenticateVendor />,

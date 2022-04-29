@@ -12,69 +12,19 @@ import { useVendorContext } from "../../context/vendor_context";
 import { MdArrowBack as Back} from 'react-icons/md';
 import verify from '../../utils/verify';
 
-function veri(obj, value){
-  const {path, createError} = obj
-  const data = {}
-  data[path] = value
-  return verify(data).then((response) => 
-    { 
-      if(response.status === 200 && response.data.key){
-        return true
-      }else if(response.status === 200 && response.data.success){
-        return true
-      }else{
-        return false
-      }
-    })
-}
 
-function mess(obj, message, value){
-  const {path} = obj
-  const data = {}
-  console.log("this is test message obj", obj)
-  data[path] = value
-  return verify(data).then((response) => 
-    { 
-      if(response.status === 200 && response.data.message){
-        return response.data.message
-      }else{
-        return message
-      }
-    })
-}
-
-// Yup.addMethod(Yup.string, 'availability',function(msg){
-//   const {message} = msg
-//   console.log("this is message", message)
-//   return this.test('availability', message, function(value){
-//     console.log("this is value", value)
-//     return veri(this, value)
-//   })
-// })
 Yup.addMethod(Yup.string, 'availability',function(msg){
   return this.test('availability', msg, function(value){
     const {path, createError} = this
     const data = {}
     data[path] = value
-    return (verify(data)
-    .then((response) => (response.status === 200 && response.data.key) ? true :
-       (response.status === 200 && response.data.success) ? true : false )) ||
-       createError({path,  message: mess(this, value, msg)}))
+    return verify(data).then((response) => (response.status !== 200 || !response) ? createError({path, message: msg})
+  : (response.status === 200 && response.data.key && response.data.message) ? createError({path,  message: response.data.message})
+  : true)
   })
 })
-// Yup.addMethod(Yup.string, 'network', function(msg){
-//   return this.test({
-//     name: 'network',
-//     test: function(value){ 
-//       return !(veri(this, value)) ?
-//       this.createError({
-//         message: ""
-//       })
-//       : true
-    
-//     }
-//    });
-// })
+
+
 
 function VendorSignup() {
   const navigate = useNavigate();
@@ -100,23 +50,21 @@ function VendorSignup() {
             
         },
 
-        validationSchema: page === 1 ? Yup.object({
+        validationSchema:  page === 1 ?  Yup.object({
           name: Yup.string().min(5, 'Fullname is too short').max(30, 'Fullname is too long').required('Required'),
-          phone: Yup.string().required('Required')
+          phone: Yup.string().required('Required').availability("Network error")
           .matches(/^[0-9]+$/, "Phone number must be only digits")
           .min(11, 'Must be up to 11 digits')
           .max(13, 'Cannot exceed 11 digits'),
-          email:  Yup.string().required('Required').email('Invalid email')
-          //.network("Could not confirm availability"),
-          .availability("Could not confirm availability"),
+          email:  Yup.string().email('Invalid email')
+          .availability("Could not confirm availability").required('Required'),
           password: Yup.string().required('Required').min(8,'Password should be longer than 8 characters'),
-          business_name: Yup.string().required('Required').min(5, 'Business name is too short').max(30, 'Business name is too long'),
+          business_name: Yup.string().min(5, 'Business name is too short').max(30, 'Business name is too long')
+          .availability("Could not confirm availability").required('Required'),
           address:  Yup.string().required('Required'),
           city:  Yup.string().required('Required'),
           state:  Yup.string().required('Required'),
           terms: Yup.boolean("Please accept policies").required('Required'),
-          
-          
         }) : Yup.object({
           id_num:  Yup.string().required('Required')
           .matches(/^[0-9]+$/, "ID Number must be only digits")
@@ -127,42 +75,22 @@ function VendorSignup() {
             return !value || (value && (
                   value.type === "image/jpeg" ||
                   value.type === "image/bmp" ||
-                  value.type === "image/png" ||
-                  value.type === "application/msword"
+                  value.type === "image/png"
               ))
           }),
           otp:  Yup.string().required('Required'),
-        })
-        ,
-        validateOnChange: true, 
-        validateOnBlur: true, 
+        }),
+        
        
         onSubmit:values=>{
            if(page === 1){
-             console.log("submit errors", errors)
-            const form = ['name','email','phone','password', 'business_name','terms']              
-            let test = form.every(v => values[v] && (!errors[v] || errors[v] === undefined));
-            if(!test){ 
-              console.log('failed test 1')
-            }
-            else{
-              setPage(2)
-            }
-            
+            setPage(2)
           } 
-          if(page === 2){
-            const form = ['id_num','image']              
-            let test = form.every((v,i)=> values[v] && (!errors[v] || errors[v] === undefined));
-            
-            if(!test){
-              console.log('empty fields...')
-             }else{
-               console.log('Values......', {...values})
+          else{
                uploadVendorDetails(values);
                navigate("/vendor/signin");
-             }
           }
-          }
+        }
          
     })
 
@@ -205,7 +133,6 @@ function VendorSignup() {
                         id={short}
                         name={short}
                         placeholder={input_name}
-                        //autoComplete="off"
                         value={values[short]}
                         type={input_type ? input_type : "text"}
                         onChange={handleChange}
@@ -282,14 +209,12 @@ function VendorSignup() {
             <>
             <ExitButton id='back' name='back' onClick={()=>setPage(1)}><Back/> <span> Go back</span></ExitButton>
               <Wrapper className = "input_container" container  grid gap="2">
-                
                 <Wrapper grid gap="0.5">
                   <StyledLabel htmlFor='id_num' normal> National Identification Number </StyledLabel>
                   <StyledInput
                     id='id_num'
                     name='id_num'
                     placeholder='National Identification Number'
-                   // autoComplete="off"
                     value={values.id_num}
                     onChange={handleChange}
                   />
@@ -303,23 +228,9 @@ function VendorSignup() {
                     id='image'
                     name='image'
                     placeholder='Identification'
-                    //autoComplete="off"
                     type="file"
                     accept="image/*"
-                    onChange={(event) => {
-                      console.log('current target',event.currentTarget)
-                      
-                      setFieldValue("image", event.currentTarget.files[0])
-                      .then(()=>{
-                        console.log('event', event)
-                        console.log('event Target', event.target.files)
-                        console.log('current target',event.currentTarget)
-                        console.log('IMAGE VALUE ',values.image)
-                      
-                      })
-                      
-                    }}
-                    
+                    onChange={(event) => setFieldValue("image", event.currentTarget.files[0])}
                   />
                   {touched.image && errors.image ?(
                     <Message>{errors.image}</Message>
@@ -331,7 +242,6 @@ function VendorSignup() {
                     id='otp'
                     name='otp'
                     placeholder='Input code'
-                   // autoComplete="off"
                     value={values.otp}
                     onChange={handleChange}
                   />
@@ -341,10 +251,9 @@ function VendorSignup() {
                 </Wrapper>
                       
                 <StyledButton type="submit"
-                id="submit" name='submit' label="continue"
-                  onClick={()=> console.log('hello')}
+                  id="submit" name='submit' label="continue"
                   page={page} 
-                  >Continue</StyledButton>
+                >Continue</StyledButton>
               </Wrapper>
               <Wrapper>
                     <Image/>

@@ -30,9 +30,7 @@ const Signin = () => {
       } else if(response.data.role === 'user'){
         navigate("/user/account");
       }else if(response.data.role === 'vendor'){
-        navigate("/vendor/*");
-      }else{
-        navigate("/user/account");
+        navigate("/vendor/");
       }
     } catch (error) {
       console.log(error);
