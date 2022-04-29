@@ -19,9 +19,7 @@ const Signin = () => {
     e.preventDefault();
     try {
       let response = await loginUser({ email, password })
-      .then((res)=>{
-        console.log("sigin res",res)
-        return res
+      .then((res)=>{return res
       });
       if (!response || response.status !== 200) {
         setAlert({
@@ -29,10 +27,10 @@ const Signin = () => {
           type: "danger",
           msg: "Incorrect email or password",
         });
-      } else if(response.role === 'user'){
+      } else if(response.data.role === 'user'){
         navigate("/user/account");
-      }else if(response.role === 'vendor'){
-        navigate("/vendor");
+      }else if(response.data.role === 'vendor'){
+        navigate("/vendor/*");
       }else{
         navigate("/user/account");
       }
