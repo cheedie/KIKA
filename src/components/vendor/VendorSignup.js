@@ -12,71 +12,52 @@ import { useVendorContext } from "../../context/vendor_context";
 import { MdArrowBack as Back} from 'react-icons/md';
 import verify from '../../utils/verify';
 
-// Yup.addMethod(Yup.string, 'checkConnect', function (errorMessage) {
-//   return this.test(`connection`, errorMessage, function (value) {
-//     const { path, createError } = this;
-//     console.log("Path:::", path)
-//     const data = {}
-//     data[path] = value
-//     verify(data).then((response) => 
-//     { console.log("New Response:::", response)
-//       return response || createError({ path, message: errorMessage })
-//     }
-//       )
-//     // verify(data).then((response) => 
-//     // { console.log("New Response:::", response)
-//     //   return response || createError({ path, message: errorMessage })
-//     // }
-//     //   )
-    
-//   });
-// });
-// Yup.addMethod(Yup.mixed, 'checkConnect', function (available, errorMessage) {
-//   return this.test(`connection`, errorMessage, function (value) {
-//     const { path, createError } = this;
-//     console.log("Path:::", path)
-//     const data = {}
-//     data[path] = value
-//     verify(data).then((response) => 
-//     { console.log("New Response:::", response)
-//       return response || createError({ path, message: errorMessage })
-//     }
-//     )
-    
-//   });
-// );
-Yup.addMethod(Yup.string, 'availability', function(msg){
-  
-  // const testing = this.test
-  // console.log("THIS:::", testing)
-
-  return this.test('availability', msg, function(value){
-    const {path} = this
-    const data = {}
-    console.log("Path1", path)
-    data[path] = value
-    return verify(data).then((response) => 
-      { console.log("New Response:::", response)
+function veri(obj, value){
+  const {path} = obj
+  const data = {}
+  console.log("Path1", path)
+  data[path] = value
+  return verify(data).then((response) => 
+    { 
+      if(response.status === 200 && response.data.key){
         return true
-        //return response
-      })
-  })
-    // return this.test({
-    //   path:this.path,
-    //   name:'availability',
-    //   message: msg,
-    //   test: (value) => {
-    //     //const {path} = this
-    //     //let data = {}
-    //     data[path] = value
-    //     console.log("Path...", path)
-    //     console.log("Data...", data)
-    //     console.log(this)
-    //     return false
-    //   }
-    // })
+      }else if(response.status === 200 && response.data.success){
+        return true
+      }else{
+        return false
+      }
+    })
+}
 
+function message(value){
+  const {path} = this
+  const data = {}
+  console.log("Path1", path)
+  data[path] = value
+  return verify(data).then((response) => 
+    { 
+      if(response.status === 200 && response.data.message){
+        return response.data.message
+      }else{
+        return false
+      }
+    })
+}
+
+Yup.addMethod(Yup.string, 'availability', function(msg){
+  return this.test('availability', 
+  msg, 
+  function(value){
+    return veri(this, value)
   })
+})
+Yup.addMethod(Yup.string, 'network', function(msg){
+  return this.test({
+    name: 'network',
+    message: value => message(value) ? message(value) : msg,
+    test: value => veri(this.test(), value)
+   });
+})
 
 function VendorSignup() {
   const navigate = useNavigate();
@@ -109,7 +90,8 @@ function VendorSignup() {
           .min(11, 'Must be up to 11 digits')
           .max(13, 'Cannot exceed 11 digits'),
           email:  Yup.string().required('Required').email('Invalid email')
-          .availability("Could not confirm availability"),
+          .network("Could not confirm availability"),
+          //.availability("Could not confirm availability"),
           password: Yup.string().required('Required').min(8,'Password should be longer than 8 characters'),
           business_name: Yup.string().required('Required').min(5, 'Business name is too short').max(30, 'Business name is too long'),
           address:  Yup.string().required('Required'),
