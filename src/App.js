@@ -65,7 +65,7 @@ function AppRoutes() {
           path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
-        
+
         // { path: "/vendor", element: <Vendor /> },
       ],
     },
@@ -80,7 +80,7 @@ function AppRoutes() {
     {
       element: <AuthorizeVendor />,
       children: [
-    { path: "/vendor/signin", element: <Signin /> },
+        { path: "/vendor/signin", element: <Signin /> },
 
         { path: "/vendor/*", element: <Vendor /> },
       ],
@@ -91,7 +91,7 @@ function AppRoutes() {
     // {
     //   element: <AuthenticateVendor />,
     //   children: [
-        
+
     //   ],
     // },
 
@@ -114,6 +114,7 @@ function AppRoutes() {
 
     { path: "/delivery", element: <Delivery /> },
     { path: "/payment", element: <PaymentOptions /> },
+    { path: "/vendor/signup", element: <VendorSignup /> },
   ]);
   return routes;
 }

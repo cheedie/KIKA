@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import Logo from '../../assets/landing-page/logo.png';
-import Search from '../../assets/landing-page/search.png';
-import Cart from '../../assets/landing-page/cart.png';
-import Profile from '../../assets/landing-page/profile.png';
-import '../../styles/landing/navbar.scss';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import Logo from "../../assets/landing-page/logo.png";
+import Search from "../../assets/landing-page/search.png";
+import Cart from "../../assets/landing-page/cart.png";
+import Profile from "../../assets/landing-page/profile.png";
+import "../../styles/landing/navbar.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -14,20 +14,20 @@ const Navbar = () => {
     opacity: "0",
   });
   const [marketPlaceMenu, setMarketPlaceMenu] = useState({
-    opacity: '0',
-    zIndex: '-100',
+    opacity: "0",
+    zIndex: "-100",
   });
 
   const showDropDown = () => {
     setMarketPlaceMenu({
-      opacity: '1',
-      zIndex: '2',
+      opacity: "1",
+      zIndex: "2",
     });
   };
   const hideDropDown = () => {
     setMarketPlaceMenu({
-      opacity: '0',
-      zIndex: '-100',
+      opacity: "0",
+      zIndex: "-100",
     });
   };
 
@@ -78,14 +78,14 @@ const Navbar = () => {
           style={profileMenu}
           onMouseEnter={() => {
             setProfileMenu({
-              opacity: '1',
-              zIndex: '2',
+              opacity: "1",
+              zIndex: "2",
             });
           }}
           onMouseLeave={() => {
             setProfileMenu({
-              opacity: '0',
-              zIndex: '-100',
+              opacity: "0",
+              zIndex: "-100",
             });
           }}
         >
@@ -93,7 +93,7 @@ const Navbar = () => {
             <div
               onClick={() =>
                 setProfileMenu({
-                  opacity: '0',
+                  opacity: "0",
                 })
               }
             >
@@ -104,8 +104,8 @@ const Navbar = () => {
             <div
               onClick={() =>
                 setProfileMenu({
-                  opacity: '0',
-                  zIndex: '-100',
+                  opacity: "0",
+                  zIndex: "-100",
                 })
               }
             >
@@ -117,15 +117,14 @@ const Navbar = () => {
             <div
               onClick={() =>
                 setProfileMenu({
-                  opacity: '0',
-                  zIndex: '-100',
+                  opacity: "0",
+                  zIndex: "-100",
                 })
               }
             >
               <p>Account</p>
             </div>
           </Link>
-
         </div>
         {/* end drop downs */}
 
@@ -158,8 +157,8 @@ const Navbar = () => {
             }}
             onMouseLeave={() => {
               setProfileMenu({
-                opacity: '0',
-                zIndex: '-100',
+                opacity: "0",
+                zIndex: "-100",
               });
             }}
           >
@@ -176,7 +175,7 @@ const Navbar = () => {
             className="nav__sidebarToggle"
             onClick={() => {
               setShowLinks(!showLinks);
-              setStatus(status === 'open' ? 'close' : 'open');
+              setStatus(status === "open" ? "close" : "open");
             }}
           >
             <div className={`${status} line line1`}></div>
@@ -190,12 +189,10 @@ const Navbar = () => {
         <ul
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus('close');
+            setStatus("close");
           }}
           className={`${
-            showLinks
-              ? 'mobile__sideBar show__sideBar'
-              : 'mobile__sideBar'
+            showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
           }`}
         >
           <Link to="/home">
@@ -221,9 +218,7 @@ const Navbar = () => {
 
         <div
           className={`${
-            showSearch
-              ? 'mobile__search show__mobileSearch'
-              : 'mobile__search'
+            showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
           }`}
         >
           <input
