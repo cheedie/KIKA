@@ -132,13 +132,13 @@
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  gap: 3rem;
+  gap: 5rem;
 }
 
 .man__and__woman .man,
 .man__and__woman .woman {
-  width: 45%;
-  height: 600px;
+  width: 600px;
+  height: 800px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -202,7 +202,9 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 4rem;
+  gap: 7.5rem;
+  -ms-flex-preferred-size: 350px;
+      flex-basis: 350px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -247,7 +249,9 @@
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 2rem;
+  -ms-flex-preferred-size: 273px;
+      flex-basis: 273px;
+  gap: 4rem;
 }
 
 .new__arrivals .product {
