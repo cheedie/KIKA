@@ -56,7 +56,6 @@ function AppRoutes() {
         { path: "/user/account/myorders", element: <MyOrders /> },
         { path: "/user/account/signout", element: <SignOut /> },
         { path: "/delivery", element: <Delivery /> },
-
         {
           path: "/user/account/notifications",
           element: <Notifications />,
@@ -66,8 +65,6 @@ function AppRoutes() {
           element: <ChangePassword />,
         },
         { path: "/vendor/*", element: <Vendor /> },
-        
-       
       ],
     },
 
@@ -111,6 +108,7 @@ function AppRoutes() {
 
     { path: "/delivery", element: <Delivery /> },
     { path: "/payment", element: <PaymentOptions /> },
+    { path: "/vendor/signup", element: <VendorSignup /> },
   ]);
   return routes;
 }
