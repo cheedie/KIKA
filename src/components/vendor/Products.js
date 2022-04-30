@@ -31,7 +31,7 @@ export default function Products() {
                         <option value="XL">XL</option>
                     </select>
                     <label htmlFor='Filter' className="button">Filter</label>
-                    </div>
+            </div>
                 <form>
                     <input 
                         name="search" 

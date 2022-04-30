@@ -1,6 +1,6 @@
 import '../../styles/vendor/vendor.css';
 import React, {useState, useEffect} from 'react'
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route, useNavigate} from "react-router-dom"
 import Sidebar from './Sidebar.js'
 import Dashboard from './Dashboard.js'
 import Products from './Products.js'
@@ -16,8 +16,11 @@ import { useVendorContext } from "../../context/vendor_context";
 
 
 function Vendor() {
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  
   const {
+    signOut,
     getVendor,
     vendorDetails,
     vendor_details_loading: loading,
@@ -36,7 +39,12 @@ function Vendor() {
     return <Error />;
   }
   
-
+  const handleSignOut = async () => {
+    const sign = await signOut();
+    if (sign) {
+      navigate("/user/signin");
+    } else return;
+  }
   return (
     <div id="vendor">
         <div id="header">
@@ -49,7 +57,7 @@ function Vendor() {
         </div >
         <section className="vendor main">
          
-        <Sidebar/>
+        <Sidebar handleSignOut={handleSignOut}/>
         <div className="main_container">                        
            <Routes>
               <Route path={"" ? "" : "/"} element={<Dashboard/>} />

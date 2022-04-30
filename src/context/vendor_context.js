@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "../reducers/vendor_reducer";
-import { url } from "../utils/constant";
+import { url, products_url } from "../utils/constant";
 import { baseUrl } from "../utils/baseUrl";
 import axios from "axios";
 import {
@@ -11,6 +11,9 @@ import {
   VENDOR_DETAILS,
   REGISTER_VENDOR,
   CHANGE_VENDOR_PASSWORD,
+  CREATE_PRODUCT,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_ERROR
 } from "../actions";
 
 let token = localStorage.getItem("currentVendor")
@@ -24,6 +27,9 @@ const initialState = {
   newPassword: "",
   userLogout: false,
   userDetails: {},
+  product:{},
+  create_product_loading: false,
+  create_product_error: false,
 };
 
 const VendorContext = React.createContext();
@@ -51,6 +57,26 @@ export const VendorProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const createProduct = async (data) => {
+    dispatch({ type: CREATE_PRODUCT });
+    try {
+      console.log('data from submit::: ',data)
+      let formData = new FormData();
+
+      for (let value in data) {
+        formData.append(value, data[value]);
+      }
+      const response = await axios.post(products_url, formData,
+      {
+        headers: {
+          "Content-type": "application/json"
+        }
+     }
+      ).then(()=>{console.log(response, "yayy")})
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const loginVendor = async (details) => {
     dispatch({ type: REQUEST_VENDOR_LOGIN });
@@ -61,7 +87,7 @@ export const VendorProvider = ({ children }) => {
       if (response.status === 200) {
         dispatch({ type: LOGIN_VENDOR_SUCCESS, payload: response });
 
-        localStorage.setItem("currentVendor", JSON.stringify(response.data));
+        localStorage.setItem("currentUser", JSON.stringify(response.data));
         return response;
       }
 
@@ -98,15 +124,42 @@ export const VendorProvider = ({ children }) => {
   const signOut = async () => {
     dispatch({ type: VENDOR_LOGOUT });
     try {
-      const response = await baseUrl.get("/auth/logout");
-      console.log(response);
-      localStorage.removeItem("currentVendor");
+      // const response = await baseUrl.get("/auth/logout");
+      // console.log(response);
+      localStorage.removeItem("currentUser");
       return true;
     } catch (error) {
       console.log(error);
       return false;
     }
   };
+
+  // const createProduct = async (data) => {
+  // dispatch({ type: CREATE_PRODUCT });
+  // try {
+  //   console.log('data from upload ',data)
+  //   let formData = new FormData();
+
+  //   for (let value in data) {
+  //     formData.append(value, data[value]);
+  //   }
+  //   const response = await axios.post(products_url, formData,
+  //   {
+  //     headers: {
+  //       "Content-type": "application/json"
+  //     }
+  //   }
+  //   ).then(()=>{
+  //     console.log(response, "yayy");
+  //     if (response.status === 200) {
+  //       dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: response });
+  //   }})
+    
+
+  // } catch (error) {
+  //   dispatch({ type: CREATE_PRODUCT_ERROR , error:error});
+  // }
+  // };
 
   return (
     <VendorContext.Provider
@@ -117,6 +170,7 @@ export const VendorProvider = ({ children }) => {
         getVendor,
         changePassword,
         signOut,
+        createProduct,
       }}
     >
       {children}

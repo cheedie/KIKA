@@ -6,6 +6,9 @@ import {
     LOGIN_VENDOR_SUCCESS,
     CHANGE_VENDOR_PASSWORD,
     VENDOR_LOGOUT,
+    CREATE_PRODUCT,
+    CREATE_PRODUCT_SUCCESS,
+    CREATE_PRODUCT_ERROR
   } from "../actions";
   
   const vendor_reducer = (state, action) => {
@@ -34,6 +37,26 @@ import {
     }
     if (action.type === VENDOR_DETAILS) {
       return { ...state, userDetails: action.payload };
+    }
+    if (action.type === CREATE_PRODUCT) {
+      return {
+        ...state,
+        product: action.payload
+      };
+    }
+    if (action.type === CREATE_PRODUCT_ERROR) {
+      return {
+        ...state,
+        create_product_loading: false,
+        create_product_error: true 
+      };
+    }
+    if (action.type === CREATE_PRODUCT_SUCCESS) {
+      return {
+        ...state,
+        create_product_loading: false,
+        create_product: action.payload 
+      };
     }
     throw new Error(`No Matching "${action.type}" - action type`);
   };

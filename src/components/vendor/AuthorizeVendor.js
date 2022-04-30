@@ -4,15 +4,16 @@ import { createBrowserHistory } from "history";
 
 import createToken from "../../utils/createToken";
 
-const Authorize = () => {
+const AuthorizeVendor = () => {
   const response = createToken();
   if (response) {
+    console.log("AAUTHORIZE", response)
     // check if user is verified or has completed profile
     return <Outlet />;
   }
-  createBrowserHistory().push("/vendor");
+  createBrowserHistory().push("/vendor/signin");
   createBrowserHistory().go(0);
   return null;
 };
 
-export default Authorize;
+export default AuthorizeVendor;

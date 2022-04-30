@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import image_bg from "../../assets/vendor/images/image_vector.png"
 import { StyledButton } from './Button.styled';
-import {StyledForm , StyledLabel, StyledInput, InputWrapper, Wrapper, Message} from './Form.style';
+import {StyledForm , StyledLabel, StyledInput, StyledTextArea, InputWrapper, Wrapper, Message} from './Form.style';
 import { AiOutlineCloseCircle as Close} from 'react-icons/ai'
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
@@ -10,70 +10,75 @@ import { useVendorContext } from "../../context/vendor_context";
 
 export default function UploadForm({setUpload}) {
     
-  const { uploadVendorDetails } = useVendorContext();
+  const { createProduct } = useVendorContext();
 
-    const FILE_SIZE = 160 * 1024;
+    const FILE_SIZE = 5 * 160 * 1024;
    const [imagePreview, setImagePreview] = useState({
         path: "",
       });
 
 
-    const handleFileChange = (e) => {
-        console.log(e.target.files)
-        setImagePreview({
-            ...values.image,
-            path: URL.createObjectURL(e.target.files[0]),
-        });
-    };
+
   
-    const {handleSubmit,handleChange,values, touched, errors } = useFormik({
+    const {setFieldValue, handleBlur, handleSubmit,handleChange,values, touched, errors } = useFormik({
         initialValues:{
             name:'',
             price:'',
             discount:'',
-            category:null,
-            newArrival:null,
-            grade:null,
-            size:null,
+            newArrival:'',
+            category:'', //['Male', 'Female']
+            grade:'',//['A', 'B']
+            size:'',
             countInStock:'1',
-            Description:'',
-            image:null 
+            description:'',
+            image:'',
         },
 
         validationSchema: Yup.object({
-          name: Yup.string().max(30, 'Full should not not be longer than 30 character')
-          .min(10, 'Fullname should be longer than 10 characters').required('Required'),
-          
-          price: Yup.string().required('Please Include price'),
-
-          image: Yup.mixed()
+          name: Yup.string().min(3, 'Product name should be longer than 3 characters')
+          .max(30, 'Product name should not be longer than 30 characters').required('Required'),
+          description: Yup.string().required('Required').min(10, 'Product description should be longer than 10 characters')
+          .max(150, 'Product description should not not be longer than 150 characters'),
+          price: Yup.string().required('Please include price').matches(/^[0-9]+$/, "Price should be digits"),
+          discount: Yup.string().matches(/^[0-9]+$/, "Price should be digits"),
+          image: Yup.mixed().required('Required')
           .test("FILE_SIZE", "Uploaded file is too big.",value => !value || (value && value.size <= FILE_SIZE))
           .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc", (value) => {
             return !value || (value && (
-                  value[0].type === "image/jpeg" ||
-                  value[0].type === "image/bmp" ||
-                  value[0].type === "image/png" ||
-                  value[0].type === "application/msword"
+                  value.type === "image/jpeg" ||
+                  value.type === "image/bmp" ||
+                  value.type === "image/png"
               ))
           }),
+          category: Yup.string().required('Please choose category').oneOf(['Male', 'Female']),
+          grade: Yup.string().required('Please choose grade').oneOf(['A', 'B']),
+          size: Yup.string().required('Please include size').oneOf(['S', 'M', 'L', 'XL']),
+          countInStock: Yup.string().required('Please include quantity').matches(/^[0-9]+$/, "Quantity should be in digits"),
+         
         }),
 
         onSubmit:values=>{
-        if(!test){
-              console.log('empty fields...')
-             }else{
-               console.log('Values......', {...values})
-               uploadVendorDetails(values);
-               setUpload(false)
-             }
-
-          }
+        
+            console.log('Values......', values)
+            createProduct(values);
+            //setUpload(false)
+        }
     })
+
+    const handleFileChange = (e) => {
+    console.log(e.target.files)
+    setFieldValue("image", e.currentTarget.files[0])
+    .then(()=>setImagePreview({
+            ...values.image,
+            path: URL.createObjectURL(e.target.files[0]),
+        })
+    )
+    };
 
     return(
         <UploadWrapper>
             <UploadContainer>
-                <StyledForm products gap='2' onSubmit={handleSubmit}>
+                <StyledForm products gap='2' onBlur={handleBlur} onSubmit={handleSubmit}>
                     <Wrapper flex>
                         <Heading> + Add New Product </Heading>
                         <ExitButton onClick={()=>setUpload(false)}><Close/></ExitButton>
@@ -85,12 +90,17 @@ export default function UploadForm({setUpload}) {
                         GTC='1fr 2fr'
                     >
                         <Wrapper>
-                        <UploadInput type='file' 
+                        <UploadInput  
                             img={imagePreview} 
-                            name='image' 
-                            onChange={handleFileChange}/>
+                            id='image'
+                            name='image'
+                            placeholder='Identification'
+                            type="file"
+                            accept="image/*"
+                            onChange={(event) => handleFileChange(event)}
+                        />
                             {touched.image && errors.image  ?(
-                            <Message>{errors.image}</Message>
+                            <Message margin="0">{errors.image}</Message>
                             ) : null}
                             </Wrapper>
                         <Wrapper grid gap='2'>
@@ -98,15 +108,15 @@ export default function UploadForm({setUpload}) {
                                 <StyledLabel className="floating">A new product</StyledLabel>
                                 <StyledInput type='text' name='name' onChange={handleChange} placeholder='A new product' floating/>
                                 {touched.name && errors.name  ?(
-                                <Message>{errors.name}</Message>
+                                <Message margin="0">{errors.name}</Message>
                                 ) : null}
                             </InputWrapper>
-                            {/*------ Description -------*/}
+                            {/*------ description -------*/}
                             <InputWrapper>
-                                <StyledLabel className="floating">Description</StyledLabel>
-                                <StyledInput type='text' name='name' onChange={handleChange} placeholder='A new product' floating/>
-                                {touched.name && errors.name  ?(
-                                <Message>{errors.name}</Message>
+                                <StyledLabel className="floating">description</StyledLabel>
+                                <StyledTextArea type='text' name='description' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.description && errors.description  ?(
+                                <Message margin="0">{errors.description}</Message>
                                 ) : null}
                             </InputWrapper>
 
@@ -114,16 +124,16 @@ export default function UploadForm({setUpload}) {
                             <Wrapper grid gap="1" GTC="1fr 1fr">
                             <InputWrapper>
                                 <StyledLabel >Price</StyledLabel>
-                                <StyledInput type='text' name='price' onChange={handleChange} placeholder='A new product' floating/>
+                                <StyledInput type='text' name='price' onChange={handleChange} placeholder='price' floating/>
                                 {touched.price && errors.price  ?(
-                                <Message>{errors.price}</Message>
+                                <Message margin="0">{errors.price}</Message>
                                 ) : null}
                             </InputWrapper>
                             <InputWrapper>
                                 <StyledLabel >Discounted Price</StyledLabel>
-                                <StyledInput type='text' name='discount' onChange={handleChange} placeholder='A new product' floating/>
+                                <StyledInput type='text' name='discount' onChange={handleChange} placeholder='discount' floating/>
                                 {touched.discount && errors.discount  ?(
-                                <Message>{errors.discount}</Message>
+                                <Message margin="0">{errors.discount}</Message>
                                 ) : null}
                             </InputWrapper>
 
@@ -133,63 +143,73 @@ export default function UploadForm({setUpload}) {
                             <Wrapper grid gap="1" GTC="1fr 1fr">
                             <InputWrapper>
                                 <StyledLabel >Color</StyledLabel>
-                                <StyledInput type='text' name='price' onChange={handleChange} placeholder='A new product' floating/>
-                                {touched.price && errors.price  ?(
-                                <Message>{errors.price}</Message>
+                                <StyledInput type='text' name='color' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.color && errors.color  ?(
+                                <Message margin="0">{errors.color}</Message>
                                 ) : null}
                             </InputWrapper>
                             <InputWrapper>
                                 <StyledLabel >Brand</StyledLabel>
-                                <StyledInput type='text' name='discount' onChange={handleChange} placeholder='A new product' floating/>
-                                {touched.discount && errors.discount  ?(
-                                <Message>{errors.discount}</Message>
+                                <StyledInput type='text' name='brand' onChange={handleChange} placeholder='A new product' floating/>
+                                {touched.brand && errors.brand  ?(
+                                <Message margin="0">{errors.brand}</Message>
                                 ) : null}
                             </InputWrapper>
 
+                                
+                            </Wrapper>
+                            {/*------Category, Grade & Size-------*/}
+                            <Wrapper grid GTC="1fr 1fr 1fr 1fr" gap="1">
+                                <InputWrapper>
+                                    <StyledLabel className="floating" >Category</StyledLabel>
+                                    <Dropdown options={['---','Male', 'Female']} type='text' 
+                                        name='category' 
+                                        placeholder='category'
+                                        onChange={handleChange}
+                                        value={values.category}
+                                        floating/>
+                                    {touched.category && errors.category?
+                                    (<Message margin="0">{errors.category}</Message>) : null}
+                                </InputWrapper>
+                                <InputWrapper>
+                                    <StyledLabel className="floating" >Size</StyledLabel>
+                                    <Dropdown options={['---','S', 'M', 'L', 'XL']} type='text' 
+                                        name='size' 
+                                        placeholder='size'
+                                        onChange={handleChange}
+                                        floating
+                                        value={values.size}
+                                        />
+                                    {touched.size && errors.size ?
+                                    (<Message margin="0">{errors.size}</Message>) : null}
+                                </InputWrapper>
+                                <InputWrapper>
+                                    <StyledLabel className="floating" >Grade</StyledLabel>
+                                    <Dropdown options={['---','A', 'B']} type='text' 
+                                        name='grade' 
+                                        placeholder='grade'
+                                        onChange={handleChange}
+                                        floating
+                                        value={values.grade}
+                                        />
+                                    {touched.grade && errors.grade ?
+                                    (<Message margin="0">{errors.grade}</Message>) : null}
+                                </InputWrapper>
+                                <InputWrapper>
+                                <StyledLabel >Quantity</StyledLabel>
+                                <StyledInput type='text' name='countInStock' onChange={handleChange} placeholder='Quantity' floating/>
+                                {touched.countInStock && errors.countInStock  ?(
+                                <Message margin="0">{errors.countInStock}</Message>
+                                ) : null}
+                            </InputWrapper>
                             </Wrapper>
                         </Wrapper>
 
                     </Wrapper>
 
-                    <Wrapper grid GTC="1fr 1fr 1fr" gap="2">
-                        <InputWrapper>
-                            <StyledLabel className="floating" >Category</StyledLabel>
-                            <StyledInput type='text' 
-                            name='category' 
-                            placeholder='A new product'
-                            onChange={handleChange}
-                             floating/>
-                            {touched.category && errors.category  ?(
-                                <Message>{errors.category}</Message>
-                                ) : null}
-                        </InputWrapper>
-                        <InputWrapper>
-                            <StyledLabel className="floating" >Product tags</StyledLabel>
-                            <StyledInput type='text' 
-                            name='tags'
-                            onChange={handleChange} 
-                            placeholder='Product tags' 
-                            floating/>
-                            {touched.tags && errors.tags  ?(
-                                <Message>{errors.tags}</Message>
-                                ) : null}
-                        </InputWrapper>
-                        <InputWrapper>
-                            <StyledLabel className="floating" >Details of product</StyledLabel>
-                            <StyledInput type='text' 
-                            name='description' 
-                            placeholder='Description' 
-                            onChange={handleChange}
-                            floating/>
-                            {touched.description && errors.description  ?(
-                                <Message>{errors.description}</Message>
-                                ) : null}
-                        </InputWrapper>
-                        
-                       
-                    </Wrapper>
+                    
 
-                        <StyledButton type='submit' label ='Add Product'>Upload</StyledButton>
+                        <StyledButton id='submit' name='submit' type='submit' label ='Add Product'>Upload</StyledButton>
                    
                 </StyledForm>
             </UploadContainer>
@@ -208,7 +228,8 @@ height:100vh;
 background: rgba(0, 0, 0, 0.4);
 display:flex;
 justify-content:center;
-align-items:center
+align-items:center;
+z-index:9999;
 `
 const UploadContainer = styled.div`
 max-width: 906px;
@@ -258,3 +279,25 @@ font-size: 2em;
     transform:scale(1.2);
 }
 `
+const Select = styled.select`
+display:block;
+padding:0.5em 0.8em;
+font-size:14px;
+border:1px solid grey;
+`
+const Dropdown = ({name, options, onChange}) =>{
+    return (
+        <Select name={name} onChange={onChange}>
+            {options.map((option, index)=>{
+                return(
+                    <option 
+                        key={`${option}-${index}`} 
+                        value={option}>
+                        {option}
+                    </option>
+                )
+            })}
+        </Select>
+    )
+}
+

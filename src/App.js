@@ -65,8 +65,9 @@ function AppRoutes() {
           path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
+        { path: "/vendor/*", element: <Vendor /> },
         
-        // { path: "/vendor", element: <Vendor /> },
+       
       ],
     },
 
@@ -80,20 +81,16 @@ function AppRoutes() {
     {
       element: <AuthorizeVendor />,
       children: [
-    { path: "/vendor/signin", element: <Signin /> },
-
         { path: "/vendor/*", element: <Vendor /> },
       ],
     },
-
-    { path: "/vendor/signup", element: <VendorSignup /> },
-
-    // {
-    //   element: <AuthenticateVendor />,
-    //   children: [
-        
-    //   ],
-    // },
+    {
+      element: <AuthenticateVendor />,
+      children: [
+        { path: "/vendor/signup", element: <VendorSignup /> },
+        { path: "/vendor/signin", element: <Signin /> },
+      ],
+    },
 
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
