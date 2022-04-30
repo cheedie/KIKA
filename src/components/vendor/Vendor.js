@@ -1,5 +1,5 @@
 import '../../styles/vendor/vendor.css';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Routes, Route} from "react-router-dom"
 import Sidebar from './Sidebar.js'
 import Dashboard from './Dashboard.js'
@@ -10,11 +10,32 @@ import Reviews from './Reviews.js'
 import kika from "../../assets/vendor/images/kika.svg"
 import Withdraw from './Withdraw';
 import Settings from './Settings';
+import Loading from "../Global/Loading";
+import Error from "../Global/Error";
+import { useVendorContext } from "../../context/vendor_context";
 
 
 function Vendor() {
-  //const [page, setPage] = useState("dashboard")
   const [search, setSearch] = useState("")
+  const {
+    getVendor,
+    vendorDetails,
+    vendor_details_loading: loading,
+    vendor_details_error: error,
+  } = useVendorContext();
+
+  useEffect(() => {
+    getVendor();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
+  
 
   return (
     <div id="vendor">
@@ -31,7 +52,7 @@ function Vendor() {
         <Sidebar/>
         <div className="main_container">                        
            <Routes>
-              <Route path='' element={<Dashboard/>} />
+              <Route path={"" ? "" : "/"} element={<Dashboard/>} />
               <Route path="/products" element={<Products/>} />
               <Route path="/orders" element={<Orders/>} />
               <Route path="/report" element={<Report/>} />

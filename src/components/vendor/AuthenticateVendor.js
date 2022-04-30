@@ -8,7 +8,7 @@ const Authenticate = () => {
   const response = createToken();
   if (response) {
     // check if user is verified or has completed profile
-    createBrowserHistory().push("/user/account");
+    createBrowserHistory().push("/vendor");
     createBrowserHistory().go(0);
     return null;
   }

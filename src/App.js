@@ -24,6 +24,8 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
+import AuthorizeVendor from "./components/vendor/AuthorizeVendor";
+import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
 import Women from "./pages/marketPlace/Women";
 import Men from "./pages/marketPlace/Men";
 import Home from "./pages/home/Home";
@@ -44,7 +46,7 @@ function AppRoutes() {
     { path: "/products/women", element: <Women /> },
     { path: "/products/men", element: <Men /> },
 
-    { path: "/vendor", element: <Vendor /> },
+    // { path: "/vendor", element: <Vendor /> },
 
     {
       element: <Authorize />,
@@ -64,7 +66,7 @@ function AppRoutes() {
           element: <ChangePassword />,
         },
 
-        { path: "/vendor/*", element: <Vendor /> },
+        // { path: "/vendor", element: <Vendor /> },
       ],
     },
 
@@ -75,6 +77,23 @@ function AppRoutes() {
         { path: "/user/signin", element: <Signin /> },
       ],
     },
+    {
+      element: <AuthorizeVendor />,
+      children: [
+        { path: "/vendor/signin", element: <Signin /> },
+
+        { path: "/vendor/*", element: <Vendor /> },
+      ],
+    },
+
+    { path: "/vendor/signup", element: <VendorSignup /> },
+
+    // {
+    //   element: <AuthenticateVendor />,
+    //   children: [
+
+    //   ],
+    // },
 
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
