@@ -40,9 +40,6 @@ export const VendorProvider = ({ children }) => {
       for (let value in data) {
         formData.append(value, data[value]);
       }
-      for (let property of formData.entries()) {
-        console.log(property[0], property[1]);
-      }
       const response = await axios.post(`${url}/auth/register/vendor`, formData,
       {
         headers: {

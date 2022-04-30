@@ -10,7 +10,7 @@ const Authorize = () => {
     // check if user is verified or has completed profile
     return <Outlet />;
   }
-  createBrowserHistory().push("/user/signin");
+  createBrowserHistory().push("/vendor");
   createBrowserHistory().go(0);
   return null;
 };

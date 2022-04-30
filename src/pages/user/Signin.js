@@ -18,20 +18,19 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await loginUser({ email, password });
-      console.log(response);
+      let response = await loginUser({ email, password })
+      .then((res)=>{return res
+      });
       if (!response || response.status !== 200) {
         setAlert({
           show: true,
           type: "danger",
           msg: "Incorrect email or password",
         });
-      } else if(response.role === 'user'){
+      } else if(response.data.role === 'user'){
         navigate("/user/account");
-      }else if(response.role === 'vendor'){
-        navigate("/vendor");
-      }else{
-        navigate("/user/account");
+      }else if(response.data.role === 'vendor'){
+        navigate("/vendor/");
       }
     } catch (error) {
       console.log(error);
