@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
+import {
+  // SwiperCore,
+
   Navigation,
   Pagination,
   Autoplay,
@@ -39,8 +41,12 @@ const Hero = () => {
           </div>
 
           <div className="buttons__grp">
-            <Link to="/products/women">SHOP WOMEN</Link>
-            <Link to="/products/men">SHOP MEN</Link>
+            <Link to="/products/women">
+              <button>SHOP WOMEN</button>
+            </Link>
+            <Link to="/products/men">
+              <button>SHOP MEN</button>
+            </Link>
           </div>
         </section>
       </SwiperSlide>
@@ -48,9 +54,7 @@ const Hero = () => {
       <SwiperSlide>
         <section className="hero slide-2">
           <div className="home__info">
-            <h1>
-              Sell on <span>KIKA</span>
-            </h1>
+            <h1>Sell on KIKA</h1>
             <p className="sub__heading">Home of all thrift wears</p>
             <p className="details">
               At KIKA we understand the importance of thrift wears and its
@@ -60,8 +64,12 @@ const Hero = () => {
           </div>
 
           <div className="buttons__grp">
-            <button>SHOP WOMEN</button>
-            <button>SHOP MEN</button>
+            <Link to="/products/women">
+              <button>SHOP WOMEN</button>
+            </Link>
+            <Link to="/products/men">
+              <button>SHOP MEN</button>
+            </Link>
           </div>
         </section>
       </SwiperSlide>

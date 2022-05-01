@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  useRoutes,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./pages/Landing";
 
 import Vendor from "./components/vendor/Vendor";
@@ -27,6 +22,8 @@ import MyOrders from "./pages/user/MyOrders";
 import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
+import AuthorizeVendor from "./components/vendor/AuthorizeVendor";
+// import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
 import Women from "./pages/marketPlace/Women";
 import Men from "./pages/marketPlace/Men";
 import Home from "./pages/home/Home";
@@ -37,10 +34,12 @@ import Delivery from "./pages/Cart/Delivery";
 import FlutterCheckout from "./components/User/FlutterCheckout";
 import PaymentOptions from "./pages/Cart/PaymentOptions";
 import OrderSuccessful from  "./pages/Cart/OrderSuccessful";
+// import FlutterCheckout from "./components/User/FlutterCheckout";
+import Checkout from "./pages/Cart/Checkout";
 
 function AppRoutes() {
   const routes = useRoutes([
-    { path: "/landing", element: <Landing /> },
+    { path: "/", element: <Landing /> },
     { path: "/home", element: <Home /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
@@ -48,7 +47,7 @@ function AppRoutes() {
     { path: "/products/women", element: <Women /> },
     { path: "/products/men", element: <Men /> },
 
-    { path: "/vendor", element: <Vendor /> },
+    // { path: "/vendor", element: <Vendor /> },
 
     {
       element: <Authorize />,
@@ -67,20 +66,35 @@ function AppRoutes() {
           path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
-        
-        { path: "/vendor/*", element: <Vendor /> },
+
+        // { path: "/vendor", element: <Vendor /> },
       ],
     },
 
     {
       element: <Authenticate />,
       children: [
-        
-        { path: "/vendor/signup", element: <VendorSignup /> },
         { path: "/user/signup", element: <Signup /> },
         { path: "/user/signin", element: <Signin /> },
       ],
     },
+    {
+      element: <AuthorizeVendor />,
+      children: [
+        { path: "/vendor/signin", element: <Signin /> },
+
+        { path: "/vendor/*", element: <Vendor /> },
+      ],
+    },
+
+    { path: "/vendor/signup", element: <VendorSignup /> },
+
+    // {
+    //   element: <AuthenticateVendor />,
+    //   children: [
+
+    //   ],
+    // },
 
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },
@@ -105,6 +119,8 @@ function AppRoutes() {
     { path: "/delivery", element: <Delivery /> },
     { path: "/payment", element: <PaymentOptions /> },
     { path: "/ordersuccessful", element: <OrderSuccessful /> },
+    { path: "/checkout", element: <Checkout /> },
+    { path: "/vendor/signup", element: <VendorSignup /> },
   ]);
   return routes;
 }

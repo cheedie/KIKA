@@ -4,11 +4,11 @@ import { createBrowserHistory } from "history";
 
 import createToken from "../../utils/createToken";
 
-const Authenticate = () => {
+const DeliveryAuthenticate = () => {
   const response = createToken();
   if (response) {
     // check if user is verified or has completed profile
-    createBrowserHistory().push("/user/account");
+    createBrowserHistory().push("/delivery");
     createBrowserHistory().go(0);
     return null;
   }
@@ -16,4 +16,4 @@ const Authenticate = () => {
   return <Outlet />;
 };
 
-export default Authenticate;
+export default DeliveryAuthenticate;

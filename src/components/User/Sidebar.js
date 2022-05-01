@@ -12,7 +12,7 @@ const Sidebar = ({ deft }) => {
     const sign = await signOut();
 
     if (sign) {
-      navigate("/user/signin");
+      navigate("/home");
     } else return;
   };
 

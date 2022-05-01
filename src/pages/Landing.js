@@ -5,7 +5,7 @@ import Footer from '../components/landing-page/Footer';
 
 const Landing = () => {
   return (
-    <div>
+    <div style={{}}>
       <Navbar />
       <Hero />
       <Footer />
