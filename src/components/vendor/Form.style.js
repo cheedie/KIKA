@@ -107,8 +107,8 @@ export const StyledInput = styled.input`
     font-family:'montserrat';
     font-size:14px;
     font-weight:500;
-    padding:${props=>props.floating ? "1.2em" : "1.2em 1em"} !important;
-    margin-right:${(props)=>props.checkbox ? "1em" :"" };
+    padding:${({floating, small})=>floating ? "1.2em" : small ? "0.5em 0.8em;": "1.2em 1em"} !important;
+    margin-right:${({checkbox, small})=>checkbox || small ? "1em" :"" };
     display:block;
     width:${(props)=>props.checkbox ? "" :"100%" };
     background:#FFFFFF;
@@ -150,6 +150,13 @@ export const StyledInput = styled.input`
       color:crimson;
     } */
 
+`
+export const StyledSelect = styled.select`
+display:block;
+padding:0.5em 0.8em;
+min-width:95px;
+font-size:14px;
+border:1px solid grey;
 `
 export const StyledTextArea = styled.textarea`
     font-family:'montserrat';

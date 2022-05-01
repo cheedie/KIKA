@@ -1,22 +1,25 @@
 import styled from 'styled-components'
 import image_bg from "../../assets/vendor/images/image_vector.png"
 import { StyledButton } from './Button.styled';
-import {StyledForm , StyledLabel, StyledInput, StyledTextArea, InputWrapper, Wrapper, Message} from './Form.style';
+import {StyledForm , StyledLabel, StyledInput, StyledTextArea, StyledSelect , InputWrapper, Wrapper, Message} from './Form.style';
 import { AiOutlineCloseCircle as Close} from 'react-icons/ai'
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
 import { useState } from 'react';
 import { useVendorContext } from "../../context/vendor_context";
-import axios from "axios";
 
 export default function UploadForm({setUpload}) {
     
-  const { createProduct } = useVendorContext();
+  const { createProduct2 } = useVendorContext();
 
     const FILE_SIZE = 5 * 160 * 1024;
    const [imagePreview, setImagePreview] = useState({
         path: "",
       });
+   const [uploadStatus, setUploadStatus] = useState({
+       status:false,
+       message:''
+   });
 
 
 
@@ -26,7 +29,7 @@ export default function UploadForm({setUpload}) {
             name:'',
             price:'',
             discount:'',
-            newArrival:'',
+            newArrival:true,
             category:'', //['Male', 'Female']
             grade:'',//['A', 'B']
             size:'',
@@ -59,8 +62,19 @@ export default function UploadForm({setUpload}) {
         }),
 
         onSubmit:values=>{
-  
-            createProduct(values);
+            setUploadStatus({
+                status:true,
+                message: 'Uploading...'
+            })
+            return createProduct2(values)
+            .then((response)=>{
+                setUploadStatus({
+                    status: response.error ? true: false, 
+                    message: response.error.includes('name') ? "Product name already exists" 
+                    : response.error ? response.error : response.data.message
+                })
+                console.log("response on submit", response)
+            });
             //setUpload(false)
         }
     })
@@ -102,7 +116,8 @@ export default function UploadForm({setUpload}) {
                             type="file"
                             accept="image/*"
                             onChange={(event) => handleFileChange(event)}
-                        />
+                        />  <br/> <span>{values.name && values.image ? values.name : values.image.name}</span>
+                            
                             {touched.image && errors.image  ?(
                             <Message margin="0">{errors.image}</Message>
                             ) : null}
@@ -201,7 +216,11 @@ export default function UploadForm({setUpload}) {
                                 </InputWrapper>
                                 <InputWrapper>
                                 <StyledLabel >Quantity</StyledLabel>
-                                <StyledInput type='text' name='countInStock' onChange={handleChange} placeholder='Quantity' floating/>
+                                <StyledInput type='text' 
+                                name='countInStock' 
+                                onChange={handleChange} 
+                                value={values.countInStock}
+                                placeholder='Quantity' small/>
                                 {touched.countInStock && errors.countInStock  ?(
                                 <Message margin="0">{errors.countInStock}</Message>
                                 ) : null}
@@ -210,11 +229,11 @@ export default function UploadForm({setUpload}) {
                         </Wrapper>
 
                     </Wrapper>
-
                     
-
-                        <StyledButton id='submit' name='submit' type='submit' label ='Add Product'>Upload</StyledButton>
-                   
+                    <StyledButton id='submit' name='submit' type='submit' label ='Add Product'>Upload</StyledButton>
+                    <Wrapper flex>
+                        <Heading smallHeading> {uploadStatus.message}</Heading>
+                    </Wrapper>
                 </StyledForm>
             </UploadContainer>
         </UploadWrapper>
@@ -259,7 +278,7 @@ cursor:crosshair;
 const Heading = styled.h1`
   font-style: normal;
   font-weight: 600;
-  font-size: 2em;
+  font-size:${props=> props.smallHeading ? "1em" : "2em"};
   line-height: 78px;
   width:100%;
   text-align:left;
@@ -283,15 +302,10 @@ font-size: 2em;
     transform:scale(1.2);
 }
 `
-const Select = styled.select`
-display:block;
-padding:0.5em 0.8em;
-font-size:14px;
-border:1px solid grey;
-`
+
 const Dropdown = ({name, options, onChange}) =>{
     return (
-        <Select name={name} onChange={onChange}>
+        <StyledSelect name={name} onChange={onChange}>
             {options.map((option, index)=>{
                 return(
                     <option 
@@ -301,7 +315,7 @@ const Dropdown = ({name, options, onChange}) =>{
                     </option>
                 )
             })}
-        </Select>
+        </StyledSelect>
     )
 }
 

@@ -28,8 +28,8 @@ const initialState = {
   userLogout: false,
   userDetails: {},
   product:{},
-  create_product_loading: false,
-  create_product_error: false,
+  creating_product: false,
+  creating_product_error: false,
 };
 
 const VendorContext = React.createContext();
@@ -39,32 +39,22 @@ export const VendorProvider = ({ children }) => {
 
   const uploadVendorDetails = async (data) => {
     dispatch({ type: REGISTER_VENDOR });
-   // try {
+   try {
       console.log('data from submit::: ',data)
       let formData = new FormData();
 
       for (let value in data) {
         formData.append(value, data[value]);
       }
-      //const response = await 
-      axios.post(`${url}/auth/register/vendor`, formData,
+      const response = await axios.post(`${url}/auth/register/vendor`, formData,
       {
         headers: {
           "Content-type": "application/json",
           }
-     }).catch ((error)=> {
-        if(error.response){
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        }else if(error.request){
-          console.log(error.request)
-        }else{
-          console.log(error.message);
-        }
-        console.log(error.config);
-     
-    })
+     }).then(()=>{console.log(response, "yayy")})
+    } catch (error) {
+      console.log(error);
+    }
   };
   const createProduct = async (data) => {
     dispatch({ type: CREATE_PRODUCT });
@@ -75,7 +65,7 @@ export const VendorProvider = ({ children }) => {
       for (let value in data) {
         formData.append(value, data[value]);
       }
-      const response = await axios.post(products_url, formData,
+      const response = await baseUrl.post(products_url, formData,
       {
         headers: {
           "Content-type": "application/json"
@@ -87,6 +77,39 @@ export const VendorProvider = ({ children }) => {
     }
   };
 
+  const createProduct2 = async (data) => {
+    dispatch({ type: CREATE_PRODUCT });
+      let formData = new FormData();
+      for (let value in data) {
+        formData.append(value, data[value]);
+      }
+
+    return baseUrl.post(products_url, formData,
+        { headers: {"Content-type": "application/json"} })
+        .then(response =>{
+          console.log("THIS IS PRODUCT CREATED", response)
+          dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: response});
+          return response;
+        })
+        .catch ((error)=> {
+          let err 
+        if(error.response){
+          err = error.response.data ? error.response.data :
+          error.response.status ? error.response.status :
+          error.response.headers
+          console.log("Error response", err)
+        }else if(error.request){
+          err = error.request
+          console.log("Error request",err)
+        }else{
+          err = error.message
+          console.log("Error message",err)
+        }
+        console.log(error.config)
+        dispatch({ type: CREATE_PRODUCT_ERROR, error: err });
+        return err;
+      })
+  };
   const loginVendor = async (details) => {
     dispatch({ type: REQUEST_VENDOR_LOGIN });
 
@@ -143,32 +166,6 @@ export const VendorProvider = ({ children }) => {
     }
   };
 
-  // const createProduct = async (data) => {
-  // dispatch({ type: CREATE_PRODUCT });
-  // try {
-  //   console.log('data from upload ',data)
-  //   let formData = new FormData();
-
-  //   for (let value in data) {
-  //     formData.append(value, data[value]);
-  //   }
-  //   const response = await axios.post(products_url, formData,
-  //   {
-  //     headers: {
-  //       "Content-type": "application/json"
-  //     }
-  //   }
-  //   ).then(()=>{
-  //     console.log(response, "yayy");
-  //     if (response.status === 200) {
-  //       dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: response });
-  //   }})
-    
-
-  // } catch (error) {
-  //   dispatch({ type: CREATE_PRODUCT_ERROR , error:error});
-  // }
-  // };
 
   return (
     <VendorContext.Provider
@@ -180,6 +177,7 @@ export const VendorProvider = ({ children }) => {
         changePassword,
         signOut,
         createProduct,
+        createProduct2,
       }}
     >
       {children}

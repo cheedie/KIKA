@@ -41,21 +41,22 @@ import {
     if (action.type === CREATE_PRODUCT) {
       return {
         ...state,
-        product: action.payload
+        creating_product: true
       };
     }
     if (action.type === CREATE_PRODUCT_ERROR) {
       return {
         ...state,
-        create_product_loading: false,
-        create_product_error: true 
+        // creating_product: false,
+        creating_product_error: true 
       };
     }
     if (action.type === CREATE_PRODUCT_SUCCESS) {
       return {
         ...state,
-        create_product_loading: false,
-        create_product: action.payload 
+        creating_product: false,
+        creating_product_error: false,
+        product: action.payload
       };
     }
     throw new Error(`No Matching "${action.type}" - action type`);
