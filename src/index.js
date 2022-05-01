@@ -4,13 +4,22 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./context/user_context";
+import { VendorProvider } from "./context/vendor_context";
+import { CartProvider } from "./context/cart_context";
+import { ProductProvider } from "./context/product_context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
+  <VendorProvider>
   <UserProvider>
-    <App />
+    <ProductProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </ProductProvider>
   </UserProvider>
+  </VendorProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

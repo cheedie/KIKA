@@ -15,6 +15,7 @@ export default function Reviews() {
 
             <div className="review_list">
                 <table>
+                    <tbody>
                     <tr className="review_titles">
                         <th>Customer Details</th>
                         <th>Comment</th>
@@ -22,17 +23,9 @@ export default function Reviews() {
                         <th>Rating</th>
                     </tr>
                     <ReviewTile/>
+                    </tbody>
                 </table>
-                {/* <div className="review_titles">
-                    <p>Customer Details</p>
-                    <p>Comment</p>
-                    <p>Link To</p>
-                    <p>Rating</p>
-                </div> */}
-
-                {/* <div className="review">
-                    <ReviewTile/>
-                </div> */}
+               
 
         </div>
       </div>
@@ -73,23 +66,6 @@ function ReviewTile() {
       <>
       {tile.map((item,index)=>{
           return(
-            // <div className="review_tile" key={`review-${index}`}>
-            //     <div className="review_details">
-            //         <div className="customer_img"><img src={item.details.img} alt=""/></div>
-            //         <div className="customer_details">
-            //             <p  className="name">Name: <span>{item.details.name}</span></p>
-            //             <p>Email: <span>{item.details.email}</span></p>
-            //         </div>
-            //     </div>
-            //     <div className="review_comment">
-            //         <span>Submitted on {item.comment.date} </span>
-            //         <p>{item.comment.text}</p>
-            //     </div>
-            //     <a href="/" className="review_link">{item.link}</a>
-            //     <div className="rating">
-            //         <img src={ratings} alt="customer" className=""/>
-            //     </div>
-            // </div>
             <tr className="review_tile" key={`review-${index}`}>
                 <td className="review_details">
                     <div className="customer_img"><img src={item.details.img} alt=""/></div>

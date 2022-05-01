@@ -1,5 +1,19 @@
 /* 
 ===============
+ANIMATION
+===============
+ */
+@keyframes slideFromRight {
+  0% {
+    transform: translate(-300px);
+  }
+  100% {
+    transform: translate(0px);
+  }
+}
+
+/* 
+===============
 SIGN UP
 ===============
  */
@@ -30,8 +44,11 @@ SIGN UP
 .sign__form-input {
   width: 100%;
   border: 2px solid #c4c4c4;
-  padding: 1.2rem 0;
+  padding: 1.2rem 1rem;
   margin-bottom: 2.5rem;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
 }
 .sign__terms-container {
   display: flex;
@@ -78,9 +95,15 @@ SIGN UP
   color: #000000;
   font-weight: 400;
 }
+
+.alert-container {
+  margin-top: 1rem;
+  background-color: #c4c4c4;
+}
 .alert {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
+  text-align: center;
 }
 .alert-danger {
   color: red;
@@ -113,52 +136,21 @@ ACCOUNTS
 ===============
  */
 .user__account-container {
-  display: grid;
-  min-height: calc(100vh - 6rem);
-  margin-top: 2rem;
-}
-
-.user__sidebar-container {
-  border-top: 1.5px solid #c4c4c4;
-  border-right: 1.5px solid #c4c4c4;
-}
-
-.user__sidebar-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 1rem;
-}
-.user__sidebar-link,
-.user__sidebar-active-link {
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 0.85rem 2rem 0.85rem 3rem;
-  width: 100%;
-}
-
-.user__sidebar-link {
-  color: #2e3192;
-}
-
-.user__sidebar-active-link {
-  background: #f15a24;
-  color: #fff;
+  display: block;
 }
 .user__account {
-  padding: 0 5rem;
+  width: 95vw;
+  margin: 0 auto;
 }
+
 .user__account-title {
   font-weight: 700;
   color: #333333;
-  font-size: 12px;
+  font-size: 16px;
 }
 .user__account-details {
   border: 1.5px solid #c4c4c4;
-  padding: 30px 50px 30px 50px;
+  /* padding: 30px 50px 30px 50px; */
   margin-top: 1rem;
   margin-bottom: 4rem;
 }
@@ -207,6 +199,170 @@ ACCOUNTS
   color: black;
   padding-bottom: 0.5rem;
   cursor: pointer;
+}
+.user__order-image {
+  max-width: 30%;
+}
+.user__order-image img {
+  max-width: 100%;
+}
+.user__order-title {
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.user__order-span {
+  border: 2px solid black;
+  color: black;
+  padding: 10px;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.user__order-unit p {
+  padding-top: 0;
+}
+.user__order-tracking {
+  font-weight: 800;
+}
+
+.user__forgot-password-container {
+  margin-top: 3rem;
+  width: 60%;
+}
+
+.user__forgot-btn {
+  background: #f15a24;
+  color: #ffff;
+  cursor: pointer;
+  padding: 0.8rem 8rem;
+  font-size: 22px;
+  border: transparent;
+  font-weight: 400;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.user__input-container {
+  position: relative;
+}
+.user__watch-icon {
+  position: absolute;
+  right: 20px;
+  transform: translate(-50%, 50%);
+}
+
+.user__track-order-container {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  height: auto;
+}
+.user__track-order-1,
+.user__track-order-2 {
+  margin-top: 1rem;
+  padding: 20px 0;
+  border: 2px solid #c4c4c4;
+  border-radius: 5px;
+}
+.user__track-order-1 {
+  text-align: center;
+  height: auto;
+}
+.user__track-order-1 input {
+  padding: 15px 12px;
+  border-radius: 5px;
+  border: 1px solid #c4c4c4;
+  width: 70%;
+  margin-top: 1.5rem;
+}
+.user__track-order-1 input::placeholder {
+  color: #000000;
+  font-size: 12px;
+}
+.user__number-text {
+  padding: 0.2rem;
+  color: #000000;
+}
+
+.user__track-order-btn {
+  display: block;
+  background: #f15a24;
+  color: #ffff;
+  cursor: pointer;
+  padding: 0.8rem 3rem;
+  font-size: 18px;
+  border: transparent;
+  font-weight: 400;
+  margin: 2rem auto;
+  align-items: center;
+}
+.user__track-order-2-titles {
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.user__track-order-2-titles h3 {
+  color: #000000;
+  /* font-weight: 700; */
+}
+.user__track-order-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  text-align: start;
+}
+.user__map-image-container {
+  width: 100%;
+}
+.user__map-image-container img {
+  width: 100%;
+  height: 20rem;
+}
+.user__mobile-drop-down {
+  display: block;
+}
+.user__mobile-drop-down-container {
+  width: 95vw;
+  margin: 1rem auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f15a24;
+  color: white;
+  padding: 0.5rem 1rem 0.5rem 0;
+}
+.user__mobile-drop-down-container button {
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.user__mobile-sidebar-links {
+  display: grid;
+  gap: 1.5rem;
+  transition: all 0.3s ease-in-out;
+  animation: slideFromRight 0.3s forwards;
+  animation-duration: 0.4s;
+  border: 2px solid white;
+  width: 95vw;
+  margin: 0 auto;
+  padding-right: 1rem;
+  padding-top: 1rem;
+}
+.user__sidebar-link,
+.user__sidebar-active-link {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0.85rem 2rem 0.85rem 3rem;
+  width: 100%;
+  color: black;
 }
 
 @media screen and (min-width: 780px) {
@@ -269,5 +425,48 @@ ACCOUNTS
   .sign__terms-link {
     font-size: 20px;
     letter-spacing: 1px;
+  }
+  .user__account-container {
+    display: grid;
+    min-height: calc(100vh - 6rem);
+    margin-top: 2rem;
+  }
+  .user__sidebar-container {
+    border-top: 1.5px solid #c4c4c4;
+    border-right: 1.5px solid #c4c4c4;
+  }
+
+  .user__sidebar-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+  }
+  .user__sidebar-link,
+  .user__sidebar-active-link {
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0.85rem 2rem 0.85rem 3rem;
+    width: 100%;
+  }
+
+  .user__sidebar-link {
+    color: #2e3192;
+  }
+
+  .user__sidebar-active-link {
+    background: #f15a24;
+    color: #fff;
+  }
+  .user__mobile-drop-down {
+    display: none;
+  }
+  .user__account {
+    padding: 1rem 5rem 0 5rem;
+    margin: unset;
+    width: 85vw;
   }
 }

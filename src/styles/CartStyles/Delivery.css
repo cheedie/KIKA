@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.delivery_form_wrapper {
+  max-height: 80%;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5rem 7rem;
+}
+.delivery_form_container {
+  box-shadow: 0 0 20px rgba(108, 113, 117, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  text-align: center;
+  padding: 1em 0;
+}
+.delivery_details_form > * {
+  margin: 1em 0;
+}
+.delivery_details_form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5em;
+  padding: 1.5em 5em;
+  width: 100%;
+}
+
+.delivery_details_form input {
+  margin-top: 5px;
+  padding: 1em 2em;
+  border: 1.8px solid #c4c4c4;
+  background-color: transparent;
+  font-family: "Montserrat", sans-serif;
+  color: #c4c4c4;
+}
+
+.delivery_details_form input::placeholder {
+  color: #c4c4c4;
+}
+
+.delivery-btn {
+  color: #fff;
+  margin-top: 2em;
+  padding: 0.8em 4em;
+  background-color: #f15a24;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+}
+
+@media only screen and (max-width: 517px) {
+  .delivery_details_form > * {
+    padding: 0 1em;
+  }
+
+  .delivery_form_wrapper {
+    max-height: 80%;
+    max-width: 95%;
+    padding: 1rem;
+    margin: 2em 0;
+  }
+  .delivery_title h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .delivery_details_form {
+    padding: 1em 2.5em;
+  }
+  #delivery-btn {
+    margin-top: 1em;
+    padding: 0.6em 3em;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+@media only screen and (max-width: 668px) and (min-width: 518px) {
+  .delivery_details_form > * {
+    padding: 0 2em;
+  }
+  .delivery_details_form {
+    padding: 1.2em 3.5em;
+  }
+  .delivery_form_wrapper {
+    max-height: 80%;
+    max-width: 90%;
+    padding: 1rem;
+    margin: 3em 0;
+  }
+  .delivery_title h2 {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 998px) and (min-width: 667px) {
+  .delivery_details_form > * {
+    padding: 0 3em;
+  }
+
+  .delivery_form_wrapper {
+    max-height: 80%;
+    max-width: 90%;
+    padding: 5rem;
+  }
+  .delivery_title h2 {
+    font-size: 24px;
+  }
+}

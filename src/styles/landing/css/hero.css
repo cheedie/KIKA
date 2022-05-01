@@ -1,0 +1,113 @@
+.hero {
+  position: relative;
+  height: 88vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url(../../assets/home/hero_background.png) no-repeat;
+  background-size: cover;
+  z-index: -5;
+}
+
+.hero::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  background-color: rgba(33, 33, 33, 0.4);
+  height: 100%;
+  width: 100%;
+  z-index: -4;
+}
+
+.hero .home__info {
+  width: 50vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fafafa;
+}
+
+.hero .home__info h1 {
+  font-weight: 400;
+  font-size: 60px;
+  text-align: center;
+}
+
+.hero .home__info h1 span {
+  font-weight: 700;
+}
+
+.hero .home__info .sub__heading {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29.26px;
+  padding: 0;
+}
+
+.hero .home__info .details {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.hero .buttons__grp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  width: 34%;
+}
+
+.hero .buttons__grp button {
+  background: #f15a24;
+  width: 50%;
+  height: 48px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.slide-1 {
+  background: url("../../assets/landing-page//slide-1.png") no-repeat;
+  background-size: cover;
+}
+
+.slide-2 {
+  background: url("../../assets/landing-page//slide-2.png") no-repeat;
+  background-size: cover;
+}

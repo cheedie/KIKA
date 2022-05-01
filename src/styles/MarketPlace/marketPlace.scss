@@ -1,0 +1,19 @@
+.marketPlace__content{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.marketPlace__products{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  width: 85%;
+  padding: 2rem;
+
+  .product{
+    flex-basis: 300px;  
+  }
+}

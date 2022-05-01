@@ -4,6 +4,7 @@ import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
 import Navbar from "../../components/landing-page/Navbar";
 import Footer from "../../components/landing-page/Footer";
+import Alert from "../../components/User/Alert";
 
 import { useUserContext } from "../../context/user_context";
 
@@ -12,17 +13,32 @@ const Signin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await loginUser({ email, password });
-      console.log(response);
-      if (!response.data) return;
-      navigate("/user/account");
+      let response = await loginUser({ email, password })
+      .then((res)=>{return res
+      });
+      if (!response || response.status !== 200) {
+        setAlert({
+          show: true,
+          type: "danger",
+          msg: "Incorrect email or password",
+        });
+      } else if(response.data.role === 'user'){
+        navigate("/user/account");
+      }else if(response.data.role === 'vendor'){
+        navigate("/vendor/");
+      }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const showAlert = (show = false, type = "", msg = "") => {
+    setAlert({ show, type, msg });
   };
   return (
     <main>
@@ -68,6 +84,8 @@ const Signin = () => {
                 Forgot Password
               </Link>
             </div>
+            {alert.show && <Alert {...alert} removeAlert={showAlert} />}
+
             <div className="sign__sign-btn-container">
               <button
                 type="submit"

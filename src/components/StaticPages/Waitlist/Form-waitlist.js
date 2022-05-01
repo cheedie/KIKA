@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
+import Modal from "./Modal";
 import "../../../styles/StaticStyles/Waitlist.css";
 import ThriftImage from "../../../assets/StaticPages/thrift_image.svg";
 
 const FormWaitlist = () => {
+
+  const[openModal, setOpenModal] = useState(false);
   const [state, handleSubmit] = useForm("mbjwzyqk");
   if (state.succeeded) {
-    return <p>Thanks for joining our waitlist!</p>;
+    return <div>{openModal && <Modal closeModal={setOpenModal} />}</div>;
   }
+
+  // const closeModal = () => {
+	// 	if (!openModal) {
+	// 		document.body.style.overflow = 'hidden';
+	// 	} else {
+	// 		document.body.style.overflow = 'visible';
+	// 	}
+	// 	setOpenModal(!openModal);
+	// };
+
+  // const [state, handleSubmit] = useForm("mbjwzyqk");
+  // if (state.succeeded) {
+  //   return <Modal openModal={openModal} closeModal={closeModal} />;
+  // }
   return (
     <>
       <section className="hero_WaitContainer">
@@ -63,11 +80,15 @@ const FormWaitlist = () => {
                 <button
                   type="submit"
                   disabled={state.submitting}
+                  onClick={() => {
+                    setOpenModal(true);
+                  }}
                   id="waitlist-btn"
                   className="waitlist-btn"
                 >
                   JOIN THE WAILIST
                 </button>
+                
               </div>
             </form>
           </div>
