@@ -2,11 +2,14 @@ import React from "react";
 import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
+import NavMiddle from "../../components/User/NavMiddle";
 
 const Notification = () => {
   return (
     <main>
       <Navbar />
+      <NavMiddle deft={3} />
+
       <section className="user__account-container">
         <Sidebar deft={3} />
         <div className="user__account">

@@ -8,7 +8,6 @@ import {
   LOGIN_SUCCESS,
   CHANGE_PASSWORD,
   USER_LOGOUT,
-  REGISTER_DELIVERY_DETAILS,
   GET_STATE,
   GET_CITIES,
 } from "../actions";
@@ -17,9 +16,7 @@ const user_reducer = (state, action) => {
   if (action.type === REGISTER_USER) {
     return { ...state, register_user: action.payload };
   }
-  if (action.type === REGISTER_DELIVERY_DETAILS) {
-    return { ...state, delivery_details: action.payload };
-  }
+
   if (action.type === REQUEST_LOGIN) {
     return { ...state, loading: true };
   }

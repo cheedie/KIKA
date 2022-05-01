@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  useRoutes,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./pages/Landing";
 
 import Vendor from "./components/vendor/Vendor";
@@ -25,7 +20,7 @@ import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
 import AuthorizeVendor from "./components/vendor/AuthorizeVendor";
-import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
+// import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
 import Women from "./pages/marketPlace/Women";
 import Men from "./pages/marketPlace/Men";
 import Home from "./pages/home/Home";
@@ -33,12 +28,12 @@ import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
-import FlutterCheckout from "./components/User/FlutterCheckout";
-import PaymentOptions from "./pages/Cart/PaymentOptions";
+// import FlutterCheckout from "./components/User/FlutterCheckout";
+import Checkout from "./pages/Cart/Checkout";
 
 function AppRoutes() {
   const routes = useRoutes([
-    { path: "/landing", element: <Landing /> },
+    { path: "/", element: <Landing /> },
     { path: "/home", element: <Home /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
@@ -113,7 +108,7 @@ function AppRoutes() {
     // { path: "/payment", element: <FlutterCheckout /> },
 
     { path: "/delivery", element: <Delivery /> },
-    { path: "/payment", element: <PaymentOptions /> },
+    { path: "/checkout", element: <Checkout /> },
     { path: "/vendor/signup", element: <VendorSignup /> },
   ]);
   return routes;
