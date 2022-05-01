@@ -99,51 +99,53 @@ const Checkout = () => {
           </div>
         </div>
         <div className="modify_cart_wrapper">
-          {cart.map((item) => {
-            return (
-              <div className="modify_cart_container">
-                <h1>CART SUMMARY</h1>
-                <div className="modify_card">
-                  <div className="modify_card_img" key={item._id}>
-                    <img src={item.image} alt={item.name} />
-                  </div>
-                  <div className="modify_details">
-                    <p>{item.namename}</p>
-                    <div className="modify_cart_footer">
-                      <div className="footer_icons">
-                        <AmountButtons />
+          <div className="modify_cart_container">
+            <h1>CART SUMMARY</h1>
+            {cart.map((item) => {
+              return (
+                <React.Fragment>
+                  <div className="modify_card" key={item._id}>
+                    <div className="modify_card_img">
+                      <img src={item.image} alt={item.name} />
+                    </div>
+                    <div className="modify_details">
+                      <p>{item.name}</p>
+                      <div className="modify_cart_footer">
+                        <div className="footer_icons">
+                          <AmountButtons />
+                        </div>
+                        <p className="modify_price">NGN {item.price}</p>
                       </div>
-                      <p className="modify_price">NGN {item.price}</p>
                     </div>
                   </div>
-                </div>
+                </React.Fragment>
+              );
+            })}
 
-                <div className="modify_cart_summary">
-                  <div className="modify_cart_subtotal">
-                    <p>Subtotal</p>
-                    <p>NGN {total_amount}</p>
-                  </div>
-                  <div className="modify_cart_subtotal">
-                    <p>Delivery</p>
-                    <p>NGN {shipping_fee}</p>
-                  </div>
-                  <div className="modify_cart_subtotal">
-                    <p>Tax</p>
-                    <p>NGN {tax}</p>
-                  </div>
-                  <div className="modify_cart_total">
-                    <p>Total</p>
-                    <p>NGN {total_amount + shipping_fee + tax}</p>
-                  </div>
-                </div>
-                <div id="payment-btn" className="delivery_btn_container">
-                  <button type="submit" className="delivery-btn">
-                    Modify cart
-                  </button>
-                </div>
+            <div className="modify_cart_summary">
+              <div className="modify_cart_subtotal">
+                <p>Subtotal</p>
+                <p>NGN {total_amount}</p>
               </div>
-            );
-          })}
+              <div className="modify_cart_subtotal">
+                <p>Delivery</p>
+                <p>NGN {shipping_fee}</p>
+              </div>
+              <div className="modify_cart_subtotal">
+                <p>Tax</p>
+                <p>NGN {tax}</p>
+              </div>
+              <div className="modify_cart_total">
+                <p>Total</p>
+                <p>NGN {total_amount + shipping_fee + tax}</p>
+              </div>
+            </div>
+            <div id="payment-btn" className="delivery_btn_container">
+              <button type="submit" className="delivery-btn">
+                Modify cart
+              </button>
+            </div>
+          </div>
 
           <div className="livechat_container">
             <h1>Need help</h1>

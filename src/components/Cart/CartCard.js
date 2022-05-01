@@ -6,7 +6,7 @@ import "../../styles/CartStyles/MyCart.css";
 import AmountButtons from "./AmountButtons";
 
 const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
-  const { removeItem, toggleAmount, total_amount } = useCartContext();
+  const { cart, removeItem, toggleAmount, total_amount } = useCartContext();
 
   const increase = () => {
     toggleAmount(_id, "inc");
@@ -17,7 +17,7 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
   return (
     <>
       <section className="card_section">
-        <div className="card_row">
+        <div className="card_row" key={_id}>
           <div className="cartImg">
             <img src={image} alt={name} />
           </div>
@@ -69,26 +69,33 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
             decrease={decrease}
           />
         </div>
-
-        <div className="cartSummary">
-          <div>
-            <h2>Cart Summary</h2>
-            <div className="summary_Details">
-              <p>{name}</p>
-              <p>{price}</p>
-            </div>
-            <div className="subtotal_Details">
-              <p>SubTotal</p>
-              <p>{total_amount}</p>
-            </div>
-            <div>
-              <button type="submit" id="waitlist-btn" className="waitlist-btn">
-                <Link to="/delivery">Checkout</Link>
-              </button>
-            </div>
-          </div>
-        </div>
       </section>
+
+      <div className="cartSummary">
+        <div>
+          <h2>Cart Summary</h2>
+          {cart.map((item) => {
+            return (
+              <React.Fragment>
+                <div className="summary_Details" key={item._id}>
+                  <img src={item.image} alt="" />
+                  <p>{item.name}</p>
+                  <p>{item.price}</p>
+                </div>
+              </React.Fragment>
+            );
+          })}
+
+          <div className="subtotal_Details">
+            <p>SubTotal</p>
+            <p>{total_amount}</p>
+          </div>
+
+          <button type="submit" id="waitlist-btn" className="waitlist-btn">
+            <Link to="/delivery">Checkout</Link>
+          </button>
+        </div>
+      </div>
     </>
   );
 };
