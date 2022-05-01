@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { useProductContext } from "../../context/product_context";
-import { single_product_url as url } from "../../utils/constant";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import "../../styles/product/productDetails.scss";
-import { MdOutlineStarBorder } from "react-icons/md";
-import Product from "../Product/Product";
-import Loading from "../User/Loading";
-import Error from "../User/Error";
-import AddToCart from "../Cart/AddtoCart";
+import React, { useEffect } from 'react';
+import { useProductContext } from '../../context/product_context';
+import { single_product_url as url } from '../../utils/constant';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import '../../styles/product/productDetails.scss';
+import { MdOutlineStarBorder } from 'react-icons/md';
+import Product from '../Product/Product';
+import Loading from '../User/Loading';
+import Error from '../User/Error';
+import AddToCart from '../Cart/AddtoCart';
 
 const ProductInfo = () => {
   const { id } = useParams();
@@ -28,7 +28,7 @@ const ProductInfo = () => {
   useEffect(() => {
     if (error) {
       setTimeout(() => {
-        navigate("/");
+        navigate('/');
       }, 3000);
     }
   }, [error]);
@@ -60,20 +60,19 @@ const ProductInfo = () => {
         <section className="product__data">
           <h3>{name}</h3>
           <p>
-            Size: <span>{size}</span>
+            <span>Size:</span> <span>{size}</span>
           </p>
           <p>
-            Grade: <span>{grade}</span>
+            <span>Grade:</span> <span>{grade}</span>
           </p>
           <p>
-            Color: <span>{color}</span>
-          </p>
-
-          <p>
-            Vendor: <span>{vendor}</span>
+            <span>Color:</span> <span>{color}</span>
           </p>
           <p>
-            Price: <span>NGN {price}</span>
+            <span>Vendor:</span> <span>{vendor}</span>
+          </p>
+          <p>
+            <span>Price:</span> <span>NGN {price}</span>
           </p>
           <div>
             <MdOutlineStarBorder />
@@ -85,19 +84,25 @@ const ProductInfo = () => {
           {countInStock > 0 && <AddToCart product={product} />}
         </section>
       </div>
-      <div className="share__this__product">
-        <p>SHARE THIS PRODUCT</p>
-        <p>COPY LINK</p>
-      </div>
 
       <div className="more__products">
-        {products
-          .filter((_, index) => index < 4)
-          .map((product) => {
-            return (
-              <Product key={product._id} {...product} className="product" />
-            );
-          })}
+        <div className="share__this__product">
+          <p>SHARE THIS PRODUCT</p>
+          <p>COPY LINK</p>
+        </div>
+        <div className="products">
+          {products
+            .filter((_, index) => index < 4)
+            .map((product) => {
+              return (
+                <Product
+                  key={product._id}
+                  {...product}
+                  className="product"
+                />
+              );
+            })}
+        </div>
       </div>
     </section>
   );

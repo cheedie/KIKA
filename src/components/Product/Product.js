@@ -2,7 +2,6 @@ import React from 'react';
 import '../../styles/Home/product.scss';
 import { formatPrice } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
-import { useProductContext } from '../../context/product_context';
 import AddtoCart from '../Cart/AddtoCart';
 
 const Product = ({ image, name, price, _id, size }) => {

@@ -35,11 +35,13 @@ import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
 import FlutterCheckout from "./components/User/FlutterCheckout";
 import PaymentOptions from "./pages/Cart/PaymentOptions";
+import Search from "./components/Search/Search";
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/landing", element: <Landing /> },
     { path: "/home", element: <Home /> },
+    { path: "/search", element: <Search /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
     { path: "/products", element: <MarketPlace /> },
