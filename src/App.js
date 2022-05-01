@@ -17,6 +17,9 @@ import Errorpage from "./pages/StaticPages/Error";
 import Conditionpage from "./pages/StaticPages/termConditions";
 import Waitlist from "./pages/StaticPages/Waitlist";
 import OurPolicy from "./pages/StaticPages/OurPolicy";
+import Aboutus from "./pages/StaticPages/Aboutus";
+import Ourteam from "./pages/StaticPages/Ourteam";
+import Faqs from "./pages/StaticPages/FAQ";
 import SignOut from "./pages/user/SignOut";
 import TrackOrder from "./pages/user/TrackOrders";
 import Notifications from "./pages/user/Notification";
@@ -33,6 +36,7 @@ import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
 import FlutterCheckout from "./components/User/FlutterCheckout";
 import PaymentOptions from "./pages/Cart/PaymentOptions";
+import OrderSuccessful from  "./pages/Cart/OrderSuccessful";
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -92,11 +96,15 @@ function AppRoutes() {
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
+    { path: "/aboutus", element: <Aboutus /> },
+    { path: "/ourteam", element: <Ourteam /> },
+    { path: "/faq", element: <Faqs /> },
     { path: "/mycart", element: <MyCart /> },
     // { path: "/payment", element: <FlutterCheckout /> },
 
     { path: "/delivery", element: <Delivery /> },
     { path: "/payment", element: <PaymentOptions /> },
+    { path: "/ordersuccessful", element: <OrderSuccessful /> },
   ]);
   return routes;
 }
