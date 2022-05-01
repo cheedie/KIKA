@@ -7,6 +7,7 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup'
 import { useState } from 'react';
 import { useVendorContext } from "../../context/vendor_context";
+import axios from "axios";
 
 export default function UploadForm({setUpload}) {
     
@@ -58,8 +59,7 @@ export default function UploadForm({setUpload}) {
         }),
 
         onSubmit:values=>{
-        
-            console.log('Values......', values)
+  
             createProduct(values);
             //setUpload(false)
         }
@@ -78,7 +78,11 @@ export default function UploadForm({setUpload}) {
     return(
         <UploadWrapper>
             <UploadContainer>
-                <StyledForm products gap='2' onBlur={handleBlur} onSubmit={handleSubmit}>
+                <StyledForm products gap='2' 
+                onBlur={handleBlur} 
+                onSubmit={handleSubmit}
+                enctype="multipart/form-data"
+                >
                     <Wrapper flex>
                         <Heading> + Add New Product </Heading>
                         <ExitButton onClick={()=>setUpload(false)}><Close/></ExitButton>

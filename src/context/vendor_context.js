@@ -39,23 +39,32 @@ export const VendorProvider = ({ children }) => {
 
   const uploadVendorDetails = async (data) => {
     dispatch({ type: REGISTER_VENDOR });
-    try {
+   // try {
       console.log('data from submit::: ',data)
       let formData = new FormData();
 
       for (let value in data) {
         formData.append(value, data[value]);
       }
-      const response = await axios.post(`${url}/auth/register/vendor`, formData,
+      //const response = await 
+      axios.post(`${url}/auth/register/vendor`, formData,
       {
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
+          }
+     }).catch ((error)=> {
+        if(error.response){
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        }else if(error.request){
+          console.log(error.request)
+        }else{
+          console.log(error.message);
         }
-     }
-      ).then(()=>{console.log(response, "yayy")})
-    } catch (error) {
-      console.log(error);
-    }
+        console.log(error.config);
+     
+    })
   };
   const createProduct = async (data) => {
     dispatch({ type: CREATE_PRODUCT });
