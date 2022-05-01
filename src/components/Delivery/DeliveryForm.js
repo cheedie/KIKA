@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Loading from "../../components/User/Loading";
+import Error from "../../components/User/Error";
 import Alert from "../../components/User/Alert";
 import "../../styles/CartStyles/Delivery.css";
 import { useUserContext } from "../../context/user_context";
@@ -11,49 +13,52 @@ const DeliveryForm = () => {
     stateDetails,
     getCity,
     cityDetails,
+    userDetails,
+    user_details_loading: loading,
+    user_details_error: error,
     deliveryDetails,
+    getUser,
   } = useUserContext();
-  const [FullName, setFullName] = useState("");
-  const [address, setAddress] = useState("");
+  const [street, setStreet] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   useEffect(() => {
     getState();
-    deliveryDetails();
+    getUser();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     getCity(state);
+    // eslint-disable-next-line
   }, [state]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      FullName === "" &&
-      phoneNumber === "" &&
-      address === "" &&
-      city === "" &&
-      state === ""
-    ) {
+    let data = {
+      name: userDetails.name,
+      phone: userDetails.phone,
+      deliveryAddress: { state, city, street },
+    };
+    if (street === "" && city === "" && state === "") {
       setAlert({ show: true, type: "danger", msg: "please enter value" });
     } else {
-      deliveryDetails({
-        FullName,
-        phoneNumber,
-        state,
-        city,
-        address,
-      });
-      navigate("/payment");
+      deliveryDetails(data, navigate);
     }
   };
 
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
   };
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -63,14 +68,8 @@ const DeliveryForm = () => {
             <h2>DELIVERY DETAILS</h2>
           </div>
           <form className="delivery_details_form">
-            <input
-              id="name"
-              type="text"
-              placeholder="Full name"
-              value={FullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
-            <input id="phoneNumber" type="number" placeholder="Phone number" value={phoneNumber} onChange={(e)=> setPhoneNumber(e.target.value)} />
+            <input id="name" value={userDetails.name} readOnly />
+            <input id="phoneNumber" readOnly value={userDetails.phone} />
             <select
               id="state"
               name="state"
@@ -101,19 +100,19 @@ const DeliveryForm = () => {
               </option>
               {cityDetails.map((item) => {
                 return (
-                  <option key={item.id} value={item}>
+                  <option key={item.id} value={item.name}>
                     {item.name}
                   </option>
                 );
               })}
             </select>
             <input
-              id="address"
+              id="street"
               type="text"
               placeholder="Street address"
-              value={address}
+              value={street}
               onChange={(e) => {
-                setAddress(e.target.value);
+                setStreet(e.target.value);
               }}
             />
             {alert.show && <Alert {...alert} removeAlert={showAlert} />}

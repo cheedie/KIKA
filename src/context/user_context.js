@@ -1,4 +1,5 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer } from "react";
+
 import reducer from "../reducers/user_reducer";
 import { url } from "../utils/constant";
 import { baseUrl } from "../utils/baseUrl";
@@ -13,7 +14,6 @@ import {
   USER_DETAILS_ERROR,
   REGISTER_USER,
   CHANGE_PASSWORD,
-  REGISTER_DELIVERY_DETAILS,
   GET_STATE,
   GET_CITIES,
 } from "../actions";
@@ -31,7 +31,6 @@ const initialState = {
   userDetails: {},
   stateDetails: [],
   cityDetails: [],
-  delivery_details: null,
   user_details_error: false,
   user_details_loading: false,
 };
@@ -45,6 +44,7 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER });
     try {
       const response = await axios.post(`${url}/auth/register`, data);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -93,11 +93,9 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const signOut = async () => {
+  const signOut = () => {
     dispatch({ type: USER_LOGOUT });
     try {
-      const response = await baseUrl.get("/auth/logout");
-      console.log(response);
       localStorage.removeItem("currentUser");
       return true;
     } catch (error) {
@@ -106,11 +104,12 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const deliveryDetails = async (data) => {
+  const deliveryDetails = async (data, navigate) => {
     try {
-      const response = await baseUrl.post("/delivery/createdelivery", data);
+      const response = await baseUrl.put("/auth/updatedetails", data);
       console.log(response);
-      dispatch({ type: REGISTER_DELIVERY_DETAILS });
+      dispatch(getUser());
+      navigate("/checkout");
     } catch (error) {
       console.log(error);
     }

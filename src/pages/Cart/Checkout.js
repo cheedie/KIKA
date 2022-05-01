@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Loading from "../../components/User/Loading";
+import Error from "../../components/User/Error";
 import Navbar from "../../components/landing-page/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import visacard from "../../assets/cart/visa_card.png";
@@ -6,9 +8,29 @@ import mastercard from "../../assets/cart/master_card.png";
 import AmountButtons from "../../components/Cart/AmountButtons";
 import "../../styles/CartStyles/Payment.css";
 import { useCartContext } from "../../context/cart_context";
+import { useUserContext } from "../../context/user_context";
 
-const PaymentOptions = () => {
+const Checkout = () => {
   const { cart, total_amount, shipping_fee, tax } = useCartContext();
+  const {
+    userDetails,
+    user_details_loading: loading,
+    user_details_error: error,
+    getUser,
+  } = useUserContext();
+
+  useEffect(() => {
+    getUser();
+    // eslint-disable-next-line
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -18,9 +40,9 @@ const PaymentOptions = () => {
           <div className="address_details_container">
             <h1>1. ADDRESS DETAILS</h1>
             <div className="address_details">
-              <p>JERRY UKE</p>
-              <p>Plot 645 G Close Avenue, Ajah Lagos State.</p>
-              <p>+234-908-876-5432</p>
+              <p>{userDetails?.name}</p>
+              <p>{userDetails?.deliveryAddress?.street}</p>
+              <p>+234{userDetails?.phone?.substring(1)}</p>
             </div>
             <div className="details_button">
               <button className="change_button">CHANGE</button>
@@ -139,4 +161,4 @@ const PaymentOptions = () => {
   );
 };
 
-export default PaymentOptions;
+export default Checkout;

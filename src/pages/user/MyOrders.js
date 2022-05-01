@@ -4,12 +4,15 @@ import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
 import PendingOrders from "../../components/User/PendingOrders";
 import ReceivedOrder from "../../components/User/ReceivedOrder";
+import NavMiddle from "../../components/User/NavMiddle";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState("pending");
   return (
     <main>
       <Navbar />
+      <NavMiddle deft={2} />
+
       <section className="user__account-container">
         <Sidebar deft={2} />
         <section className="user__account">

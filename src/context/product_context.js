@@ -2,7 +2,6 @@ import React, { useContext, useReducer, useEffect } from "react";
 import axios from "axios";
 import reducer from "../reducers/product_reducer";
 import { baseUrl } from "../utils/baseUrl";
-import { products_url as url } from "../utils/constant";
 import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_SUCCESS,
@@ -12,7 +11,7 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
   CREATE_PRODUCT,
   CREATE_PRODUCT_SUCCESS,
-  CREATE_PRODUCT_ERROR
+  CREATE_PRODUCT_ERROR,
 } from "../actions";
 
 const ProductContext = React.createContext();
@@ -64,21 +63,20 @@ export const ProductProvider = ({ children }) => {
       for (let value in data) {
         formData.append(value, data[value]);
       }
-      const response = await axios.post(url, formData,
-      {
-        headers: {
-          "Content-type": "application/json"
-        }
-     }
-      ).then(()=>{
-        console.log(response, "yayy");
-        if (response.status === 200) {
-          dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: response });
-      }})
-      
-
+      const response = await axios
+        .post(url, formData, {
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        .then(() => {
+          console.log(response, "yayy");
+          if (response.status === 200) {
+            dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: response });
+          }
+        });
     } catch (error) {
-      dispatch({ type: CREATE_PRODUCT_ERROR , error:error});
+      dispatch({ type: CREATE_PRODUCT_ERROR, error: error });
     }
   };
 

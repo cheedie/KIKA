@@ -6,8 +6,6 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
   GET_SINGLE_PRODUCT_BEGIN,
   CREATE_PRODUCT,
-  CREATE_PRODUCT_SUCCESS,
-  CREATE_PRODUCT_ERROR
 } from "../actions";
 
 const product_reducer = (state, action) => {
@@ -61,7 +59,7 @@ const product_reducer = (state, action) => {
   if (action.type === CREATE_PRODUCT) {
     return {
       ...state,
-      create_product: action.payload
+      create_product: action.payload,
     };
   }
 
