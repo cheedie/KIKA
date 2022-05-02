@@ -46,13 +46,12 @@ const Navbar = () => {
           </li>
 
           <li onMouseEnter={showDropDown} onMouseLeave={hideDropDown}>
-            <Link to="/products">Market Place</Link>
+            <Link to="/products">MarketPlace</Link>
           </li>
           <Link to="/aboutus">
-
-
-          <li>About Us</li>
+            <li>About Us</li>
           </Link>
+
           <li>Sell on KIKA</li>
         </ul>
         {/*end navlinks */}

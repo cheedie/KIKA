@@ -16,7 +16,7 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
   };
   return (
     <>
-      <section className="card_section">
+      <div className="card_section">
         <div className="card_row" key={_id}>
           <div className="cartImg">
             <img src={image} alt={name} />
@@ -48,8 +48,8 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
                 <p></p>
               </div>
               <div className="cloth_Details">
+                <p>Price</p>
                 <p>{price}</p>
-                <p></p>
               </div>
             </div>
           </div>
@@ -69,18 +69,20 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
             decrease={decrease}
           />
         </div>
-      </section>
+      </div>
 
       <div className="cartSummary">
         <div>
-          <h2>Cart Summary</h2>
+          <h3>Cart Summary</h3>
           {cart.map((item) => {
             return (
               <React.Fragment>
                 <div className="summary_Details" key={item._id}>
                   <img src={item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>{item.price}</p>
+                  <div className="summary_Detail">
+                    <p>{item.name}</p>
+                    <p>{item.price}</p>
+                  </div>
                 </div>
               </React.Fragment>
             );
@@ -91,7 +93,7 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
             <p>{total_amount}</p>
           </div>
 
-          <button type="submit" id="waitlist-btn" className="waitlist-btn">
+          <button type="submit" id="cart-btn" className="cart-btn">
             <Link to="/delivery">Checkout</Link>
           </button>
         </div>

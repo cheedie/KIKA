@@ -31,8 +31,9 @@ import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
-import OrderSuccessful from "./pages/Cart/OrderSuccessful";
 import FlutterCheckout from "./components/User/FlutterCheckout";
+import OrderSuccessful from "./pages/Cart/OrderSuccessful";
+
 import Checkout from "./pages/Cart/Checkout";
 
 function AppRoutes() {
@@ -115,6 +116,7 @@ function AppRoutes() {
     { path: "/payment", element: <FlutterCheckout /> },
 
     { path: "/delivery", element: <Delivery /> },
+
     { path: "/ordersuccessful", element: <OrderSuccessful /> },
     { path: "/checkout", element: <Checkout /> },
     { path: "/vendor/signup", element: <VendorSignup /> },
