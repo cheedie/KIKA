@@ -27,15 +27,20 @@ const EmptyCart = () => {
           </div>
           <h3 className="error_title">Your cart is empty</h3>
           <p>
-            Browse through our various categories and discover the best thrifted
+            Browse through our various categories and discover <br /> the best thrifted
             wears you can get
           </p>
-          <Link to="/products">Start Shopping</Link>
+          
+          <div className="empty___btn">
+            <button className="empty__cart__btn">
+              <Link to="/products">Start Shopping</Link>
+            </button>  
+          </div>
+          
         </div>
         <div>
           <h1 className="empty_header">Recently viewed</h1>
-          <div className="cart_cards">
-            <div className="">
+          <div className="more__products">
               {products
                 .filter((_, index) => index < 5)
                 .map((product) => {
@@ -48,7 +53,6 @@ const EmptyCart = () => {
                   );
                 })}
               {/* <EmptyCartCard {...empCartObjOne} /> */}
-            </div>
           </div>
         </div>
       </section>

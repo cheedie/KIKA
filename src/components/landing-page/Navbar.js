@@ -10,9 +10,9 @@ const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [status, setStatus] = useState("close");
-  const [profileMenu, setProfileMenu] = useState({
-    opacity: "0",
-  });
+  // const [profileMenu, setProfileMenu] = useState({
+  //   opacity: "0",
+  // });
   const [marketPlaceMenu, setMarketPlaceMenu] = useState({
     opacity: "0",
     zIndex: "-100",
@@ -46,10 +46,12 @@ const Navbar = () => {
           </li>
 
           <li onMouseEnter={showDropDown} onMouseLeave={hideDropDown}>
-            <Link to="/products">Market Place</Link>
+            <Link to="/products">MarketPlace</Link>
           </li>
+          <Link to="/aboutus">
+            <li>About Us</li>
+          </Link>
 
-          <li>About Us</li>
           <li>Sell on KIKA</li>
         </ul>
         {/*end navlinks */}
@@ -73,7 +75,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div
+        {/* <div
           className="profile__dropDown"
           style={profileMenu}
           onMouseEnter={() => {
@@ -88,44 +90,44 @@ const Navbar = () => {
               zIndex: "-100",
             });
           }}
-        >
-          <Link to="/buyer/signin">
-            <div
+        > */}
+        <Link to="/buyer/signin">
+          {/* <div
               onClick={() =>
                 setProfileMenu({
                   opacity: "0",
                 })
               }
-            >
-              <p>Sign in</p>
-            </div>
-          </Link>
-          <Link to="/buyer/signup">
-            <div
+            > */}
+          <p>Sign in</p>
+          {/* </div> */}
+        </Link>
+        <Link to="/buyer/signup">
+          {/* <div
               onClick={() =>
                 setProfileMenu({
                   opacity: "0",
                   zIndex: "-100",
                 })
               }
-            >
-              <p>Sign up</p>
-            </div>
-          </Link>
+            > */}
+          <p>Sign up</p>
+          {/* </div> */}
+        </Link>
 
-          <Link to="/user/account">
-            <div
-              onClick={() =>
-                setProfileMenu({
-                  opacity: "0",
-                  zIndex: "-100",
-                })
-              }
-            >
-              <p>Account</p>
-            </div>
-          </Link>
-        </div>
+        <Link to="/user/account">
+          {/* <div
+            onClick={() =>
+              setProfileMenu({
+                opacity: "0",
+                zIndex: "-100",
+              })
+            }
+          > */}
+          <p>Account</p>
+          {/* </div> */}
+        </Link>
+        {/* </div> */}
         {/* end drop downs */}
 
         {/* start search form */}
@@ -148,7 +150,7 @@ const Navbar = () => {
 
         {/** start sign in cart and toggle */}
         <section className="nav__profile">
-          <div
+          {/* <div
             className="profile__imgContainer"
             onMouseEnter={() => {
               setProfileMenu({
@@ -161,9 +163,9 @@ const Navbar = () => {
                 zIndex: "-100",
               });
             }}
-          >
-            <img src={Profile} alt="shopping cart" />
-          </div>
+          > */}
+          <img src={Profile} alt="shopping cart" />
+          {/* </div> */}
           <Link to="/mycart">
             <div className="cart">
               <img src={Cart} alt="shopping cart" />

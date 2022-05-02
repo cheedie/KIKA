@@ -6,7 +6,7 @@ import { ReactComponent as WatchFilled } from "../../assets/user/watch-filled.sv
 import { ReactComponent as Watch } from "../../assets/user/watch.svg";
 import Alert from "../../components/User/Alert";
 import { useUserContext } from "../../context/user_context";
-
+import NavMiddle from "../../components/User/NavMiddle";
 const ChangePassword = () => {
   const { changePassword } = useUserContext();
   const [currentPassword, setCurrentPassword] = useState("");
@@ -44,6 +44,8 @@ const ChangePassword = () => {
   return (
     <main>
       <Navbar />
+      <NavMiddle deft={1} />
+
       <section className="user__account-container">
         <Sidebar deft={5} />
         <section className="user__account">

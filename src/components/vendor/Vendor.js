@@ -23,24 +23,23 @@ const Vendor = () => {
     signOut,
     getVendor,
     vendorDetails,
-    product,
-    products,
     getVendorProducts,
-    vendor_details_loading: loading,
+    products,
     vendor_details_error: error,
-    getting_products_loading: product_loading,
-    getting_details_error: product_error,
+    vendor_details_loading: loading,
+    getting_products_loading:products_loading,
+    getting_products_error: products_error,
   } = useVendorContext();
-
   useEffect(() => {
-    async function fetchData() {
-    return  getVendor().then((response)=>{
+    const fetchData = async()=>{
+  return  getVendor().then((response)=>{
       // console.log("SECOND VENDOR DETAILS", vendorDetails);
       getVendorProducts(response._id)
     })
       // ...
     }
     fetchData()
+
   }, []);
 
   const fetchProducts = () => getVendorProducts(vendorDetails._id)
@@ -74,25 +73,27 @@ const Vendor = () => {
         <section className="vendor main">
          
         <Sidebar handleSignOut={handleSignOut}/>
-        <div className="main_container">                        
-           <Routes>
-              <Route path={"" ? "" : "/"} element={<Dashboard/>} />
+        <div className="main_container">     
+
+          { loading ? <Loading/> : error ? <Error/> :
+            <Routes>
+              <Route path={"" ? "" : "/"} element={<Dashboard/>}/>
               <Route path="/products" element={<Products 
-              loading={product_loading}
-              error={product_error}
+              vendorDetails={vendorDetails}
+              loading={products_loading}
+              error={products_error}
               refresh={fetchProducts} products={products}/>} />
               <Route path="/orders" element={<Orders/>} />
               <Route path="/report" element={<Report/>} />
               <Route path="/reviews" element={<Reviews/>} />
               <Route path="/withdraw" element={<Withdraw/>} />
               <Route path="/settings" element={<Settings/>} />
-           </Routes>
+           </Routes>}
 
         </div>
-         
-        </section>
+      </section>
     </div>
-  )
+  );
 }
 
-export default Vendor
+export default Vendor;

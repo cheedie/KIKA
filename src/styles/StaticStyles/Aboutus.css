@@ -1,0 +1,295 @@
+.about_wrapper {
+  margin: 5em 2em;
+}
+.about_body {
+  display: flex;
+}
+.about_nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.about-Menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  /* margin: 0 2em; */
+}
+
+.about-item {
+  height: 50px;
+  margin: 0 5em;
+  border-bottom: 2px solid transparent;
+}
+
+/* .link-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5em;
+} */
+
+/* .about-item:hover {
+  
+} */
+
+.about-links {
+  color: #333333;
+  border-bottom: 3px solid #c4c4c4;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-size: 15px;
+  margin: 0 5em;
+  height: 100%;
+}
+
+.about-links:hover {
+  border-bottom: 3px solid #f15a24;
+  color: #f15a24;
+}
+
+.about_text {
+  margin-top: 2.5em;
+  max-width: 55vw;
+}
+.about_image {
+  max-width: 45vw;
+  display: flex;
+  align-items: center;
+}
+.about_image img {
+  vertical-align: center;
+  border: 0;
+}
+.about_text p {
+  text-align: justify;
+  line-height: 1.4;
+}
+
+/* ==========================TEAM CSS======================================= */
+.team_img {
+  margin-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#team_image img {
+  object-fit: cover;
+  border-radius: 2px;
+  width: 150px;
+  height: 150px;
+}
+
+#team_image {
+  display: flex;
+  /* margin-left: 10px; */
+  max-width: min-content;
+  position: relative;
+  box-sizing: border-box;
+  background-color: rgb(248, 248, 248);
+  background-clip: padding-box;
+  border: solid 3px transparent;
+  border-radius: 2px;
+  padding: 4px;
+  margin: 3em 2em 0.7em 2em;
+}
+
+#team_image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  margin: -1px;
+  border-radius: inherit;
+  background: #f15a24;
+}
+.team_img_container p {
+  text-align: center;
+  font-size: 12px;
+  margin: 0.2em 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.team_img_container p:nth-of-type(2) {
+  color: #f15a24;
+}
+
+/* =======================FAQ page================================= */
+.accordion_container {
+  margin-top: 1.5em;
+}
+.item {
+  background-color: #f5f5f5;
+  margin: 1em 3em;
+  padding: 0.5em;
+  color: #2e3192;
+}
+
+.title_faq {
+  margin: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.content_faq {
+  margin: 0em 2.4em 1em 2.4em;
+  font-size: 13px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.content_faq.show {
+  height: auto;
+  max-height: 9999px;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+.plus_faq {
+  font-size: 2.5em;
+}
+
+@media screen and (max-width: 1300px) {
+  .about_h1 {
+    font-size: 24px;
+  }
+  .about-item {
+    margin: 0 3em;
+  }
+  .about-links {
+    margin: 0 4em;
+  }
+}
+@media screen and (max-width: 998px) {
+  .about_h1 {
+    font-size: 22px;
+  }
+  .about-item {
+    margin: 0 2em;
+  }
+  .about-links {
+    margin: 0 2.5em;
+  }
+  .about_image img {
+    width: 500px;
+    height: 320px;
+    margin-top: 1em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .about_h1 {
+    font-size: 20px;
+  }
+  .about-item {
+    margin: 0 1.2em;
+  }
+  .about-links {
+    margin: 0 1.8em;
+    padding: 0.5em;
+  }
+  .about_body {
+    display: flex;
+    flex-direction: column;
+  }
+  .about_text {
+    max-width: 90vw;
+  }
+  .about_image {
+    display: none;
+  }
+  /* ==========faq css============= */
+  .item {
+    margin: 1em;
+  }
+}
+@media screen and (max-width: 578px) {
+  .about_wrapper {
+    margin: 4em 1.1em 2em 1.1em;
+  }
+  .about_h1 {
+    font-size: 18px;
+  }
+  .about-item {
+    margin: 0 0.5em;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .about-links {
+    margin: 0 0.5em;
+    padding: 0.5em;
+    border-bottom: none;
+  }
+  .about-links:hover {
+    color: #fff;
+    background-color: #f15a24;
+  }
+  /* =======team css================ */
+  #team_image {
+    margin: 2em 0.07em 0.5em 0.07em;
+  }
+  /* ==========faq css============= */
+  .item {
+    margin: 0.5em 0.2em;
+    padding: 0.2em;
+  }
+  .title_faq {
+    margin: 0.7em 1em;
+    align-items: center;
+  }
+
+  .title_faq h4 {
+    margin-right: 0.5em;
+    line-height: 1.2;
+  }
+
+  .content_faq {
+    margin: 0em 1em 0.5em 1em;
+  }
+  .plus_faq {
+    font-size: 2em;
+  }
+}
+
+@media screen and (max-width: 368px) {
+  .about_wrapper {
+    margin: 4em 1em 2em 1em;
+  }
+  .about_h1 {
+    font-size: 16px;
+  }
+  .about-item {
+    margin: 0 0.3em;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .about-links {
+    margin: 0 0.25em;
+    padding: 0.3em;
+    border-bottom: none;
+  }
+  /* =======team css================ */
+  #team_image {
+    margin: 2em 0 0.5em 0;
+  }
+  .team_img {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+  #team_image img {
+    object-fit: cover;
+    border-radius: 2px;
+    width: 250px;
+    height: 250px;
+  }
+}
