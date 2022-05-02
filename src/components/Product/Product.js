@@ -1,8 +1,7 @@
-import React from 'react';
-import '../../styles/Home/product.scss';
-import { formatPrice } from '../../utils/helpers';
-import { Link } from 'react-router-dom';
-import AddtoCart from '../Cart/AddtoCart';
+import React from "react";
+import "../../styles/Home/product.scss";
+import { Link } from "react-router-dom";
+import "../../styles/product/addToCart.scss";
 
 const Product = ({ image, name, price, _id, size }) => {
   return (
@@ -20,9 +19,13 @@ const Product = ({ image, name, price, _id, size }) => {
                 <div></div>
               </div>
             </div>
-              <div className="product__right">
-              <p className='product__price'>NGN {price}</p>
-              <AddtoCart />
+            <div className="product__right">
+              <p className="product__price">NGN {price}</p>
+              <div className="addToCart__button">
+                <Link to={`/products/${_id}`}>
+                  <div>Add To Cart</div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

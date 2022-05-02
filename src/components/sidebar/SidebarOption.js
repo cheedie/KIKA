@@ -1,6 +1,5 @@
-import React from 'react';
-import '../../styles/sidebar/sidebar-option.scss';
-import { MdKeyboardArrowDown } from 'react-icons/md';
+import React from "react";
+import "../../styles/sidebar/sidebar-option.scss";
 
 const SidebarOption = ({ title }) => {
   return (

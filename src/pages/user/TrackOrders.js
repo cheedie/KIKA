@@ -3,11 +3,14 @@ import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
 import map from "../../assets/user/map.png";
+import NavMiddle from "../../components/User/NavMiddle";
 
 const TrackOrders = () => {
   return (
     <main>
       <Navbar />
+      <NavMiddle deft={4} />
+
       <section className="user__account-container">
         <Sidebar deft={4} />
         <div className="user__account">
