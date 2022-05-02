@@ -181,7 +181,6 @@ const Navbar = () => {
           <Link to="/mycart">
             <div className="cart">
               <img src={Cart} alt="shopping cart" />
-              <span>Cart</span>
             </div>
           </Link>
 

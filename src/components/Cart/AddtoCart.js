@@ -31,7 +31,7 @@ const AddtoCart = ({ product }) => {
     <div className="addToCart__button">
       {/*<AmountButtons amount={amount} increase={increase} decrease={decrease} />*/}
       <Link to="/mycart" onClick={() => addToCart(amount, product)}>
-        <div>Add To Cart</div>
+        <div className="addToCartButton">Add To Cart</div>
       </Link>
     </div>
   );

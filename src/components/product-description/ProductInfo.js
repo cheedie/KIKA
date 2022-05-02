@@ -59,22 +59,25 @@ const ProductInfo = () => {
         <img src={image} alt={name} />
         <section className="product__data">
           <h3>{name}</h3>
-          <p>
-            <span>Size:</span> <span>{size}</span>
-          </p>
-          <p>
-            <span>Grade:</span> <span>{grade}</span>
-          </p>
-          <p>
-            <span>Color:</span> <span>{color}</span>
-          </p>
-          <p>
-            <span>Vendor:</span> <span>{vendor}</span>
-          </p>
-          <p>
-            <span>Price:</span> <span>NGN {price}</span>
-          </p>
-          <div>
+
+          <div className="productDAta__wrapper">
+            <p>
+              <span>Size:</span> <span>{size}</span>
+            </p>
+            <p>
+              <span>Grade:</span> <span>{grade}</span>
+            </p>
+            <p>
+              <span>Color:</span> <span>{color}</span>
+            </p>
+            <p>
+              <span>Vendor:</span> <span>{vendor}</span>
+            </p>
+            <p>
+              <span>Price:</span> <span>NGN {price}</span>
+            </p>
+          </div>
+          <div className="rating">
             <MdOutlineStarBorder />
             <MdOutlineStarBorder />
             <MdOutlineStarBorder />

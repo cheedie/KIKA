@@ -35,7 +35,7 @@ import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
 import FlutterCheckout from "./components/User/FlutterCheckout";
 import PaymentOptions from "./pages/Cart/PaymentOptions";
-import Search from "./components/Search/Search";
+import Search from "./pages/marketPlace/Search";
 
 function AppRoutes() {
   const routes = useRoutes([

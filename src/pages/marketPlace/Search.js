@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import Footer from '../landing-page/Footer';
-import Navbar from '../landing-page/Navbar';
+import Footer from '../../components/landing-page/Footer';
+import Navbar from '../../components/landing-page/Navbar';
 import { useProductContext } from '../../context/product_context';
-import Product from '../Product/Product';
+import Product from '../../components/Product/Product';
 import NavbarContext from '../../context/navbar_context';
 import Loading from '../../components/User/Loading';
 import Error from '../../components/User/Error';
@@ -18,7 +18,7 @@ const Search = () => {
   if (error) {
     return <Error />;
   }
-  if (loading) {
+  if (loading) {  
     return <Loading />;
   }
   return (
