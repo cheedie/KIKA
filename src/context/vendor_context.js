@@ -140,9 +140,7 @@ export const VendorProvider = ({ children }) => {
     try {
       const response = await baseUrl.get("/auth/profile");
       const vendorDetails = response.data?.data;
-      console.log("response from get vendor", response)
       dispatch({ type: VENDOR_DETAILS, payload: vendorDetails });
-      console.log("vendor details after dispatch",vendorDetails)
       return vendorDetails
     } catch (error) {
       console.log(error);

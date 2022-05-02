@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import Loading from "../Global/Loading";
 import Error from "../Global/Error";
+import Message from "../Global/Message";
 
 import { useVendorContext } from "../../context/vendor_context";
 
@@ -61,7 +62,10 @@ export default function Products({vendor, loading, error, products, refresh}) {
 
             </div>
 
-        { loading ? <Loading/>  : error ? <Error/> :
+        { loading ? <Loading/>  
+        : error ? <Error/> 
+        : products.length <=0 ? 
+        <Message message="No products available..."/>:
         <div className="product_list">
             <div className="product_titles">
                 <p className="product_image_title">Image</p>
