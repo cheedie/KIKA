@@ -33,8 +33,8 @@ const Vendor = () => {
   useEffect(() => {
     const fetchData = async()=>{
   return  getVendor().then((response)=>{
-      // console.log("SECOND VENDOR DETAILS", vendorDetails);
-      getVendorProducts(response._id)
+      console.log("SECOND VENDOR DETAILS", response);
+     // getVendorProducts(response._id)
     })
       // ...
     }
