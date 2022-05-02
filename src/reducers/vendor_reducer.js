@@ -49,15 +49,16 @@ import {
       };
     }
     if (action.type === CREATE_PRODUCT_ERROR) {
+      console.log("error payload", action.payload)
       return {
         ...state,
-        // creating_product: false,
+        creating_product: false,
         creating_product_error: true, 
         creating_product_message: action.payload, 
       };
     }
     if (action.type === CREATE_PRODUCT_SUCCESS) {
-      return {
+     return {
         ...state,
         creating_product: false,
         creating_product_error: false,
@@ -68,14 +69,14 @@ import {
     if (action.type === GET_VENDOR_PRODUCTS) {
       return {
         ...state,
-        getting_products: true,
+        getting_products_loading: true,
         getting_products_error: false,
       };
     }
     if (action.type === GET_VENDOR_PRODUCTS_ERROR) {
       return {
         ...state,
-        getting_products: false,
+        getting_products_loading: false,
         getting_products_error: true 
       };
     }
@@ -83,7 +84,7 @@ import {
      
       return {
         ...state,
-        getting_products: false,
+        getting_products_loading: false,
         getting_products_error: true ,
         products:action.payload,
       };

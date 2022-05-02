@@ -5,26 +5,29 @@ import {StyledForm , StyledLabel, StyledInput, StyledTextArea, StyledSelect , In
 import { AiOutlineCloseCircle as Close} from 'react-icons/ai'
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function UploadForm({setUpload}) {
+export default function UploadForm({setUpload, refresh}) {
     
   const { 
+      product,
       createProduct,
       creating_product,
       creating_product_error,
       creating_product_message,
     } = useVendorContext();
+    const [uploadMessage, setUploadMessage] = useState(true);
 
+    useEffect(() => {
+        return (!creating_product && creating_product_message) &&
+        (!creating_product_error && creating_product_message) ? setUploadMessage(false) : setUploadMessage(true)
+      }, []);
     const FILE_SIZE = 5 * 160 * 1024;
    const [imagePreview, setImagePreview] = useState({
         path: "",
       });
-   const [uploadStatus, setUploadStatus] = useState({
-       status:false,
-       message:''
-   });
+
 
 
 
@@ -67,25 +70,21 @@ export default function UploadForm({setUpload}) {
         }),
 
         onSubmit:values=>{
-            // setUploadStatus({
-            //     status:true,
-            //     message: 'Uploading...'
-            // })
             return createProduct(values)
             .then((response)=>{
-                // setUploadStatus({
-                //     status: response.error ? true: false, 
-                //     message: response.error.includes('name') ? "Product name already exists" 
-                //     : response.error ? response.error : response.data.message
-                // })
                 console.log("response on submit", response)
+                if(response.data?.data && response.data?.message){
+                    refresh()
+                   setTimeout(()=> setUpload(false)
+                    ,2000);
+                    //return timer;
+                //clearTimeout(timer)
+                }
             });
-            //setUpload(false)
         }
     })
 
     const handleFileChange = (e) => {
-    console.log(e.target.files)
     setFieldValue("image", e.currentTarget.files[0])
     .then(()=>setImagePreview({
             ...values.image,
@@ -104,7 +103,7 @@ export default function UploadForm({setUpload}) {
                 >
                     <Wrapper flex>
                         <Heading> + Add New Product </Heading>
-                        <ExitButton onClick={()=>setUpload(false)}><Close/></ExitButton>
+                        <ExitButton id="exit" name="exit_button" onClick={()=>setUpload(false)}><Close/></ExitButton>
                     </Wrapper>
                     
                     <Wrapper grid gap="1"
@@ -237,7 +236,11 @@ export default function UploadForm({setUpload}) {
                     
                     <StyledButton id='submit' name='submit' type='submit' label ='Add Product'>Upload</StyledButton>
                     <Wrapper flex>
-                      {creating_product ? <Heading smallHeading> {creating_product_message}</Heading> : null}
+                      {uploadMessage || creating_product || creating_product_error || creating_product_message ? 
+                      <Heading 
+                      smallHeading
+                      color={creating_product_error && !creating_product ? "red": (creating_product || product) ? "green" : "black" }
+                      > {creating_product_message}</Heading> : null}
                     </Wrapper>
                 </StyledForm>
             </UploadContainer>
@@ -248,7 +251,7 @@ export default function UploadForm({setUpload}) {
 
 
 const UploadWrapper = styled.section`
-position:absolute;
+position:fixed;
 top:0;
 left:0;
 width:100%;
@@ -287,6 +290,7 @@ const Heading = styled.h1`
   line-height: 78px;
   width:100%;
   text-align:left;
+  color:${({smallHeading, color})=> smallHeading && color ? color : ""};
 
     @media (max-width:720px){
         font-size:36px;

@@ -28,6 +28,8 @@ const Vendor = () => {
     getVendorProducts,
     vendor_details_loading: loading,
     vendor_details_error: error,
+    getting_products_loading: product_loading,
+    getting_details_error: product_error,
   } = useVendorContext();
 
   useEffect(() => {
@@ -40,6 +42,9 @@ const Vendor = () => {
     }
     fetchData()
   }, []);
+
+  const fetchProducts = () => getVendorProducts(vendorDetails._id)
+  
 
 
   if (loading) {
@@ -72,7 +77,10 @@ const Vendor = () => {
         <div className="main_container">                        
            <Routes>
               <Route path={"" ? "" : "/"} element={<Dashboard/>} />
-              <Route path="/products" element={<Products products={products}/>} />
+              <Route path="/products" element={<Products 
+              loading={product_loading}
+              error={product_error}
+              refresh={fetchProducts} products={products}/>} />
               <Route path="/orders" element={<Orders/>} />
               <Route path="/report" element={<Report/>} />
               <Route path="/reviews" element={<Reviews/>} />

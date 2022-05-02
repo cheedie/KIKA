@@ -1,22 +1,20 @@
-import shirt from "../../assets/vendor/images/shirt.png"
 import UploadForm from "./UploadForm";
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
-// import {useFormik} from 'formik';
-// import * as Yup from 'yup'
-//import { url } from "../../utils/constant";
+import Loading from "../Global/Loading";
+import Error from "../Global/Error";
 
-export default function Products({products}) {
+import { useVendorContext } from "../../context/vendor_context";
+
+export default function Products({loading, error, products, refresh}) {
     const [isUploading, setUpload] = useState(false)
-
-    // useEffect(() => {
-        
-    //     console.log("MY PRODUCTS", products)
-    
+    //   useEffect(() => {
+    //     refresh()
     //   }, []);
+
   return (
       <>
-    <div id="wrapper" className="products">
+    <div id="wrapper" className="products" style={isUploading? {'overflow':"hidden"}:{'overflow':"visible"}}>
         <nav>
             <div>
             <Link to="/" className="subtitle active">All (2)</Link>
@@ -62,7 +60,7 @@ export default function Products({products}) {
 
             </div>
 
-            
+        { loading ? <Loading/>  : error ? <Error/> :
         <div className="product_list">
             <div className="product_titles">
                 <p className="product_image_title">Image</p>
@@ -77,12 +75,12 @@ export default function Products({products}) {
                 <ProductTile products={products}/>
             </div>
 
-        </div>
+        </div>}
         </div>
         
        
     </div>
-    {isUploading ? <UploadForm setUpload={setUpload}/>:null}
+    {isUploading ? <UploadForm refresh ={refresh} setUpload={setUpload}/>:null}
     </>
   )
 }
@@ -91,13 +89,13 @@ export default function Products({products}) {
 
 function ProductTile({products}) {
 
-    const tile= products.map((value) =>{
+    const tile= products.reverse().map((value) =>{
     let product= {
                     image:value.image,
                     title:value.name,
                     status:"Pending review",
                     stock:value.countInStock > 0 ? "In Stock" : "Out of Stock",
-                    price:`₦${value.price}`,
+                    price:`₦ ${value.price}`,
                     views:"5",
                     date:"09/04/2022",
                     id:value._id,

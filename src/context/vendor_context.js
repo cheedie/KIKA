@@ -32,6 +32,8 @@ const initialState = {
   vendorDetails: {},
   product:{},
   products:[],
+  getting_products_loading:false,
+  getting_products_error: false,
   creating_product: false,
   creating_product_error: false,
   creating_product_message:''
@@ -64,7 +66,7 @@ export const VendorProvider = ({ children }) => {
 
 
   const createProduct = async (data) => {
-    dispatch({ type: CREATE_PRODUCT , payload: "Uploading product"});
+    dispatch({ type: CREATE_PRODUCT , payload: "Uploading product..."});
       let formData = new FormData();
       for (let value in data) {
         formData.append(value, data[value]);
@@ -73,9 +75,10 @@ export const VendorProvider = ({ children }) => {
     return baseUrl.post(products_url, formData,
         { headers: {"Content-type": "application/json"} })
         .then(response =>{
-          console.log("THIS IS PRODUCT CREATED", response)
+          console.log("THIS IS PRODUCT CREATED", response.data?.data)
+          console.log("THIS IS message", response.data?.message)
           dispatch({ type: CREATE_PRODUCT_SUCCESS, 
-            payload: {message:response.data?.data.message,
+            payload: {message:response.data?.message,
                       data: response.data?.data}});
           return response;
         })
@@ -94,7 +97,7 @@ export const VendorProvider = ({ children }) => {
           console.log("Error message",err)
         }
         console.log(error.config)
-        dispatch({ type: CREATE_PRODUCT_ERROR, payload: "Error" });
+        dispatch({ type: CREATE_PRODUCT_ERROR, payload: `${err.error.includes("name")?"Product name already exists":err.error}` });
         return err;
       })
   };
