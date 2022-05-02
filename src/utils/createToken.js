@@ -3,7 +3,10 @@ const createToken = () => {
   if (!token) return null;
   else {
     const retrieveToken = JSON.parse(token);
-    return retrieveToken //.token;
+   // console.log("RETRIEVED",retrieveToken)
+    //const token = retrieveToken.token
+    return retrieveToken.token;
+    //return {retrieveToken, token}
   }
 };
 

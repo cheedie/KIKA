@@ -23,7 +23,6 @@ const Vendor = () => {
     signOut,
     getVendor,
     vendorDetails,
-    product,
     products,
     getVendorProducts,
     vendor_details_loading: loading,
@@ -34,10 +33,11 @@ const Vendor = () => {
 
   useEffect(() => {
     async function fetchData() {
-    return  getVendor().then((response)=>{
-      // console.log("SECOND VENDOR DETAILS", vendorDetails);
-      getVendorProducts(response._id)
-    })
+      return  getVendor()
+    //.then((response)=>{
+    //   console.log("SECOND VENDOR DETAILS", response);
+    //  // getVendorProducts(response._id)
+    // })
       // ...
     }
     fetchData()
@@ -58,7 +58,7 @@ const Vendor = () => {
   const handleSignOut = async () => {
     const sign = await signOut();
     if (sign) {
-      navigate("/user/signin");
+      navigate("/vendor/signin");
     } else return;
   }
   return (
@@ -78,6 +78,7 @@ const Vendor = () => {
            <Routes>
               <Route path={"" ? "" : "/"} element={<Dashboard/>} />
               <Route path="/products" element={<Products 
+              vendor={vendorDetails}
               loading={product_loading}
               error={product_error}
               refresh={fetchProducts} products={products}/>} />

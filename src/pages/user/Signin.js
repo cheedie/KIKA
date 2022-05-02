@@ -19,7 +19,8 @@ const Signin = () => {
     e.preventDefault();
     try {
       let response = await loginUser({ email, password })
-      .then((res)=>{return res
+      .then((res)=>{
+        return res
       });
       if (!response || response.status !== 200) {
         setAlert({

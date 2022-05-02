@@ -7,7 +7,6 @@ import createToken from "../../utils/createToken";
 const AuthorizeVendor = () => {
   const response = createToken();
   if (response) {
-    console.log("AAUTHORIZE", response)
     // check if user is verified or has completed profile
     return <Outlet />;
   }

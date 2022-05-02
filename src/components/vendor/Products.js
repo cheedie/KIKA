@@ -6,11 +6,12 @@ import Error from "../Global/Error";
 
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function Products({loading, error, products, refresh}) {
+export default function Products({vendor, loading, error, products, refresh}) {
     const [isUploading, setUpload] = useState(false)
-    //   useEffect(() => {
-    //     refresh()
-    //   }, []);
+      useEffect(() => {
+        console.log("vendor", vendor)
+        refresh(vendor);
+      }, []);
 
   return (
       <>
