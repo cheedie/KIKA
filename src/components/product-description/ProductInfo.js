@@ -48,7 +48,8 @@ const ProductInfo = () => {
     image,
     grade,
     color,
-    vendor,
+
+    // vendor,
     countInStock,
   } = product;
 
@@ -69,9 +70,7 @@ const ProductInfo = () => {
             Color: <span>{color}</span>
           </p>
 
-          <p>
-            Vendor: <span>{vendor}</span>
-          </p>
+          <p>{/* Vendor: <span>{vendor}</span> */}</p>
           <p>
             Price: <span>NGN {price}</span>
           </p>
