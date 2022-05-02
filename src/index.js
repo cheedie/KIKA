@@ -7,18 +7,21 @@ import { UserProvider } from "./context/user_context";
 import { VendorProvider } from "./context/vendor_context";
 import { CartProvider } from "./context/cart_context";
 import { ProductProvider } from "./context/product_context";
+import { OrderProvider } from "./context/order_context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <VendorProvider>
-  <UserProvider>
-    <ProductProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </ProductProvider>
-  </UserProvider>
+    <UserProvider>
+      <OrderProvider>
+        <ProductProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </ProductProvider>
+      </OrderProvider>
+    </UserProvider>
   </VendorProvider>
 );
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "../../components/User/Loading";
 import Error from "../../components/User/Error";
 import Navbar from "../../components/landing-page/Navbar";
@@ -9,15 +9,25 @@ import AmountButtons from "../../components/Cart/AmountButtons";
 import "../../styles/CartStyles/Payment.css";
 import { useCartContext } from "../../context/cart_context";
 import { useUserContext } from "../../context/user_context";
+import Alert from "../../components/User/Alert";
+import { useNavigate } from "react-router-dom";
+import { useOrderContext } from "../../context/order_context";
 
 const Checkout = () => {
+  const navigate = useNavigate();
   const { cart, total_amount, shipping_fee, tax } = useCartContext();
+  const { placeOrder } = useOrderContext();
+  let total = total_amount + shipping_fee + tax;
   const {
     userDetails,
     user_details_loading: loading,
     user_details_error: error,
     getUser,
   } = useUserContext();
+  const [debit, setDebit] = useState(false);
+  const [transfer, setTransfer] = useState(false);
+  const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
+  const [placingOrder, setPlacingOrder] = useState(false);
 
   useEffect(() => {
     getUser();
@@ -31,6 +41,18 @@ const Checkout = () => {
   if (error) {
     return <Error />;
   }
+
+  const sendOrder = async () => {
+    setPlacingOrder(true);
+    placeOrder({});
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (debit) {
+      navigate("/payment");
+    }
+  };
 
   return (
     <>
@@ -66,18 +88,26 @@ const Checkout = () => {
             <h1>3. PAYMENT METHOD</h1>
             <div className="address_details">
               <p></p>
-              <div className="debit_cards">
-                <input type="checkbox" />
-                <label>DEBIT/CREDIT CARDS</label>
-              </div>
+              <label className="debit_cards">
+                <input
+                  type="checkbox"
+                  onChange={() => setDebit(!debit)}
+                  checked={debit}
+                />
+                <p>DEBIT/CREDIT CARDS</p>
+              </label>
               <div className="debit_cards_img">
                 <img src={mastercard} alt="mastercard_image" />
                 <img src={visacard} alt="visacard_image" />
               </div>
-              <div className="debit_cards">
-                <input type="checkbox" />
-                <label>BANK TRANSFERS</label>
-              </div>
+              <label className="debit_cards">
+                <input
+                  type="checkbox"
+                  onChange={() => setTransfer(!transfer)}
+                  checked={transfer}
+                />
+                <p>BANK TRANSFERS</p>
+              </label>
               <p id="pay_account">Pay into this account</p>
               <p id="pay_details">Account Name: Kika limited</p>
               <p id="pay_details">Account Number: 3043123425</p>
@@ -91,6 +121,8 @@ const Checkout = () => {
                   type="submit"
                   id="delivery-btn"
                   className="delivery-btn"
+                  disabled={!debit}
+                  onClick={handleSubmit}
                 >
                   Proceed
                 </button>
@@ -137,7 +169,7 @@ const Checkout = () => {
               </div>
               <div className="modify_cart_total">
                 <p>Total</p>
-                <p>NGN {total_amount + shipping_fee + tax}</p>
+                <p>NGN {total}</p>
               </div>
             </div>
             <div id="payment-btn" className="delivery_btn_container">
