@@ -49,7 +49,9 @@ const Navbar = () => {
             <Link to="/products">Market Place</Link>
           </li>
 
-          <li>About Us</li>
+          <li>
+            <Link to="/aboutus"> About Us</Link>
+          </li>
           <li>Sell on KIKA</li>
         </ul>
         {/*end navlinks */}
