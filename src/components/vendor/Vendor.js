@@ -43,7 +43,7 @@ const Vendor = () => {
     fetchData()
   }, []);
 
-  const fetchProducts = () => getVendorProducts(vendorDetails._id)
+  const fetchProducts = (id) => getVendorProducts(id)
   
 
 
