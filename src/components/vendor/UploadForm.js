@@ -10,7 +10,12 @@ import { useVendorContext } from "../../context/vendor_context";
 
 export default function UploadForm({setUpload}) {
     
-  const { createProduct2 } = useVendorContext();
+  const { 
+      createProduct,
+      creating_product,
+      creating_product_error,
+      creating_product_message,
+    } = useVendorContext();
 
     const FILE_SIZE = 5 * 160 * 1024;
    const [imagePreview, setImagePreview] = useState({
@@ -62,17 +67,17 @@ export default function UploadForm({setUpload}) {
         }),
 
         onSubmit:values=>{
-            setUploadStatus({
-                status:true,
-                message: 'Uploading...'
-            })
-            return createProduct2(values)
+            // setUploadStatus({
+            //     status:true,
+            //     message: 'Uploading...'
+            // })
+            return createProduct(values)
             .then((response)=>{
-                setUploadStatus({
-                    status: response.error ? true: false, 
-                    message: response.error.includes('name') ? "Product name already exists" 
-                    : response.error ? response.error : response.data.message
-                })
+                // setUploadStatus({
+                //     status: response.error ? true: false, 
+                //     message: response.error.includes('name') ? "Product name already exists" 
+                //     : response.error ? response.error : response.data.message
+                // })
                 console.log("response on submit", response)
             });
             //setUpload(false)
@@ -232,7 +237,7 @@ export default function UploadForm({setUpload}) {
                     
                     <StyledButton id='submit' name='submit' type='submit' label ='Add Product'>Upload</StyledButton>
                     <Wrapper flex>
-                        <Heading smallHeading> {uploadStatus.message}</Heading>
+                      {creating_product ? <Heading smallHeading> {creating_product_message}</Heading> : null}
                     </Wrapper>
                 </StyledForm>
             </UploadContainer>

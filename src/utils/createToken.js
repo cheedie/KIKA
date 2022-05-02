@@ -3,7 +3,6 @@ const createToken = () => {
   if (!token) return null;
   else {
     const retrieveToken = JSON.parse(token);
-    console.log("Retrieved",retrieveToken.role)
     return retrieveToken //.token;
   }
 };

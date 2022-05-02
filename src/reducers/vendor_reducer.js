@@ -8,7 +8,10 @@ import {
     VENDOR_LOGOUT,
     CREATE_PRODUCT,
     CREATE_PRODUCT_SUCCESS,
-    CREATE_PRODUCT_ERROR
+    CREATE_PRODUCT_ERROR,
+    GET_VENDOR_PRODUCTS,
+    GET_VENDOR_PRODUCTS_SUCCESS,
+    GET_VENDOR_PRODUCTS_ERROR,
   } from "../actions";
   
   const vendor_reducer = (state, action) => {
@@ -33,22 +36,24 @@ import {
       return { ...state, newPassword: action.payload };
     }
     if (action.type ===VENDOR_LOGOUT) {
-      return { ...state, userLogout: true };
+      return { ...state, vendorLogout: true };
     }
     if (action.type === VENDOR_DETAILS) {
-      return { ...state, userDetails: action.payload };
+      return { ...state, vendorDetails: action.payload };
     }
     if (action.type === CREATE_PRODUCT) {
       return {
         ...state,
-        creating_product: true
+        creating_product: true,
+        creating_product_message: action.payload, 
       };
     }
     if (action.type === CREATE_PRODUCT_ERROR) {
       return {
         ...state,
         // creating_product: false,
-        creating_product_error: true 
+        creating_product_error: true, 
+        creating_product_message: action.payload, 
       };
     }
     if (action.type === CREATE_PRODUCT_SUCCESS) {
@@ -56,7 +61,31 @@ import {
         ...state,
         creating_product: false,
         creating_product_error: false,
-        product: action.payload
+        creating_product_message: action.payload.message,
+        product: action.payload.data
+      };
+    }
+    if (action.type === GET_VENDOR_PRODUCTS) {
+      return {
+        ...state,
+        getting_products: true,
+        getting_products_error: false,
+      };
+    }
+    if (action.type === GET_VENDOR_PRODUCTS_ERROR) {
+      return {
+        ...state,
+        getting_products: false,
+        getting_products_error: true 
+      };
+    }
+    if (action.type === GET_VENDOR_PRODUCTS_SUCCESS) {
+     
+      return {
+        ...state,
+        getting_products: false,
+        getting_products_error: true ,
+        products:action.payload,
       };
     }
     throw new Error(`No Matching "${action.type}" - action type`);

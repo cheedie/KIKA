@@ -504,6 +504,9 @@ body p {
 #vendor .product_img {
   width: 75px;
   height: 75px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 #vendor .product_img img {

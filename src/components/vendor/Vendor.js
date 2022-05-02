@@ -15,7 +15,7 @@ import Error from "../Global/Error";
 import { useVendorContext } from "../../context/vendor_context";
 
 
-function Vendor() {
+const Vendor = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   
@@ -23,13 +23,24 @@ function Vendor() {
     signOut,
     getVendor,
     vendorDetails,
+    product,
+    products,
+    getVendorProducts,
     vendor_details_loading: loading,
     vendor_details_error: error,
   } = useVendorContext();
 
   useEffect(() => {
-    getVendor();
+    async function fetchData() {
+    return  getVendor().then((response)=>{
+      // console.log("SECOND VENDOR DETAILS", vendorDetails);
+      getVendorProducts(response._id)
+    })
+      // ...
+    }
+    fetchData()
   }, []);
+
 
   if (loading) {
     return <Loading />;
@@ -61,7 +72,7 @@ function Vendor() {
         <div className="main_container">                        
            <Routes>
               <Route path={"" ? "" : "/"} element={<Dashboard/>} />
-              <Route path="/products" element={<Products/>} />
+              <Route path="/products" element={<Products products={products}/>} />
               <Route path="/orders" element={<Orders/>} />
               <Route path="/report" element={<Report/>} />
               <Route path="/reviews" element={<Reviews/>} />

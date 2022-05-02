@@ -13,7 +13,10 @@ import {
   CHANGE_VENDOR_PASSWORD,
   CREATE_PRODUCT,
   CREATE_PRODUCT_SUCCESS,
-  CREATE_PRODUCT_ERROR
+  CREATE_PRODUCT_ERROR,
+  GET_VENDOR_PRODUCTS,
+  GET_VENDOR_PRODUCTS_SUCCESS,
+  GET_VENDOR_PRODUCTS_ERROR,
 } from "../actions";
 
 let token = localStorage.getItem("currentVendor")
@@ -25,11 +28,13 @@ const initialState = {
   register_user: null,
   loading: false,
   newPassword: "",
-  userLogout: false,
-  userDetails: {},
+  vendorLogout: false,
+  vendorDetails: {},
   product:{},
+  products:[],
   creating_product: false,
   creating_product_error: false,
+  creating_product_message:''
 };
 
 const VendorContext = React.createContext();
@@ -56,29 +61,10 @@ export const VendorProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+
   const createProduct = async (data) => {
-    dispatch({ type: CREATE_PRODUCT });
-    try {
-      console.log('data from submit::: ',data)
-      let formData = new FormData();
-
-      for (let value in data) {
-        formData.append(value, data[value]);
-      }
-      const response = await baseUrl.post(products_url, formData,
-      {
-        headers: {
-          "Content-type": "application/json"
-        }
-     }
-      ).then(()=>{console.log(response, "yayy")})
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const createProduct2 = async (data) => {
-    dispatch({ type: CREATE_PRODUCT });
+    dispatch({ type: CREATE_PRODUCT , payload: "Uploading product"});
       let formData = new FormData();
       for (let value in data) {
         formData.append(value, data[value]);
@@ -88,7 +74,9 @@ export const VendorProvider = ({ children }) => {
         { headers: {"Content-type": "application/json"} })
         .then(response =>{
           console.log("THIS IS PRODUCT CREATED", response)
-          dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: response});
+          dispatch({ type: CREATE_PRODUCT_SUCCESS, 
+            payload: {message:response.data?.data.message,
+                      data: response.data?.data}});
           return response;
         })
         .catch ((error)=> {
@@ -106,10 +94,23 @@ export const VendorProvider = ({ children }) => {
           console.log("Error message",err)
         }
         console.log(error.config)
-        dispatch({ type: CREATE_PRODUCT_ERROR, error: err });
+        dispatch({ type: CREATE_PRODUCT_ERROR, payload: "Error" });
         return err;
       })
   };
+  const getVendorProducts = async (id) => {
+  dispatch({ type: GET_VENDOR_PRODUCTS});
+
+  try {
+    const response = await baseUrl.get(`${products_url}/vendor/${id}`);
+    const products = response.data?.data;
+    dispatch({ type: GET_VENDOR_PRODUCTS_SUCCESS, payload: products });
+  
+  } catch (error) {
+    dispatch({ type: GET_VENDOR_PRODUCTS_ERROR });
+  }
+  };
+
   const loginVendor = async (details) => {
     dispatch({ type: REQUEST_VENDOR_LOGIN });
 
@@ -134,10 +135,9 @@ export const VendorProvider = ({ children }) => {
   const getVendor = async () => {
     try {
       const response = await baseUrl.get("/auth/profile");
-      const userDetails = response.data?.data;
-      dispatch({ type: VENDOR_DETAILS, payload: userDetails });
-
-      console.log(response);
+      const vendorDetails = response.data?.data;
+      dispatch({ type: VENDOR_DETAILS, payload: vendorDetails });
+      return vendorDetails
     } catch (error) {
       console.log(error);
     }
@@ -177,7 +177,7 @@ export const VendorProvider = ({ children }) => {
         changePassword,
         signOut,
         createProduct,
-        createProduct2,
+        getVendorProducts
       }}
     >
       {children}

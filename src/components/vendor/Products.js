@@ -1,15 +1,19 @@
 import shirt from "../../assets/vendor/images/shirt.png"
 import UploadForm from "./UploadForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 // import {useFormik} from 'formik';
 // import * as Yup from 'yup'
 //import { url } from "../../utils/constant";
 
-export default function Products() {
+export default function Products({products}) {
     const [isUploading, setUpload] = useState(false)
 
-
+    // useEffect(() => {
+        
+    //     console.log("MY PRODUCTS", products)
+    
+    //   }, []);
   return (
       <>
     <div id="wrapper" className="products">
@@ -40,6 +44,7 @@ export default function Products() {
                         
                     />
                     <input name="submit" 
+                    id="submit"
                     type="submit" 
                     placeholder="submit"
                     className="button"
@@ -69,7 +74,7 @@ export default function Products() {
                 <p>Date</p>
             </div>
             <div className="products">
-                <ProductTile/>
+                <ProductTile products={products}/>
             </div>
 
         </div>
@@ -84,36 +89,24 @@ export default function Products() {
 
 
 
-function ProductTile() {
-    const tile=[
-        {
-            image:shirt,
-            title:"Navy Blue Botton Down Shirt",
-            status:"Pending review",
-            stock:"In Stock",
-            price:"N3,400",
-            views:"5",
-            date:"09/04/2022"
-        },
-        {
-            image:shirt,
-            title:"Navy Blue Botton Down Shirt",
-            status:"Pending review",
-            stock:"In Stock",
-            price:"N3,400",
-            views:"5",
-            date:"09/04/2022"
-        },
-        {
-            image:shirt,
-            title:"Navy Blue Botton Down Shirt",
-            status:"Pending review",
-            stock:"In Stock",
-            price:"N3,400",
-            views:"5",
-            date:"09/04/2022"
-        }
-    ]
+function ProductTile({products}) {
+
+    const tile= products.map((value) =>{
+    let product= {
+                    image:value.image,
+                    title:value.name,
+                    status:"Pending review",
+                    stock:value.countInStock > 0 ? "In Stock" : "Out of Stock",
+                    price:`₦${value.price}`,
+                    views:"5",
+                    date:"09/04/2022",
+                    id:value._id,
+                    reviews: value.review,
+                    size: value.size,
+                };
+     return product
+    })
+
   return (
       <>
       {tile.map((item,index)=>{
@@ -137,6 +130,30 @@ function ProductTile() {
 
   
 }
+
+// const baseProductExample = {
+// brand: "Canon",
+// category: "Male",
+// cloudinary_id: "products/axvcpx02jlfdv8ebhovx",
+// color: "black",
+// countInStock: 1,
+// createdAt: "2022-05-01T19:01:03.854Z",
+// description: "This should work now",
+// grade: "A",
+// image: "https://res.cloudinary.com/kika/image/upload/v1651431663/products/axvcpx02jlfdv8ebhovx.png",
+// name: "Test Product camera",
+// newArrival: true,
+// numReviews: 0,
+// price: 10000,
+// rating: 0,
+// reviews: [],
+// size: "S",
+// slug: "test-product-camera",
+// updatedAt: "2022-05-01T19:01:03.854Z",
+// vendor: "626ecf4ea091e700041abe4a",
+// __v: 0,
+// _id: "626ed8efa091e700041abe63"
+// }
 
 
 
