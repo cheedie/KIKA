@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./pages/Landing";
 
-import Vendor from "./components/vendor/Vendor";
-import VendorSignup from "./components/vendor/VendorSignup";
+import Vendor from "./pages/vendor/Vendor";
+import VendorSignup from "./pages/vendor/VendorSignup";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
@@ -27,7 +27,8 @@ import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
 import Women from "./pages/marketPlace/Women";
 import Men from "./pages/marketPlace/Men";
 import Home from "./pages/home/Home";
-import MyCart from "./pages/Cart/MyCart";
+//import MyCart from "./pages/Cart/MyCart";
+import NewCart from "./pages/Cart/NewCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
@@ -103,7 +104,8 @@ function AppRoutes() {
     { path: "/aboutus", element: <Aboutus /> },
     { path: "/ourteam", element: <Ourteam /> },
     { path: "/faq", element: <Faqs /> },
-    { path: "/mycart", element: <MyCart /> },
+    // { path: "/mycart", element: <MyCart /> },
+    { path: "/mycart", element: <NewCart /> },
 
     { path: "/delivery", element: <Delivery /> },
     { path: "/ordersuccessful", element: <OrderSuccessful /> },

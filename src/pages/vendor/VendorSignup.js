@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from '../landing-page/Navbar'
-import { StyledButton } from './Button.styled';
-import {StyledForm , StyledLabel, StyledInput, Wrapper, Message } from './Form.style';
+import Navbar from '../../components/landing-page/Navbar'
+import { StyledButton } from '../../components/vendor/Button.styled';
+import {StyledForm , StyledLabel, StyledInput, Wrapper, Message } from '../../components/vendor/Form.style';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
-import Footer from '../landing-page/Footer';
+import Footer from '../../components/landing-page/Footer';
 import { useVendorContext } from "../../context/vendor_context";
 import { MdArrowBack as Back} from 'react-icons/md';
 import verify from '../../utils/verify';
@@ -22,9 +22,6 @@ Yup.addMethod(Yup.string, 'availability',function(msg){
     return (response.status !== 200 || !response) ? createError({path, message: msg})
   : (response.status === 200 && response.data.key && response.data.message) ? createError({path,  message: response.data.message})
   : true
-  //   return verify(data).then((response) => (response.status !== 200 || !response) ? createError({path, message: msg})
-  // : (response.status === 200 && response.data.key && response.data.message) ? createError({path,  message: response.data.message})
-  // : true)
   })
 })
 
