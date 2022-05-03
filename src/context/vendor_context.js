@@ -138,7 +138,6 @@ export const VendorProvider = ({ children }) => {
   };
   const getVendorProducts = async (id) => {
   dispatch({ type: GET_VENDOR_PRODUCTS});
-  console.log("passed ID", id)
 
   try {
     const response = await baseUrl.get(`${products_url}/vendor/${id}`);

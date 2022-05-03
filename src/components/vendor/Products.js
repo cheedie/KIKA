@@ -9,21 +9,11 @@ import { useVendorContext } from "../../context/vendor_context";
 
 export default function Products({vendor, refresh, products, loading, error}) {
     const [isUploading, setUpload] = useState(false)
-    const {
-        getVendor,
-        vendorDetails,
-        getVendorProducts,
-        //products,
-        getting_products_loading:products_loading,
-        getting_products_error: products_error,
-      } = useVendorContext();
+    const { getVendorProducts } = useVendorContext();
 
       useEffect(() => {
-            if(vendorDetails._id){
-
-                console.log("PRODUCTS", products)
-                console.log("RESPONSE", vendorDetails)
-                getVendorProducts(vendorDetails._id)
+            if(vendor._id){
+                getVendorProducts(vendor._id)
             }
       }, []);
 
