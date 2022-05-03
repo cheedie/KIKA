@@ -27,6 +27,7 @@ const UserAccount = () => {
   if (error) {
     return <Error />;
   }
+
   return (
     <main>
       <Navbar />
@@ -54,8 +55,8 @@ const UserAccount = () => {
               <div className="user__user-details">
                 <p>{userDetails?.deliveryAddress?.street}</p>
                 <p>
-                  {userDetails?.deliveryAddress?.state + " "}
-                  state
+                  {userDetails?.deliveryAddress?.state.toUpperCase() + " "}
+                  State
                 </p>
               </div>
               <button className="user__edit-btn">EDIT</button>

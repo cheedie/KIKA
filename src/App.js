@@ -39,7 +39,7 @@ function AppRoutes() {
   const routes = useRoutes([
     { path: "/", element: <Landing /> },
     { path: "/home", element: <Home /> },
-    { path: "/search", element: <Search /> },
+    // { path: "/search", element: <Search /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
     { path: "/products", element: <MarketPlace /> },

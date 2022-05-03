@@ -5,9 +5,16 @@ import Navbar from "../../components/landing-page/Navbar";
 import PendingOrders from "../../components/User/PendingOrders";
 import ReceivedOrder from "../../components/User/ReceivedOrder";
 import NavMiddle from "../../components/User/NavMiddle";
+import { useOrderContext } from "../../context/order_context";
 
+import EmptyCart from "../../pages/Cart/EmptyCart";
 const MyOrders = () => {
   const [orders, setOrders] = useState("pending");
+  const { orderDetails } = useOrderContext;
+
+  // if (orderDetails.length < 1) {
+  //   return <EmptyCart />;
+  // }
   return (
     <main>
       <Navbar />
