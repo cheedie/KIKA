@@ -17,7 +17,7 @@ export const Message = styled.p`
  font-style:italic;
  font-weight:500;
  color:#f15a24;
- margin:-1em 0;
+ margin:${props=>props.margin ? props.margin : '-1em 0'};
 `
 
 export const Wrapper = styled.div`
@@ -90,19 +90,75 @@ export const StyledLabel = styled.label`
   transition:0.2s ease all; 
 
   &.floating{
-    position:absolute;
+    margin:0;
+    /* position:absolute;
     top:1em;
     left:5px;
     padding:0 0.5em;
     background:#fff;
     margin:0;
 
-    /* &:focus{
+    &:focus{
       top:-8px;
     }    */
   }
 `
 export const StyledInput = styled.input`
+    font-family:'montserrat';
+    font-size:14px;
+    font-weight:500;
+    padding:${({floating, small})=>floating ? "1.2em" : small ? "0.5em 0.8em;": "1.2em 1em"} !important;
+    margin-right:${({checkbox, small})=>checkbox || small ? "1em" :"" };
+    display:block;
+    width:${(props)=>props.checkbox ? "" :"100%" };
+    background:#FFFFFF;
+    border:1px solid #C4C4C4;
+    text-transform:${(props)=>props.type === "email" ? "lowercase" :"capitalize" };
+
+    :focus{
+    outline:none;
+    border-bottom:1px solid grey;
+   
+        /* &:not(::placeholder-shown){
+            background:white;
+        } */
+    
+        &:not(::placeholder-shown) ~ .floating {
+            top:-8px;
+            font-size:13px;
+        }
+    }
+    &::placeholder{
+        opacity:0;
+        }
+    &:not(:placeholder-shown){
+       // background:green;
+    }
+    &:not(:placeholder-shown) ~ .floating {
+      top: -8px !important;
+      font-size: 13px;
+    } 
+    /* &:not(:placeholder-shown) ~ label {
+            top:-8px;
+            font-size:13px;
+            color:crimson;
+      }
+    &:not(:placeholder-shown):not(:focus) ~ label.floating {
+      top: -8px !important;
+      font-size: 13px;
+      background:crimson;
+      color:crimson;
+    } */
+
+`
+export const StyledSelect = styled.select`
+display:block;
+padding:0.5em 0.8em;
+min-width:95px;
+font-size:14px;
+border:1px solid grey;
+`
+export const StyledTextArea = styled.textarea`
     font-family:'montserrat';
     font-size:14px;
     font-weight:500;
@@ -122,10 +178,10 @@ export const StyledInput = styled.input`
             background:white;
         } */
     
-        /* &:not(::placeholder-shown) ~ .floating {
+        &:not(::placeholder-shown) ~ .floating {
             top:-8px;
             font-size:13px;
-        } */
+        }
     }
     &::placeholder{
         opacity:0;
