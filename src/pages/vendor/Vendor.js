@@ -1,7 +1,7 @@
 import '../../styles/vendor/vendor.css';
 import React, {useState, useEffect} from 'react'
 import {Routes, Route, useNavigate} from "react-router-dom"
-import Sidebar from './Sidebar.js'
+import Sidebar from '../../components/vendor/Sidebar.js'
 import Dashboard from './Dashboard.js'
 import Products from './Products.js'
 import Orders from './Orders.js'
@@ -10,8 +10,8 @@ import Reviews from './Reviews.js'
 import kika from "../../assets/vendor/images/kika.svg"
 import Withdraw from './Withdraw';
 import Settings from './Settings';
-import Loading from "../Global/Loading";
-import Error from "../Global/Error";
+import Loading from "../../components/Global/Loading";
+import Error from "../../components/Global/Error";
 import { useVendorContext } from "../../context/vendor_context";
 
 

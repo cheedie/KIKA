@@ -1,9 +1,9 @@
-import UploadForm from "./UploadForm";
+import UploadForm from "../../components/vendor/UploadForm";
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
-import Loading from "../Global/Loading";
-import Error from "../Global/Error";
-import Message from "../Global/Message";
+import Loading from "../../components/Global/Loading";
+import Error from "../../components/Global/Error";
+import Message from "../../components/Global/Message";
 
 import { useVendorContext } from "../../context/vendor_context";
 
