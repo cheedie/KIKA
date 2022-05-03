@@ -12,10 +12,18 @@ import { useUserContext } from "../../context/user_context";
 import Alert from "../../components/User/Alert";
 import { useNavigate } from "react-router-dom";
 import { useOrderContext } from "../../context/order_context";
+import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
+import logo from "../../assets/landing-page/logo.png";
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const { cart, total_amount, shipping_fee, tax } = useCartContext();
+  const {
+    cart,
+    total_amount,
+    shipping_fee,
+    tax,
+    total_items,
+  } = useCartContext();
   const { placeOrder } = useOrderContext();
   let total = total_amount + shipping_fee + tax;
   const {
@@ -24,6 +32,56 @@ const Checkout = () => {
     user_details_error: error,
     getUser,
   } = useUserContext();
+
+  // flutterwave configuration
+  const config = {
+    public_key: process.env.REACT_APP_PUBLIC_KEY,
+    tx_ref: Date.now(),
+    amount: `${total}`,
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: `${userDetails?.email}`,
+      name: `${userDetails?.name}`,
+      phonenumber: `${userDetails?.phone}`,
+    },
+    customizations: {
+      title: "Kika store",
+      description: "Payment for items in cart",
+      logo: logo,
+    },
+  };
+
+  const fwConfig = {
+    ...config,
+    text: "Proceed!",
+    callback: (response) => {
+      if (response.status === "successful") {
+        console.log(response);
+        // create order
+        placeOrder(
+          {
+            orderItems: [],
+            totalPrice: total,
+            quantity: total_items,
+            paymentMethod: debit ? "card" : "debit",
+            paymentInfo: {
+              transactionId: response.transaction_id,
+              currency: response.currency,
+              gateway: "flutterwave",
+              status: response.status,
+            },
+          },
+          navigate
+        );
+        closePaymentModal(); // this will close the modal programmatically
+      } else if (response.status === "error") {
+        console.log("error");
+      }
+    },
+    onClose: () => {},
+  };
+
   const [debit, setDebit] = useState(false);
   const [transfer, setTransfer] = useState(false);
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
@@ -31,6 +89,7 @@ const Checkout = () => {
 
   useEffect(() => {
     getUser();
+
     // eslint-disable-next-line
   }, []);
 
@@ -41,11 +100,6 @@ const Checkout = () => {
   if (error) {
     return <Error />;
   }
-
-  const sendOrder = async () => {
-    setPlacingOrder(true);
-    placeOrder({});
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -117,15 +171,11 @@ const Checkout = () => {
                 <input placeholder="upload transaction receipt" />
               </div>
               <div className="delivery_btn_container">
-                <button
-                  type="submit"
-                  id="delivery-btn"
+                <FlutterWaveButton
+                  {...fwConfig}
                   className="delivery-btn"
                   disabled={!debit}
-                  onClick={handleSubmit}
-                >
-                  Proceed
-                </button>
+                />
               </div>
             </div>
           </div>
@@ -135,8 +185,8 @@ const Checkout = () => {
             <h1>CART SUMMARY</h1>
             {cart.map((item) => {
               return (
-                <React.Fragment>
-                  <div className="modify_card" key={item._id}>
+                <React.Fragment key={item._id}>
+                  <div className="modify_card">
                     <div className="modify_card_img">
                       <img src={item.image} alt={item.name} />
                     </div>
