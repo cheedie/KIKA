@@ -97,7 +97,7 @@ export default function UploadForm({vendor,setUpload, refresh}) {
     };
     const handleNameChange = (e) => {
     setFieldValue("name", e.target.value)
-    setUploadMessage(false)
+    endCreateProduct()
     };
 
     return(
@@ -248,7 +248,7 @@ export default function UploadForm({vendor,setUpload, refresh}) {
                     
                     <StyledButton id='submit' name='submit' type='submit' label ='Add Product'>Upload</StyledButton>
                     <Wrapper flex>
-                      {values.name && uploadMessage && (creating_product || creating_product_error || creating_product_message) ? 
+                      {values.name && (uploadMessage || creating_product || creating_product_error || creating_product_message) ? 
                       <Heading 
                       smallHeading
                       color={creating_product_error && !creating_product ? "red": (creating_product || product) ? "green" : "black" }
