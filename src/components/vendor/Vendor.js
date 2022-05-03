@@ -30,19 +30,10 @@ const Vendor = () => {
     getting_products_loading:products_loading,
     getting_products_error: products_error,
   } = useVendorContext();
-  useEffect(() => {
-    const fetchData = async()=>{
-  return  getVendor().then((response)=>{
-      console.log("SECOND VENDOR DETAILS", response);
-     // getVendorProducts(response._id)
-    })
-      // ...
-    }
-    fetchData()
+  
+  useEffect(() => getVendor(), []);
 
-  }, []);
-
-  const fetchProducts = () => getVendorProducts(vendorDetails._id)
+  const fetchProducts = (id) => getVendorProducts(id)
   
 
 
@@ -57,7 +48,7 @@ const Vendor = () => {
   const handleSignOut = async () => {
     const sign = await signOut();
     if (sign) {
-      navigate("/user/signin");
+      navigate("/vendor/signin");
     } else return;
   }
   return (
@@ -79,7 +70,7 @@ const Vendor = () => {
             <Routes>
               <Route path={"" ? "" : "/"} element={<Dashboard/>}/>
               <Route path="/products" element={<Products 
-              vendorDetails={vendorDetails}
+              vendor={vendorDetails}
               loading={products_loading}
               error={products_error}
               refresh={fetchProducts} products={products}/>} />

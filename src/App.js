@@ -46,8 +46,6 @@ function AppRoutes() {
     { path: "/products/women", element: <Women /> },
     { path: "/products/men", element: <Men /> },
 
-    // { path: "/vendor", element: <Vendor /> },
-
     {
       element: <Authorize />,
       children: [
@@ -64,7 +62,6 @@ function AppRoutes() {
           path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
-        { path: "/vendor/*", element: <Vendor /> },
       ],
     },
 
@@ -72,7 +69,7 @@ function AppRoutes() {
       element: <Authenticate />,
       children: [
         { path: "/user/signup", element: <Signup /> },
-        { path: "/user/signin", element: <Signin /> },
+        { path: "/user/signin", element: <Signin  user/> },
       ],
     },
     {
@@ -85,12 +82,12 @@ function AppRoutes() {
       element: <AuthenticateVendor />,
       children: [
         { path: "/vendor/signup", element: <VendorSignup /> },
-        { path: "/vendor/signin", element: <Signin /> },
+        { path: "/vendor/signin", element: <Signin vendor/> },
       ],
     },
 
     { path: "/buyer/signup", element: <Signup /> },
-    { path: "/buyer/signin", element: <Signin /> },
+    { path: "/buyer/signin", element: <Signin user /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
@@ -108,12 +105,10 @@ function AppRoutes() {
     { path: "/faq", element: <Faqs /> },
     { path: "/mycart", element: <MyCart /> },
     { path: "/payment", element: <FlutterCheckout /> },
-
     { path: "/delivery", element: <Delivery /> },
-
     { path: "/ordersuccessful", element: <OrderSuccessful /> },
     { path: "/checkout", element: <Checkout /> },
-    { path: "/vendor/signup", element: <VendorSignup /> },
+    // { path: "/payment", element: <PaymentOptions /> },
   ]);
   return routes;
 }

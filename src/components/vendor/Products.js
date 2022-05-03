@@ -3,18 +3,15 @@ import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import Loading from "../Global/Loading";
 import Error from "../Global/Error";
+import Message from "../Global/Message";
 
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function Products({vendorDetails,loading, error, products, refresh}) {
+export default function Products({vendor, loading, error, products, refresh}) {
     const [isUploading, setUpload] = useState(false)
-    const {
-        vendorDetails: vendor
-      } = useVendorContext();
-
       useEffect(() => {
-          console.log("VENDOR DETAILS INSIDE PRODUCT", vendor)
-        //refresh()
+        console.log("vendor", vendor)
+        refresh(vendor._id);
       }, []);
 
   return (
@@ -65,7 +62,10 @@ export default function Products({vendorDetails,loading, error, products, refres
 
             </div>
 
-        { loading ? <Loading/>  : error ? <Error/> :
+        { loading ? <Loading/>  
+        : error ? <Error/> 
+        : products.length <=0 ? 
+        <Message message="No products available..."/>:
         <div className="product_list">
             <div className="product_titles">
                 <p className="product_image_title">Image</p>
@@ -85,7 +85,7 @@ export default function Products({vendorDetails,loading, error, products, refres
         
        
     </div>
-    {isUploading ? <UploadForm refresh ={refresh} setUpload={setUpload}/>:null}
+    {isUploading ? <UploadForm vendor={vendor} refresh ={refresh} setUpload={setUpload}/>:null}
     </>
   )
 }
