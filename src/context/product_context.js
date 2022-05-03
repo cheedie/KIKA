@@ -55,6 +55,7 @@ export const ProductProvider = ({ children }) => {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
     }
   };
+
   const createProduct = async (url, data) => {
     dispatch({ type: CREATE_PRODUCT });
     try {
