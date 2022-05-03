@@ -24,7 +24,7 @@ const Checkout = () => {
     tax,
     total_items,
   } = useCartContext();
-  const { placeOrder } = useOrderContext();
+  // const { placeOrder } = useOrderContext();
   let total = total_amount + shipping_fee + tax;
   const {
     userDetails,
@@ -59,21 +59,23 @@ const Checkout = () => {
       if (response.status === "successful") {
         console.log(response);
         // create order
-        placeOrder(
-          {
-            orderItems: [],
-            totalPrice: total,
-            quantity: total_items,
-            paymentMethod: debit ? "card" : "debit",
-            paymentInfo: {
-              transactionId: response.transaction_id,
-              currency: response.currency,
-              gateway: "flutterwave",
-              status: response.status,
-            },
-          },
-          navigate
-        );
+        // placeOrder(
+        //   {
+        // orderItems: [],
+        // totalPrice: total,
+        // quantity: total_items,
+        // paymentMethod: debit ? "card" : "debit",
+        // paymentInfo: {
+        //   transactionId: response.transaction_id,
+        //   currency: response.currency,
+        //   gateway: "flutterwave",
+        //   status: response.status,
+        // },
+        //   },
+        //   navigate
+        // );
+        navigate("/ordersuccessful");
+
         closePaymentModal(); // this will close the modal programmatically
       } else if (response.status === "error") {
         console.log("error");
