@@ -1,28 +1,28 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { UserProvider } from "./context/user_context";
-import { VendorProvider } from "./context/vendor_context";
-import { CartProvider } from "./context/cart_context";
-import { ProductProvider } from "./context/product_context";
-import { OrderProvider } from "./context/order_context";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { UserProvider } from './context/user_context';
+import { VendorProvider } from './context/vendor_context';
+import { CartProvider } from './context/cart_context';
+import { ProductProvider } from './context/product_context';
+import { NavbarProvider } from './context/navbar_context';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <VendorProvider>
-    <UserProvider>
-      <OrderProvider>
+  <NavbarProvider>
+    <VendorProvider>
+      <UserProvider>
         <ProductProvider>
           <CartProvider>
             <App />
           </CartProvider>
         </ProductProvider>
-      </OrderProvider>
-    </UserProvider>
-  </VendorProvider>
+      </UserProvider>
+    </VendorProvider>
+  </NavbarProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

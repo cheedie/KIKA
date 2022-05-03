@@ -9,36 +9,90 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid blue;
   width: 85%;
-}
+  //border: 1px solid orange;
 
-.content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  padding: 2rem 8rem 5rem 8rem;
-
-  .img{
-    object-fit: contain;
+  img {
+    width: 220px;
   }
-}
 
-.share__this__product{
-  align-self: flex-start;
-}
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 95%;
+    height: 100%;
+    padding: 2rem 5rem;
+    //border: 1px solid lightgreen;
 
-.product__data {
-  border: 2px solid red;
-  width: 200px;
-}
+    .img {
+      object-fit: contain;
+    }
 
-.more__products {
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
+    .product__data {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 260px;
+
+      h3 {
+        text-align: left;
+      }
+
+      p {
+        display: flex;
+        justify-content: space-between;
+
+        span:nth-child(1) {
+          width: 30%;
+          font-weight: 600;
+        }
+        span:nth-child(2) {
+          width: 70%;
+        }
+      }
+
+      .rating {
+        margin-top: 15px;
+      }
+
+      .addToCartButton {
+        width: 250px;
+        height: 45px;
+        margin-top: 25px;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .share__this__product {
+    align-self: flex-start;
+  }
+
+  .more__products {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 2rem 2rem 2rem;
+    width: 100%;
+
+    .products {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      overflow-y: hidden;
+      overflow-x: auto;
+      white-space: nowrap;
+
+      .product{
+        width: 220px;
+        height: 400px;
+      }
+    }
+  }
 }
