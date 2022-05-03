@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-import Logo from "../../assets/landing-page/logo.png";
-import Search from "../../assets/landing-page/search.png";
-import Cart from "../../assets/landing-page/cart.png";
-import Profile from "../../assets/landing-page/profile.png";
-import "../../styles/landing/navbar.scss";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import Logo from '../../assets/landing-page/logo.png';
+import Search from '../../assets/landing-page/search.png';
+import Cart from '../../assets/landing-page/cart.png';
+import Profile from '../../assets/landing-page/profile.png';
+import '../../styles/landing/navbar.scss';
+import { Link } from 'react-router-dom';
+import NavbarContext from '../../context/navbar_context';
 
 const Navbar = () => {
+  //const searchItem = e.target.value;
+  const { keyWord, changeKeyWord } = useContext(NavbarContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [status, setStatus] = useState("close");
@@ -14,20 +21,19 @@ const Navbar = () => {
   //   opacity: "0",
   // });
   const [marketPlaceMenu, setMarketPlaceMenu] = useState({
-    opacity: "0",
-    zIndex: "-100",
+    opacity: '0',
+    zIndex: '-100',
   });
-
   const showDropDown = () => {
     setMarketPlaceMenu({
-      opacity: "1",
-      zIndex: "2",
+      opacity: '1',
+      zIndex: '2',
     });
   };
   const hideDropDown = () => {
     setMarketPlaceMenu({
-      opacity: "0",
-      zIndex: "-100",
+      opacity: '0',
+      zIndex: '-100',
     });
   };
 
@@ -80,14 +86,14 @@ const Navbar = () => {
           style={profileMenu}
           onMouseEnter={() => {
             setProfileMenu({
-              opacity: "1",
-              zIndex: "2",
+              opacity: '1',
+              zIndex: '2',
             });
           }}
           onMouseLeave={() => {
             setProfileMenu({
-              opacity: "0",
-              zIndex: "-100",
+              opacity: '0',
+              zIndex: '-100',
             });
           }}
         > */}
@@ -95,7 +101,7 @@ const Navbar = () => {
           {/* <div
               onClick={() =>
                 setProfileMenu({
-                  opacity: "0",
+                  opacity: '0',
                 })
               }
             > */}
@@ -106,8 +112,8 @@ const Navbar = () => {
           {/* <div
               onClick={() =>
                 setProfileMenu({
-                  opacity: "0",
-                  zIndex: "-100",
+                  opacity: '0',
+                  zIndex: '-100',
                 })
               }
             > */}
@@ -131,20 +137,28 @@ const Navbar = () => {
         {/* end drop downs */}
 
         {/* start search form */}
-        <form className="nav__searchForm">
+        <form className="nav__searchForm" onSubmit={handleSubmit}>
           <input
             className="nav__searchBar show-modal"
             type="text"
             placeholder="Search"
+            onChange={changeKeyWord}
           />
-          <span className="span">
-            <img
-              className="nav__searchIcon"
-              src={Search}
-              alt="Search Icon"
-              onClick={() => setShowSearch(!showSearch)}
-            />
-          </span>
+          <Link to="/search">
+            <button
+              className="span"
+              type="submit"
+              onClick={() => {
+                setShowSearch(!showSearch);
+              }}
+            >
+              <img
+                className="nav__searchIcon"
+                src={Search}
+                alt="Search Icon"
+              />
+            </button>
+          </Link>
         </form>
         {/* end search form */}
 
@@ -154,13 +168,13 @@ const Navbar = () => {
             className="profile__imgContainer"
             onMouseEnter={() => {
               setProfileMenu({
-                opacity: "1",
+                opacity: '1',
               });
             }}
             onMouseLeave={() => {
               setProfileMenu({
-                opacity: "0",
-                zIndex: "-100",
+                opacity: '0',
+                zIndex: '-100',
               });
             }}
           > */}
@@ -169,7 +183,6 @@ const Navbar = () => {
           <Link to="/mycart">
             <div className="cart">
               <img src={Cart} alt="shopping cart" />
-              <span>Cart</span>
             </div>
           </Link>
 
@@ -177,7 +190,7 @@ const Navbar = () => {
             className="nav__sidebarToggle"
             onClick={() => {
               setShowLinks(!showLinks);
-              setStatus(status === "open" ? "close" : "open");
+              setStatus(status === 'open' ? 'close' : 'open');
             }}
           >
             <div className={`${status} line line1`}></div>
@@ -191,10 +204,12 @@ const Navbar = () => {
         <ul
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus("close");
+            setStatus('close');
           }}
           className={`${
-            showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
+            showLinks
+              ? 'mobile__sideBar show__sideBar'
+              : 'mobile__sideBar'
           }`}
         >
           <Link to="/home">
@@ -220,7 +235,9 @@ const Navbar = () => {
 
         <div
           className={`${
-            showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
+            showSearch
+              ? 'mobile__search show__mobileSearch'
+              : 'mobile__search'
           }`}
         >
           <input
