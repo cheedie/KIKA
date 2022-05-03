@@ -383,11 +383,10 @@ body {
     .product_img{
       width:75px;
       height:75px;
-      // display: grid;
-      // justify-content: center;
-      // align-items: center;
-      }
-    .product_img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border:2px solid green;
       img{
         width:100%;
       }
