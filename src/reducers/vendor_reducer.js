@@ -11,6 +11,7 @@ import {
     CHANGE_VENDOR_PASSWORD,
     VENDOR_LOGOUT,
     CREATE_PRODUCT,
+    END_CREATE_PRODUCT,
     CREATE_PRODUCT_SUCCESS,
     CREATE_PRODUCT_ERROR,
     GET_VENDOR_PRODUCTS,
@@ -86,6 +87,14 @@ import {
         ...state,
         creating_product: true,
         creating_product_message: action.payload, 
+      };
+    }
+    if (action.type === END_CREATE_PRODUCT) {
+      return {
+        ...state,
+        creating_product: false,
+        creating_product_error: false,
+        creating_product_message:''
       };
     }
     if (action.type === CREATE_PRODUCT_ERROR) {
