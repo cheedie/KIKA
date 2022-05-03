@@ -16,6 +16,7 @@ import {
   REGISTER_VENDOR_ERROR,
   CHANGE_VENDOR_PASSWORD,
   CREATE_PRODUCT,
+  END_CREATE_PRODUCT,
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_ERROR,
   GET_VENDOR_PRODUCTS,
@@ -132,13 +133,16 @@ export const VendorProvider = ({ children }) => {
           console.log("Error message",err)
         }
         console.log(error.config)
-        dispatch({ type: CREATE_PRODUCT_ERROR, payload: `${err.error.includes("name")?"Product name already exists":err.error}` });
+        dispatch({ type: CREATE_PRODUCT_ERROR, payload: `${err.error.includes("name","slug")?"Product name already exists":err.error}` });
         return err;
       })
   };
+  const endCreateProduct = () => {
+    dispatch({ type: END_CREATE_PRODUCT});
+    return null
+  };
   const getVendorProducts = async (id) => {
   dispatch({ type: GET_VENDOR_PRODUCTS});
-  console.log("passed ID", id)
 
   try {
     const response = await baseUrl.get(`${products_url}/vendor/${id}`);
@@ -146,6 +150,7 @@ export const VendorProvider = ({ children }) => {
     dispatch({ type: GET_VENDOR_PRODUCTS_SUCCESS, payload: products });
   
   } catch (error) {
+    console.log("ERROR",error)
     dispatch({ type: GET_VENDOR_PRODUCTS_ERROR });
   }
   };
@@ -157,6 +162,7 @@ export const VendorProvider = ({ children }) => {
       const response = await baseUrl.get("/auth/profile");
       const userDetails = response.data?.data;
       dispatch({ type: VENDOR_DETAILS, payload: userDetails });
+      return response
     } catch (error) {
       dispatch({ type: VENDOR_DETAILS_ERROR });
     }
@@ -196,6 +202,7 @@ export const VendorProvider = ({ children }) => {
         changePassword,
         signOut,
         createProduct,
+        endCreateProduct,
         getVendorProducts
       }}
     >

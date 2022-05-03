@@ -20,6 +20,7 @@ const product_reducer = (state, action) => {
       (product) => product.category === "Female"
     );
     const men = action.payload.filter((product) => product.category === "Male");
+
     return {
       ...state,
       products_loading: false,

@@ -53,7 +53,7 @@ function Orders({ cardName }) {
     { subtitle: "On Hold", fig: "1", color: "" },
   ];
   return (
-    <div className="card">
+    <div className="col card">
       <header className="title">{cardName}</header>
       <div className="col orders">
         <div>
@@ -78,7 +78,7 @@ function Orders({ cardName }) {
 function Reviews({ cardName }) {
   const cardDetails = ["All", "Pending", "Spam", "Trash"];
   return (
-    <div className="card">
+    <div className="col card">
       <header className="title">{cardName}</header>
       <div className="col">
         {cardDetails.map((detail, index) => {
@@ -97,7 +97,7 @@ function Reviews({ cardName }) {
 function Products({ cardName }) {
   const cardDetails = ["All", "Pending", "Spam", "Trash"];
   return (
-    <div className="card">
+    <div className="col card">
       <header className="title">{cardName}</header>
       <div className="col">
         {cardDetails.map((detail, index) => {
@@ -115,7 +115,7 @@ function Products({ cardName }) {
 
 function SalesOverview() {
   return (
-    <div className="card end">
+    <div className="col card end">
       <header className="title">Sales Overview</header>
       <div>
         <img src={Chart} alt="chart" />

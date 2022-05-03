@@ -10,13 +10,20 @@ import {
   USER_LOGOUT,
   GET_STATE,
   GET_CITIES,
+  REGISTER_DELIVERY_DETAILS,
+  REGISTER_DELIVERY_SUCCESS,
 } from "../actions";
 
 const user_reducer = (state, action) => {
   if (action.type === REGISTER_USER) {
     return { ...state, register_user: action.payload };
   }
-
+  if (action.type === REGISTER_DELIVERY_DETAILS) {
+    return { ...state };
+  }
+  if (action.type === REGISTER_DELIVERY_SUCCESS) {
+    return { ...state, deliveryStatus: action.payload };
+  }
   if (action.type === REQUEST_LOGIN) {
     return { ...state, loading: true };
   }
@@ -50,7 +57,6 @@ const user_reducer = (state, action) => {
     return {
       ...state,
       user_details_loading: false,
-
       userDetails: action.payload,
     };
   }
@@ -58,11 +64,11 @@ const user_reducer = (state, action) => {
     return {
       ...state,
       user_details_loading: false,
-
       user_details_error: true,
     };
+  } else {
+    throw new Error(`No Matching "${action.type}" - action type`);
   }
-  throw new Error(`No Matching "${action.type}" - action type`);
 };
 
 export default user_reducer;

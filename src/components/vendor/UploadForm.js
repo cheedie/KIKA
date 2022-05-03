@@ -8,34 +8,33 @@ import * as Yup from 'yup'
 import { useState, useEffect } from 'react';
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function UploadForm({vendor, setUpload, refresh}) {
+export default function UploadForm({vendor,setUpload, refresh}) {
     
   const { 
-      vendorDetails,
       product,
       createProduct,
+      endCreateProduct,
       creating_product,
       creating_product_error,
       creating_product_message,
     } = useVendorContext();
-    const [uploadMessage, setUploadMessage] = useState(true);
+
+    const [uploadMessage, setUploadMessage] = useState(false);
 
     useEffect(() => {
-        console.log("vendor details", vendorDetails)
-        console.log("vendor", vendor)
-        return (!creating_product && creating_product_message) &&
-        (!creating_product_error && creating_product_message) ? 
-        setUploadMessage(false) : setUploadMessage(true)
-      }, [vendorDetails]);
+        if ((!creating_product && creating_product_message) &&
+        (!creating_product_error && creating_product_message)){
+            setUploadMessage(false)
+        }else if(creating_product_error){
+            setUploadMessage(false)
+        }
+        else{setUploadMessage(true)}
+    }, []);
 
     const FILE_SIZE = 5 * 160 * 1024;
     const [imagePreview, setImagePreview] = useState({
             path: "",
         });
-
-
-
-
   
     const {setFieldValue, handleBlur, handleSubmit,handleChange,values, touched, errors } = useFormik({
         initialValues:{
@@ -45,7 +44,9 @@ export default function UploadForm({vendor, setUpload, refresh}) {
             newArrival:true,
             category:'', //['Male', 'Female']
             grade:'',//['A', 'B']
+            brand:'',
             size:'',
+            color:'',
             countInStock:'1',
             description:'',
             image:'',
@@ -77,7 +78,6 @@ export default function UploadForm({vendor, setUpload, refresh}) {
         onSubmit:values=>{
             return createProduct(values)
             .then((response)=>{
-                console.log("response on submit", response)
                 if(response.data?.data && response.data?.message){
                     refresh(vendor._id)
                    setTimeout(()=> setUpload(false)
@@ -95,6 +95,10 @@ export default function UploadForm({vendor, setUpload, refresh}) {
         })
     )
     };
+    const handleNameChange = (e) => {
+    setFieldValue("name", e.target.value)
+    endCreateProduct()
+    };
 
     return(
         <UploadWrapper>
@@ -106,7 +110,12 @@ export default function UploadForm({vendor, setUpload, refresh}) {
                 >
                     <Wrapper flex>
                         <Heading> + Add New Product </Heading>
-                        <ExitButton id="exit" name="exit_button" onClick={()=>setUpload(false)}><Close/></ExitButton>
+                        <ExitButton id="exit" name="exit_button" onClick={()=>{
+                            setUpload(false)
+                            endCreateProduct();
+                            }}>
+                                <Close/>
+                        </ExitButton>
                     </Wrapper>
                     
                     <Wrapper grid gap="1"
@@ -132,15 +141,15 @@ export default function UploadForm({vendor, setUpload, refresh}) {
                         <Wrapper grid gap='2'>
                             <InputWrapper>
                                 <StyledLabel className="floating">A new product</StyledLabel>
-                                <StyledInput type='text' name='name' onChange={handleChange} placeholder='A new product' floating/>
-                                {touched.name && errors.name  ?(
+                            <StyledInput type='text' name='name' value = {values.name} onChange={(e)=>{handleNameChange(e)}} placeholder='A new product' floating/>
+                                {touched.name && errors.name ?(
                                 <Message margin="0">{errors.name}</Message>
                                 ) : null}
                             </InputWrapper>
                             {/*------ description -------*/}
                             <InputWrapper>
                                 <StyledLabel className="floating">description</StyledLabel>
-                                <StyledTextArea type='text' name='description' onChange={handleChange} placeholder='A new product' floating/>
+                                <StyledTextArea type='text' value = {values.description} name='description' onChange={handleChange} placeholder='A new product' floating/>
                                 {touched.description && errors.description  ?(
                                 <Message margin="0">{errors.description}</Message>
                                 ) : null}
@@ -150,14 +159,14 @@ export default function UploadForm({vendor, setUpload, refresh}) {
                             <Wrapper grid gap="1" GTC="1fr 1fr">
                             <InputWrapper>
                                 <StyledLabel >Price</StyledLabel>
-                                <StyledInput type='text' name='price' onChange={handleChange} placeholder='price' floating/>
+                                <StyledInput type='text' value = {values.price} name='price' onChange={handleChange} placeholder='price' floating/>
                                 {touched.price && errors.price  ?(
                                 <Message margin="0">{errors.price}</Message>
                                 ) : null}
                             </InputWrapper>
                             <InputWrapper>
                                 <StyledLabel >Discounted Price</StyledLabel>
-                                <StyledInput type='text' name='discount' onChange={handleChange} placeholder='discount' floating/>
+                                <StyledInput type='text' value = {values.discount} name='discount' onChange={handleChange} placeholder='discount' floating/>
                                 {touched.discount && errors.discount  ?(
                                 <Message margin="0">{errors.discount}</Message>
                                 ) : null}
@@ -169,14 +178,14 @@ export default function UploadForm({vendor, setUpload, refresh}) {
                             <Wrapper grid gap="1" GTC="1fr 1fr">
                             <InputWrapper>
                                 <StyledLabel >Color</StyledLabel>
-                                <StyledInput type='text' name='color' onChange={handleChange} placeholder='A new product' floating/>
+                                <StyledInput type='text' value = {values.color} name='color' onChange={handleChange} placeholder='A new product' floating/>
                                 {touched.color && errors.color  ?(
                                 <Message margin="0">{errors.color}</Message>
                                 ) : null}
                             </InputWrapper>
                             <InputWrapper>
                                 <StyledLabel >Brand</StyledLabel>
-                                <StyledInput type='text' name='brand' onChange={handleChange} placeholder='A new product' floating/>
+                                <StyledInput type='text' value = {values.brand} name='brand' onChange={handleChange} placeholder='A new product' floating/>
                                 {touched.brand && errors.brand  ?(
                                 <Message margin="0">{errors.brand}</Message>
                                 ) : null}
@@ -239,7 +248,7 @@ export default function UploadForm({vendor, setUpload, refresh}) {
                     
                     <StyledButton id='submit' name='submit' type='submit' label ='Add Product'>Upload</StyledButton>
                     <Wrapper flex>
-                      {uploadMessage || creating_product || creating_product_error || creating_product_message ? 
+                      {values.name && (uploadMessage || creating_product || creating_product_error || creating_product_message) ? 
                       <Heading 
                       smallHeading
                       color={creating_product_error && !creating_product ? "red": (creating_product || product) ? "green" : "black" }

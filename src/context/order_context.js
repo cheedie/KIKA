@@ -14,10 +14,13 @@ const OrderContext = React.createContext();
 export const OrderProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const placeOrder = async (data) => {
+  const placeOrder = async (data, navigate) => {
     try {
-      const request = await baseUrl.post("/orders", data);
-      dispatch({ type: ORDER_DETAILS });
+      const response = await baseUrl.post("/orders", data);
+      console.log(response);
+      const orderDetails = response;
+      dispatch({ type: ORDER_DETAILS, payload: orderDetails });
+      navigate("/ordersuccessful");
     } catch (error) {
       console.log(error);
     }

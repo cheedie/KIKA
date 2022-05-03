@@ -7,11 +7,14 @@ import Message from "../Global/Message";
 
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function Products({vendor, loading, error, products, refresh}) {
+export default function Products({vendor, refresh, products, loading, error}) {
     const [isUploading, setUpload] = useState(false)
+    const { getVendorProducts , creating_product_error,} = useVendorContext();
+
       useEffect(() => {
-        //console.log("vendor", vendor)
-        refresh(vendor._id);
+            if(vendor._id){
+                getVendorProducts(vendor._id)
+            }
       }, []);
 
   return (
@@ -24,7 +27,10 @@ export default function Products({vendor, loading, error, products, refresh}) {
             <Link to="/" className="subtitle">Pending Review (0)</Link>
             <Link to="/" className="subtitle">Draft (0)</Link>
             </div>
-            <button className="button" onClick={()=>setUpload(true)}>Add Product</button>
+            <button className="button" onClick={()=>{
+                
+                setUpload(true)
+                }}>Add Product</button>
         </nav>
         <div className="body">
             <div className="filters">
@@ -85,7 +91,7 @@ export default function Products({vendor, loading, error, products, refresh}) {
         
        
     </div>
-    {isUploading ? <UploadForm vendor={vendor} refresh ={refresh} setUpload={setUpload}/>:null}
+    {isUploading ? <UploadForm vendor={vendor} refresh ={refresh} error={creating_product_error} setUpload={setUpload}/>:null}
     </>
   )
 }
