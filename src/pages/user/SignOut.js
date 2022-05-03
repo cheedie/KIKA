@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import NavMiddle from "../../components/User/NavMiddle";
 
 const SignOut = () => {

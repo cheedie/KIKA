@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import "../../styles/StaticStyles/Error.css";
 import ErrorImg from "../../assets/StaticPages/Match-not-found.svg";

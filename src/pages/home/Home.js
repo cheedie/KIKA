@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../../components/landing-page/Navbar';
+import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/landing-page/Footer';
 import '../../styles/Home/home.scss';
 import Product from '../../components/Product/Product';

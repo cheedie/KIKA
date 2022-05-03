@@ -1,4 +1,4 @@
-@import './variables';
+@import '../variables';
 
 .navbar {
   //position: relative;
@@ -41,49 +41,7 @@
     }
   }
 
-  .nav__linksContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 400px;
-    height: 100%;
-    margin-right: 40px;
-
-    @media (max-width: 900px) {
-      display: none;
-    }
-
-    @media (max-width: 480px) {
-      margin: 0;
-    }
-
-    li {
-      @include flexCenter;
-      height: 100%;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-  }
-
-  .marketPlace__dropDown,
-  .profile__dropDown {
-    position: absolute;
-    top: 103px;
-    z-index: 2;
-    background: #fff;
-    transition: 0.5s ease;
-
-    div {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      border: 1px solid blue;
-      width: 200px;
-      cursor: pointer;
-    }
-  }
+  
 
   .marketPlace__dropDown {
     left: 440px;
@@ -151,12 +109,11 @@
 //********* sign in and cart container **********
 
 .nav__profile {
-  width: 96px;
+  width: 80px;
   height: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  //border: 1px solid red;
   height: 100%;
 
   @media (max-width: 821px) {
@@ -308,37 +265,4 @@
   left: 0;
 }
 
-.mobile__search {
-  position: absolute;
-  top: 10vh;
-  left: 0;
-  height: 20vh;
-  width: 100%;
-  padding: 0 2rem;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  //z-index: -50;
-  opacity: 0;
-  transition: opacity 800ms ease;
-  display: none;
 
-  @media (max-width: 480px) {
-    display: block;
-  }
-
-  input {
-    width: 90%;
-    height: 100%;
-    padding: 1rem 1rem 1rem 1.5rem;
-  }
-
-  img {
-    margin-left: 0.5rem;
-  }
-}
-
-.show__mobileSearch {
-  opacity: 1;
-}

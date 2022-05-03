@@ -1,5 +1,5 @@
 import React from 'react';
-import  Navbar  from '../components/landing-page/Navbar';
+import  Navbar  from '../components/Navbar/Navbar';
 import  Hero  from '../components/landing-page/LandingHero';
 import Footer from '../components/landing-page/Footer';
 

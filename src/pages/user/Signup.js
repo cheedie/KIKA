@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/user/user.css";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/landing-page/Footer";
 
 import { useUserContext } from "../../context/user_context";

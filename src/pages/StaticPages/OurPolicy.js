@@ -1,6 +1,6 @@
 import React from 'react'
 import { HashLink as Link } from "react-router-hash-link";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import Policy from '../../components/StaticPages/Condition/Policy'
 import { policyObjOne } from '../../data/StaticPages/PolicyData'

@@ -1,0 +1,45 @@
+@import '../variables';
+
+.nav__linksContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 100%;
+    margin-right: 40px;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      margin: 0;
+    }
+
+    li {
+      @include flexCenter;
+      height: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  .marketPlace__dropDown,
+  .profile__dropDown {
+    position: absolute;
+    top: 103px;
+    z-index: 2;
+    background: #fff;
+    transition: 0.5s ease;
+
+    div {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border: 1px solid blue;
+      width: 200px;
+      cursor: pointer;
+    }
+  }

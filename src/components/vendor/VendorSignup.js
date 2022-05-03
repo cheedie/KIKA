@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import signImage from "../../assets/user/sign-in.png";
-import Navbar from '../landing-page/Navbar'
+import Navbar from '../Navbar/Navbar'
 import { StyledButton } from './Button.styled';
 import {StyledForm , StyledLabel, StyledInput, Wrapper, Message } from './Form.style';
 import {useFormik} from 'formik';

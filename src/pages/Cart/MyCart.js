@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cart_context";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import CartContent from "../../components/Cart/CartContent";
 import CartCard from "../../components/Cart/CartCard";

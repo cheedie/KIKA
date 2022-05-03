@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../../components/User/Loading";
 import Error from "../../components/User/Error";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import visacard from "../../assets/cart/visa_card.png";
 import mastercard from "../../assets/cart/master_card.png";

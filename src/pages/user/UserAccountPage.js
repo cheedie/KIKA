@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Footer from "../../components/landing-page/Footer";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/User/Sidebar";
 import { useUserContext } from "../../context/user_context";
 import Loading from "../../components/User/Loading";

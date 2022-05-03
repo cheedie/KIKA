@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import "../../styles/CartStyles/OrderSuccessful.css";
 import successfulimg from "../../assets/cart/Success.png";

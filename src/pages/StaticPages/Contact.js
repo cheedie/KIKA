@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { HiMail, HiPhone } from "react-icons/hi";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaTwitter, FaFacebookF } from "react-icons/fa";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/landing-page/Footer";
 import "../../styles/StaticStyles/Contact.css";
 

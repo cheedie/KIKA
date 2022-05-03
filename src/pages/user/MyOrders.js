@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import PendingOrders from "../../components/User/PendingOrders";
 import ReceivedOrder from "../../components/User/ReceivedOrder";
 import NavMiddle from "../../components/User/NavMiddle";

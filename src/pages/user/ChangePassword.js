@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../../components/landing-page/Footer";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/User/Sidebar";
 import { ReactComponent as WatchFilled } from "../../assets/user/watch-filled.svg";
 import { ReactComponent as Watch } from "../../assets/user/watch.svg";

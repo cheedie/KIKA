@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../components/landing-page/Footer";
-import Navbar from "../../components/landing-page/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Product from "../../components/Product/Product";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "../../styles/MarketPlace/marketPlace.scss";
