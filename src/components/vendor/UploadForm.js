@@ -77,7 +77,6 @@ export default function UploadForm({vendor, setUpload, refresh}) {
         onSubmit:values=>{
             return createProduct(values)
             .then((response)=>{
-                console.log("response on submit", response)
                 if(response.data?.data && response.data?.message){
                     refresh(vendor._id)
                    setTimeout(()=> setUpload(false)
