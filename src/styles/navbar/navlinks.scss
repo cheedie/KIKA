@@ -1,5 +1,9 @@
 @import '../variables';
 
+.navLinks{
+  height: 100%;
+}
+
 .nav__linksContainer {
     display: flex;
     justify-content: space-between;

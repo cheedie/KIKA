@@ -18,9 +18,9 @@
     height: 100%;
   }
 
-  @media (min-width: 480px) and (max-width: 821px) {
-    height: 10vh;
-  }
+  //@media (min-width: 480px) and (max-width: 821px) {
+  //  height: 10vh;
+  //}
 
   @media (max-width: 821px) {
     padding: 0 1.5rem;
@@ -40,8 +40,6 @@
       margin: 0;
     }
   }
-
-  
 
   .marketPlace__dropDown {
     left: 440px;
@@ -108,57 +106,7 @@
 }
 //********* sign in and cart container **********
 
-.nav__profile {
-  width: 80px;
-  height: 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
 
-  @media (max-width: 821px) {
-    width: 32%;
-  }
-
-  @media (max-width: 480px) {
-    width: 41%;
-    //border: 2px solid red;
-  }
-
-  .profile__imgContainer{
-    @include flexCenter;
-    height: 100%;
-    width: 50%;
-    cursor: pointer;
-    //border: 1px solid green;
-  }
-
-  img {
-    cursor: pointer;
-    height: 1rem;
-    width: 1rem;
-  }
-}
-
-.cart {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 480px) {
-    //margin-left: -2.4rem;
-  }
-
-  span {
-    font-size: 14px;
-    //margin-left: 0.3rem;
-    font-weight: 500;
-
-    @media (max-width: 480px) {
-      display: none;
-    }
-  }
-}
 
 //********* hamburger **********
 

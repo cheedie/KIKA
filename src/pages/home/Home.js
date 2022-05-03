@@ -86,15 +86,17 @@ const HomePage = () => {
         <h2>NEW ARRIVALS</h2>
 
         <div className="products__container">
-          {new_arrivals.map((product) => {
-            return (
-              <Product
-                key={product._id}
-                {...product}
-                className="product"
-              />
-            );
-          })}
+          {new_arrivals.
+            map((product) => {
+              //console.log(product)
+              return (
+                <Product
+                  key={product._id}
+                  {...product}
+                  className="product"
+                />
+              );
+            })}
         </div>
       </section>
       {/* start new arrivals */}

@@ -1,0 +1,56 @@
+@import '../variables';
+
+.nav__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80px;
+  height: 103px;
+  border: 2px solid red;
+
+
+  @media (max-width: 821px) {
+    width: 32%;
+  }
+
+  @media (max-width: 480px) {
+    width: 41%;
+    //border: 2px solid red;
+  }
+
+  .profile__imgContainer{
+    @include flexCenter;
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    border: 1px solid green;
+  }
+
+  img {
+    cursor: pointer;
+  }
+}
+
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img{
+    height: 23px;
+  }
+
+  @media (max-width: 480px) {
+    //margin-left: -2.4rem;
+  }
+
+  span {
+    font-size: 14px;
+    //margin-left: 0.3rem;
+    font-weight: 500;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+}

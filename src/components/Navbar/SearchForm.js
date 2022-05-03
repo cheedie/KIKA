@@ -16,7 +16,7 @@ const SearchForm = () => {
           onChange={changeKeyWord}
         />
         <Link to="/search">
-          <button
+          <span
             className="span"
             type="submit"
             onClick={handleSearch}
@@ -26,7 +26,7 @@ const SearchForm = () => {
               src={searchIcon}
               alt="Search Icon"
             />
-          </button>
+          </span>
         </Link>
       </form>
     </div>

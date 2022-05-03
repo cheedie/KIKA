@@ -1,11 +1,19 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import NavbarContext from '../../context/navbar_context';
 import profileIcon from '../../assets/navbar/profile.png';
 import Cart from '../../assets/navbar/cart.png';
 import { Link } from 'react-router-dom';
+import '../../styles/navbar/profile.scss';
 
 const Profile = () => {
-  const {status,setStatus, setProfileMenu, showLinks, profileMenu, setShowLinks} = useContext(NavbarContext)
+  const {
+    status,
+    setStatus,
+    setProfileMenu,
+    showLinks,
+    profileMenu,
+    setShowLinks,
+  } = useContext(NavbarContext);
   return (
     <div>
       <section className="nav__profile">
@@ -14,6 +22,7 @@ const Profile = () => {
           onMouseEnter={() => {
             setProfileMenu({
               opacity: '1',
+              zIndex: '2',
             });
           }}
           onMouseLeave={() => {
@@ -43,6 +52,8 @@ const Profile = () => {
           <div className={`${status} line line3`}></div>
         </div>
       </section>
+
+      {/* dropdown */}
       <div
         className="profile__dropDown"
         style={profileMenu}
