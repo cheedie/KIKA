@@ -10,7 +10,6 @@ import { useVendorContext } from "../../context/vendor_context";
 export default function Products({vendor, loading, error, products, refresh}) {
     const [isUploading, setUpload] = useState(false)
       useEffect(() => {
-        console.log("vendor", vendor)
         refresh(vendor._id);
       }, []);
 

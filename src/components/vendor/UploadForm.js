@@ -8,7 +8,7 @@ import * as Yup from 'yup'
 import { useState, useEffect } from 'react';
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function UploadForm({setUpload, refresh}) {
+export default function UploadForm({vendor, setUpload, refresh}) {
     
   const { 
       product,
@@ -74,11 +74,9 @@ export default function UploadForm({setUpload, refresh}) {
             .then((response)=>{
                 console.log("response on submit", response)
                 if(response.data?.data && response.data?.message){
-                    refresh()
+                    refresh(vendor._id)
                    setTimeout(()=> setUpload(false)
                     ,2000);
-                    //return timer;
-                //clearTimeout(timer)
                 }
             });
         }
