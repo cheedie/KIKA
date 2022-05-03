@@ -524,6 +524,8 @@ body p {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+  -o-object-position: left;
+     object-position: left;
 }
 
 #vendor .product_status {
