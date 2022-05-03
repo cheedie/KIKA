@@ -30,8 +30,8 @@ const Vendor = () => {
     getting_products_loading:products_loading,
     getting_products_error: products_error,
   } = useVendorContext();
-  
-  useEffect(() => getVendor(), []);
+
+  useEffect(() => {getVendor()}, []);
 
   const fetchProducts = (id) => getVendorProducts(id)
   
