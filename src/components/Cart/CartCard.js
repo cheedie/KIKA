@@ -96,9 +96,7 @@ const CartCard = ({ image, name, price, _id, size, amount, color }) => {
           </div>
 
           <button type="submit" id="cart-btn" className="cart-btn">
-            <Link to={deliveryStatus ? "/checkout" : "/delivery"}>
-              Checkout
-            </Link>
+            <Link to="/delivery">Checkout</Link>
           </button>
         </div>
       </div>
