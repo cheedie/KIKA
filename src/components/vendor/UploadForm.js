@@ -11,6 +11,7 @@ import { useVendorContext } from "../../context/vendor_context";
 export default function UploadForm({vendor, setUpload, refresh}) {
     
   const { 
+      vendorDetails,
       product,
       createProduct,
       creating_product,
@@ -20,13 +21,17 @@ export default function UploadForm({vendor, setUpload, refresh}) {
     const [uploadMessage, setUploadMessage] = useState(true);
 
     useEffect(() => {
+        console.log("vendor details", vendorDetails)
+        console.log("vendor", vendor)
         return (!creating_product && creating_product_message) &&
-        (!creating_product_error && creating_product_message) ? setUploadMessage(false) : setUploadMessage(true)
-      }, []);
+        (!creating_product_error && creating_product_message) ? 
+        setUploadMessage(false) : setUploadMessage(true)
+      }, [vendorDetails]);
+
     const FILE_SIZE = 5 * 160 * 1024;
-   const [imagePreview, setImagePreview] = useState({
-        path: "",
-      });
+    const [imagePreview, setImagePreview] = useState({
+            path: "",
+        });
 
 
 

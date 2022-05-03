@@ -2,7 +2,6 @@ import React, { useContext, useReducer, useEffect } from "react";
 import axios from "axios";
 import reducer from "../reducers/product_reducer";
 import { baseUrl } from "../utils/baseUrl";
-import { products_url as url } from "../utils/constant";
 import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_SUCCESS,
@@ -57,7 +56,6 @@ export const ProductProvider = ({ children }) => {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
     }
   };
-
 
 
   useEffect(() => {

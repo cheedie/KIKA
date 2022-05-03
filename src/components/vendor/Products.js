@@ -84,7 +84,7 @@ export default function Products({vendor, loading, error, products, refresh}) {
         
        
     </div>
-    {isUploading ? <UploadForm refresh ={refresh} setUpload={setUpload}/>:null}
+    {isUploading ? <UploadForm vendor={vendor} refresh ={refresh} setUpload={setUpload}/>:null}
     </>
   )
 }

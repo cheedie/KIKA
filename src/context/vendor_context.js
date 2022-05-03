@@ -9,7 +9,11 @@ import {
   LOGIN_VENDOR_ERROR,
   VENDOR_LOGOUT,
   VENDOR_DETAILS,
+  VENDOR_DETAILS_ERROR,
+  VENDOR_DETAILS_BEGIN,
   REGISTER_VENDOR,
+  REGISTER_VENDOR_SUCCESS,
+  REGISTER_VENDOR_ERROR,
   CHANGE_VENDOR_PASSWORD,
   CREATE_PRODUCT,
   CREATE_PRODUCT_SUCCESS,
@@ -25,13 +29,17 @@ let token = localStorage.getItem("currentVendor")
 
 const initialState = {
   token: "" || token,
-  register_user: null,
+  register_vendor: null, 
+  register_vendor_error: false, 
+  register_vendor_loading: false, 
   loading: false,
   newPassword: "",
   vendorLogout: false,
   vendorDetails: {},
   product:{},
   products:[],
+  vendor_details_error: false,
+  vendor_details_loading: false,
   getting_products_loading:false,
   getting_products_error: false,
   creating_product: false,
@@ -58,9 +66,36 @@ export const VendorProvider = ({ children }) => {
         headers: {
           "Content-type": "application/json",
           }
-     }).then(()=>{console.log(response, "yayy")})
+     })
+     if(response){
+       console.log(response, "yayy")
+       dispatch({ type: REGISTER_VENDOR_SUCCESS, payload: response })
+        return response
+      }
     } catch (error) {
       console.log(error);
+      dispatch({ type: REGISTER_VENDOR_ERROR, error: Error.errors[0] })
+      return error.error
+    }
+  };
+  const loginVendor = async (details) => {
+    dispatch({ type: REQUEST_VENDOR_LOGIN });
+
+    try {
+      const response = await axios.post(`${url}/auth/login`, details);
+
+      if (response.status === 200) {
+        dispatch({ type: LOGIN_VENDOR_SUCCESS, payload: response });
+
+        localStorage.setItem("currentUser", JSON.stringify(response.data));
+        return response;
+      }
+
+      dispatch({ type: LOGIN_VENDOR_ERROR, error: response.errors[0] });
+      return null;
+    } catch (error) {
+      dispatch({ type: LOGIN_VENDOR_ERROR, error: error });
+      return null;
     }
   };
 
@@ -115,35 +150,15 @@ export const VendorProvider = ({ children }) => {
   }
   };
 
-  const loginVendor = async (details) => {
-    dispatch({ type: REQUEST_VENDOR_LOGIN });
-
-    try {
-      const response = await axios.post(`${url}/auth/login`, details);
-
-      if (response.status === 200) {
-        dispatch({ type: LOGIN_VENDOR_SUCCESS, payload: response });
-
-        localStorage.setItem("currentUser", JSON.stringify(response.data));
-        return response;
-      }
-
-      dispatch({ type: LOGIN_VENDOR_ERROR, error: response.errors[0] });
-      return null;
-    } catch (error) {
-      dispatch({ type: LOGIN_VENDOR_ERROR, error: error });
-      return null;
-    }
-  };
-
   const getVendor = async () => {
+    dispatch({ type: VENDOR_DETAILS_BEGIN });
+
     try {
       const response = await baseUrl.get("/auth/profile");
-      const vendorDetails = response.data?.data;
-      dispatch({ type: VENDOR_DETAILS, payload: vendorDetails });
-      return vendorDetails
+      const userDetails = response.data?.data;
+      dispatch({ type: VENDOR_DETAILS, payload: userDetails });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: VENDOR_DETAILS_ERROR });
     }
   };
 
