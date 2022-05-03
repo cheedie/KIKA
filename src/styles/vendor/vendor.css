@@ -517,7 +517,6 @@ body p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 2px solid green;
 }
 
 #vendor .product_img img {
