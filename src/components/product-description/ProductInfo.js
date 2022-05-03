@@ -48,7 +48,8 @@ const ProductInfo = () => {
     image,
     grade,
     color,
-    vendor,
+
+    // vendor,
     countInStock,
   } = product;
 
@@ -59,45 +60,53 @@ const ProductInfo = () => {
         <img src={image} alt={name} />
         <section className="product__data">
           <h3>{name}</h3>
-          <p>
-            Size: <span>{size}</span>
-          </p>
-          <p>
-            Grade: <span>{grade}</span>
-          </p>
-          <p>
-            Color: <span>{color}</span>
-          </p>
 
-          <p>
-            Vendor: <span>{vendor}</span>
-          </p>
           <p>
             Price: <span>NGN {price}</span>
           </p>
           <div>
-            <MdOutlineStarBorder />
-            <MdOutlineStarBorder />
-            <MdOutlineStarBorder />
-            <MdOutlineStarBorder />
-            <MdOutlineStarBorder />
+            <div className="productDAta__wrapper">
+              <p>
+                <span>Size:</span> <span>{size}</span>
+              </p>
+              <p>
+                <span>Grade:</span> <span>{grade}</span>
+              </p>
+              <p>
+                <span>Color:</span> <span>{color}</span>
+              </p>
+              <p>{/* <span>Vendor:</span> <span>{vendor}</span> */}</p>
+              <p>
+                <span>Price:</span> <span>NGN {price}</span>
+              </p>
+            </div>
+            <div className="rating">
+              <MdOutlineStarBorder />
+              <MdOutlineStarBorder />
+              <MdOutlineStarBorder />
+              <MdOutlineStarBorder />
+              <MdOutlineStarBorder />
+            </div>
           </div>
+
           {countInStock > 0 && <AddToCart product={product} />}
         </section>
       </div>
-      <div className="share__this__product">
-        <p>SHARE THIS PRODUCT</p>
-        <p>COPY LINK</p>
-      </div>
 
       <div className="more__products">
-        {products
-          .filter((_, index) => index < 4)
-          .map((product) => {
-            return (
-              <Product key={product._id} {...product} className="product" />
-            );
-          })}
+        <div className="share__this__product">
+          <p>SHARE THIS PRODUCT</p>
+          <p>COPY LINK</p>
+        </div>
+        <div className="products">
+          {products
+            .filter((_, index) => index < 4)
+            .map((product) => {
+              return (
+                <Product key={product._id} {...product} className="product" />
+              );
+            })}
+        </div>
       </div>
     </section>
   );

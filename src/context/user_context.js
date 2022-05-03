@@ -16,6 +16,8 @@ import {
   CHANGE_PASSWORD,
   GET_STATE,
   GET_CITIES,
+  REGISTER_DELIVERY_DETAILS,
+  REGISTER_DELIVERY_SUCCESS,
 } from "../actions";
 
 let token = localStorage.getItem("currentUser")
@@ -33,6 +35,7 @@ const initialState = {
   cityDetails: [],
   user_details_error: false,
   user_details_loading: false,
+  deliveryStatus: false,
 };
 
 const UserContext = React.createContext();
@@ -105,10 +108,13 @@ export const UserProvider = ({ children }) => {
   };
 
   const deliveryDetails = async (data, navigate) => {
+    dispatch({ type: REGISTER_DELIVERY_DETAILS });
     try {
       const response = await baseUrl.put("/auth/updatedetails", data);
       console.log(response);
+
       dispatch(getUser());
+      dispatch({ type: REGISTER_DELIVERY_SUCCESS, payload: true });
       navigate("/checkout");
     } catch (error) {
       console.log(error);

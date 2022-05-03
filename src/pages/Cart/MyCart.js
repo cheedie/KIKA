@@ -16,8 +16,8 @@ const MyCart = () => {
     <>
       <Navbar />
       <section className="cart_wrapper">
-        <div className="cart_title">
-          <h2>My Cart</h2>
+        <div className="cart_title_container">
+          <h2 className="cart_title">My Cart</h2>
         </div>
         <CartContent />
       </section>

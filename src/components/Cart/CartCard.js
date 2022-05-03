@@ -4,9 +4,11 @@ import { useCartContext } from "../../context/cart_context";
 import { FaTrash } from "react-icons/fa";
 import "../../styles/CartStyles/MyCart.css";
 import AmountButtons from "./AmountButtons";
+import { useUserContext } from "../../context/user_context";
 
-const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
+const CartCard = ({ image, name, price, _id, size, amount, color }) => {
   const { cart, removeItem, toggleAmount, total_amount } = useCartContext();
+  const { deliveryDetails, deliveryStatus } = useUserContext();
 
   const increase = () => {
     toggleAmount(_id, "inc");
@@ -16,7 +18,7 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
   };
   return (
     <>
-      <section className="card_section">
+      <div className="card_section">
         <div className="card_row" key={_id}>
           <div className="cartImg">
             <img src={image} alt={name} />
@@ -44,12 +46,12 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
                 <p>{clothType}</p>
               </div> */}
               <div className="cloth_Details">
-                <p>{vendor}</p>
+                {/* <p>{vendor}</p> */}
                 <p></p>
               </div>
               <div className="cloth_Details">
+                <p>Price</p>
                 <p>{price}</p>
-                <p></p>
               </div>
             </div>
           </div>
@@ -69,18 +71,20 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
             decrease={decrease}
           />
         </div>
-      </section>
+      </div>
 
       <div className="cartSummary">
         <div>
-          <h2>Cart Summary</h2>
+          <h3>Cart Summary</h3>
           {cart.map((item) => {
             return (
-              <React.Fragment>
-                <div className="summary_Details" key={item._id}>
+              <React.Fragment key={item._id}>
+                <div className="summary_Details">
                   <img src={item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>{item.price}</p>
+                  <div className="summary_Detail">
+                    <p>{item.name}</p>
+                    <p>{item.price}</p>
+                  </div>
                 </div>
               </React.Fragment>
             );
@@ -91,7 +95,7 @@ const CartCard = ({ image, name, price, _id, size, amount, color, vendor }) => {
             <p>{total_amount}</p>
           </div>
 
-          <button type="submit" id="waitlist-btn" className="waitlist-btn">
+          <button type="submit" id="cart-btn" className="cart-btn">
             <Link to="/delivery">Checkout</Link>
           </button>
         </div>

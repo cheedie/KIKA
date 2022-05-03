@@ -12,6 +12,9 @@ import Errorpage from "./pages/StaticPages/Error";
 import Conditionpage from "./pages/StaticPages/termConditions";
 import Waitlist from "./pages/StaticPages/Waitlist";
 import OurPolicy from "./pages/StaticPages/OurPolicy";
+import Aboutus from "./pages/StaticPages/Aboutus";
+import Ourteam from "./pages/StaticPages/Ourteam";
+import Faqs from "./pages/StaticPages/FAQ";
 import SignOut from "./pages/user/SignOut";
 import TrackOrder from "./pages/user/TrackOrders";
 import Notifications from "./pages/user/Notification";
@@ -20,7 +23,7 @@ import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
 import AuthorizeVendor from "./components/vendor/AuthorizeVendor";
-// import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
+import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
 import Women from "./pages/marketPlace/Women";
 import Men from "./pages/marketPlace/Men";
 import Home from "./pages/home/Home";
@@ -28,20 +31,20 @@ import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
-// import FlutterCheckout from "./components/User/FlutterCheckout";
+import OrderSuccessful from "./pages/Cart/OrderSuccessful";
+
 import Checkout from "./pages/Cart/Checkout";
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: "/", element: <Landing /> },
     { path: "/home", element: <Home /> },
+    // { path: "/search", element: <Search /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
     { path: "/products", element: <MarketPlace /> },
     { path: "/products/women", element: <Women /> },
     { path: "/products/men", element: <Men /> },
-
-    // { path: "/vendor", element: <Vendor /> },
 
     {
       element: <Authorize />,
@@ -51,7 +54,6 @@ function AppRoutes() {
         { path: "/user/account/myorders", element: <MyOrders /> },
         { path: "/user/account/signout", element: <SignOut /> },
         { path: "/delivery", element: <Delivery /> },
-
         {
           path: "/user/account/notifications",
           element: <Notifications />,
@@ -60,8 +62,6 @@ function AppRoutes() {
           path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
-
-        // { path: "/vendor", element: <Vendor /> },
       ],
     },
 
@@ -69,29 +69,25 @@ function AppRoutes() {
       element: <Authenticate />,
       children: [
         { path: "/user/signup", element: <Signup /> },
-        { path: "/user/signin", element: <Signin /> },
+        { path: "/user/signin", element: <Signin  user/> },
       ],
     },
     {
       element: <AuthorizeVendor />,
       children: [
-        { path: "/vendor/signin", element: <Signin /> },
-
         { path: "/vendor/*", element: <Vendor /> },
       ],
     },
-
-    { path: "/vendor/signup", element: <VendorSignup /> },
-
-    // {
-    //   element: <AuthenticateVendor />,
-    //   children: [
-
-    //   ],
-    // },
+    {
+      element: <AuthenticateVendor />,
+      children: [
+        { path: "/vendor/signup", element: <VendorSignup /> },
+        { path: "/vendor/signin", element: <Signin vendor/> },
+      ],
+    },
 
     { path: "/buyer/signup", element: <Signup /> },
-    { path: "/buyer/signin", element: <Signin /> },
+    { path: "/buyer/signin", element: <Signin user /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
@@ -104,12 +100,15 @@ function AppRoutes() {
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
+    { path: "/aboutus", element: <Aboutus /> },
+    { path: "/ourteam", element: <Ourteam /> },
+    { path: "/faq", element: <Faqs /> },
     { path: "/mycart", element: <MyCart /> },
-    // { path: "/payment", element: <FlutterCheckout /> },
 
     { path: "/delivery", element: <Delivery /> },
+    { path: "/ordersuccessful", element: <OrderSuccessful /> },
     { path: "/checkout", element: <Checkout /> },
-    { path: "/vendor/signup", element: <VendorSignup /> },
+    // { path: "/payment", element: <PaymentOptions /> },
   ]);
   return routes;
 }

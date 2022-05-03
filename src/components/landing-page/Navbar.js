@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Logo from "../../assets/landing-page/logo.png";
 import Search from "../../assets/landing-page/search.png";
 import Cart from "../../assets/landing-page/cart.png";
 import Profile from "../../assets/landing-page/profile.png";
 import "../../styles/landing/navbar.scss";
 import { Link } from "react-router-dom";
+import NavbarContext from "../../context/navbar_context";
 
 const Navbar = () => {
+  // const searchItem = e.target.value;
+  const { keyWord, changeKeyWord } = useContext(NavbarContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [status, setStatus] = useState("close");
-  // const [profileMenu, setProfileMenu] = useState({
-  //   opacity: "0",
-  // });
+  const [profileMenu, setProfileMenu] = useState({
+    opacity: "0",
+  });
   const [marketPlaceMenu, setMarketPlaceMenu] = useState({
     opacity: "0",
     zIndex: "-100",
   });
-
   const showDropDown = () => {
     setMarketPlaceMenu({
       opacity: "1",
@@ -46,11 +52,14 @@ const Navbar = () => {
           </li>
 
           <li onMouseEnter={showDropDown} onMouseLeave={hideDropDown}>
-            <Link to="/products">Market Place</Link>
+            <Link to="/products">MarketPlace</Link>
           </li>
-
-          <li>About Us</li>
-          <li>Sell on KIKA</li>
+          <Link to="/aboutus">
+            <li>About Us</li>
+          </Link>
+          <Link to="/vendor/signup">
+            <li>Sell on KIKA</li>
+          </Link>
         </ul>
         {/*end navlinks */}
 
@@ -73,7 +82,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* <div
+        <div
           className="profile__dropDown"
           style={profileMenu}
           onMouseEnter={() => {
@@ -88,67 +97,71 @@ const Navbar = () => {
               zIndex: "-100",
             });
           }}
-        > */}
-        <Link to="/buyer/signin">
-          {/* <div
+        >
+          <Link to="/buyer/signin">
+            <div
               onClick={() =>
                 setProfileMenu({
                   opacity: "0",
                 })
               }
-            > */}
-          <p>Sign in</p>
-          {/* </div> */}
-        </Link>
-        <Link to="/buyer/signup">
-          {/* <div
+            >
+              <p>Sign in</p>
+            </div>
+          </Link>
+          <Link to="/buyer/signup">
+            <div
               onClick={() =>
                 setProfileMenu({
                   opacity: "0",
                   zIndex: "-100",
                 })
               }
-            > */}
-          <p>Sign up</p>
-          {/* </div> */}
-        </Link>
+            >
+              <p>Sign up</p>
+            </div>
+          </Link>
 
-        <Link to="/user/account">
-          {/* <div
-            onClick={() =>
-              setProfileMenu({
-                opacity: "0",
-                zIndex: "-100",
-              })
-            }
-          > */}
-          <p>Account</p>
-          {/* </div> */}
-        </Link>
-        {/* </div> */}
+          <Link to="/user/account">
+            <div
+              onClick={() =>
+                setProfileMenu({
+                  opacity: "0",
+                  zIndex: "-100",
+                })
+              }
+            >
+              <p>Account</p>
+            </div>
+          </Link>
+        </div>
         {/* end drop downs */}
 
         {/* start search form */}
-        <form className="nav__searchForm">
+        <form className="nav__searchForm" onSubmit={handleSubmit}>
           <input
             className="nav__searchBar show-modal"
             type="text"
             placeholder="Search"
+            onChange={changeKeyWord}
           />
-          <span className="span">
-            <img
-              className="nav__searchIcon"
-              src={Search}
-              alt="Search Icon"
-              onClick={() => setShowSearch(!showSearch)}
-            />
-          </span>
+          <Link to="/search">
+            <button
+              className="span"
+              type="submit"
+              onClick={() => {
+                setShowSearch(!showSearch);
+              }}
+            >
+              <img className="nav__searchIcon" src={Search} alt="Search Icon" />
+            </button>
+          </Link>
         </form>
         {/* end search form */}
 
         {/** start sign in cart and toggle */}
         <section className="nav__profile">
-          {/* <div
+          <div
             className="profile__imgContainer"
             onMouseEnter={() => {
               setProfileMenu({
@@ -161,13 +174,12 @@ const Navbar = () => {
                 zIndex: "-100",
               });
             }}
-          > */}
-          <img src={Profile} alt="shopping cart" />
-          {/* </div> */}
+          >
+            <img src={Profile} alt="shopping cart" />
+          </div>
           <Link to="/mycart">
             <div className="cart">
               <img src={Cart} alt="shopping cart" />
-              <span>Cart</span>
             </div>
           </Link>
 
@@ -204,7 +216,7 @@ const Navbar = () => {
           <Link to="/aboutus">
             <li>About Us</li>
           </Link>
-          <Link to="/vendor">
+          <Link to="/vendor/signup">
             <li>Sell on KIKA</li>
           </Link>
           <li>

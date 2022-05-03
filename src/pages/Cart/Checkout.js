@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "../../components/User/Loading";
 import Error from "../../components/User/Error";
 import Navbar from "../../components/landing-page/Navbar";
@@ -9,9 +9,23 @@ import AmountButtons from "../../components/Cart/AmountButtons";
 import "../../styles/CartStyles/Payment.css";
 import { useCartContext } from "../../context/cart_context";
 import { useUserContext } from "../../context/user_context";
+import Alert from "../../components/User/Alert";
+import { useNavigate } from "react-router-dom";
+import { useOrderContext } from "../../context/order_context";
+import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
+import logo from "../../assets/landing-page/logo.png";
 
 const Checkout = () => {
-  const { cart, total_amount, shipping_fee, tax } = useCartContext();
+  const navigate = useNavigate();
+  const {
+    cart,
+    total_amount,
+    shipping_fee,
+    tax,
+    total_items,
+  } = useCartContext();
+  // const { placeOrder } = useOrderContext();
+  let total = total_amount + shipping_fee + tax;
   const {
     userDetails,
     user_details_loading: loading,
@@ -19,8 +33,65 @@ const Checkout = () => {
     getUser,
   } = useUserContext();
 
+  // flutterwave configuration
+  const config = {
+    public_key: process.env.REACT_APP_PUBLIC_KEY,
+    tx_ref: Date.now(),
+    amount: `${total}`,
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: `${userDetails?.email}`,
+      name: `${userDetails?.name}`,
+      phonenumber: `${userDetails?.phone}`,
+    },
+    customizations: {
+      title: "Kika store",
+      description: "Payment for items in cart",
+      logo: logo,
+    },
+  };
+
+  const fwConfig = {
+    ...config,
+    text: "Proceed!",
+    callback: (response) => {
+      if (response.status === "successful") {
+        console.log(response);
+        // create order
+        // placeOrder(
+        //   {
+        // orderItems: [],
+        // totalPrice: total,
+        // quantity: total_items,
+        // paymentMethod: debit ? "card" : "debit",
+        // paymentInfo: {
+        //   transactionId: response.transaction_id,
+        //   currency: response.currency,
+        //   gateway: "flutterwave",
+        //   status: response.status,
+        // },
+        //   },
+        //   navigate
+        // );
+        navigate("/ordersuccessful");
+
+        closePaymentModal(); // this will close the modal programmatically
+      } else if (response.status === "error") {
+        console.log("error");
+      }
+    },
+    onClose: () => {},
+  };
+
+  const [debit, setDebit] = useState(false);
+  const [transfer, setTransfer] = useState(false);
+  const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
+  const [placingOrder, setPlacingOrder] = useState(false);
+
   useEffect(() => {
     getUser();
+
     // eslint-disable-next-line
   }, []);
 
@@ -31,6 +102,13 @@ const Checkout = () => {
   if (error) {
     return <Error />;
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (debit) {
+      navigate("/payment");
+    }
+  };
 
   return (
     <>
@@ -66,18 +144,26 @@ const Checkout = () => {
             <h1>3. PAYMENT METHOD</h1>
             <div className="address_details">
               <p></p>
-              <div className="debit_cards">
-                <input type="checkbox" />
-                <label>DEBIT/CREDIT CARDS</label>
-              </div>
+              <label className="debit_cards">
+                <input
+                  type="checkbox"
+                  onChange={() => setDebit(!debit)}
+                  checked={debit}
+                />
+                <p>DEBIT/CREDIT CARDS</p>
+              </label>
               <div className="debit_cards_img">
                 <img src={mastercard} alt="mastercard_image" />
                 <img src={visacard} alt="visacard_image" />
               </div>
-              <div className="debit_cards">
-                <input type="checkbox" />
-                <label>BANK TRANSFERS</label>
-              </div>
+              <label className="debit_cards">
+                <input
+                  type="checkbox"
+                  onChange={() => setTransfer(!transfer)}
+                  checked={transfer}
+                />
+                <p>BANK TRANSFERS</p>
+              </label>
               <p id="pay_account">Pay into this account</p>
               <p id="pay_details">Account Name: Kika limited</p>
               <p id="pay_details">Account Number: 3043123425</p>
@@ -87,13 +173,11 @@ const Checkout = () => {
                 <input placeholder="upload transaction receipt" />
               </div>
               <div className="delivery_btn_container">
-                <button
-                  type="submit"
-                  id="delivery-btn"
+                <FlutterWaveButton
+                  {...fwConfig}
                   className="delivery-btn"
-                >
-                  Proceed
-                </button>
+                  disabled={!debit}
+                />
               </div>
             </div>
           </div>
@@ -103,8 +187,8 @@ const Checkout = () => {
             <h1>CART SUMMARY</h1>
             {cart.map((item) => {
               return (
-                <React.Fragment>
-                  <div className="modify_card" key={item._id}>
+                <React.Fragment key={item._id}>
+                  <div className="modify_card">
                     <div className="modify_card_img">
                       <img src={item.image} alt={item.name} />
                     </div>
@@ -137,7 +221,7 @@ const Checkout = () => {
               </div>
               <div className="modify_cart_total">
                 <p>Total</p>
-                <p>NGN {total_amount + shipping_fee + tax}</p>
+                <p>NGN {total}</p>
               </div>
             </div>
             <div id="payment-btn" className="delivery_btn_container">

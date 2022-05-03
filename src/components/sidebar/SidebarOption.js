@@ -5,7 +5,7 @@ const SidebarOption = ({ title }) => {
   return (
     <div className="sidebarOptions">
       <div className="option__container">
-        <label for="gender">Gender</label>
+        <label htmlFor="gender">Gender</label>
         <select id="gender" name="gender">
           <option value=""></option>
           <option value="male">Male</option>
@@ -13,7 +13,7 @@ const SidebarOption = ({ title }) => {
         </select>
       </div>
       <div className="option__container">
-        <label for="size">Size</label>
+        <label htmlFor="size">Size</label>
         <select id="size" name="size">
           <option value=""></option>
           <option value="s">S</option>
@@ -24,7 +24,7 @@ const SidebarOption = ({ title }) => {
         </select>
       </div>
       <div className="option__container">
-        <label for="grade">Grade</label>
+        <label htmlFor="grade">Grade</label>
         <select id="grade" name="grade">
           <option value=""></option>
           <option value="grade 1">Grade 1</option>
@@ -33,7 +33,7 @@ const SidebarOption = ({ title }) => {
         </select>
       </div>
       <div className="option__container">
-        <label for="cars">Color</label>
+        <label htmlFor="cars">Color</label>
         <select id="gender" name="gender">
           <option value="male"></option>
           <option value="male">Red</option>
@@ -44,7 +44,7 @@ const SidebarOption = ({ title }) => {
         </select>
       </div>
       <div className="option__container">
-        <label for="cars">Type</label>
+        <label htmlFor="cars">Type</label>
         <select id="gender" name="gender">
           <option value="male"></option>
           <option value="male">Short</option>
@@ -53,7 +53,7 @@ const SidebarOption = ({ title }) => {
         </select>
       </div>
       <div className="option__container">
-        <label for="cars">Vendor</label>
+        <label htmlFor="cars">Vendor</label>
         <select id="gender" name="gender">
           <option value="male"></option>
           <option value="male">Thrifted Labels</option>
@@ -62,7 +62,7 @@ const SidebarOption = ({ title }) => {
         </select>
       </div>
       <div className="option__container">
-        <label for="cars">Price</label>
+        <label htmlFor="cars">Price</label>
         <select id="gender" name="gender">
           <option value="male"></option>
           <option value="male">Lowest - Highest</option>
