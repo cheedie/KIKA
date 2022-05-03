@@ -95,12 +95,6 @@ function AppRoutes() {
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
-
-    { path: "/buyer/contact", element: <Contact /> },
-    { path: "/termscondition", element: <Conditionpage /> },
-    { path: "/*", element: <Errorpage /> },
-    { path: "/", element: <Waitlist /> },
-    { path: "/ourpolicy", element: <OurPolicy /> },
     { path: "/aboutus", element: <Aboutus /> },
     { path: "/ourteam", element: <Ourteam /> },
     { path: "/faq", element: <Faqs /> },

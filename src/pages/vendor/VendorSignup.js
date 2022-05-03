@@ -75,7 +75,7 @@ function VendorSignup() {
         }) : Yup.object({
           id_num:  Yup.string().required('Required')
           .matches(/^[0-9]+$/, "ID Number must be only digits")
-          .min(15,'ID Number should be 15 digits'),
+          .min(11,'ID Number should be 11 digits'),
           image: Yup.mixed().required('Required')
           .test("FILE_SIZE", "Uploaded file is too big.",value => !value || (value && value.size <= FILE_SIZE))
           .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc", (value) => {
