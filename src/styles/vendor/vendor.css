@@ -248,6 +248,10 @@ body p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -504,9 +508,6 @@ body p {
 #vendor .product_img {
   width: 75px;
   height: 75px;
-  display: grid;
-  justify-content: center;
-  align-items: center;
 }
 
 #vendor .product_img img {

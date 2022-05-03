@@ -146,6 +146,7 @@ export const VendorProvider = ({ children }) => {
     dispatch({ type: GET_VENDOR_PRODUCTS_SUCCESS, payload: products });
   
   } catch (error) {
+    console.log("ERROR",error)
     dispatch({ type: GET_VENDOR_PRODUCTS_ERROR });
   }
   };
@@ -157,6 +158,7 @@ export const VendorProvider = ({ children }) => {
       const response = await baseUrl.get("/auth/profile");
       const userDetails = response.data?.data;
       dispatch({ type: VENDOR_DETAILS, payload: userDetails });
+      return response
     } catch (error) {
       dispatch({ type: VENDOR_DETAILS_ERROR });
     }

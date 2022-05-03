@@ -125,7 +125,7 @@ import {
       return {
         ...state,
         getting_products_loading: false,
-        getting_products_error: true ,
+        getting_products_error: false ,
         products:action.payload,
       };
     }

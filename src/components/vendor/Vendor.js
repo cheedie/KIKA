@@ -31,19 +31,21 @@ const Vendor = () => {
     getting_products_error: products_error,
   } = useVendorContext();
 
-  useEffect(() => {getVendor()}, []);
+  useEffect(() => {
+    getVendor()
+  }, []);
 
   const fetchProducts = (id) => getVendorProducts(id)
   
 
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
-  if (error) {
-    return <Error />;
-  }
+  // if (error) {
+  //   return <Error />;
+  // }
   
   const handleSignOut = async () => {
     const sign = await signOut();

@@ -7,10 +7,24 @@ import Message from "../Global/Message";
 
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function Products({vendor, loading, error, products, refresh}) {
+export default function Products({vendor, refresh, products, loading, error}) {
     const [isUploading, setUpload] = useState(false)
+    const {
+        getVendor,
+        vendorDetails,
+        getVendorProducts,
+        //products,
+        getting_products_loading:products_loading,
+        getting_products_error: products_error,
+      } = useVendorContext();
+
       useEffect(() => {
-        refresh(vendor._id);
+            if(vendorDetails._id){
+
+                console.log("PRODUCTS", products)
+                console.log("RESPONSE", vendorDetails)
+                getVendorProducts(vendorDetails._id)
+            }
       }, []);
 
   return (
