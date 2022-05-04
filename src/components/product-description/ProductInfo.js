@@ -48,10 +48,12 @@ const ProductInfo = () => {
     image,
     grade,
     color,
-
-    // vendor,
+    _id,
+    vendor,
     countInStock,
+    type,
   } = product;
+  console.log(product);
 
   return (
     <section className="productInfo__container">
@@ -73,9 +75,14 @@ const ProductInfo = () => {
                 <span>Grade:</span> <span>{grade}</span>
               </p>
               <p>
+                <span>Type:</span> <span>{type}</span>
+              </p>
+              <p>
                 <span>Color:</span> <span>{color}</span>
               </p>
-              <p>{/* <span>Vendor:</span> <span>{vendor}</span> */}</p>
+              <p>
+                <span>Vendor:</span> <span>{vendor?.name}</span>
+              </p>
               <p>
                 <span>Price:</span> <span>NGN {price}</span>
               </p>
