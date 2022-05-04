@@ -1,25 +1,42 @@
 import React from "react";
 import shorts from "../../assets/user/shorts.png";
-import shirt from "../../assets/user/shirt.png";
+
+import { useCartContext } from "../../context/cart_context";
 
 const PendingOrders = () => {
+  const {
+    cart,
+    total_amount,
+    shipping_fee,
+    tax,
+    total_items,
+  } = useCartContext();
+
   return (
     <div className="user__account-details">
       <div className="user__details-container">
-        <div className="user__order-image">
-          <img src={shorts} alt="" />
-        </div>
-        <div>
-          <p className="user__order-title">BLACK SHORTS</p>
-          <span className="user__order-unit">
-            <p>Unit: 1</p>
-            <p>NGN 3,500</p>
-          </span>
-          <span className="user__order-span">ORDER IN PROGRESS</span>
+        {cart.map((item) => {
+          return (
+            <React.Fragment key={item.id}>
+              <div className="user__order-image">
+                <img src={item.image} alt="" />
+              </div>
 
-          <p>Friday, April 20, 2022</p>
-        </div>
-        <button className="user__edit-btn">SEE ORDER HISTORY</button>
+              <div>
+                <p className="user__order-title">{item.name}</p>
+                <span className="user__order-unit">
+                  <p>Unit: </p>
+                  <p>NGN {total_amount}</p>
+                </span>
+                <span className="user__order-span">ORDER IN PROGRESS</span>
+
+                <p>Friday, April 20, 2022</p>
+              </div>
+              <button className="user__edit-btn">SEE ORDER HISTORY</button>
+            </React.Fragment>
+          );
+        })}
+        )
       </div>
     </div>
   );

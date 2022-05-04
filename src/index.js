@@ -1,25 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { UserProvider } from './context/user_context';
-import { VendorProvider } from './context/vendor_context';
-import { CartProvider } from './context/cart_context';
-import { ProductProvider } from './context/product_context';
-import { NavbarProvider } from './context/navbar_context';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { UserProvider } from "./context/user_context";
+import { VendorProvider } from "./context/vendor_context";
+import { CartProvider } from "./context/cart_context";
+import { ProductProvider } from "./context/product_context";
+import { NavbarProvider } from "./context/navbar_context";
+import { OrderProvider } from "./context/order_context";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <NavbarProvider>
     <VendorProvider>
       <UserProvider>
-        <ProductProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </ProductProvider>
+        <OrderProvider>
+          <ProductProvider>
+            <CartProvider>
+              <App />
+            </CartProvider>
+          </ProductProvider>
+        </OrderProvider>
       </UserProvider>
     </VendorProvider>
   </NavbarProvider>

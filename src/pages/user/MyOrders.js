@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
@@ -10,11 +10,15 @@ import { useOrderContext } from "../../context/order_context";
 import EmptyCart from "../../pages/Cart/EmptyCart";
 const MyOrders = () => {
   const [orders, setOrders] = useState("pending");
-  const { orderDetails } = useOrderContext;
+  const { getOrder } = useOrderContext();
 
   // if (orderDetails.length < 1) {
   //   return <EmptyCart />;
   // }
+
+  useEffect(() => {
+    getOrder();
+  }, []);
   return (
     <main>
       <Navbar />
