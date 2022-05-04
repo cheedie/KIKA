@@ -41,13 +41,17 @@ body {
     display:flex;
     justify-content:space-between;
     align-items:center;
-  }
-  a{
-    margin:auto 1em;
-    :hover{
-      cursor:pointer;
+    a{
+      //margin:auto 1em;
+      padding:1em 2em;
+      color:black;
+      :hover{
+        cursor:pointer;
+        background:#f15a24;;
+      }
     }
   }
+  
 }
 
 .vendor.main {

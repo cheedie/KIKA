@@ -62,12 +62,14 @@ body p {
           align-items: center;
 }
 
-#header a {
-  margin: auto 1em;
+#header .wrapper a {
+  padding: 1em 2em;
+  color: black;
 }
 
-#header a :hover {
+#header .wrapper a :hover {
   cursor: pointer;
+  background: #f15a24;
 }
 
 .vendor.main {

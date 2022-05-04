@@ -98,13 +98,12 @@ export const VendorProvider = ({ children }) => {
           console.log("Error message",err)
         }
         console.log(error.config)
-        dispatch({ type: CREATE_PRODUCT_ERROR, payload: `${err.error?ll      .includes("name","slug")?"Product name already exists":err.error}` });
+        dispatch({ type: CREATE_PRODUCT_ERROR, payload: `${err.error.includes("name")?"Product name already exists":`${err}`}` });
         return err;
       })
   };
-  const endCreateProduct = () => {
+  const endCreateProduct = async (data) => {
     dispatch({ type: END_CREATE_PRODUCT});
-    return null
   };
   const getVendorProducts = async (id) => {
   dispatch({ type: GET_VENDOR_PRODUCTS});
@@ -145,7 +144,9 @@ export const VendorProvider = ({ children }) => {
     try {
       const response = await baseUrl.get("/auth/profile");
       const vendorDetails = response.data?.data;
+      console.log("response from get vendor", response)
       dispatch({ type: VENDOR_DETAILS, payload: vendorDetails });
+      console.log("vendor details after dispatch",vendorDetails)
       return vendorDetails
     } catch (error) {
       console.log(error);
@@ -165,6 +166,8 @@ export const VendorProvider = ({ children }) => {
   const signOut = async () => {
     dispatch({ type: VENDOR_LOGOUT });
     try {
+      // const response = await baseUrl.get("/auth/logout");
+      // console.log(response);
       localStorage.removeItem("currentUser");
       return true;
     } catch (error) {

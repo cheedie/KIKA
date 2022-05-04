@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  useRoutes,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Landing from "./pages/Landing";
 
 import Vendor from "./pages/vendor/Vendor";
@@ -12,9 +17,6 @@ import Errorpage from "./pages/StaticPages/Error";
 import Conditionpage from "./pages/StaticPages/termConditions";
 import Waitlist from "./pages/StaticPages/Waitlist";
 import OurPolicy from "./pages/StaticPages/OurPolicy";
-import Aboutus from "./pages/StaticPages/Aboutus";
-import Ourteam from "./pages/StaticPages/Ourteam";
-import Faqs from "./pages/StaticPages/FAQ";
 import SignOut from "./pages/user/SignOut";
 import TrackOrder from "./pages/user/TrackOrders";
 import Notifications from "./pages/user/Notification";
@@ -27,20 +29,17 @@ import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
 import Women from "./pages/marketPlace/Women";
 import Men from "./pages/marketPlace/Men";
 import Home from "./pages/home/Home";
-//import MyCart from "./pages/Cart/MyCart";
-import NewCart from "./pages/Cart/NewCart";
+import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
 import ProductDetails from "./pages/productDescription/ProductDetails";
 import Delivery from "./pages/Cart/Delivery";
-import OrderSuccessful from "./pages/Cart/OrderSuccessful";
-
-import Checkout from "./pages/Cart/Checkout";
+import FlutterCheckout from "./components/User/FlutterCheckout";
+import PaymentOptions from "./pages/Cart/PaymentOptions";
 
 function AppRoutes() {
   const routes = useRoutes([
-    { path: "/", element: <Landing /> },
+    { path: "/landing", element: <Landing /> },
     { path: "/home", element: <Home /> },
-    // { path: "/search", element: <Search /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
     { path: "/products", element: <MarketPlace /> },
@@ -70,7 +69,7 @@ function AppRoutes() {
       element: <Authenticate />,
       children: [
         { path: "/user/signup", element: <Signup /> },
-        { path: "/user/signin", element: <Signin  user/> },
+        { path: "/user/signin", element: <Signin /> },
       ],
     },
     {
@@ -83,28 +82,29 @@ function AppRoutes() {
       element: <AuthenticateVendor />,
       children: [
         { path: "/vendor/signup", element: <VendorSignup /> },
-        { path: "/vendor/signin", element: <Signin vendor/> },
+        { path: "/vendor/signin", element: <Signin /> },
       ],
     },
 
     { path: "/buyer/signup", element: <Signup /> },
-    { path: "/buyer/signin", element: <Signin user /> },
+    { path: "/buyer/signin", element: <Signin /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
     { path: "/*", element: <Errorpage /> },
     { path: "/", element: <Waitlist /> },
     { path: "/ourpolicy", element: <OurPolicy /> },
-    { path: "/aboutus", element: <Aboutus /> },
-    { path: "/ourteam", element: <Ourteam /> },
-    { path: "/faq", element: <Faqs /> },
-    // { path: "/mycart", element: <MyCart /> },
-    { path: "/mycart", element: <NewCart /> },
+
+    { path: "/buyer/contact", element: <Contact /> },
+    { path: "/termscondition", element: <Conditionpage /> },
+    { path: "/*", element: <Errorpage /> },
+    { path: "/", element: <Waitlist /> },
+    { path: "/ourpolicy", element: <OurPolicy /> },
+    { path: "/mycart", element: <MyCart /> },
+    // { path: "/payment", element: <FlutterCheckout /> },
 
     { path: "/delivery", element: <Delivery /> },
-    { path: "/ordersuccessful", element: <OrderSuccessful /> },
-    { path: "/checkout", element: <Checkout /> },
-    // { path: "/payment", element: <PaymentOptions /> },
+    { path: "/payment", element: <PaymentOptions /> },
   ]);
   return routes;
 }

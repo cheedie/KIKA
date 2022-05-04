@@ -9,7 +9,7 @@ import { useVendorContext } from "../../context/vendor_context";
 
 export default function Products({vendor, refresh, products, loading, error}) {
     const [isUploading, setUpload] = useState(false)
-    const { getVendorProducts , creating_product_error,} = useVendorContext();
+    const { getVendorProducts, endCreateProduct, creating_product_error,} = useVendorContext();
 
       useEffect(() => {
             if(vendor._id){
@@ -28,7 +28,7 @@ export default function Products({vendor, refresh, products, loading, error}) {
             <Link to="/" className="subtitle">Draft (0)</Link>
             </div>
             <button className="button" onClick={()=>{
-                
+                endCreateProduct()
                 setUpload(true)
                 }}>Add Product</button>
         </nav>
