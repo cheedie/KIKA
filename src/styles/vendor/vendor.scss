@@ -15,7 +15,7 @@ body {
 }
 #header {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 3fr 0.1fr;
   gap: 5em;
   padding: 0 2em 0 0;
   justify-content: space-between;
@@ -37,6 +37,21 @@ body {
       box-sizing: border-box;
     }
   }
+  .wrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    a{
+      //margin:auto 1em;
+      padding:1em 2em;
+      color:black;
+      :hover{
+        cursor:pointer;
+        background:#f15a24;;
+      }
+    }
+  }
+  
 }
 
 .vendor.main {

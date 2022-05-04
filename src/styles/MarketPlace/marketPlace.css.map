@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,qBAAqB,CAAA;EACnB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,UAAU;CACxB;;AAED,AAAA,sBAAsB,CAAA;EACpB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,GAAG,EAAE,MAAM;EACX,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,GAAG;EACV,OAAO,EAAE,IAAI;CAKd;;AAZD,AASE,sBAToB,CASpB,QAAQ,CAAA;EACN,UAAU,EAAE,KAAK;CAClB",
+    "sources": [
+        "marketPlace.scss"
+    ],
+    "names": [],
+    "file": "marketPlace.css"
+}

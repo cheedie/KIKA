@@ -1,7 +1,18 @@
+import styled from "styled-components";
+
 export default function Message({message}){
     return (
-      <div className="section section-center text-center">
+      <Display>
         <h2>{message}</h2>
-      </div>
+      </Display>
     );
   };
+
+const Display = styled.div`
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:0;
+`

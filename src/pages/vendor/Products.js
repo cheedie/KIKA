@@ -1,15 +1,15 @@
-import UploadForm from "./UploadForm";
+import UploadForm from "../../components/vendor/UploadForm";
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
-import Loading from "../Global/Loading";
-import Error from "../Global/Error";
-import Message from "../Global/Message";
+import Loading from "../../components/Global/Loading";
+import Error from "../../components/Global/Error";
+import Message from "../../components/Global/Message";
 
 import { useVendorContext } from "../../context/vendor_context";
 
 export default function Products({vendor, refresh, products, loading, error}) {
     const [isUploading, setUpload] = useState(false)
-    const { getVendorProducts , creating_product_error,} = useVendorContext();
+    const { getVendorProducts, endCreateProduct, creating_product_error,} = useVendorContext();
 
       useEffect(() => {
             if(vendor._id){
@@ -28,7 +28,7 @@ export default function Products({vendor, refresh, products, loading, error}) {
             <Link to="/" className="subtitle">Draft (0)</Link>
             </div>
             <button className="button" onClick={()=>{
-                
+                endCreateProduct()
                 setUpload(true)
                 }}>Add Product</button>
         </nav>
