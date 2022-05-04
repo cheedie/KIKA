@@ -1,0 +1,26 @@
+.modal__overlay {
+  display: none;
+  position: relative;
+  left: -100%;
+}
+
+.modal__overlay .modal__container {
+  background: #fff;
+  height: 50vh;
+}
+
+.modal__overlay .modal__container .input {
+  width: 90%;
+  height: 50px;
+  font-size: 1rem;
+}
+
+.modal__show {
+  display: block;
+  position: absolute;
+  background: rgba(33, 33, 33, 0.5);
+  height: 100%;
+  width: 100%;
+  left: 0;
+}
+/*# sourceMappingURL=modal.css.map */

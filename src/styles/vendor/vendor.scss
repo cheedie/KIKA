@@ -15,7 +15,7 @@ body {
 }
 #header {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 3fr 0.1fr;
   gap: 5em;
   padding: 0 2em 0 0;
   justify-content: space-between;
@@ -35,6 +35,17 @@ body {
       border: 1px solid #f15a24;
       padding: 1.8em;
       box-sizing: border-box;
+    }
+  }
+  .wrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  a{
+    margin:auto 1em;
+    :hover{
+      cursor:pointer;
     }
   }
 }
