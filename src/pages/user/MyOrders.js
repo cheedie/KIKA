@@ -6,19 +6,11 @@ import PendingOrders from "../../components/User/PendingOrders";
 import ReceivedOrder from "../../components/User/ReceivedOrder";
 import NavMiddle from "../../components/User/NavMiddle";
 import { useOrderContext } from "../../context/order_context";
+import { useCartContext } from "../../context/cart_context";
 
-import EmptyCart from "../../pages/Cart/EmptyCart";
 const MyOrders = () => {
   const [orders, setOrders] = useState("pending");
-  const { getOrder } = useOrderContext();
 
-  // if (orderDetails.length < 1) {
-  //   return <EmptyCart />;
-  // }
-
-  useEffect(() => {
-    getOrder();
-  }, []);
   return (
     <main>
       <Navbar />
@@ -26,6 +18,7 @@ const MyOrders = () => {
 
       <section className="user__account-container">
         <Sidebar deft={2} />
+
         <section className="user__account">
           <p className="user__account-title">MY Orders</p>
           <div className="user__order-container">

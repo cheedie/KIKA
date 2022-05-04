@@ -138,10 +138,10 @@ ACCOUNTS
 .user__account-container {
   display: block;
 }
-.user__account {
+/* .user__account {
   width: 95vw;
   margin: 0 auto;
-}
+} */
 
 .user__account-title {
   font-weight: 700;
@@ -150,7 +150,7 @@ ACCOUNTS
 }
 .user__account-details {
   border: 1.5px solid #c4c4c4;
-  /* padding: 30px 50px 30px 50px; */
+  padding: 30px 50px 30px 50px;
   margin-top: 1rem;
   margin-bottom: 4rem;
 }
@@ -358,7 +358,7 @@ ACCOUNTS
 .user__sidebar-active-link {
   margin-bottom: 1rem;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   padding: 0.85rem 2rem 0.85rem 3rem;
   width: 100%;
@@ -466,7 +466,7 @@ ACCOUNTS
   }
   .user__account {
     padding: 1rem 5rem 0 5rem;
-    margin: unset;
-    width: 85vw;
+    /* margin: unset;
+    width: 85vw; */
   }
 }

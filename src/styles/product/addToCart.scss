@@ -1,11 +1,13 @@
-@import '../landing/variables';
+@import "../landing/variables";
 
-.addToCart__button div{
+.addToCartButton {
+  border: none;
   width: 100%;
   padding: 0.5rem;
-  background: #F15A24;
+  background: #f15a24;
   color: white;
   font-size: 12px;
   text-transform: capitalize;
-  @include flexCenter;
+  cursor: pointer;
+  // @include flexCenter;
 }

@@ -72,15 +72,17 @@
 /* ==========================TEAM CSS======================================= */
 .team_img {
   margin-top: 2em;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 5rem;
 }
 #team_image img {
   object-fit: cover;
   border-radius: 2px;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
 }
 
 #team_image {
@@ -109,9 +111,11 @@
   border-radius: inherit;
   background: #f15a24;
 }
+
 .team_img_container p {
   text-align: center;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 14px;
   margin: 0.2em 0;
   padding: 0;
   line-height: 1.2;
