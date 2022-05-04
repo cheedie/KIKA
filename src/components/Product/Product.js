@@ -21,11 +21,18 @@ const Product = ({ image, name, price, _id, size }) => {
             </div>
             <div className="product__right">
               <p className="product__price">NGN {price}</p>
-              <div className="addToCart__button">
-                <Link to={`/products/${_id}`}>
-                  <div>Add To Cart</div>
-                </Link>
-              </div>
+              <Link
+                to={`/products/${_id}`}
+                style={{
+                  padding: "0.75rem",
+                  background: "#f15a24",
+                  color: "white",
+                  fontSize: "14px",
+                  fontWeight: "400",
+                }}
+              >
+                Add To Cart
+              </Link>
             </div>
           </div>
         </div>

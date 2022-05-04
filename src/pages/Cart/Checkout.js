@@ -66,7 +66,7 @@ const Checkout = () => {
 
   const fwConfig = {
     ...config,
-    text: "Proceed!",
+    text: "Pay with flutterwave!",
     callback: (response) => {
       if (response.status === "successful") {
         console.log(response);
@@ -86,7 +86,6 @@ const Checkout = () => {
           },
           navigate
         );
-        // navigate("/ordersuccessful");
 
         closePaymentModal(); // this will close the modal programmatically
       } else if (response.status === "error") {
@@ -114,13 +113,6 @@ const Checkout = () => {
   if (error) {
     return <Error />;
   }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (debit) {
-  //     navigate("/payment");
-  //   }
-  // };
 
   return (
     <>
@@ -205,12 +197,22 @@ const Checkout = () => {
                       <img src={item.image} alt={item.name} />
                     </div>
                     <div className="modify_details">
-                      <p>{item.name}</p>
+                      <p
+                        style={{
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {item.name}
+                      </p>
                       <div className="modify_cart_footer">
-                        {/* <div className="footer_icons">
-                          <AmountButtons />
-                        </div> */}
-                        <p className="modify_price">NGN {item.price}</p>
+                        <p
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                          className="modify_price"
+                        >
+                          NGN {item.price}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -220,20 +222,68 @@ const Checkout = () => {
 
             <div className="modify_cart_summary">
               <div className="modify_cart_subtotal">
-                <p>Subtotal</p>
-                <p>NGN {total_amount}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Subtotal
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {total_amount}
+                </p>
               </div>
               <div className="modify_cart_subtotal">
-                <p>Delivery</p>
-                <p>NGN {shipping_fee}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Delivery
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {shipping_fee}
+                </p>
               </div>
               <div className="modify_cart_subtotal">
-                <p>Tax</p>
-                <p>NGN {tax}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Tax
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {tax}
+                </p>
               </div>
               <div className="modify_cart_total">
-                <p>Total</p>
-                <p>NGN {total}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Total
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {total}
+                </p>
               </div>
             </div>
             <div id="payment-btn" className="delivery_btn_container">
