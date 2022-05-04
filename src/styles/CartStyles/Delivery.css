@@ -27,14 +27,18 @@
 
 .delivery_details_form input {
   margin-top: 5px;
-  padding: 1em 2em;
+  padding: 1em 1em;
   border: 1.8px solid #c4c4c4;
   background-color: transparent;
   font-family: "Montserrat", sans-serif;
-  color: #c4c4c4;
+  color: black;
+  font-weight: 500;
 }
-
+.delivery_details_form select {
+  padding: 1em 1em;
+}
 .delivery_details_form input::placeholder {
+  font-size: 15px;
   color: #c4c4c4;
 }
 

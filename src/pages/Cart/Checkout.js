@@ -52,18 +52,30 @@ const Checkout = () => {
     },
   };
 
+  const getCart = () => {
+    return cart.map((item) => {
+      return {
+        product: item.id,
+        vendor: item.vendor,
+        name: item.name,
+        price: item.price,
+        quantity: total_items,
+      };
+    });
+  };
+
   const fwConfig = {
     ...config,
     text: "Proceed!",
     callback: (response) => {
       if (response.status === "successful") {
         console.log(response);
+
         // create order
         placeOrder(
           {
-            orderItems: [],
+            orderItems: getCart(),
             totalPrice: total,
-            quantity: total_items,
             paymentMethod: debit ? "card" : "debit",
             paymentInfo: {
               transactionId: response.transaction_id,
@@ -74,6 +86,8 @@ const Checkout = () => {
           },
           navigate
         );
+        // navigate("/ordersuccessful");
+
         closePaymentModal(); // this will close the modal programmatically
       } else if (response.status === "error") {
         console.log("error");
@@ -101,12 +115,12 @@ const Checkout = () => {
     return <Error />;
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (debit) {
-      navigate("/payment");
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (debit) {
+  //     navigate("/payment");
+  //   }
+  // };
 
   return (
     <>
@@ -185,7 +199,7 @@ const Checkout = () => {
             <h1>CART SUMMARY</h1>
             {cart.map((item) => {
               return (
-                <React.Fragment key={item._id}>
+                <React.Fragment key={item.id}>
                   <div className="modify_card">
                     <div className="modify_card_img">
                       <img src={item.image} alt={item.name} />
@@ -193,9 +207,9 @@ const Checkout = () => {
                     <div className="modify_details">
                       <p>{item.name}</p>
                       <div className="modify_cart_footer">
-                        <div className="footer_icons">
+                        {/* <div className="footer_icons">
                           <AmountButtons />
-                        </div>
+                        </div> */}
                         <p className="modify_price">NGN {item.price}</p>
                       </div>
                     </div>
