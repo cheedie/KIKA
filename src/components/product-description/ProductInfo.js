@@ -61,11 +61,11 @@ const ProductInfo = () => {
         <section className="product__data">
           <h3>{name}</h3>
 
-          <p>
-            Price: <span>NGN {price}</span>
-          </p>
           <div>
-            <div className="productDAta__wrapper">
+            <div className="productData__wrapper">
+              <p>
+                <span>Price:</span> <span>NGN {price}</span>
+              </p>
               <p>
                 <span>Size:</span> <span>{size}</span>
               </p>
@@ -75,7 +75,9 @@ const ProductInfo = () => {
               <p>
                 <span>Color:</span> <span>{color}</span>
               </p>
-              <p>{/* <span>Vendor:</span> <span>{vendor}</span> */}</p>
+              <p>
+                <span>Vendor:</span> <span>Shake and Bake</span>
+              </p>
               <p>
                 <span>Price:</span> <span>NGN {price}</span>
               </p>
@@ -103,7 +105,11 @@ const ProductInfo = () => {
             .filter((_, index) => index < 4)
             .map((product) => {
               return (
-                <Product key={product._id} {...product} className="product" />
+                <Product
+                  key={product._id}
+                  {...product}
+                  className="product"
+                />
               );
             })}
         </div>
