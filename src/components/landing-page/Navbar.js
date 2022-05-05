@@ -138,7 +138,7 @@ const Navbar = () => {
             className="profile__imgContainer"
             onClick={() => setIsModalOpen(!isModalOpen)}
           >
-            <i class="fa fa-user fa-2x"></i>
+            <i className="fa fa-user fa-2x"></i>
 
             {isModalOpen && (
               <div className="drop-down-overlay">

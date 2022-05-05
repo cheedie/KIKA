@@ -10,6 +10,7 @@ import { useVendorContext } from "../../context/vendor_context";
 
 export default function Products() {
     const [isUploading, setUpload] = useState(false)
+    const [popUp, setPopUp] = useState(false)
     const { 
         products, 
         getVendorProducts, 
@@ -97,7 +98,8 @@ export default function Products() {
        
     </div>
     {isUploading ? <UploadForm setUpload={setUpload}/>:null}
-    {/* <PopUp setUpload={setUpload}/> */}
+    {popUp ? <PopUp setPopUp={setPopUp}/>:null}
+    
     </>
   )
 }

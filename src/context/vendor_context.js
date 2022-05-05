@@ -93,11 +93,11 @@ export const VendorProvider = ({ children }) => {
   const getVendor = async () => {
     try {
       const response = await baseUrl.get("/auth/profile");
-      console.log("RESPONSE", response)
+      // console.log("RESPONSE", response)
       const userDetails = response.data?.data;
       dispatch({ type: VENDOR_DETAILS, payload: userDetails });
 
-      console.log(response);
+      // console.log(response);
       return response
     } catch (error) {
       console.log(error);
@@ -185,7 +185,7 @@ export const VendorProvider = ({ children }) => {
     const response = await baseUrl.get(`${orders_url}/myorders`);
     const orders = response.data?.data;
     dispatch({ type: GET_VENDOR_ORDERS_SUCCESS, payload: orders });
-  console.log("ORDERS", orders)
+  // console.log("ORDERS", orders)
   } catch (error) {
     dispatch({ type: GET_VENDOR_ORDERS_ERROR });
   }
