@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "../reducers/vendor_reducer";
-import { url, products_url } from "../utils/constant";
+import { url, products_url, orders_url} from "../utils/constant";
 import { baseUrl } from "../utils/baseUrl";
 import axios from "axios";
 
@@ -23,6 +23,9 @@ import {
   GET_VENDOR_PRODUCTS,
   GET_VENDOR_PRODUCTS_SUCCESS,
   GET_VENDOR_PRODUCTS_ERROR,
+  GET_VENDOR_ORDERS,
+  GET_VENDOR_ORDERS_SUCCESS,
+  GET_VENDOR_ORDERS_ERROR,
 } from "../actions";
 
 let token = localStorage.getItem("currentUser")
@@ -40,10 +43,13 @@ const initialState = {
   vendorDetails: {},
   product: {},
   products: [],
+  orders: [],
   vendor_details_error: false,
   vendor_details_loading: false,
   getting_products_loading: false,
   getting_products_error: false,
+  getting_orders_loading: false,
+  getting_orders_error: false,
   creating_product: false,
   creating_product_error: false,
   creating_product_message: "",
@@ -172,6 +178,18 @@ export const VendorProvider = ({ children }) => {
     dispatch({ type: GET_VENDOR_PRODUCTS_ERROR });
   }
   };
+  const getVendorOrders = async () => {
+  dispatch({ type: GET_VENDOR_ORDERS});
+
+  try {
+    const response = await baseUrl.get(`${orders_url}/myorders`);
+    const orders = response.data?.data;
+    dispatch({ type: GET_VENDOR_ORDERS_SUCCESS, payload: orders });
+  console.log("ORDERS", orders)
+  } catch (error) {
+    dispatch({ type: GET_VENDOR_ORDERS_ERROR });
+  }
+  };
 
   const changePassword = async (details) => {
     dispatch({ type: CHANGE_VENDOR_PASSWORD });
@@ -205,7 +223,8 @@ export const VendorProvider = ({ children }) => {
         signOut,
         createProduct,
         endCreateProduct,
-        getVendorProducts
+        getVendorProducts,
+        getVendorOrders,
       }}
     >
       {children}

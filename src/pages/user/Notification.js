@@ -1,10 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Sidebar from "../../components/User/Sidebar";
 import Footer from "../../components/landing-page/Footer";
 import Navbar from "../../components/landing-page/Navbar";
 import NavMiddle from "../../components/User/NavMiddle";
 
+import { useUserContext } from "../../context/user_context";
+
 const Notification = () => {
+  const {
+    getUser,
+    userDetails,
+    user_details_loading: loading,
+    user_details_error: error,
+  } = useUserContext();
+
+  useEffect(() => {
+    getUser();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <main>
       <Navbar />
@@ -20,7 +34,7 @@ const Notification = () => {
             <div className="user__details-container">
               <div className="user__user-details">
                 <p>
-                  Hey Jerry, your order has been sent out today by the vendor
+                  Hey {userDetails.name}, your order has been sent out today by the vendor
                   and you are expected to receive it between Monday, 28 March
                   and Thursday 30 March. You can track your order by using your
                   order tracking number{" "}
@@ -35,7 +49,7 @@ const Notification = () => {
             <div className="user__details-container">
               <div className="user__user-details">
                 <p>
-                  Hey Jerry, your order has been sent out today by the vendor
+                  Hey {userDetails.name}, your order has been sent out today by the vendor
                   and you are expected to receive it between Monday, 28 March
                   and Thursday 30 March. You can track your order by using your
                   order tracking number{" "}

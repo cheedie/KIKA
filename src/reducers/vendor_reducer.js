@@ -17,6 +17,9 @@ import {
     GET_VENDOR_PRODUCTS,
     GET_VENDOR_PRODUCTS_SUCCESS,
     GET_VENDOR_PRODUCTS_ERROR,
+    GET_VENDOR_ORDERS,
+    GET_VENDOR_ORDERS_SUCCESS,
+    GET_VENDOR_ORDERS_ERROR,
   } from "../actions";
   
   const vendor_reducer = (state, action) => {
@@ -136,6 +139,29 @@ import {
         getting_products_loading: false,
         getting_products_error: false ,
         products:action.payload,
+      };
+    }
+    if (action.type === GET_VENDOR_ORDERS) {
+      return {
+        ...state,
+        getting_orders_loading: true,
+        getting_orders_error: false,
+      };
+    }
+    if (action.type === GET_VENDOR_ORDERS_ERROR) {
+      return {
+        ...state,
+        getting_orders_loading: false,
+        getting_orders_error: true 
+      };
+    }
+    if (action.type === GET_VENDOR_ORDERS_SUCCESS) {
+     
+      return {
+        ...state,
+        getting_orders_loading: false,
+        getting_orders_error: false ,
+        orders:action.payload,
       };
     }
     throw new Error(`No Matching "${action.type}" - action type`);

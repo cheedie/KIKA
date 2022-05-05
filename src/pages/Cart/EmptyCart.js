@@ -40,7 +40,14 @@ const EmptyCart = () => {
         </div>
         <div>
           <h1 className="empty_header">Recently viewed</h1>
-          <div className="more__products">
+          <div className="more__products"  style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "2rem",
+              margin:"1em auto",
+              overflowY: "hidden",
+              overflowX: "scroll"
+            }}>
               {products
                 .filter((_, index) => index < 5)
                 .map((product) => {
@@ -49,6 +56,9 @@ const EmptyCart = () => {
                       key={product._id}
                       {...product}
                       className="product"
+                      style={{
+                        width: "360px"
+                      }}
                     />
                   );
                 })}

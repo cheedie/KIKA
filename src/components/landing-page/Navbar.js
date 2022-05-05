@@ -10,6 +10,8 @@ import { useCartContext } from "../../context/cart_context";
 
 const Navbar = () => {
   // const searchItem = e.target.value;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVendorModalOpen, setIsVendorModalOpen] = useState(false);
   const { keyWord, changeKeyWord } = useContext(NavbarContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,95 +51,61 @@ const Navbar = () => {
       <section className="nav__rightSection">
         {/* start navlinks */}
         <ul className="nav__linksContainer">
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
+          <Link
+            to="/home"
+            style={{
+              color: "#2e3192",
+            }}
+          >
+            <li>Home</li>
+          </Link>
 
-          <li onMouseEnter={showDropDown} onMouseLeave={hideDropDown}>
-            <Link to="/products">MarketPlace</Link>
-          </li>
-          <Link to="/aboutus">
+          <Link
+            to="/products"
+            style={{
+              color: "#2e3192",
+            }}
+          >
+            <li>MarketPlace</li>
+          </Link>
+
+          <Link
+            to="/aboutus"
+            style={{
+              color: "#2e3192",
+            }}
+          >
             <li>About Us</li>
           </Link>
-          <Link to="/vendor/signup">
-            <li>Sell on KIKA</li>
-          </Link>
+          {/* <Link to="/vendor/signup" > */}
+          <div
+            style={{
+              cursor: "pointer",
+              position: "relative",
+              color: "#2e3192",
+            }}
+            onClick={() => setIsVendorModalOpen(!isVendorModalOpen)}
+          >
+            <p>Sell on kika</p>
+
+            {isVendorModalOpen && (
+              <div className="drop-down-overlay-kika">
+                <div className="drop-down-content">
+                  <div className="drop-down-center">
+                    <Link to="/vendor/signin">Sign in</Link>
+
+                    <Link to="/vendor/signup">Sign up</Link>
+                    <Link to="/vendor/">Account</Link>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* <li>Sell on KIKA</li> */}
+          {/* </Link> */}
         </ul>
         {/*end navlinks */}
-
-        {/* start drop downs */}
-        <div
-          className="marketPlace__dropDown"
-          style={marketPlaceMenu}
-          onMouseEnter={showDropDown}
-          onMouseLeave={hideDropDown}
-        >
-          <Link to="/products/men">
-            <div onClick={hideDropDown}>
-              <p>Shop Men</p>
-            </div>
-          </Link>
-          <Link to="/products/women">
-            <div onClick={hideDropDown}>
-              <p>Shop Women</p>
-            </div>
-          </Link>
-        </div>
-
-        <div
-          className="profile__dropDown"
-          style={profileMenu}
-          onMouseEnter={() => {
-            setProfileMenu({
-              opacity: "1",
-              zIndex: "2",
-            });
-          }}
-          onMouseLeave={() => {
-            setProfileMenu({
-              opacity: "0",
-              zIndex: "-100",
-            });
-          }}
-        >
-          <Link to="/buyer/signin">
-            <div
-              onClick={() =>
-                setProfileMenu({
-                  opacity: "0",
-                })
-              }
-            >
-              <p>Sign in</p>
-            </div>
-          </Link>
-          <Link to="/buyer/signup">
-            <div
-              onClick={() =>
-                setProfileMenu({
-                  opacity: "0",
-                  zIndex: "-100",
-                })
-              }
-            >
-              <p>Sign up</p>
-            </div>
-          </Link>
-
-          <Link to="/user/account">
-            <div
-              onClick={() =>
-                setProfileMenu({
-                  opacity: "0",
-                  zIndex: "-100",
-                })
-              }
-            >
-              <p>Account</p>
-            </div>
-          </Link>
-        </div>
-        {/* end drop downs */}
 
         {/* start search form */}
         <form className="nav__searchForm" onSubmit={handleSubmit}>
@@ -164,21 +132,28 @@ const Navbar = () => {
         {/** start sign in cart and toggle */}
         <section className="nav__profile">
           <div
+            style={{
+              cursor: "pointer",
+            }}
             className="profile__imgContainer"
-            onMouseEnter={() => {
-              setProfileMenu({
-                opacity: "1",
-              });
-            }}
-            onMouseLeave={() => {
-              setProfileMenu({
-                opacity: "0",
-                zIndex: "-100",
-              });
-            }}
+            onClick={() => setIsModalOpen(!isModalOpen)}
           >
             <i class="fa fa-user fa-2x"></i>
+
+            {isModalOpen && (
+              <div className="drop-down-overlay">
+                <div className="drop-down-content">
+                  <div className="drop-down-center">
+                    <Link to="/user/signin">Sign in</Link>
+
+                    <Link to="/user/signup">Sign up</Link>
+                    <Link to="/user/account">Account</Link>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
+
           <Link to="/mycart">
             <div className="cart">
               <i class="fas fa-shopping-cart" style={{ fontSize: "25px" }}></i>
@@ -231,7 +206,7 @@ const Navbar = () => {
           <Link to="/home">
             <li>Home</li>
           </Link>
-          <Link to="/marketplace">
+          <Link to="/products">
             <li>Market Place</li>
           </Link>
           <Link to="/aboutus">

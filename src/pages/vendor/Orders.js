@@ -1,6 +1,23 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import Loading from "../../components/Global/Loading";
+import Error from "../../components/Global/Error";
+import Message from "../../components/Global/Message";
+
+import { useVendorContext } from "../../context/vendor_context";
 
 export default function Orders() {
+  const { 
+    orders, 
+    getVendorOrders, 
+    getting_orders_loading: loading,
+    getting_orders_error: error,
+} = useVendorContext();
+
+  useEffect(() => {
+    getVendorOrders()
+  }, []);
+
   return (
     <div id="wrapper" className="orders">
       <nav>
@@ -50,6 +67,10 @@ export default function Orders() {
           </form>
         </div>
 
+        { loading ? <Loading/>  
+        : error ? <Error/> 
+        : orders.length <=0 ? 
+        <Message message="You do not have any orders yet..."/>:
         <div className="order_list">
             <div className="order_titles">
                 <p className="checkbox"></p>
@@ -63,50 +84,75 @@ export default function Orders() {
             </div>
 
             <div className="order">
-                <OrderTile/>
+                <OrderTile orders={orders}/>
             </div>
 
         </div>
+        }
       </div>
     </div>
   );
 }
 
-function OrderTile() {
-    const tile=[
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Waiting",
-            customer:"Faith MugahFaith MugahFaith MugahFaith Mugah",
-            date:"March 29th, 2022"
-        },
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Delivered",
-            customer:"Faith Mugah",
-            date:"March 29th, 2022"
-        },
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Waiting",
-            customer:"Faith Mugah",
-            date:"March 29th, 2022"
-        },
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Waiting",
-            customer:"Faith Mugah",
-            date:"March 29th, 2022"
-        },
-    ]
+function OrderTile({orders}) {
+  const tile = orders.order.reverse().map((value) =>{
+     let vendorOrder =   {
+          order_title:value.order.orderId,
+          order_total:value.totalPrice,
+          earning:value.order.buyer,
+          status:"Waiting",
+          customer:value.buyer,
+          date:"March 29th, 2022"
+        }
+        return vendorOrder
+    })
+    // let product= {
+    //                 order_title:value.order.orderId,
+    //                 order_total:value.totalPrice,
+    //                 status:"Pending review",
+    //                 stock:value.countInStock > 0 ? "In Stock" : "Out of Stock",
+    //                 price:`₦ ${value.price}`,
+    //                 views:"5",
+    //                 date:"09/04/2022",
+    //                 id:value._id,
+    //                 reviews: value.review,
+    //                 size: value.size,
+    //             };
+    //  return product
+    // const tile=[
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Waiting",
+    //         customer:"Faith MugahFaith MugahFaith MugahFaith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Delivered",
+    //         customer:"Faith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Waiting",
+    //         customer:"Faith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Waiting",
+    //         customer:"Faith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    // ]
   return (
       <>
       {tile.map((item,index)=>{

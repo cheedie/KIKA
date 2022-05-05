@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../../components/landing-page/Navbar';
-import Footer from '../../components/landing-page/Footer';
-import '../../styles/Home/home.scss';
-import Product from '../../components/Product/Product';
-import { useProductContext } from '../../context/product_context';
-import Loading from '../../components/User/Loading';
-import Error from '../../components/User/Error';
+import React from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../../components/landing-page/Navbar";
+import Footer from "../../components/landing-page/Footer";
+import "../../styles/Home/home.scss";
+import Product from "../../components/Product/Product";
+import { useProductContext } from "../../context/product_context";
+import Loading from "../../components/User/Loading";
+import Error from "../../components/User/Error";
 
 const HomePage = () => {
   const {
@@ -33,9 +33,9 @@ const HomePage = () => {
           </h1>
           <p className="sub__heading">Home of all thrift wears</p>
           <p className="details">
-            At KIKA we understand the importance of thrift wears and
-            its availability to you and the need to get them at your
-            comfort with just your smart device.
+            At KIKA we understand the importance of thrift wears and its
+            availability to you and the need to get them at your comfort with
+            just your smart device.
           </p>
         </div>
 
@@ -70,11 +70,7 @@ const HomePage = () => {
             .filter((_, index) => index < 3)
             .map((product) => {
               return (
-                <Product
-                  key={product._id}
-                  {...product}
-                  className="product"
-                />
+                <Product key={product._id} {...product} className="product" />
               );
             })}
         </div>
@@ -86,15 +82,13 @@ const HomePage = () => {
         <h2>NEW ARRIVALS</h2>
 
         <div className="products__container">
-          {new_arrivals.map((product) => {
-            return (
-              <Product
-                key={product._id}
-                {...product}
-                className="product"
-              />
-            );
-          })}
+          {new_arrivals
+            .filter((_, index) => index < 8)
+            .map((product) => {
+              return (
+                <Product key={product._id} {...product} className="product" />
+              );
+            })}
         </div>
       </section>
       {/* start new arrivals */}

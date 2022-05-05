@@ -1,4 +1,5 @@
 import UploadForm from "../../components/vendor/UploadForm";
+import PopUp from "../../components/vendor/PopUp";
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import Loading from "../../components/Global/Loading";
@@ -96,6 +97,7 @@ export default function Products() {
        
     </div>
     {isUploading ? <UploadForm setUpload={setUpload}/>:null}
+    {/* <PopUp setUpload={setUpload}/> */}
     </>
   )
 }
