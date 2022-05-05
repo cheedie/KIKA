@@ -10,7 +10,11 @@ import {
   LOGIN_VENDOR_ERROR,
   VENDOR_LOGOUT,
   VENDOR_DETAILS,
+  VENDOR_DETAILS_ERROR,
+  VENDOR_DETAILS_BEGIN,
   REGISTER_VENDOR,
+  REGISTER_VENDOR_SUCCESS,
+  REGISTER_VENDOR_ERROR,
   CHANGE_VENDOR_PASSWORD,
   CREATE_PRODUCT,
   END_CREATE_PRODUCT,
@@ -27,18 +31,22 @@ let token = localStorage.getItem("currentUser")
 
 const initialState = {
   token: "" || token,
-  register_user: null,
+  register_vendor: null,
+  register_vendor_error: false,
+  register_vendor_loading: false,
   loading: false,
   newPassword: "",
   vendorLogout: false,
   vendorDetails: {},
-  product:{},
-  products:[],
-  getting_products_loading:false,
+  product: {},
+  products: [],
+  vendor_details_error: false,
+  vendor_details_loading: false,
+  getting_products_loading: false,
   getting_products_error: false,
   creating_product: false,
   creating_product_error: false,
-  creating_product_message:''
+  creating_product_message: "",
 };
 
 const VendorContext = React.createContext();
@@ -49,21 +57,30 @@ export const VendorProvider = ({ children }) => {
   const uploadVendorDetails = async (data) => {
     dispatch({ type: REGISTER_VENDOR });
     try {
-      console.log('data from submit::: ',data)
+      console.log("data from submit::: ", data);
       let formData = new FormData();
 
       for (let value in data) {
         formData.append(value, data[value]);
       }
-      const response = await axios.post(`${url}/auth/register/vendor`, formData,
-      {
-        headers: {
-          "Content-type": "application/json"
+      const response = await axios.post(
+        `${url}/auth/register/vendor`,
+        formData,
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
         }
-     }
-      ).then(()=>{console.log(response, "yayy")})
+      );
+      if (response) {
+        console.log(response, "yayy");
+        dispatch({ type: REGISTER_VENDOR_SUCCESS, payload: response });
+        return response;
+      }
     } catch (error) {
       console.log(error);
+      dispatch({ type: REGISTER_VENDOR_ERROR, error: Error.errors[0] });
+      return error.error;
     }
   };
   
@@ -75,10 +92,12 @@ export const VendorProvider = ({ children }) => {
       dispatch({ type: VENDOR_DETAILS, payload: userDetails });
 
       console.log(response);
+      return response
     } catch (error) {
       console.log(error);
     }
   };
+
   const loginVendor = async (details) => {
     dispatch({ type: REQUEST_VENDOR_LOGIN });
 
@@ -90,7 +109,6 @@ export const VendorProvider = ({ children }) => {
         dispatch({ type: LOGIN_VENDOR_SUCCESS, payload: response });
 
         localStorage.setItem("currentUser", JSON.stringify(response.data));
-      // this.getVendor()
         return response;
         
       }

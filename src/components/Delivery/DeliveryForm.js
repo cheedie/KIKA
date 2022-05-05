@@ -74,12 +74,10 @@ const DeliveryForm = () => {
               id="state"
               name="state"
               value={state}
-              defaultValue="State"
+              // defaultValue="State"
               onChange={(e) => setState(e.target.value)}
             >
-              <option value="" disabled hidden>
-                State
-              </option>
+              <option value="0">State</option>
               {stateDetails.map((item) => {
                 return (
                   <option key={item.id} value={item.alias}>
@@ -93,11 +91,8 @@ const DeliveryForm = () => {
               name="city"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              defaultValue=""
             >
-              <option value="" disabled hidden>
-                City/town
-              </option>
+              <option value="0">City/town</option>
               {cityDetails.map((item) => {
                 return (
                   <option key={item.id} value={item.name}>

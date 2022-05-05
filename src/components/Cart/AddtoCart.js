@@ -28,10 +28,13 @@ const AddtoCart = ({ product }) => {
 
   return (
     <div className="addToCart__button">
-      {/*<AmountButtons amount={amount} increase={increase} decrease={decrease} />*/}
-      <Link to="/mycart" onClick={() => addToCart(amount, product)}>
-        <div className="addToCartButton">Add To Cart</div>
-      </Link>
+      <button
+        onClick={() => addToCart(amount, product)}
+        type="button"
+        className="addToCartButton"
+      >
+        Add To Cart
+      </button>
     </div>
   );
 };

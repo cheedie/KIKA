@@ -40,7 +40,7 @@ function AppRoutes() {
   const routes = useRoutes([
     { path: "/", element: <Landing /> },
     { path: "/home", element: <Home /> },
-    { path: "/search", element: <Search /> },
+    // { path: "/search", element: <Search /> },
 
     { path: "/products/:id", element: <ProductDetails /> },
     { path: "/products", element: <MarketPlace /> },
@@ -55,7 +55,6 @@ function AppRoutes() {
         { path: "/user/account/myorders", element: <MyOrders /> },
         { path: "/user/account/signout", element: <SignOut /> },
         { path: "/delivery", element: <Delivery /> },
-
         {
           path: "/user/account/notifications",
           element: <Notifications />,
@@ -91,7 +90,7 @@ function AppRoutes() {
     },
 
     { path: "/buyer/signup", element: <Signup /> },
-    { path: "/buyer/signin", element: <Signin /> },
+    { path: "/buyer/signin", element: <Signin user /> },
 
     { path: "/buyer/contact", element: <Contact /> },
     { path: "/termscondition", element: <Conditionpage /> },
@@ -110,10 +109,9 @@ function AppRoutes() {
     { path: "/mycart", element: <MyCart /> },
 
     { path: "/delivery", element: <Delivery /> },
-
     { path: "/ordersuccessful", element: <OrderSuccessful /> },
     { path: "/checkout", element: <Checkout /> },
-    { path: "/vendor/signup", element: <VendorSignup /> },
+    // { path: "/payment", element: <PaymentOptions /> },
   ]);
   return routes;
 }

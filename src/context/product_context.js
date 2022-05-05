@@ -9,9 +9,10 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
-  CREATE_PRODUCT,
-  CREATE_PRODUCT_SUCCESS,
-  CREATE_PRODUCT_ERROR,
+  // UPLOAD_PRODUCT,
+  // CREATE_PRODUCT,
+  // CREATE_PRODUCT_SUCCESS,
+  // CREATE_PRODUCT_ERROR
 } from "../actions";
 
 const ProductContext = React.createContext();
@@ -56,30 +57,7 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  const createProduct = async (url, data) => {
-    dispatch({ type: CREATE_PRODUCT });
-    try {
-      let formData = new FormData();
 
-      for (let value in data) {
-        formData.append(value, data[value]);
-      }
-      const response = await axios
-        .post(url, formData, {
-          headers: {
-            "Content-type": "application/json",
-          },
-        })
-        .then(() => {
-          console.log(response, "yayy");
-          if (response.status === 200) {
-            dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: response });
-          }
-        });
-    } catch (error) {
-      dispatch({ type: CREATE_PRODUCT_ERROR, error: error });
-    }
-  };
 
   useEffect(() => {
     fetchProducts();
@@ -91,7 +69,6 @@ export const ProductProvider = ({ children }) => {
         ...state,
         fetchProducts,
         fetchSingleProduct,
-        createProduct,
       }}
     >
       {children}

@@ -1,39 +1,41 @@
-import React, { useState, useContext } from 'react';
-import Logo from '../../assets/landing-page/logo.png';
-import Search from '../../assets/landing-page/search.png';
-import Cart from '../../assets/landing-page/cart.png';
-import Profile from '../../assets/landing-page/profile.png';
-import '../../styles/landing/navbar.scss';
-import { Link } from 'react-router-dom';
-import NavbarContext from '../../context/navbar_context';
+import React, { useState, useContext } from "react";
+import Logo from "../../assets/landing-page/logo.png";
+import Search from "../../assets/landing-page/search.png";
+import Cart from "../../assets/landing-page/cart.png";
+import Profile from "../../assets/landing-page/profile.png";
+import "../../styles/landing/navbar.scss";
+import { Link } from "react-router-dom";
+import NavbarContext from "../../context/navbar_context";
+import { useCartContext } from "../../context/cart_context";
 
 const Navbar = () => {
-  //const searchItem = e.target.value;
+  // const searchItem = e.target.value;
   const { keyWord, changeKeyWord } = useContext(NavbarContext);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  const { cart } = useCartContext();
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [status, setStatus] = useState("close");
-  // const [profileMenu, setProfileMenu] = useState({
-  //   opacity: "0",
-  // });
+  const [profileMenu, setProfileMenu] = useState({
+    opacity: "0",
+  });
   const [marketPlaceMenu, setMarketPlaceMenu] = useState({
-    opacity: '0',
-    zIndex: '-100',
+    opacity: "0",
+    zIndex: "-100",
   });
   const showDropDown = () => {
     setMarketPlaceMenu({
-      opacity: '1',
-      zIndex: '2',
+      opacity: "1",
+      zIndex: "2",
     });
   };
   const hideDropDown = () => {
     setMarketPlaceMenu({
-      opacity: '0',
-      zIndex: '-100',
+      opacity: "0",
+      zIndex: "-100",
     });
   };
 
@@ -57,8 +59,9 @@ const Navbar = () => {
           <Link to="/aboutus">
             <li>About Us</li>
           </Link>
-
-          <li>Sell on KIKA</li>
+          <Link to="/vendor/signup">
+            <li>Sell on KIKA</li>
+          </Link>
         </ul>
         {/*end navlinks */}
 
@@ -81,59 +84,59 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* <div
+        <div
           className="profile__dropDown"
           style={profileMenu}
           onMouseEnter={() => {
             setProfileMenu({
-              opacity: '1',
-              zIndex: '2',
+              opacity: "1",
+              zIndex: "2",
             });
           }}
           onMouseLeave={() => {
             setProfileMenu({
-              opacity: '0',
-              zIndex: '-100',
+              opacity: "0",
+              zIndex: "-100",
             });
           }}
-        > */}
-        <Link to="/buyer/signin">
-          {/* <div
+        >
+          <Link to="/buyer/signin">
+            <div
               onClick={() =>
                 setProfileMenu({
-                  opacity: '0',
+                  opacity: "0",
                 })
               }
-            > */}
-          <p>Sign in</p>
-          {/* </div> */}
-        </Link>
-        <Link to="/buyer/signup">
-          {/* <div
+            >
+              <p>Sign in</p>
+            </div>
+          </Link>
+          <Link to="/buyer/signup">
+            <div
               onClick={() =>
                 setProfileMenu({
-                  opacity: '0',
-                  zIndex: '-100',
+                  opacity: "0",
+                  zIndex: "-100",
                 })
               }
-            > */}
-          <p>Sign up</p>
-          {/* </div> */}
-        </Link>
+            >
+              <p>Sign up</p>
+            </div>
+          </Link>
 
-        <Link to="/user/account">
-          {/* <div
-            onClick={() =>
-              setProfileMenu({
-                opacity: "0",
-                zIndex: "-100",
-              })
-            }
-          > */}
-          <p>Account</p>
-          {/* </div> */}
-        </Link>
-        {/* </div> */}
+          <Link to="/user/account">
+            <div
+              onClick={() =>
+                setProfileMenu({
+                  opacity: "0",
+                  zIndex: "-100",
+                })
+              }
+            >
+              <p>Account</p>
+            </div>
+          </Link>
+        </div>
         {/* end drop downs */}
 
         {/* start search form */}
@@ -152,11 +155,7 @@ const Navbar = () => {
                 setShowSearch(!showSearch);
               }}
             >
-              <img
-                className="nav__searchIcon"
-                src={Search}
-                alt="Search Icon"
-              />
+              <img className="nav__searchIcon" src={Search} alt="Search Icon" />
             </button>
           </Link>
         </form>
@@ -164,25 +163,44 @@ const Navbar = () => {
 
         {/** start sign in cart and toggle */}
         <section className="nav__profile">
-          {/* <div
+          <div
             className="profile__imgContainer"
             onMouseEnter={() => {
               setProfileMenu({
-                opacity: '1',
+                opacity: "1",
               });
             }}
             onMouseLeave={() => {
               setProfileMenu({
-                opacity: '0',
-                zIndex: '-100',
+                opacity: "0",
+                zIndex: "-100",
               });
             }}
-          > */}
-          <img src={Profile} alt="shopping cart" />
-          {/* </div> */}
+          >
+            <i class="fa fa-user fa-2x"></i>
+          </div>
           <Link to="/mycart">
             <div className="cart">
-              <img src={Cart} alt="shopping cart" />
+              <i class="fas fa-shopping-cart" style={{ fontSize: "25px" }}></i>
+              <span
+                style={{
+                  display: "inline-flex",
+                  height: "20px",
+                  width: "20px",
+                  justifyContent: "center",
+                  background: "#f15a24",
+                  alignItems: "center",
+                  color: "white",
+                  borderRadius: "50%",
+                  position: "absolute",
+                  top: "-0.85rem",
+                  right: "-0.85rem",
+                  display: "grid",
+                  placeItems: "center",
+                }}
+              >
+                {cart.length}
+              </span>
             </div>
           </Link>
 
@@ -190,7 +208,7 @@ const Navbar = () => {
             className="nav__sidebarToggle"
             onClick={() => {
               setShowLinks(!showLinks);
-              setStatus(status === 'open' ? 'close' : 'open');
+              setStatus(status === "open" ? "close" : "open");
             }}
           >
             <div className={`${status} line line1`}></div>
@@ -204,12 +222,10 @@ const Navbar = () => {
         <ul
           onClick={() => {
             setShowLinks(!showLinks);
-            setStatus('close');
+            setStatus("close");
           }}
           className={`${
-            showLinks
-              ? 'mobile__sideBar show__sideBar'
-              : 'mobile__sideBar'
+            showLinks ? "mobile__sideBar show__sideBar" : "mobile__sideBar"
           }`}
         >
           <Link to="/home">
@@ -221,7 +237,7 @@ const Navbar = () => {
           <Link to="/aboutus">
             <li>About Us</li>
           </Link>
-          <Link to="/vendor">
+          <Link to="/vendor/signup">
             <li>Sell on KIKA</li>
           </Link>
           <li>
@@ -235,9 +251,7 @@ const Navbar = () => {
 
         <div
           className={`${
-            showSearch
-              ? 'mobile__search show__mobileSearch'
-              : 'mobile__search'
+            showSearch ? "mobile__search show__mobileSearch" : "mobile__search"
           }`}
         >
           <input

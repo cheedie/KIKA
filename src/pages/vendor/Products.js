@@ -26,7 +26,7 @@ export default function Products() {
     <div id="wrapper" className="products" style={isUploading? {'overflow':"hidden"}:{'overflow':"visible"}}>
         <nav>
             <div>
-            <Link to="/" className="subtitle active">All (2)</Link>
+            <Link to="/" className="subtitle active">All ({products.length})</Link>
             <Link to="/" className="subtitle">Online (0)</Link>
             <Link to="/" className="subtitle">Pending Review (0)</Link>
             <Link to="/" className="subtitle">Draft (0)</Link>

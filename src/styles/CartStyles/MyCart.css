@@ -25,9 +25,9 @@
   /* box-shadow: 0 0 20px rgba(157, 160, 161, 0.5); */
   border-radius: 2px;
   border: 1px solid #c4c4c4;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 2em 0 0 0;
-  max-height: 250px;
+  max-height: 280px;
 }
 .card_section .card_row {
   margin: 2em 1em 0em 1em;

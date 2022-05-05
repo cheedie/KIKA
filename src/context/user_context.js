@@ -84,6 +84,7 @@ export const UserProvider = ({ children }) => {
       const userDetails = response.data?.data;
       dispatch({ type: USER_DETAILS, payload: userDetails });
     } catch (error) {
+      console.log(error);
       dispatch({ type: USER_DETAILS_ERROR });
     }
   };
@@ -110,13 +111,13 @@ export const UserProvider = ({ children }) => {
   };
 
   const deliveryDetails = async (data, navigate) => {
-    dispatch({ type: REGISTER_DELIVERY_DETAILS });
+    // dispatch({ type: REGISTER_DELIVERY_DETAILS });
     try {
       const response = await baseUrl.put("/auth/updatedetails", data);
       console.log(response);
 
       dispatch(getUser());
-      dispatch({ type: REGISTER_DELIVERY_SUCCESS, payload: true });
+      // dispatch({ type: REGISTER_DELIVERY_SUCCESS, payload: true });
       navigate("/checkout");
     } catch (error) {
       console.log(error);

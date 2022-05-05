@@ -9,3 +9,10 @@ export const baseUrl = axios.create({
     Authorization: `Bearer ${token}`,
   },
 });
+
+baseUrl.interceptors.request.use(function (config) {
+  if (config.headers) {
+    config.headers["Authorization"] = `Bearer ${createToken()}`;
+  }
+  return config;
+});
