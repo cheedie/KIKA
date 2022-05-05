@@ -18,12 +18,12 @@ const user_reducer = (state, action) => {
   if (action.type === REGISTER_USER) {
     return { ...state, register_user: action.payload };
   }
-  if (action.type === REGISTER_DELIVERY_DETAILS) {
-    return { ...state };
-  }
-  if (action.type === REGISTER_DELIVERY_SUCCESS) {
-    return { ...state, deliveryStatus: action.payload };
-  }
+  // if (action.type === REGISTER_DELIVERY_DETAILS) {
+  //   return { ...state };
+  // }
+  // if (action.type === REGISTER_DELIVERY_SUCCESS) {
+  //   return { ...state, deliveryStatus: action.payload };
+  // }
   if (action.type === REQUEST_LOGIN) {
     return { ...state, loading: true };
   }
@@ -66,9 +66,11 @@ const user_reducer = (state, action) => {
       user_details_loading: false,
       user_details_error: true,
     };
-  } else {
-    throw new Error(`No Matching "${action.type}" - action type`);
   }
+
+  // else {
+  //   throw new Error(`No Matching "${action.type}" - action type`);
+  // }
 };
 
 export default user_reducer;

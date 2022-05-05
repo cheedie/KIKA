@@ -6,6 +6,7 @@ import Profile from "../../assets/landing-page/profile.png";
 import "../../styles/landing/navbar.scss";
 import { Link } from "react-router-dom";
 import NavbarContext from "../../context/navbar_context";
+import { useCartContext } from "../../context/cart_context";
 
 const Navbar = () => {
   // const searchItem = e.target.value;
@@ -14,6 +15,7 @@ const Navbar = () => {
     e.preventDefault();
   };
 
+  const { cart } = useCartContext();
   const [showLinks, setShowLinks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [status, setStatus] = useState("close");
@@ -175,11 +177,30 @@ const Navbar = () => {
               });
             }}
           >
-            <img src={Profile} alt="shopping cart" />
+            <i class="fa fa-user fa-2x"></i>
           </div>
           <Link to="/mycart">
             <div className="cart">
-              <img src={Cart} alt="shopping cart" />
+              <i class="fas fa-shopping-cart" style={{ fontSize: "25px" }}></i>
+              <span
+                style={{
+                  display: "inline-flex",
+                  height: "20px",
+                  width: "20px",
+                  justifyContent: "center",
+                  background: "#f15a24",
+                  alignItems: "center",
+                  color: "white",
+                  borderRadius: "50%",
+                  position: "absolute",
+                  top: "-0.85rem",
+                  right: "-0.85rem",
+                  display: "grid",
+                  placeItems: "center",
+                }}
+              >
+                {cart.length}
+              </span>
             </div>
           </Link>
 

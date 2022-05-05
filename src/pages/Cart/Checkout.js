@@ -24,7 +24,7 @@ const Checkout = () => {
     tax,
     total_items,
   } = useCartContext();
-  // const { placeOrder } = useOrderContext();
+  const { placeOrder } = useOrderContext();
   let total = total_amount + shipping_fee + tax;
   const {
     userDetails,
@@ -52,29 +52,40 @@ const Checkout = () => {
     },
   };
 
+  const getCart = () => {
+    return cart.map((item) => {
+      return {
+        product: item.id,
+        vendor: item.vendor,
+        name: item.name,
+        price: item.price,
+        quantity: total_items,
+      };
+    });
+  };
+
   const fwConfig = {
     ...config,
-    text: "Proceed!",
+    text: "Pay with flutterwave!",
     callback: (response) => {
       if (response.status === "successful") {
         console.log(response);
+
         // create order
-        // placeOrder(
-        //   {
-        // orderItems: [],
-        // totalPrice: total,
-        // quantity: total_items,
-        // paymentMethod: debit ? "card" : "debit",
-        // paymentInfo: {
-        //   transactionId: response.transaction_id,
-        //   currency: response.currency,
-        //   gateway: "flutterwave",
-        //   status: response.status,
-        // },
-        //   },
-        //   navigate
-        // );
-        navigate("/ordersuccessful");
+        placeOrder(
+          {
+            orderItems: getCart(),
+            totalPrice: total,
+            paymentMethod: debit ? "card" : "debit",
+            paymentInfo: {
+              transactionId: response.transaction_id,
+              currency: response.currency,
+              gateway: "flutterwave",
+              status: response.status,
+            },
+          },
+          navigate
+        );
 
         closePaymentModal(); // this will close the modal programmatically
       } else if (response.status === "error") {
@@ -102,13 +113,6 @@ const Checkout = () => {
   if (error) {
     return <Error />;
   }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (debit) {
-      navigate("/payment");
-    }
-  };
 
   return (
     <>
@@ -187,18 +191,28 @@ const Checkout = () => {
             <h1>CART SUMMARY</h1>
             {cart.map((item) => {
               return (
-                <React.Fragment key={item._id}>
+                <React.Fragment key={item.id}>
                   <div className="modify_card">
                     <div className="modify_card_img">
                       <img src={item.image} alt={item.name} />
                     </div>
                     <div className="modify_details">
-                      <p>{item.name}</p>
+                      <p
+                        style={{
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {item.name}
+                      </p>
                       <div className="modify_cart_footer">
-                        <div className="footer_icons">
-                          <AmountButtons />
-                        </div>
-                        <p className="modify_price">NGN {item.price}</p>
+                        <p
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                          className="modify_price"
+                        >
+                          NGN {item.price}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -208,20 +222,68 @@ const Checkout = () => {
 
             <div className="modify_cart_summary">
               <div className="modify_cart_subtotal">
-                <p>Subtotal</p>
-                <p>NGN {total_amount}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Subtotal
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {total_amount}
+                </p>
               </div>
               <div className="modify_cart_subtotal">
-                <p>Delivery</p>
-                <p>NGN {shipping_fee}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Delivery
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {shipping_fee}
+                </p>
               </div>
               <div className="modify_cart_subtotal">
-                <p>Tax</p>
-                <p>NGN {tax}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Tax
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {tax}
+                </p>
               </div>
               <div className="modify_cart_total">
-                <p>Total</p>
-                <p>NGN {total}</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Total
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  NGN {total}
+                </p>
               </div>
             </div>
             <div id="payment-btn" className="delivery_btn_container">
