@@ -95,13 +95,15 @@ export default function Orders() {
 }
 
 function OrderTile({orders}) {
-  const tile = orders.order.reverse().map((value) =>{
+  //let orderObject = Object.keys(orders)
+  console.log("Order OBKJECT",orderObject)
+  const tile = orders.map((value) =>{
      let vendorOrder =   {
-          order_title:value.order.orderId,
-          order_total:value.totalPrice,
-          earning:value.order.buyer,
+          order_title:orders.orderId,
+          order_total:orders.totalPrice,
+          earning:orders.totalPrice,
           status:"Waiting",
-          customer:value.buyer,
+          customer:orders.buyer,
           date:"March 29th, 2022"
         }
         return vendorOrder

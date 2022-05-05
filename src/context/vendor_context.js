@@ -185,7 +185,7 @@ export const VendorProvider = ({ children }) => {
     const response = await baseUrl.get(`${orders_url}/myorders`);
     const orders = response.data?.data;
     dispatch({ type: GET_VENDOR_ORDERS_SUCCESS, payload: orders });
-  // console.log("ORDERS", orders)
+  console.log("ORDERS", orders)
   } catch (error) {
     dispatch({ type: GET_VENDOR_ORDERS_ERROR });
   }
