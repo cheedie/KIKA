@@ -55,9 +55,11 @@ export const UserProvider = ({ children }) => {
 
   const loginUser = async (details) => {
     dispatch({ type: REQUEST_LOGIN });
+    console.log(details)
 
     try {
       const response = await axios.post(`${url}/auth/login`, details);
+      console.log(details)
 
       if (response.status === 200) {
         dispatch({ type: LOGIN_SUCCESS, payload: response });

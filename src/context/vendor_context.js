@@ -21,8 +21,8 @@ import {
   GET_VENDOR_PRODUCTS_ERROR,
 } from "../actions";
 
-let token = localStorage.getItem("currentVendor")
-  ? JSON.parse(localStorage.getItem("currentVendor")).token
+let token = localStorage.getItem("currentUser")
+  ? JSON.parse(localStorage.getItem("currentUser")).token
   : "";
 
 const initialState = {
@@ -66,6 +66,7 @@ export const VendorProvider = ({ children }) => {
       console.log(error);
     }
   };
+  
   const getVendor = async () => {
     try {
       const response = await baseUrl.get("/auth/profile");
@@ -82,14 +83,14 @@ export const VendorProvider = ({ children }) => {
     dispatch({ type: REQUEST_VENDOR_LOGIN });
 
     try {
-      console.log("DETAILS", details)
+      
       const response = await axios.post(`${url}/auth/login`, details);
 
       if (response.status === 200) {
         dispatch({ type: LOGIN_VENDOR_SUCCESS, payload: response });
 
-        localStorage.setItem("currentVendor", JSON.stringify(response.data));
-        this.getVendor()
+        localStorage.setItem("currentUser", JSON.stringify(response.data));
+      // this.getVendor()
         return response;
         
       }

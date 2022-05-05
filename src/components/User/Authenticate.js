@@ -7,6 +7,7 @@ import createToken from "../../utils/createToken";
 const Authenticate = () => {
   const response = createToken();
   if (response) {
+    
     // check if user is verified or has completed profile
     createBrowserHistory().push("/user/account");
     createBrowserHistory().go(0);

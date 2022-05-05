@@ -20,18 +20,18 @@ const UserAccount = () => {
     // eslint-disable-next-line
   }, []);
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
-  if (error) {
-    return <Error />;
-  }
+  // if (error) {
+  //   return <Error />;
+  // }
   return (
     <main>
       <Navbar />
       <NavMiddle deft={1} />
-
+    { loading ? <Loading/> : error  ? <Error/> :
       <section className="user__account-container">
         <Sidebar deft={1} />
         <div className="user__account">
@@ -63,7 +63,9 @@ const UserAccount = () => {
           </div>
         </div>
       </section>
+    }
       <Footer />
+    
     </main>
   );
 };

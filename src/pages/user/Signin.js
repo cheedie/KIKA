@@ -10,8 +10,8 @@ import { useUserContext } from "../../context/user_context";
 import { useVendorContext } from "../../context/vendor_context";
 
 const Signin = ({user, vendor}) => {
-  const { loginUser } = useUserContext();
-  const { loginVendor } = useVendorContext();
+  const { loginUser, getUser} = useUserContext();
+  const { loginVendor, getVendor } = useVendorContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,17 +21,10 @@ const Signin = ({user, vendor}) => {
     e.preventDefault();
     try {
       let response;
-      if(vendor){
+      if(user){
       response = await loginUser({ email, password })
-      .then((res)=>{
-        return res
-      });
     }else if(vendor){
-        console.log("Vendor siginin")
         response = await loginVendor({ email, password })
-      .then((res)=>{
-        return res
-      });
       }
       if (!response || response.status !== 200) {
         setAlert({
@@ -39,10 +32,13 @@ const Signin = ({user, vendor}) => {
           type: "danger",
           msg: "Incorrect email or password",
         });
-      } else if(response.data?.role === 'user'){
+      } else if(response.data.role === 'user'){
         navigate("/user/account");
-      }else if(response.data?.role === 'vendor'){
+        getUser()
+      }else if(response.data.role === 'vendor'){
+        console.log("VENDOR logging")
         navigate("/vendor/");
+        getVendor()
       }
     } catch (error) {
       console.log(error);
