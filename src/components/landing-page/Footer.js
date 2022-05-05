@@ -51,7 +51,9 @@ const Footer = () => {
               </Link>
               <li>How to Return a Product on KIKA</li>
               <li>Delivery Options and Timelines</li>
-              <li>FAQ</li>
+              <Link to="/aboutus">
+                <li>FAQ</li>
+              </Link>
             </ul>
           </div>
           <div className="footer__sectionTwo">
