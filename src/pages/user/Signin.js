@@ -7,9 +7,11 @@ import Footer from "../../components/landing-page/Footer";
 import Alert from "../../components/User/Alert";
 
 import { useUserContext } from "../../context/user_context";
+import { useVendorContext } from "../../context/vendor_context";
 
-const Signin = () => {
+const Signin = ({user, vendor}) => {
   const { loginUser } = useUserContext();
+  const { loginVendor } = useVendorContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,18 +20,28 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await loginUser({ email, password })
-      .then((res)=>{return res
+      let response;
+      if(vendor){
+      response = await loginUser({ email, password })
+      .then((res)=>{
+        return res
       });
+    }else if(vendor){
+        console.log("Vendor siginin")
+        response = await loginVendor({ email, password })
+      .then((res)=>{
+        return res
+      });
+      }
       if (!response || response.status !== 200) {
         setAlert({
           show: true,
           type: "danger",
           msg: "Incorrect email or password",
         });
-      } else if(response.data.role === 'user'){
+      } else if(response.data?.role === 'user'){
         navigate("/user/account");
-      }else if(response.data.role === 'vendor'){
+      }else if(response.data?.role === 'vendor'){
         navigate("/vendor/");
       }
     } catch (error) {

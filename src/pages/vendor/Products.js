@@ -1,18 +1,29 @@
-import shirt from "../../assets/vendor/images/shirt.png"
-import UploadForm from "./UploadForm";
-import { useState } from "react";
+import UploadForm from "../../components/vendor/UploadForm";
+import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
-// import {useFormik} from 'formik';
-// import * as Yup from 'yup'
-//import { url } from "../../utils/constant";
+import Loading from "../../components/Global/Loading";
+import Error from "../../components/Global/Error";
+import Message from "../../components/Global/Message";
+
+import { useVendorContext } from "../../context/vendor_context";
 
 export default function Products() {
     const [isUploading, setUpload] = useState(false)
+    const { 
+        products, 
+        getVendorProducts, 
+        endCreateProduct, 
+        getting_products_loading: loading,
+        getting_details_error: error,
+    } = useVendorContext();
 
+      useEffect(() => {
+        getVendorProducts()
+      }, []);
 
   return (
       <>
-    <div id="wrapper" className="products">
+    <div id="wrapper" className="products" style={isUploading? {'overflow':"hidden"}:{'overflow':"visible"}}>
         <nav>
             <div>
             <Link to="/" className="subtitle active">All (2)</Link>
@@ -20,7 +31,10 @@ export default function Products() {
             <Link to="/" className="subtitle">Pending Review (0)</Link>
             <Link to="/" className="subtitle">Draft (0)</Link>
             </div>
-            <button className="button" onClick={()=>setUpload(true)}>Add Product</button>
+            <button className="button" onClick={()=>{
+                endCreateProduct()
+                setUpload(true)
+                }}>Add Product</button>
         </nav>
         <div className="body">
             <div className="filters">
@@ -31,7 +45,7 @@ export default function Products() {
                         <option value="XL">XL</option>
                     </select>
                     <label htmlFor='Filter' className="button">Filter</label>
-                    </div>
+            </div>
                 <form>
                     <input 
                         name="search" 
@@ -40,6 +54,7 @@ export default function Products() {
                         
                     />
                     <input name="submit" 
+                    id="submit"
                     type="submit" 
                     placeholder="submit"
                     className="button"
@@ -57,7 +72,10 @@ export default function Products() {
 
             </div>
 
-            
+        { loading ? <Loading/>  
+        : error ? <Error/> 
+        : products.length <=0 ? 
+        <Message message="No products available..."/>:
         <div className="product_list">
             <div className="product_titles">
                 <p className="product_image_title">Image</p>
@@ -69,10 +87,10 @@ export default function Products() {
                 <p>Date</p>
             </div>
             <div className="products">
-                <ProductTile/>
+                <ProductTile products={products}/>
             </div>
 
-        </div>
+        </div>}
         </div>
         
        
@@ -84,36 +102,24 @@ export default function Products() {
 
 
 
-function ProductTile() {
-    const tile=[
-        {
-            image:shirt,
-            title:"Navy Blue Botton Down Shirt",
-            status:"Pending review",
-            stock:"In Stock",
-            price:"N3,400",
-            views:"5",
-            date:"09/04/2022"
-        },
-        {
-            image:shirt,
-            title:"Navy Blue Botton Down Shirt",
-            status:"Pending review",
-            stock:"In Stock",
-            price:"N3,400",
-            views:"5",
-            date:"09/04/2022"
-        },
-        {
-            image:shirt,
-            title:"Navy Blue Botton Down Shirt",
-            status:"Pending review",
-            stock:"In Stock",
-            price:"N3,400",
-            views:"5",
-            date:"09/04/2022"
-        }
-    ]
+function ProductTile({products}) {
+
+    const tile= products.reverse().map((value) =>{
+    let product= {
+                    image:value.image,
+                    title:value.name,
+                    status:"Pending review",
+                    stock:value.countInStock > 0 ? "In Stock" : "Out of Stock",
+                    price:`₦ ${value.price}`,
+                    views:"5",
+                    date:"09/04/2022",
+                    id:value._id,
+                    reviews: value.review,
+                    size: value.size,
+                };
+     return product
+    })
+
   return (
       <>
       {tile.map((item,index)=>{
@@ -138,6 +144,29 @@ function ProductTile() {
   
 }
 
+// const baseProductExample = {
+// brand: "Canon",
+// category: "Male",
+// cloudinary_id: "products/axvcpx02jlfdv8ebhovx",
+// color: "black",
+// countInStock: 1,
+// createdAt: "2022-05-01T19:01:03.854Z",
+// description: "This should work now",
+// grade: "A",
+// image: "https://res.cloudinary.com/kika/image/upload/v1651431663/products/axvcpx02jlfdv8ebhovx.png",
+// name: "Test Product camera",
+// newArrival: true,
+// numReviews: 0,
+// price: 10000,
+// rating: 0,
+// reviews: [],
+// size: "S",
+// slug: "test-product-camera",
+// updatedAt: "2022-05-01T19:01:03.854Z",
+// vendor: "626ecf4ea091e700041abe4a",
+// __v: 0,
+// _id: "626ed8efa091e700041abe63"
+// }
 
 
 

@@ -1,8 +1,9 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "../reducers/vendor_reducer";
-import { url } from "../utils/constant";
+import { url, products_url } from "../utils/constant";
 import { baseUrl } from "../utils/baseUrl";
 import axios from "axios";
+
 import {
   REQUEST_VENDOR_LOGIN,
   LOGIN_VENDOR_SUCCESS,
@@ -11,6 +12,13 @@ import {
   VENDOR_DETAILS,
   REGISTER_VENDOR,
   CHANGE_VENDOR_PASSWORD,
+  CREATE_PRODUCT,
+  END_CREATE_PRODUCT,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_ERROR,
+  GET_VENDOR_PRODUCTS,
+  GET_VENDOR_PRODUCTS_SUCCESS,
+  GET_VENDOR_PRODUCTS_ERROR,
 } from "../actions";
 
 let token = localStorage.getItem("currentVendor")
@@ -22,8 +30,15 @@ const initialState = {
   register_user: null,
   loading: false,
   newPassword: "",
-  userLogout: false,
-  userDetails: {},
+  vendorLogout: false,
+  vendorDetails: {},
+  product:{},
+  products:[],
+  getting_products_loading:false,
+  getting_products_error: false,
+  creating_product: false,
+  creating_product_error: false,
+  creating_product_message:''
 };
 
 const VendorContext = React.createContext();
@@ -51,18 +66,32 @@ export const VendorProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const getVendor = async () => {
+    try {
+      const response = await baseUrl.get("/auth/profile");
+      console.log("RESPONSE", response)
+      const userDetails = response.data?.data;
+      dispatch({ type: VENDOR_DETAILS, payload: userDetails });
 
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const loginVendor = async (details) => {
     dispatch({ type: REQUEST_VENDOR_LOGIN });
 
     try {
+      console.log("DETAILS", details)
       const response = await axios.post(`${url}/auth/login`, details);
 
       if (response.status === 200) {
         dispatch({ type: LOGIN_VENDOR_SUCCESS, payload: response });
 
         localStorage.setItem("currentVendor", JSON.stringify(response.data));
+        this.getVendor()
         return response;
+        
       }
 
       dispatch({ type: LOGIN_VENDOR_ERROR, error: response.errors[0] });
@@ -73,16 +102,56 @@ export const VendorProvider = ({ children }) => {
     }
   };
 
-  const getVendor = async () => {
-    try {
-      const response = await baseUrl.get("/auth/profile");
-      const userDetails = response.data?.data;
-      dispatch({ type: VENDOR_DETAILS, payload: userDetails });
+  const createProduct = async (data) => {
+    dispatch({ type: CREATE_PRODUCT , payload: "Uploading product..."});
+      let formData = new FormData();
+      for (let value in data) {
+        formData.append(value, data[value]);
+      }
 
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    return baseUrl.post(products_url, formData,
+        { headers: {"Content-type": "application/json"} })
+        .then(response =>{
+          console.log("THIS IS PRODUCT CREATED", response.data?.data)
+          dispatch({ type: CREATE_PRODUCT_SUCCESS, 
+            payload: {message:response.data?.message,
+                      data: response.data?.data}});
+          return response;
+        })
+        .catch ((error)=> {
+          let err 
+        if(error.response){
+          err = error.response.data ? error.response.data :
+          error.response.status ? error.response.status :
+          error.response.headers
+          console.log("Error response", err)
+        }else if(error.request){
+          err = error.request
+          console.log("Error request",err)
+        }else{
+          err = error.message
+          console.log("Error message",err)
+        }
+        console.log(error.config)
+        dispatch({ type: CREATE_PRODUCT_ERROR, payload: `${err.error.includes("name")?"Product name already exists":`${err}`}` });
+        return err;
+      })
+  };
+  const endCreateProduct = async (data) => {
+    dispatch({ type: END_CREATE_PRODUCT});
+  };
+
+  const getVendorProducts = async () => {
+  dispatch({ type: GET_VENDOR_PRODUCTS});
+
+  try {
+    const response = await baseUrl.get(`${products_url}/mine`);
+    const products = response.data?.data;
+    dispatch({ type: GET_VENDOR_PRODUCTS_SUCCESS, payload: products });
+  
+  } catch (error) {
+    dispatch({ type: GET_VENDOR_PRODUCTS_ERROR });
+  }
   };
 
   const changePassword = async (details) => {
@@ -98,9 +167,7 @@ export const VendorProvider = ({ children }) => {
   const signOut = async () => {
     dispatch({ type: VENDOR_LOGOUT });
     try {
-      const response = await baseUrl.get("/auth/logout");
-      console.log(response);
-      localStorage.removeItem("currentVendor");
+      localStorage.removeItem("currentUser");
       return true;
     } catch (error) {
       console.log(error);
@@ -117,6 +184,9 @@ export const VendorProvider = ({ children }) => {
         getVendor,
         changePassword,
         signOut,
+        createProduct,
+        endCreateProduct,
+        getVendorProducts
       }}
     >
       {children}

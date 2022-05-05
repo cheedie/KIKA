@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Landing from "./pages/Landing";
 
-import Vendor from "./components/vendor/Vendor";
-import VendorSignup from "./components/vendor/VendorSignup";
+import Vendor from "./pages/vendor/Vendor";
+import VendorSignup from "./pages/vendor/VendorSignup";
 import Signup from "./pages/user/Signup";
 import Signin from "./pages/user/Signin";
 import UserAccount from "./pages/user/UserAccountPage";
@@ -23,9 +23,10 @@ import ChangePassword from "./pages/user/ChangePassword";
 import Authorize from "./components/User/Authorize";
 import Authenticate from "./components/User/Authenticate";
 import AuthorizeVendor from "./components/vendor/AuthorizeVendor";
-// import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
+import AuthenticateVendor from "./components/vendor/AuthenticateVendor";
 import Women from "./pages/marketPlace/Women";
 import Men from "./pages/marketPlace/Men";
+import Search from "./pages/marketPlace/Search";
 import Home from "./pages/home/Home";
 import MyCart from "./pages/Cart/MyCart";
 import MarketPlace from "./pages/marketPlace/MarketPlace";
@@ -46,8 +47,6 @@ function AppRoutes() {
     { path: "/products/women", element: <Women /> },
     { path: "/products/men", element: <Men /> },
 
-    // { path: "/vendor", element: <Vendor /> },
-
     {
       element: <Authorize />,
       children: [
@@ -65,8 +64,6 @@ function AppRoutes() {
           path: "/user/account/changepassword",
           element: <ChangePassword />,
         },
-
-        // { path: "/vendor", element: <Vendor /> },
       ],
     },
 
@@ -74,26 +71,24 @@ function AppRoutes() {
       element: <Authenticate />,
       children: [
         { path: "/user/signup", element: <Signup /> },
-        { path: "/user/signin", element: <Signin /> },
+        { path: "/user/signin", element: <Signin user/> },
       ],
     },
     {
       element: <AuthorizeVendor />,
       children: [
-        { path: "/vendor/signin", element: <Signin /> },
-
         { path: "/vendor/*", element: <Vendor /> },
       ],
     },
 
-    { path: "/vendor/signup", element: <VendorSignup /> },
-
-    // {
-    //   element: <AuthenticateVendor />,
-    //   children: [
-
-    //   ],
-    // },
+  
+    {
+      element: <AuthenticateVendor />,
+      children: [
+        { path: "/vendor/signup", element: <VendorSignup /> },
+        { path: "/vendor/signin", element: <Signin vendor/> },
+      ],
+    },
 
     { path: "/buyer/signup", element: <Signup /> },
     { path: "/buyer/signin", element: <Signin /> },

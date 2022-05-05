@@ -1,26 +1,27 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import signImage from "../../assets/user/sign-in.png";
-import Navbar from '../landing-page/Navbar'
-import { StyledButton } from './Button.styled';
-import {StyledForm , StyledLabel, StyledInput, Wrapper, Message } from './Form.style';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
-import Footer from '../landing-page/Footer';
+import styled from "styled-components";
+import signImage from "../../assets/user/sign-in.png";
+import Navbar from '../../components/landing-page/Navbar'
+import { StyledButton } from '../../components/vendor/Button.styled';
+import {StyledForm , StyledLabel, StyledInput, Wrapper, Message } from '../../components/vendor/Form.style';
+import Footer from '../../components/landing-page/Footer';
 import { useVendorContext } from "../../context/vendor_context";
 import { MdArrowBack as Back} from 'react-icons/md';
 import verify from '../../utils/verify';
 
 
 Yup.addMethod(Yup.string, 'availability',function(msg){
-  return this.test('availability', msg, function(value){
+  return this.test('availability', msg,async function(value){
     const {path, createError} = this
     const data = {}
-    data[path] = value
-    return verify(data).then((response) => (response.status !== 200 || !response) ? createError({path, message: msg})
+    data[path] = value;
+    const response = await verify(data)
+    return (response.status !== 200 || !response) ? createError({path, message: msg})
   : (response.status === 200 && response.data.key && response.data.message) ? createError({path,  message: response.data.message})
-  : true)
+  : true
   })
 })
 
@@ -28,11 +29,17 @@ Yup.addMethod(Yup.string, 'availability',function(msg){
 
 function VendorSignup() {
   const navigate = useNavigate();
-  const { uploadVendorDetails } = useVendorContext();
+  const {uploadVendorDetails} = useVendorContext();
+
   const [isVisible, setVisible ] = useState(false);
   const [page, setPage ] = useState(1);
+  const [progress, setProgress ] = useState(false);
+  const [response, setMessage ] = useState({
+    message:'',
+    error:''
+  });
   const FILE_SIZE = 5 * 1024 * 1024;
-           
+       
     const {setFieldValue, handleSubmit, handleChange, handleBlur, values, touched, errors} = useFormik({
         initialValues:{
             name:'',
@@ -68,7 +75,7 @@ function VendorSignup() {
         }) : Yup.object({
           id_num:  Yup.string().required('Required')
           .matches(/^[0-9]+$/, "ID Number must be only digits")
-          .min(15,'ID Number should be 15 digits'),
+          .min(11,'ID Number should be 11 digits'),
           image: Yup.mixed().required('Required')
           .test("FILE_SIZE", "Uploaded file is too big.",value => !value || (value && value.size <= FILE_SIZE))
           .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc", (value) => {
@@ -87,8 +94,25 @@ function VendorSignup() {
             setPage(2)
           } 
           else{
-               uploadVendorDetails(values);
-               navigate("/vendor/signin");
+              setProgress(true)
+               return uploadVendorDetails(values)
+               .then((result)=>{
+                 console.log(result);
+                 //const message = result.data?.message;
+                 if(result.data){
+                   setProgress(false)
+                  setMessage({message: "Registration successful"})
+                  setTimeout(()=> {
+                        navigate("/vendor/signin");
+                   }
+                   ,5000);
+                 }else{
+                   setProgress(false)
+                   setMessage({error: result})
+                 }
+               });
+               
+               
           }
         }
          
@@ -111,6 +135,8 @@ function VendorSignup() {
   return (
     <div>
         <Navbar />
+
+        {progress ? <ProgressBar><Progress/></ProgressBar> : null}
         <Heading> {page === 1 ? 'Sell on Kika' : 'Vendor Verification'}</Heading>
         <StyledForm 
           onBlur={handleBlur}
@@ -254,6 +280,14 @@ function VendorSignup() {
                   id="submit" name='submit' label="continue"
                   page={page} 
                 >Continue</StyledButton>
+                {/* {response.message || response.error ?  */}
+                      <Heading 
+                      smallHeading
+                      color={response.error ? "red": response.message ? "green" : "black" }
+                      > 
+                      {response.message ? response.messsage : response.error}
+                </Heading> 
+                {/* : null} */}
               </Wrapper>
               <Wrapper>
                     <Image/>
@@ -276,10 +310,12 @@ export default VendorSignup
 const Heading = styled.h1`
   font-style: normal;
   font-weight: 600;
-  font-size: 100%;
+  font-size:${props=> props.smallHeading ? "1em" : "2em"};
   line-height: 78px;
   width:100%;
-  text-align:center;
+  text-align:${props=> props.smallHeading ? "left" : "center"};
+  color:${({smallHeading, color})=> smallHeading && color ? color : ""};
+
 
     @media (max-width:720px){
         font-size:36px;
@@ -313,7 +349,16 @@ position: absolute;
 }
 `
 
-
-
+const ProgressBar = styled.div`
+width:100%;
+height:0.5em;
+border-bottom:1px solid grey;
+position:relative;
+`
+const Progress = styled.div`
+width:70%;
+height:0.5em;
+background:crimson;
+`
 
 

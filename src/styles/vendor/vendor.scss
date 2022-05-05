@@ -37,6 +37,22 @@ body {
       box-sizing: border-box;
     }
   }
+  .wrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    a{
+      //margin:auto 1em;
+      padding:1em 2em;
+      color:black;
+      :hover{
+        cursor:pointer;
+        color:#f15a24;
+        text-decoration: underline;
+      }
+    }
+  }
+  
 }
 
 .vendor.main {
@@ -207,6 +223,7 @@ body {
   }
   .inner {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items:center;
   }
@@ -382,10 +399,14 @@ body {
     .product_img{
       width:75px;
       height:75px;
-      }
-    .product_img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
       img{
         width:100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: left;
       }
     }
 
