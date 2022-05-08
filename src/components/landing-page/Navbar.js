@@ -156,10 +156,10 @@ const Navbar = () => {
 
           <Link to="/mycart">
             <div className="cart">
-              <i class="fas fa-shopping-cart" style={{ fontSize: "25px" }}></i>
+              <i className="fas fa-shopping-cart" style={{ fontSize: "25px" }}></i>
               <span
                 style={{
-                  display: "inline-flex",
+                  // display: "inline-flex",
                   height: "20px",
                   width: "20px",
                   justifyContent: "center",

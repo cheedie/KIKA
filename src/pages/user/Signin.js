@@ -8,12 +8,14 @@ import Alert from "../../components/User/Alert";
 
 import { useUserContext } from "../../context/user_context";
 import { useVendorContext } from "../../context/vendor_context";
+import CheckNetwork from "../../utils/CheckNetwork";
 
 const Signin = ({user, vendor}) => {
   const { loginUser, getUser} = useUserContext();
   const { loginVendor, getVendor } = useVendorContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [isOnline, setIsOnline] = useState(CheckNetwork());
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
@@ -23,11 +25,22 @@ const Signin = ({user, vendor}) => {
     try {
       let response;
       if(user){
-      response = await loginUser({ email, password })
-    }else if(vendor){
-        response = await loginVendor({ email, password })
+          response = await loginUser({ email, password })
+        }else if(vendor){
+            response = await loginVendor({ email, password })
+          }
+        console.log("RESPONSE", response)
+      if(!isOnline){
+        console.log("false isONLINE??? ", isOnline)
+        setAlert({
+          show: true,
+          type: "danger",
+          msg: "No internet connection, please connect to the internet and try again",
+        });
       }
-      if (!response || response.status !== 200) {
+      else{
+        console.log(" else isONLINE??? ", isOnline)
+        if (!response || response.status !== 200) {
         setAlert({
           show: true,
           type: "danger",
@@ -41,6 +54,7 @@ const Signin = ({user, vendor}) => {
         navigate("/vendor/");
         getVendor()
       }
+    }
     } catch (error) {
       console.log(error);
     }
@@ -49,6 +63,8 @@ const Signin = ({user, vendor}) => {
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
   };
+
+
   return (
     <main>
       <Navbar />

@@ -7,6 +7,7 @@ import Footer from "../../components/landing-page/Footer";
 
 import { useUserContext } from "../../context/user_context";
 import Alert from "../../components/User/Alert";
+import CheckNetwork from "../../utils/CheckNetwork";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -42,13 +43,17 @@ const Signup = () => {
         msg: "Kindly accept terms to proceed",
       });
     } else {
-      uploadUserDetails({
-        name,
-        email,
-        phone,
-        password,
-      });
+      if(CheckNetwork()){
+        uploadUserDetails({
+          name,
+          email,
+          phone,
+          password,
+        });
       navigate("/user/signin");
+      }
+     
+     
     }
   };
 
