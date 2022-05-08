@@ -65,8 +65,8 @@ function VendorSignup() {
           .max(13, 'Cannot exceed 11 digits'),
           email:  Yup.string().email('Invalid email')
           .availability("Could not confirm availability").required('Required'),
-          password: Yup.string().required('Required').min(8,'Password should be longer than 8 characters'),
-          business_name: Yup.string().min(5, 'Business name is too short').max(30, 'Business name is too long')
+          password: Yup.string().required('Required').min(6,'Password should be longer than 6 characters'),
+          business_name: Yup.string().min(4, 'Business name is too short').max(30, 'Business name is too long')
           .availability("Could not confirm availability").required('Required'),
           address:  Yup.string().required('Required'),
           city:  Yup.string().required('Required'),
@@ -198,6 +198,11 @@ function VendorSignup() {
                     ) : null}
               </Wrapper>
               
+              <Wrapper flex>
+                <StyledLabel normal htmlFor="name">Already have an account? 
+                <Link to="/vendor/signin"> Sign in </Link>  </StyledLabel>
+              </Wrapper>
+              
             </Wrapper>
 
             {/* Second column */}
@@ -223,11 +228,7 @@ function VendorSignup() {
                     )
                 })}
               <StyledButton type="submit" id='continue' name='continue'
-              label="continue" align-self="end"
-              onClick={()=>{
-              
-               console.log('Onclick errors',errors)
-              }}      
+              label="continue" align-self="end" wide
               >Continue</StyledButton>
             </Wrapper>
             </>
@@ -278,7 +279,7 @@ function VendorSignup() {
                       
                 <StyledButton type="submit"
                   id="submit" name='submit' label="continue"
-                  page={page} 
+                  page={page} wide
                 >Continue</StyledButton>
                 {/* {response.message || response.error ?  */}
                       <Heading 
@@ -288,6 +289,10 @@ function VendorSignup() {
                       {response.message ? response.messsage : response.error}
                 </Heading> 
                 {/* : null} */}
+                <Wrapper flex>
+                  <StyledLabel normal htmlFor="name">Already have an account? 
+                  <Link to="/vendor/signin"> Sign in </Link>  </StyledLabel>
+                </Wrapper>
               </Wrapper>
               <Wrapper>
                     <Image/>
@@ -297,6 +302,7 @@ function VendorSignup() {
             }
 
         </StyledForm>
+
         <Footer/>
     </div>
   )

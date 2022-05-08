@@ -102,6 +102,10 @@ export const StyledLabel = styled.label`
       top:-8px;
     }    */
   }
+
+  a{
+    color:#F15A24;
+  }
 `
 export const StyledInput = styled.input`
     font-family:'montserrat';

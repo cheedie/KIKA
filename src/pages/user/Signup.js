@@ -28,7 +28,7 @@ const Signup = () => {
         type: "danger",
         msg: "please enter a valid email address",
       });
-    } else if (!/^[0-9]{8}$/g.test(password)) {
+    } else if (!/^[0-9]{6,}$/g.test(password)) {
       setAlert({
         show: true,
         type: "danger",

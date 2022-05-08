@@ -53,11 +53,17 @@ const UserAccount = () => {
             <p className="user__account-title">Shipping Address</p>
             <div className="user__details-container">
               <div className="user__user-details">
-                <p>{userDetails?.deliveryAddress?.street}</p>
-                <p>
-                  {userDetails?.deliveryAddress?.state.toUpperCase() + " "}
-                  State
-                </p>
+                {userDetails?.deliveryAddress?.street ?
+                <>
+                  <p>{userDetails?.deliveryAddress?.street}</p>
+                  <p>
+                    {userDetails?.deliveryAddress?.state.toUpperCase() + " "}
+                    State
+                  </p>
+                </>
+                :<p>No address yet...</p> 
+                }
+                
               </div>
               <button className="user__edit-btn">EDIT</button>
             </div>

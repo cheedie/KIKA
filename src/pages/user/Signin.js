@@ -15,6 +15,7 @@ const Signin = ({user, vendor}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   const handleSubmit = async (e) => {
@@ -71,12 +72,23 @@ const Signin = ({user, vendor}) => {
             </label>
             <input
               type="password"
-              className="sign__form-input"
+              className="sign__form-input password"
               id="password"
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <label className="sign__showPassword-container">
+              <input
+                onChange={()=> showPassword ? setShowPassword(false): setShowPassword(true)}
+                className="sign__terms-btn"
+                type="checkbox"
+              />
+                <span className="sign__accept-txt">Show password </span>
+              
+            </label>
+
+            
             <div className="sign__forgot-container">
               <div>
                 <button className="sign__terms-btn"></button>
@@ -106,7 +118,7 @@ const Signin = ({user, vendor}) => {
 
             <div style={{ textAlign: "center" }}>
               <span className="sign__account-txt">Don't have an account? </span>
-              <Link to="/user/signup" className="sign__link">
+              <Link to={vendor?"/vendor/signup":"/user/signup"} className="sign__link">
                 Sign Up
               </Link>
             </div>

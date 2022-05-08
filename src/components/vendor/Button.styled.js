@@ -16,9 +16,9 @@ export const StyledButton =  styled.button`
     color: #ffffff;
     box-sizing:border-box;
     min-width: 260px;
-    max-width: 280px;
+    max-width: ${({wide})=> wide ? "auto" :"280px"};
     align-self:flex-end;
-    justify-self:flex-end;
+    justify-self:${({wide})=> wide ? "auto" :"flex-end"};
     cursor: pointer;
 
 
