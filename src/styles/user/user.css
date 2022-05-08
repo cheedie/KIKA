@@ -41,6 +41,9 @@ SIGN UP
   font-weight: 400;
   font-size: 4vw;
 }
+.show_password-txt{
+  font-size:100%;
+}
 .sign__form-input {
   width: 100%;
   border: 2px solid #c4c4c4;

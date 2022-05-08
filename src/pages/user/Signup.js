@@ -16,6 +16,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [terms, setTerms] = useState(false);
   const [phone, setPhone] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   const handleSubmit = (e) => {
@@ -93,11 +94,20 @@ const Signup = () => {
               Password
             </label>
             <input
-              type="password"
-              className="sign__form-input"
+              type={showPassword ? "text":"password"}
+              className="sign__form-input password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+             <label className="sign__showPassword-container">
+              <input
+                onChange={()=> showPassword ? setShowPassword(false): setShowPassword(true)}
+                className="sign__terms-btn"
+                type="checkbox"
+              />
+                <span className="show_password-txt">Show password </span>
+              
+            </label>
             <label className="sign__terms-container">
               <input
                 onChange={() => setTerms(!terms)}

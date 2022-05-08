@@ -54,7 +54,7 @@ const Signin = ({user, vendor}) => {
       <Navbar />
       <section className="sign__main-container">
         <div className="sign__form-section">
-          <h3 className="sign__txt">Sign In</h3>
+          <h3 className="sign__txt">{vendor? "Vendor Sign in" : "Sign In"}</h3>
           <form action="" className="sign__form-group" onSubmit={handleSubmit}>
             <label htmlFor="email address" className="sign__form-label">
               Email Address
@@ -71,7 +71,7 @@ const Signin = ({user, vendor}) => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text":"password"}
               className="sign__form-input password"
               id="password"
               name="password"
@@ -84,7 +84,7 @@ const Signin = ({user, vendor}) => {
                 className="sign__terms-btn"
                 type="checkbox"
               />
-                <span className="sign__accept-txt">Show password </span>
+                <span className="show_password-txt">Show password </span>
               
             </label>
 
