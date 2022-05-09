@@ -82,18 +82,20 @@ export default function Products() {
         : products.length <=0 ? 
         <Message message="No products available..."/>:
         <div className="product_list">
-            <div className="product_titles">
-                <p className="product_image_title">Image</p>
-                <p>Name</p>
-                <p>Status</p>
-                <p>Stock</p>
-                <p>Price</p>
-                <p>Views</p>
-                <p>Date</p>
-            </div>
-            <div className="products">
-                <ProductTile products={products} setPopUp={setPopUp}/>
-            </div>
+            <table>
+                    <tbody>
+                    <tr className="product_titles">
+                        <th className="product_image_title">Image</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Views</th>
+                        <th>Date</th>
+                    </tr>
+                    <ProductTile products={products} setPopUp={setPopUp}/>
+                    </tbody>
+                </table>
 
         </div>}
         </div>
@@ -102,7 +104,6 @@ export default function Products() {
     </div>
     {isUploading ? <UploadForm setUpload={setUpload}/>:null}
     {popUp.state ? <ProductPopUp setPopUp={setPopUp}/>:null}
-    {/* <ProductPopUp setPopUp={setPopUp}/> */}
     
     </>
   )
@@ -133,23 +134,23 @@ function ProductTile({products, setPopUp}) {
       {tile.map((item,index)=>{
           return(
             
-            <div className="product_tile" key={`product-${index}`} 
+            <tr className="product_tile tile_container" key={`product-${index}`} 
             onClick = {()=>setPopUp({
                 state:true,
                 product:item
             })}
             style={{cursor:'pointer'}}
             >
-                <div className="product_img">
+                <td className="product_img">
                     <img src={item.image} alt={item.title}/>
-                </div>
-                <p className="product_title">{item.title}</p>
-                <p className="product_status">{item.status}</p>
-                <p className="product_stock">{item.stock}</p>
-                <p className="product_price">{item.price}</p>
-                <p className="product_views">{item.views}</p>
-                <p className="product_date">{item.date}<br/>Last Modified</p>
-            </div>
+                </td>
+                <td className="product_title">{item.title}</td>
+                <td className="product_status">{item.status}</td>
+                <td className="product_stock">{item.stock}</td>
+                <td className="product_price">{item.price}</td>
+                <td className="product_views">{item.views}</td>
+                <td className="product_date">{item.date}<br/>Last Modified</td>
+            </tr>
           )
       })}
       </>

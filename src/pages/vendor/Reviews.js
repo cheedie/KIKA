@@ -66,7 +66,7 @@ function ReviewTile() {
       <>
       {tile.map((item,index)=>{
           return(
-            <tr className="review_tile" key={`review-${index}`}>
+            <tr className="review_tile tile_container" key={`review-${index}`}>
                 <td className="review_details">
                     <div className="customer_img"><img src={item.details.img} alt=""/></div>
                     <div className="customer_details">

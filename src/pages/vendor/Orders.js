@@ -95,19 +95,24 @@ export default function Orders() {
 }
 
 function OrderTile({orders}) {
-  //let orderObject = Object.keys(orders)
-  // console.log("Order OBKJECT",orderObject)
-  // const tile = orders.map((value) =>{
-  //    let vendorOrder =   {
-  //         order_title:orders.orderId,
-  //         order_total:orders.totalPrice,
-  //         earning:orders.totalPrice,
-  //         status:"Waiting",
-  //         customer:orders.buyer,
-  //         date:"March 29th, 2022"
-  //       }
-  //       return vendorOrder
-  //   })
+  let orderObject = Object.keys(orders)
+  const earnings = (cost)=>{
+    let percentage = (5/100) * cost;
+    return cost - percentage;
+  }
+  console.log("Order OBKJECT",orderObject)
+  const tile = orders.map((value) =>{
+     let vendorOrder =   {
+          order_title:value.orderId,
+          order_total:value.totalPrice,
+          earning:earnings(value.totalPrice),
+          status:"Waiting",
+          customer:value.buyer,
+          date:"March 29th, 2022"
+        }
+        return vendorOrder
+    })
+    console.log("TILE", tile)
     // let product= {
     //                 order_title:value.order.orderId,
     //                 order_total:value.totalPrice,
@@ -121,40 +126,40 @@ function OrderTile({orders}) {
     //                 size: value.size,
     //             };
     //  return product
-    const tile=[
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Waiting",
-            customer:"Faith MugahFaith MugahFaith MugahFaith Mugah",
-            date:"March 29th, 2022"
-        },
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Delivered",
-            customer:"Faith Mugah",
-            date:"March 29th, 2022"
-        },
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Waiting",
-            customer:"Faith Mugah",
-            date:"March 29th, 2022"
-        },
-        {
-            order_title:"Order 23",
-            order_total:"N20,000",
-            earning:"N15,000",
-            status:"Waiting",
-            customer:"Faith Mugah",
-            date:"March 29th, 2022"
-        },
-    ]
+    // const tile=[
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Waiting",
+    //         customer:"Faith MugahFaith MugahFaith MugahFaith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Delivered",
+    //         customer:"Faith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Waiting",
+    //         customer:"Faith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    //     {
+    //         order_title:"Order 23",
+    //         order_total:"N20,000",
+    //         earning:"N15,000",
+    //         status:"Waiting",
+    //         customer:"Faith Mugah",
+    //         date:"March 29th, 2022"
+    //     },
+    // ]
   return (
       <>
       {tile.map((item,index)=>{

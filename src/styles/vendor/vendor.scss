@@ -4,10 +4,10 @@ body {
   position: relative;
   font-family: "Montserrat";
   font-style: normal;
-  div {
+  div,tr {
     box-sizing: border-box;
   }
-  p {
+  p,th {
     font-size:100%;
     line-height: 100%;
     padding:0.8em 0;
@@ -359,7 +359,7 @@ body {
     .product_list,.order_list{
       display:grid;
       gap:0.5em;
-      p{
+      p,th{
         font-size:14px;
         line-height:140%;
       }
@@ -374,22 +374,31 @@ body {
       display:grid;
       gap:1em;
       justify-content: space-between;
+      text-align :left;
     }
     .product_titles, 
     .product_tile{
       grid-template-columns: 1fr 2fr 1.5fr repeat(4, minmax(5em, 1fr));
     }
     .product_titles, .order_titles{
-      p{
-        font-weight:500;
+      p,th{
+        font-weight:500
       }
    
     }
 
     .product_tile{
+      
       padding:1em 0;
       align-items: center;
       border-bottom: 1px solid #F15A24;
+      transition: transform cubic-bezier(0.075, 0.82, 0.165, 1),
+      background cubic-bezier(0.075, 0.82, 0.165, 1);
+      
+    }
+    .product_tile.tile_container:hover{
+        background:#f15a241f;
+        transform: scale(1.02);      
     }
 
     .product_image_title{
@@ -441,12 +450,12 @@ body {
       grid-template-columns: 3em repeat(5, 1fr) 1.5fr 1fr;
       align-items: center;
       background:rgba(245, 245, 245, 0.9);
-      p,div{
+      th,p,div{
         border: 1px solid rgba(0, 0, 0, 0.1);
         height:100%;
         width:100%;
       }
-      p{
+      p,th{
         padding-left:0.8em;
       }
       div{
@@ -457,7 +466,7 @@ body {
 
     }
     .order_tile{
-      p{
+      p,th{
         font-weight:normal;
       }
     }
