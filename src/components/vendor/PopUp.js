@@ -352,7 +352,6 @@ const Image = styled.img`
   height: 100%;
   max-height: 350px;
   text-indent: -1000em;
-  padding: 1em !important;
   border: 2px dotted #c4c4c4 !important;
 
   
