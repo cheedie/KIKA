@@ -36,7 +36,7 @@ export const Wrapper = styled.div`
 
   //for flex
   flex-direction:${props=> props.col ? 'column' : ''};
-
+  min-height:${({description})=> description ? '15em' : ''};
   &.input_container{
     justify-self:center;
   }

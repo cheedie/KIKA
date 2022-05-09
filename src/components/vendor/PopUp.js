@@ -247,7 +247,7 @@ export default function ProductPopUp({ setPopUp }) {
             GTC="1fr"
             padding="0 0.8em"
           >
-            <Wrapper>
+            <Wrapper description>
               <Subtitle description>{product.description}</Subtitle>
             </Wrapper>
           </Wrapper>
