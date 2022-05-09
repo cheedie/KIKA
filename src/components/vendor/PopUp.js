@@ -319,7 +319,7 @@ const ProductWrapper = styled.section`
 `;
 const ProductContainer = styled.div`
   width:100%;
-  max-width: 720px;
+  max-width: 725px;
   height: 100%;
   background: #ffffff;
   padding: 0em 1.5em;
@@ -330,7 +330,7 @@ height:350px;
 &::after{
     content: '';
     top: 0px;
-    right: -16px;
+    right: -2em;
     position: absolute;
     height: 100%;
     width: 1px;
