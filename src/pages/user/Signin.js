@@ -15,7 +15,8 @@ const Signin = ({user, vendor}) => {
   const { loginVendor, getVendor } = useVendorContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [isOnline, setIsOnline] = useState(CheckNetwork());
+  // const [isOnline, setIsOnline] = useState(CheckNetwork);
+  const isOnline = async () => await CheckNetwork()
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
@@ -23,23 +24,23 @@ const Signin = ({user, vendor}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response;
-      if(user){
-          response = await loginUser({ email, password })
-        }else if(vendor){
-            response = await loginVendor({ email, password })
-          }
-        console.log("RESPONSE", response)
-      if(!isOnline){
+      console.log("ISONLINE HERE", isOnline())
+      
+      if(!isOnline()){
         console.log("false isONLINE??? ", isOnline)
         setAlert({
           show: true,
           type: "danger",
           msg: "No internet connection, please connect to the internet and try again",
         });
-      }
-      else{
-        console.log(" else isONLINE??? ", isOnline)
+      }else{
+        let response;
+      if(user){
+          response = await loginUser({ email, password })
+        }else if(vendor){
+            response = await loginVendor({ email, password })
+          }
+      
         if (!response || response.status !== 200) {
         setAlert({
           show: true,
@@ -124,6 +125,7 @@ const Signin = ({user, vendor}) => {
 
             <div className="sign__sign-btn-container">
               <button
+                id="button"
                 type="submit"
                 className="sign__up-btn"
                 disabled={email === "" && password === "" ? true : false}

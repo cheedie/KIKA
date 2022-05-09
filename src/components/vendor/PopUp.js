@@ -318,7 +318,8 @@ const ProductWrapper = styled.section`
   z-index: 9999;
 `;
 const ProductContainer = styled.div`
-  max-width: 700px;
+  width:100%;
+  max-width: 720px;
   height: 100%;
   background: #ffffff;
   padding: 0em 1.5em;
