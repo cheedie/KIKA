@@ -1,5 +1,5 @@
 import UploadForm from "../../components/vendor/UploadForm";
-import PopUp from "../../components/vendor/PopUp";
+import ProductPopUp from "../../components/vendor/PopUp";
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import Loading from "../../components/Global/Loading";
@@ -10,7 +10,10 @@ import { useVendorContext } from "../../context/vendor_context";
 
 export default function Products() {
     const [isUploading, setUpload] = useState(false)
-    const [popUp, setPopUp] = useState(false)
+    const [popUp, setPopUp] = useState({
+        state:false,
+        product:{}
+    })
     const { 
         products, 
         getVendorProducts, 
@@ -89,7 +92,7 @@ export default function Products() {
                 <p>Date</p>
             </div>
             <div className="products">
-                <ProductTile products={products}/>
+                <ProductTile products={products} setPopUp={setPopUp}/>
             </div>
 
         </div>}
@@ -98,7 +101,8 @@ export default function Products() {
        
     </div>
     {isUploading ? <UploadForm setUpload={setUpload}/>:null}
-    {popUp ? <PopUp setPopUp={setPopUp}/>:null}
+    {popUp.state ? <ProductPopUp setPopUp={setPopUp}/>:null}
+    {/* <ProductPopUp setPopUp={setPopUp}/> */}
     
     </>
   )
@@ -106,7 +110,7 @@ export default function Products() {
 
 
 
-function ProductTile({products}) {
+function ProductTile({products, setPopUp}) {
 
     const tile= products.reverse().map((value) =>{
     let product= {
@@ -129,7 +133,13 @@ function ProductTile({products}) {
       {tile.map((item,index)=>{
           return(
             
-            <div className="product_tile" key={`product-${index}`}>
+            <div className="product_tile" key={`product-${index}`} 
+            onClick = {()=>setPopUp({
+                state:true,
+                product:item
+            })}
+            style={{cursor:'pointer'}}
+            >
                 <div className="product_img">
                     <img src={item.image} alt={item.title}/>
                 </div>

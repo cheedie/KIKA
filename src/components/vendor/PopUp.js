@@ -17,9 +17,10 @@ import * as Yup from "yup";
 import { useState, useEffect } from "react";
 import { useVendorContext } from "../../context/vendor_context";
 
-export default function UploadForm({ setUpload }) {
+
+export default function ProductPopUp({ setPopUp }) {
   const {
-    product,
+    //product,
     createProduct,
     endCreateProduct,
     getVendorProducts,
@@ -45,124 +46,143 @@ export default function UploadForm({ setUpload }) {
     }
   }, []);
 
-  const FILE_SIZE = 5 * 160 * 1024;
-  const [imagePreview, setImagePreview] = useState({
-    path: "",
-  });
+  const product = {
+    brand: "Gucci",
+    category: "Female",
+    color: "black, purple",
+    countInStock: 10,
+    description: "Beautiful Floral Gown",
+    grade: "A",
+    image: "https://res.cloudinary.com/kika/image/upload/v1651749062/products/alz4qb1axzxwxm8inyk9.png",
+    name: "Beautiful Floral gown",
+    numReviews: 0,
+    price: 2000,
+    rating: 0,
+    reviews: [],
+    size: "M",
+    slug: "beautiful-floral-gown",
+    updatedAt: "2022-05-05T11:11:02.591Z",
+    vendor: {_id: '6273b00345ed5a00043d478f', name: 'John Doe', email: 'johndoe@gmail.com'},
+    _id: "6273b0c645ed5a00043d47a5",
+  }
 
-  const {
-    setFieldValue,
-    handleBlur,
-    handleSubmit,
-    handleChange,
-    values,
-    touched,
-    errors,
-  } = useFormik({
-    initialValues: {
-      name: "",
-      price: "",
-      discount: "",
-      newArrival: true,
-      category: "", //['Male', 'Female']
-      grade: "", //['A', 'B']
-      brand: "",
-      size: "",
-      color: "",
-      countInStock: "1",
-      description: "",
-      image: "",
-    },
+  // const FILE_SIZE = 5 * 160 * 1024;
+  // const [imagePreview, setImagePreview] = useState({
+  //   path: "",
+  // });
 
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .min(3, "Product name should be longer than 3 characters")
-        .max(30, "Product name should not be longer than 30 characters")
-        .required("Required"),
-      description: Yup.string()
-        .required("Required")
-        .min(10, "Product description should be longer than 10 characters")
-        .max(
-          150,
-          "Product description should not not be longer than 150 characters"
-        ),
-      price: Yup.string()
-        .required("Please include price")
-        .matches(/^[0-9]+$/, "Price should be digits"),
-      discount: Yup.string().matches(/^[0-9]+$/, "Price should be digits"),
-      image: Yup.mixed()
-        .required("Required")
-        .test(
-          "FILE_SIZE",
-          "Uploaded file is too big.",
-          (value) => !value || (value && value.size <= FILE_SIZE)
-        )
-        .test(
-          "type",
-          "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc",
-          (value) => {
-            return (
-              !value ||
-              (value &&
-                (value.type === "image/jpeg" ||
-                  value.type === "image/bmp" ||
-                  value.type === "image/png"))
-            );
-          }
-        ),
-      category: Yup.string()
-        .required("Please choose category")
-        .oneOf(["Male", "Female"]),
-      grade: Yup.string().required("Please choose grade").oneOf(["A", "B"]),
-      size: Yup.string()
-        .required("Please include size")
-        .oneOf(["S", "M", "L", "XL"]),
-      countInStock: Yup.string()
-        .required("Please include quantity")
-        .matches(/^[0-9]+$/, "Quantity should be in digits"),
-    }),
+  // const {
+  //   setFieldValue,
+  //   handleBlur,
+  //   handleSubmit,
+  //   handleChange,
+  //   values,
+  //   touched,
+  //   errors,
+  // } = useFormik({
+  //   initialValues: {
+  //     name: "",
+  //     price: "",
+  //     discount: "",
+  //     newArrival: true,
+  //     category: "", //['Male', 'Female']
+  //     grade: "", //['A', 'B']
+  //     brand: "",
+  //     size: "",
+  //     color: "",
+  //     countInStock: "1",
+  //     description: "",
+  //     image: "",
+  //   },
 
-    onSubmit: (values) => {
-      return createProduct(values).then((response) => {
-        if (response.data?.data && response.data?.message) {
-          getVendorProducts();
-          setTimeout(() => setUpload(false), 2000);
-        }
-      });
-    },
-  });
+  //   validationSchema: Yup.object({
+  //     name: Yup.string()
+  //       .min(3, "Product name should be longer than 3 characters")
+  //       .max(30, "Product name should not be longer than 30 characters")
+  //       .required("Required"),
+  //     description: Yup.string()
+  //       .required("Required")
+  //       .min(10, "Product description should be longer than 10 characters")
+  //       .max(
+  //         150,
+  //         "Product description should not not be longer than 150 characters"
+  //       ),
+  //     price: Yup.string()
+  //       .required("Please include price")
+  //       .matches(/^[0-9]+$/, "Price should be digits"),
+  //     discount: Yup.string().matches(/^[0-9]+$/, "Price should be digits"),
+  //     image: Yup.mixed()
+  //       .required("Required")
+  //       .test(
+  //         "FILE_SIZE",
+  //         "Uploaded file is too big.",
+  //         (value) => !value || (value && value.size <= FILE_SIZE)
+  //       )
+  //       .test(
+  //         "type",
+  //         "Only the following formats are accepted: .jpeg, .jpg, .bmp, and .doc",
+  //         (value) => {
+  //           return (
+  //             !value ||
+  //             (value &&
+  //               (value.type === "image/jpeg" ||
+  //                 value.type === "image/bmp" ||
+  //                 value.type === "image/png"))
+  //           );
+  //         }
+  //       ),
+  //     category: Yup.string()
+  //       .required("Please choose category")
+  //       .oneOf(["Male", "Female"]),
+  //     grade: Yup.string().required("Please choose grade").oneOf(["A", "B"]),
+  //     size: Yup.string()
+  //       .required("Please include size")
+  //       .oneOf(["S", "M", "L", "XL"]),
+  //     countInStock: Yup.string()
+  //       .required("Please include quantity")
+  //       .matches(/^[0-9]+$/, "Quantity should be in digits"),
+  //   }),
 
-  const handleFileChange = (e) => {
-    setFieldValue("image", e.currentTarget.files[0]).then(() =>
-      setImagePreview({
-        ...values.image,
-        path: URL.createObjectURL(e.target.files[0]),
-      })
-    );
-  };
-  const handleNameChange = (e) => {
-    setFieldValue("name", e.target.value);
-    endCreateProduct();
-  };
+  //   onSubmit: (values) => {
+  //     return createProduct(values).then((response) => {
+  //       if (response.data?.data && response.data?.message) {
+  //         getVendorProducts();
+  //         setTimeout(() => setUpload(false), 2000);
+  //       }
+  //     });
+  //   },
+  // });
+
+  // const handleFileChange = (e) => {
+  //   setFieldValue("image", e.currentTarget.files[0]).then(() =>
+  //     setImagePreview({
+  //       ...values.image,
+  //       path: URL.createObjectURL(e.target.files[0]),
+  //     })
+  //   );
+  // };
+  // const handleNameChange = (e) => {
+  //   setFieldValue("name", e.target.value);
+  //   endCreateProduct();
+  // };
+  // const [readOnly, setReadOnly] = useState(true)
 
   return (
-    <UploadWrapper>
-      <UploadContainer>
-        <StyledForm
+    <ProductWrapper>
+      <ProductContainer>
+        <Wrapper
           products
           gap="2"
-          onBlur={handleBlur}
-          onSubmit={handleSubmit}
-          enctype="multipart/form-data"
+          grid
         >
           <Wrapper flex>
-            <Heading> + Add New Product </Heading>
+            <Heading>{product.slug}</Heading>
+            
             <ExitButton
               id="exit"
               name="exit_button"
               onClick={() => {
-                setUpload(false);
-                endCreateProduct();
+                setPopUp({state:false});
               }}
             >
               <Close />
@@ -171,199 +191,70 @@ export default function UploadForm({ setUpload }) {
 
           <Wrapper
             grid
-            gap="1"
+            gap="2"
             Justify="space-between"
             Align="flex-start"
-            GTC="1fr 2fr"
+            GTC="1fr 1fr"
+            padding="0 0.8em"
           >
-            <Wrapper>
-              <UploadInput
-                img={imagePreview}
+            <ImgWrapper style={{
+              
+              }}>
+              <Image
+                src={product.image}
+                alt={product.slug}
                 id="image"
-                name="image"
-                placeholder="Identification"
-                type="file"
-                accept="image/*"
-                onChange={(event) => handleFileChange(event)}
-              />{" "}
-              <br />{" "}
-              <span>
-                {values.name && values.image ? values.name : values.image.name}
-              </span>
-              {touched.image && errors.image ? (
-                <Message margin="0">{errors.image}</Message>
-              ) : null}
-            </Wrapper>
-            <Wrapper grid gap="2">
-              <InputWrapper>
-                <StyledLabel className="floating">A new product</StyledLabel>
-                <StyledInput
-                  type="text"
-                  name="name"
-                  value={values.name}
-                  onChange={(e) => {
-                    handleNameChange(e);
-                  }}
-                  placeholder="A new product"
-                  floating
-                />
-                {touched.name && errors.name ? (
-                  <Message margin="0">{errors.name}</Message>
-                ) : null}
-              </InputWrapper>
-              {/*------ description -------*/}
-              <InputWrapper>
-                <StyledLabel className="floating">description</StyledLabel>
-                <StyledTextArea
-                  type="text"
-                  value={values.description}
-                  name="description"
-                  onChange={handleChange}
-                  placeholder="A new product"
-                  floating
-                />
-                {touched.description && errors.description ? (
-                  <Message margin="0">{errors.description}</Message>
-                ) : null}
-              </InputWrapper>
-
-              {/*------ Price and Discount -------*/}
-              <Wrapper grid gap="1" GTC="1fr 1fr">
-                <InputWrapper>
-                  <StyledLabel>Price</StyledLabel>
-                  <StyledInput
-                    type="text"
-                    value={values.price}
-                    name="price"
-                    onChange={handleChange}
-                    placeholder="price"
-                    floating
-                  />
-                  {touched.price && errors.price ? (
-                    <Message margin="0">{errors.price}</Message>
-                  ) : null}
-                </InputWrapper>
-                <InputWrapper>
-                  <StyledLabel>Discounted Price</StyledLabel>
-                  <StyledInput
-                    type="text"
-                    value={values.discount}
-                    name="discount"
-                    onChange={handleChange}
-                    placeholder="discount"
-                    floating
-                  />
-                  {touched.discount && errors.discount ? (
-                    <Message margin="0">{errors.discount}</Message>
-                  ) : null}
-                </InputWrapper>
+              />
+            </ImgWrapper>
+            <Wrapper gap="1" grid GTC="1fr">
+              <Wrapper>
+                <Subtitle>Name</Subtitle>
+                <Title>{product.name}</Title>
               </Wrapper>
-
-              {/*------Color & Brand-------*/}
-              <Wrapper grid gap="1" GTC="1fr 1fr">
-                <InputWrapper>
-                  <StyledLabel>Color</StyledLabel>
-                  <StyledInput
-                    type="text"
-                    value={values.color}
-                    name="color"
-                    onChange={handleChange}
-                    placeholder="A new product"
-                    floating
-                  />
-                  {touched.color && errors.color ? (
-                    <Message margin="0">{errors.color}</Message>
-                  ) : null}
-                </InputWrapper>
-                <InputWrapper>
-                  <StyledLabel>Brand</StyledLabel>
-                  <StyledInput
-                    type="text"
-                    value={values.brand}
-                    name="brand"
-                    onChange={handleChange}
-                    placeholder="A new product"
-                    floating
-                  />
-                  {touched.brand && errors.brand ? (
-                    <Message margin="0">{errors.brand}</Message>
-                  ) : null}
-                </InputWrapper>
+              <Wrapper>
+                <Subtitle>Brand</Subtitle>
+                <Title>{product.brand}</Title>
               </Wrapper>
-              {/*------Category, Grade & Size-------*/}
-              <Wrapper grid GTC="1fr 1fr 1fr 1fr" gap="1">
-                <InputWrapper>
-                  <StyledLabel className="floating">Category</StyledLabel>
-                  <Dropdown
-                    options={["---", "Male", "Female"]}
-                    type="text"
-                    name="category"
-                    placeholder="category"
-                    onChange={handleChange}
-                    value={values.category}
-                    floating
-                  />
-                  {touched.category && errors.category ? (
-                    <Message margin="0">{errors.category}</Message>
-                  ) : null}
-                </InputWrapper>
-                <InputWrapper>
-                  <StyledLabel className="floating">Size</StyledLabel>
-                  <Dropdown
-                    options={["---", "S", "M", "L", "XL"]}
-                    type="text"
-                    name="size"
-                    placeholder="size"
-                    onChange={handleChange}
-                    floating
-                    value={values.size}
-                  />
-                  {touched.size && errors.size ? (
-                    <Message margin="0">{errors.size}</Message>
-                  ) : null}
-                </InputWrapper>
-                <InputWrapper>
-                  <StyledLabel className="floating">Grade</StyledLabel>
-                  <Dropdown
-                    options={["---", "A", "B"]}
-                    type="text"
-                    name="grade"
-                    placeholder="grade"
-                    onChange={handleChange}
-                    floating
-                    value={values.grade}
-                  />
-                  {touched.grade && errors.grade ? (
-                    <Message margin="0">{errors.grade}</Message>
-                  ) : null}
-                </InputWrapper>
-                <InputWrapper>
-                  <StyledLabel>Quantity</StyledLabel>
-                  <StyledInput
-                    type="text"
-                    name="countInStock"
-                    onChange={handleChange}
-                    value={values.countInStock}
-                    placeholder="Quantity"
-                    small
-                  />
-                  {touched.countInStock && errors.countInStock ? (
-                    <Message margin="0">{errors.countInStock}</Message>
-                  ) : null}
-                </InputWrapper>
+              <Wrapper>
+                <Subtitle>Color(s)</Subtitle>
+                <Title>{product.color}</Title>
+              </Wrapper>
+              <Wrapper grid GTC="repeat(auto-fill, minmax(64px, 1fr))">
+                <Wrapper>
+                  <Subtitle>Size</Subtitle>
+                  <Title>{product.size}</Title>
+                </Wrapper>
+                <Wrapper>
+                  <Subtitle>Grade</Subtitle>
+                  <Title>{product.grade}</Title>
+                </Wrapper>
+                <Wrapper>
+                  <Subtitle>Category</Subtitle>
+                  <Title>{product.category}</Title>
+                </Wrapper>
+              </Wrapper>
+              <Wrapper>
+                <Subtitle>Price</Subtitle>
+                <Title>₦ {product.price}</Title>
               </Wrapper>
             </Wrapper>
           </Wrapper>
-
-          <StyledButton
-            id="submit"
-            name="submit"
-            type="submit"
-            label="Add Product"
+          <Wrapper 
+            grid
+            gap="2"
+            Justify="space-between"
+            Align="flex-start"
+            GTC="1fr"
+            padding="0 0.8em"
           >
-            Upload
-          </StyledButton>
-          <Wrapper flex>
+            <Wrapper>
+              <Subtitle description>{product.description}</Subtitle>
+            </Wrapper>
+          </Wrapper>
+          
+
+          
+          {/* <Wrapper flex>
             {values.name &&
             (uploadMessage ||
               creating_product ||
@@ -383,46 +274,87 @@ export default function UploadForm({ setUpload }) {
                 {creating_product_message}
               </Heading>
             ) : null}
+          </Wrapper> */}
+
+        </Wrapper>
+        <Wrapper 
+            grid
+            gap="2"
+            Justify="space-between"
+            Align="flex-start"
+            GTC="1fr"
+            padding="0 0.8em"
+           
+          >
+            <StyledButton
+              id="delete"
+              name="delete"
+              type="delete"
+              label="delete"
+               style={{"justify-self":"flex-start"}}
+            >
+            Delete
+          </StyledButton>
+
+            
           </Wrapper>
-        </StyledForm>
-      </UploadContainer>
-    </UploadWrapper>
+      </ProductContainer>
+    </ProductWrapper>
   );
 }
 
-const UploadWrapper = styled.section`
+const ProductWrapper = styled.section`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  min-height: 830px;
+  max-height: 900px;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 `;
-const UploadContainer = styled.div`
-  max-width: 906px;
+const ProductContainer = styled.div`
+  max-width: 700px;
   height: 100%;
   background: #ffffff;
   padding: 0em 1.5em;
 `;
+const ImgWrapper = styled(Wrapper)`
+width:280px;
+height:350px;
+&::after{
+    content: '';
+    top: 0px;
+    right: -16px;
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background: grey;
+  }
+`
 
-const UploadInput = styled.input`
+const Image = styled.img`
   background: ${(props) =>
-    props.img.path
-      ? `url(${props.img.path}) no-repeat`
+    props.src
+      ? `url(${props.src}) no-repeat`
       : `url(${image_bg}) no-repeat`};
-  background-size: contain;
+  background-size: cover;
+  object-fit:cover;
+  object-position:center;
   background-position: center;
   background-repeat: no-repeat;
-  width: 213px;
-  height: 213px;
+  width: 100%;
+  height: 100%;
+  max-height: 350px;
   text-indent: -1000em;
   padding: 1em !important;
   border: 2px dotted #c4c4c4 !important;
-  cursor: crosshair;
+
+  
 `;
 
 const Heading = styled.h1`
@@ -433,10 +365,31 @@ const Heading = styled.h1`
   width: 100%;
   text-align: left;
   color: ${({ smallHeading, color }) => (smallHeading && color ? color : "")};
+
   @media (max-width: 720px) {
     font-size: 36px;
     line-height: 40px;
   }
+`;
+const Title = styled.p`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5em;
+  line-height: 100%;
+  width: 100%;
+  text-align: left;
+  padding:0.2em 0;
+  //color: ${({ smallHeading, color }) => (smallHeading && color ? color : "")};
+
+  @media (max-width: 720px) {
+    font-size: 24px;
+    line-height: 100%;
+  }
+`;
+const Subtitle = styled.p`
+  font-style: normal;
+  font-weight: normal;
+  padding:0.1em 0;
 `;
 
 const ExitButton = styled.button`
@@ -451,16 +404,4 @@ const ExitButton = styled.button`
   }
 `;
 
-const Dropdown = ({ name, options, onChange }) => {
-  return (
-    <StyledSelect name={name} onChange={onChange}>
-      {options.map((option, index) => {
-        return (
-          <option key={`${option}-${index}`} value={option}>
-            {option}
-          </option>
-        );
-      })}
-    </StyledSelect>
-  );
-};
+

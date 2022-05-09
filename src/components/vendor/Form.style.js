@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   position: relative;
   margin:0;
  // height:100%;
-  padding:${props=>props.container ? '1em 2em' : ''};
+  padding:${({container, padding})=>container ? '1em 2em' : padding ? padding : ''};
   order:${props=>props.order};
   display:${props=>props.grid ? 'grid' : props.flex ? 'flex' : 'block'};
     //for grid
