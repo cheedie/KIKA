@@ -1,5 +1,6 @@
 import '../../styles/vendor/vendor.css';
 import React, {useState, useEffect} from 'react'
+import styled from 'styled-components'
 import {Routes, Route, useNavigate, Link} from "react-router-dom"
 import Sidebar from '../../components/vendor/Sidebar.js'
 import Dashboard from './Dashboard.js'
@@ -64,6 +65,7 @@ function Vendor() {
         <Sidebar handleSignOut={handleSignOut}/>
         <div className="main_container">
         { loading ? <Loading/> : error ? <Error/> : 
+          <><Heading> Welcome {vendorDetails.name} </Heading>
           <Routes>
             <Route path={"" ? "" : "/"} element={<Dashboard/>} />
             <Route path="/products" element={<Products/>} />
@@ -73,6 +75,7 @@ function Vendor() {
             <Route path="/withdraw" element={<Withdraw/>} />
             <Route path="/settings" element={<Settings/>} />
           </Routes>
+          </>
           }
         </div>
       </section>
@@ -81,3 +84,18 @@ function Vendor() {
 }
 
 export default Vendor;
+
+const Heading = styled.h1`
+  font-style: normal;
+  font-weight: 600;
+  font-size: ${(props) => (props.smallHeading ? "1em" : "2em")};
+  line-height: 78px;
+  width: 100%;
+  text-align: left;
+  text-transform:capitalize;
+  color: ${({ smallHeading, color }) => (smallHeading && color ? color : "")};
+  @media (max-width: 720px) {
+    font-size: 36px;
+    line-height: 40px;
+  }
+`;
